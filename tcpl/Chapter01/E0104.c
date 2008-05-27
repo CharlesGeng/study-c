@@ -17,7 +17,7 @@ void ConvertByForLoop()
     float f = 0.0;
     printf("%s", "Use For Loop\n");
     printf("%s", "Celsius\tFahrenheit\n");
-    for (; i <= hIGH; i += STEP)
+    for (; i <= HIGH; i += STEP)
     {
         printf("%3d\t%6.2f\n", i, 9.0 * i / 5.0 + 32);
     }
@@ -27,12 +27,20 @@ void ConvertByForLoop()
 //use while loop
 void ConvertByWhileLoop()
 {
+    int i = LOW;
     printf("%s", "Use While Loop\n");
+    printf("%s", "Celsius\tFahrenheit\n");
+    while (i <= HIGH)
+    {
+        printf("%3d\t%6.2f\n", i, 9.0 * i / 5.0 + 32);
+        i += STEP;
+    }
 }
 
 int main()
 {
     ConvertByForLoop();
+    ConvertByWhileLoop();
 }
 
 

@@ -10,6 +10,8 @@
 #define HIGH    40      //highest Celsius
 #define STEP    2
 
+#define YELLOW      "\033[33;48m"  //Yellow ForeGround
+#define COLOREND    "\033[00m"
 //use for loop
 void ConvertByForLoop()
 {
@@ -19,7 +21,14 @@ void ConvertByForLoop()
     printf("%s", "Celsius\tFahrenheit\n");
     for (; i <= HIGH; i += STEP)
     {
-        printf("%3d\t%6.2f\n", i, 9.0 * i / 5.0 + 32);
+        if(0 == i % 4)
+        {
+            printf("%3d\t%6.2f\n", i, 9.0 * i / 5.0 + 32);
+        }
+        else
+        {
+            printf("%s%3d\t%6.2f%s\n", YELLOW, i, 9.0 * i / 5.0 + 32, COLOREND);
+        }
     }
     printf("%s", "***********************\n");
 }

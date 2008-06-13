@@ -2,6 +2,7 @@
 
 main()
 {
-    printf("Test \\c");
+    printf("Test \\c\n");
     printf("\c");
+    printf("\n");
 }

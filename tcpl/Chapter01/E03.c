@@ -9,7 +9,7 @@ main()
     upper = 300;    /* upper limit */
     step = 20;      /* step size */
     fahr = lower;
-    printf("%s", "Print Fahrenheit-Celsius Table")
+    printf("%s", "Print Fahrenheit-Celsius Table");
     while (fahr <= upper) 
     {
         celsius = (5.0/9.0) * (fahr-32.0);

@@ -1,5 +1,5 @@
 #TCPL Chapter01
-E01 : E01.c E02 E03 E04 E05 E06 E07 E08 E09
+E01 : E01.c E02 E03 E04 E05 E06 E07 E08 E09 E10
 	cc -o E01 E01.c
 E02 : E02.c
 	cc -o E02 E02.c
@@ -17,5 +17,7 @@ E08 : E08.c
 	cc -o E08 E08.c
 E09 : E09.c
 	cc -o E09 E09.c
+E10 : E10.c
+	cc -o E10 E10.c
 clean:
 	rm *.exe

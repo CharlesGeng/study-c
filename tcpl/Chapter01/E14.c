@@ -1,54 +1,39 @@
 #include <stdio.h>
 
-#define MAXWORDLENGTH 1000
+#define ALPHACOUNT 26
 
 int main()
 {
-    int counter[MAXWORDLENGTH];
-    int i, wlength;
-    wlength = 0;
+    int counter[ALPHACOUNT];
+    int i;
     char c;
-    for (i = 0; i < MAXWORDLENGTH; ++i)
+    // set array's every item zero;
+    for (i = 0; i < ALPHACOUNT; ++i)
     {
         counter[i] = 0;
     }
 
-    //Count every word's length
     while ((c = getchar()) != EOF)
     {
-        if (c == '\t' || c == '\n' || c == ' ')
+        if (c >= 'a' && c <= 'z')
         {
-            if (wlength != 0 && wlength < MAXWORDLENGTH)
-                ++counter[wlength];
-            wlength = 0;
+            ++ counter[c - 'a'];
         }
-        else
+        else if (c >= 'A' && c <= 'Z')
         {
-            wlength ++;
+            ++ counter[c - 'A'];
         }
+        continue;
+    }
+
+    for (i = 0; i < ALPHACOUNT; ++i)
+    {
+        printf("%d ", counter[i]);
     }
     printf("\n");
-
-    //horizontal histogram
-    /*for (i = 0; i < MAXWORDLENGTH; ++i)
+    for (i = 0; i < ALPHACOUNT; ++i)
     {
-        int j;
-        if (counter[i] > 0)
-        {
-            printf ("%d", i);
-            for (j = 0; j < counter[i]; ++j)
-            {
-                printf("-");
-            }
-            printf("|\n");
-        }
-    }
-    */
-    //vertical histogram
-    for (i = 0; i < MAXWORDLENGTH; ++i)
-    {
-        if (counter[i] != 0)
-            printf ("%d", i);
+        printf("%c ", i + 'a');
     }
     printf("\n");
 }

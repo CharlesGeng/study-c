@@ -1,12 +1,15 @@
 #include <stdio.h>
 
-#define MAXWORD 1000
+#define MAXWORD 10
+
+extern void PrintHistogramHorizontal(int counter[]);
+extern void PrintHistogramVertical(int counter[]);
 
 int main()
 {
     int counter[MAXWORD];
-    int i, wlength;
-    wlength = 0;
+    int i, wlength, maxlength;
+    wlength = maxlength = 0;
     char c;
     for (i = 0; i < MAXWORD; ++i)
     {
@@ -20,7 +23,7 @@ int main()
         if (c == '\t' || c == '\n' || c == ' ')
         {
             if (wlength != 0 && wlength < MAXWORD)
-                counter[++i] = wlength;
+                counter[i++] = wlength;
             wlength = 0;
         }
         else
@@ -30,7 +33,14 @@ int main()
     }
     printf("\n");
 
-    //horizontal histogram
+    PrintHistogramHorizontal(counter);
+    PrintHistogramVertical(counter);
+}
+
+//horizontal histogram
+void PrintHistogramHorizontal(int counter[])
+{
+    int i;
     for (i = 0; i < MAXWORD; ++i)
     {
         int j;
@@ -44,14 +54,38 @@ int main()
             printf("\n");
         }
     }
+    printf("\n");
 
-    //vertical histogram
-    /*for (i = 0; i < MAXWORD; ++i)
+
+}
+
+//vertical histogram style
+void PrintHistogramVertical(int counter[])
+{
+    int i, maxlength;
+    maxlength = 0;
+    //Get the longest word length
+    for (i = 0; i < MAXWORD; ++i)
     {
-        if (counter[i] != 0)
-            printf ("%d", i);
+        if (maxlength < counter[i])
+            maxlength = counter[i];
     }
-    printf("\n");*/
 
-
+    for (i = maxlength; i > 0; --i)
+    {
+        int j;
+        for (j = 0; j < MAXWORD; ++j)
+        {
+            if (counter[j] < i)
+            {
+                printf ("  ");
+            }
+            else
+            {
+                printf ("* ");
+            }
+        }
+        printf("\n");
+    }
+    printf("\n");
 }

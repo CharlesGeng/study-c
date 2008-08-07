@@ -1,6 +1,6 @@
 #TCPL Chapter01
 E01 : E01.c E02 E03 E04 E05 E06 E07 E08 E09 E10\
-		E11 E12 E13 E14
+		E11 E12 E13 E14 E15 E16
 	cc -o E01 E01.c
 E02 : E02.c
 	cc -o E02 E02.c
@@ -28,6 +28,10 @@ E13 : E13.c
 	cc -o E13 E13.c
 E14 : E14.c
 	cc -o E14 E14.c
+E15 : E15.c
+	cc -o E15 E15.c
+E16 : E16.c
+	cc -o E16 E16.c
 clean:
 	rm E01 E02 E03 E04 E05 E06 E07 E08 E09 E10 \
-	E11 E12 E13 E14
+	E11 E12 E13 E14 E15 E16

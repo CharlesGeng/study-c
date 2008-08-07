@@ -1,11 +1,9 @@
-/*TODO:How to Count the string with the length more than 1000
- * */
 #include <stdio.h>
 
-#define MAXLENGHT 1000
+#define MAXLENGHT   1000
+#define LONGLINE    80
 
 int getline(char str[]);
-void copystr(char source[], char dest[]);
 
 int main()
 {
@@ -16,16 +14,8 @@ int main()
 
     while ((len = getline(str)) > 0)
     {
-        if (len > max)
-        {
-            max = len;
-            copystr(str, longest);
-        }
-    }
-    if (max > 0)
-    {
-        printf("Max Length:%d\n", max);
-        printf("%s", longest);
+        if (len > LONGLINE)
+        printf("%d:%s", len, str);
     }
     return 0;
 }
@@ -45,14 +35,4 @@ int getline(char str[])
     }
     str[i] = '\0';
     return i;
-}
-
-//Copy string from Source to Dest
-void copystr(char source[], char dest[])
-{
-    int i = 0;
-    while ((dest[i] = source[i]) != '\0')
-    {
-        ++i;
-    }
 }

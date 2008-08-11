@@ -38,7 +38,11 @@ void outputline(char str[])
     {
         if (str[i] == '\t')
         {
-
+            int j = 0;
+            int len = TABLEN - column % TABLEN;
+            for (; j < len; ++j)
+                putchar(' ');
+            column += len;
         }
         else
         {

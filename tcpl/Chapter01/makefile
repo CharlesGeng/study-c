@@ -1,52 +1,52 @@
 #TCPL Chapter01
-_E01 : E01.c _E02 _E03 _E04 _E05 _E06 _E07 _E08 _E09 _E10\
-             _E11 _E12 _E13 _E14 _E15 _E16 _E17 _E18 _E19\
-	         _E20 _E21
-	cc -o _E01 E01.c
-_E02 : E02.c
-	cc -o _E02 E02.c
-_E03 : E03.c
-	cc -o _E03 E03.c
-_E04 : E04.c
-	cc -o _E04 E04.c
-_E05 : E05.c
-	cc -o _E05 E05.c
-_E06 : E06.c
-	cc -o _E06 E06.c
-_E07 : E07.c
-	cc -o _E07 E07.c
-_E08 : E08.c
-	cc -o _E08 E08.c
-_E09 : E09.c
-	cc -o _E09 E09.c
-_E10 : E10.c
-	cc -o _E10 E10.c
-_E11 : E11.c
-	cc -o _E11 E11.c
-_E12 : E12.c
-	cc -o _E12 E12.c
-_E13 : E13.c
-	cc -o _E13 E13.c
-_E14 : E14.c
-	cc -o _E14 E14.c
-_E15 : E15.c
-	cc -o _E15 E15.c
-_E16 : E16.c
-	cc -o _E16 E16.c
-_E17 : E17.c
-	cc -o _E17 E17.c
-_E18 : E18.c
-	cc -o _E18 E18.c
-_E19 : E19.c
-	cc -o _E19 E19.c
-_E20 : E20.c
-	cc -o _E20 E20.c
-_E21 : E21.c
-	cc -o _E21 E21.c
+E01 : E01.c E02 E03 E04 E05 E06 E07 E08 E09 E10\
+             E11 E12 E13 E14 E15 E16 E17 E18 E19\
+	         E20 E21
+	cc -o E01 E01.c
+E02 : E02.c
+	cc -o E02 E02.c
+E03 : E03.c
+	cc -o E03 E03.c
+E04 : E04.c
+	cc -o E04 E04.c
+E05 : E05.c
+	cc -o E05 E05.c
+E06 : E06.c
+	cc -o E06 E06.c
+E07 : E07.c
+	cc -o E07 E07.c
+E08 : E08.c
+	cc -o E08 E08.c
+E09 : E09.c
+	cc -o E09 E09.c
+E10 : E10.c
+	cc -o E10 E10.c
+E11 : E11.c
+	cc -o E11 E11.c
+E12 : E12.c
+	cc -o E12 E12.c
+E13 : E13.c
+	cc -o E13 E13.c
+E14 : E14.c
+	cc -o E14 E14.c
+E15 : E15.c
+	cc -o E15 E15.c
+E16 : E16.c
+	cc -o E16 E16.c
+E17 : E17.c
+	cc -o E17 E17.c
+E18 : E18.c
+	cc -o E18 E18.c
+E19 : E19.c
+	cc -o E19 E19.c
+E20 : E20.c
+	cc -o E20 E20.c
+E21 : E21.c
+	cc -o E21 E21.c
 clean:
-	rm _E01 _E02 _E03 _E04 _E05 _E06 _E07 _E08 _E09 _E10 \
-       _E11 _E12 _E13 _E14 _E15 _E16 _E17 _E18 _E19 _E20 _E21
+	rm E01 E02 E03 E04 E05 E06 E07 E08 E09 E10 \
+       E11 E12 E13 E14 E15 E16 E17 E18 E19 E20 E21
 clear:
-	rm _E01.exe _E02.exe _E03.exe _E04.exe _E05.exe _E06.exe _E07.exe _E08.exe _E09.exe \
-       _E10.exe _E11.exe _E12.exe _E13.exe _E14.exe _E15.exe _E16.exe _E17.exe _E18.exe \
-       _E19.exe _E20.exe _E21.exe
+	rm E01.exe E02.exe E03.exe E04.exe E05.exe E06.exe E07.exe E08.exe E09.exe \
+       E10.exe E11.exe E12.exe E13.exe E14.exe E15.exe E16.exe E17.exe E18.exe \
+       E19.exe E20.exe E21.exe

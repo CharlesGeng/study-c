@@ -1,0 +1,2 @@
+@E03.c
+use main's parameters to replace the constant string "0xFFFFF",so the program can convert the user input to decimal result.

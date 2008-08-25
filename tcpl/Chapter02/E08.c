@@ -2,7 +2,8 @@
 
 unsigned int rightrot (unsigned int x, int n)
 {
-    return x >> n;
+    return x >> n |;
+    (x & ~(~0 << n)) << (sizeof(unsigned int) * 4) - n;
 }
 
 //print the integer in hex

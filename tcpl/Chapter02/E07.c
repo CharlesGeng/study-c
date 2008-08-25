@@ -9,6 +9,7 @@ int invert(int x, int p, int n)
 //print the integer in hex
 void printbinary(int x)
 {
+    int i;
     for (i = 31; i >= 0; --i)
     {
         if ((x & 1 << i)> 0)
@@ -19,8 +20,8 @@ void printbinary(int x)
         {
             printf("%d", 0);
         }
-        printf("\n");
     }
+    printf("\n");
 }
 
 int main()

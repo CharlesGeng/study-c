@@ -1,39 +1,42 @@
 #include <stdio.h>
 
-void expand (char s1[], char s2[])
+void expandex (char s1[], char s2[])
 {
     int i = 0;
-    for(; s2[i] != '\0'; ++i)
+    int j = 0;
+    char c ;
+    while ( (c = s1[i++]) != '\0')
     {
-        if (s2[i] == '-')
+        if ( s1[i] == '-' && s1[i+1] >=c)
         {
-            if(i > 0)
+            i++;
+            while(c < s1[i])
             {
-                //a-z
-                if (s2[i] >= 'a' && s2[i] <= 'z')
-                {}
-                //A-Z
-                else if (s2[i] >= 'A' && s2[i] <= 'Z')
-                {
-
-                }
-                //0-9
-                else if (s2[i] >= '0' && s2[i] <= '9')
-                {}
-                //others
-                else
-                {}
-            }
-            else
-            {
-
+                s2[j++] = c++;
             }
         }
+        else
+        {
+            s2[j++] = c;
+        }
     }
+    s2[j] = '\0';
 }
 
 int main()
 {
-    
+    char *test = "a-e-j";
+    char result[1024];
+    expandex(test, result);
+    printf("%s\n", test);
+    printf("%s\n", result);
+    test = "0-9a-z";
+    expandex(test, result);
+    printf("%s\n", test);
+    printf("%s\n", result);
+    test = "-a-z";
+    expandex(test, result);
+    printf("%s\n", test);
+    printf("%s\n", result);
     return 0;
 }

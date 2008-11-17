@@ -1,15 +1,16 @@
 #include <stdio.h>
 
-//Get the string's length
-int strlength (char sf[])
+#define MAXLINE 100
+
+int strlength(char str[])
 {
-    int i = 0;
-    while (sf[i++] != '\0')
+    int l = 0;
+    while (str[l++] != '\0')
         ;
-    return --i;
+    return --l;
 }
 
-//if "SF" contains ss,then display the "SF"
+//if "SF" contains partern "ss",then display the "SF"
 int strrindex(char sf[], char ss[])
 {
     int fl = strlength(sf);
@@ -23,23 +24,30 @@ int strrindex(char sf[], char ss[])
         if (ss[j] == '\0')
         {
             printf("%d\n", i);
-            printf("%s\n", sf);
+            printf("%s", sf);
             return i;
         }
     }
     return -1;
 }
 
+int getline(char line[], int length)
+{
+    int i, c;
+    i = c = 0;
+    while(--length > 0 && (c = getchar()) != EOF && c != '\n')
+        line[i++] = c;
+    if (c == '\n')
+        line[i++] = '\n';
+    line[i] = '\0';
+    return i;
+}
 
 int main()
 {
-    char *sf1 = "i could do anything.";
-    char *sf2 = "this line include \"could\"";
-    char *sf3 = "this line not\n";
-    char *sf4 = "mycoulddcoul ould";
-    strrindex(sf1, "could");
-    strrindex(sf2, "could");
-    strrindex(sf3, "could");
-    strrindex(sf4, "could");
+    char line[MAXLINE];
+    char *partern = "ould";
+    while(getline(line, MAXLINE) > 0)
+        strrindex(line, partern);
     return 0;
 }

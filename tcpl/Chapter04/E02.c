@@ -6,13 +6,14 @@
 
 double atof(char cdata[])
 {
-    double result = 0.0, power = 0.0;
+    double result = 0.0, power = 1.0;
     int i = 0;
     int sign = 1;
     char esign = '+';
     //find first non blank character
-    while (isspace(cdata[i++]))
-        ;
+    while (isspace(cdata[i]))
+        ++i;
+
     //check it's parity
     if (cdata[i] == '-')
     {        
@@ -40,6 +41,7 @@ double atof(char cdata[])
 
     if (cdata[i] == 'e' || cdata[i] == 'E')
     {
+        esign = cdata[++i];
         ++i;
     }
 
@@ -67,8 +69,7 @@ int main()
 {
     char test[MAXLINE];
     scanf("%s", test);
-    printf("%s\n", test);
     double temp = atof(test);
-    printf("%d\n",temp);
+    printf("%f\n",temp);
     return 0;
 }

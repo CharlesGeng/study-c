@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include "E03Stack.c"
-#include "E03GetChar.c"
 
-#define MAXOP 100
-#define NUMBER '0'
+#include "opval.h"
+#include "getch.h"
 
+#define MAXOP   100
+#define NUMBER  '0'
 
 int getop(char s[])
 {
@@ -31,7 +31,7 @@ int getop(char s[])
     return NUMBER;
 }
 
-main()
+int main()
 {
     int type;
     double op2;

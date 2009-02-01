@@ -39,10 +39,13 @@ double atof(char cdata[])
         power *= 10;
     }
 
+    //BUG:if there is no sign charactor ,the translation will
+    //be error.
     if (cdata[i] == 'e' || cdata[i] == 'E')
     {
         esign = cdata[++i];
-        ++i;
+        if (esign =='+' || esign =='-')
+            ++i;
     }
 
     int t = 0, j = 0;

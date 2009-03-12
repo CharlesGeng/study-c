@@ -1,3 +1,7 @@
+/*
+ * Print the line which is more than 80 charactors
+ * 
+ * */
 #include <stdio.h>
 
 #define MAXLENGHT   1000
@@ -15,7 +19,7 @@ int main()
     while ((len = getline(str)) > 0)
     {
         if (len > LONGLINE)
-        printf("%d:%s", len, str);
+            printf("%d:%s", len, str);
     }
     return 0;
 }

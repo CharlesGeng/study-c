@@ -27,7 +27,7 @@ int getline(char line[])
     {
         line[i++] = c;
     }
-    if (c == '\n')
+    if (c == '\n' || (c == EOF && i > 0))
         line[i++] = '\n';
     line[i] = '\0';
     if (i > 1)
@@ -36,13 +36,10 @@ int getline(char line[])
         {
             if (line[j] != '\t' && line[j] != ' ')
             {  
-                break;
-            }
-            else
-            {
-                line[j] = '\n';
-                line[j+1] = '\0';
+                line[++j] = '\n';
+                line[++j] = '\0';
                 i = j;
+                break;
             }
         }
     }

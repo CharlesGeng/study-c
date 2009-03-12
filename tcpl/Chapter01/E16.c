@@ -4,8 +4,8 @@
 
 #define MAXLENGHT 1000
 
-int getline(char str[]);
-void copystr(char source[], char dest[]);
+int getline(char[]);
+void copystr(char[], char[]);
 
 int main()
 {

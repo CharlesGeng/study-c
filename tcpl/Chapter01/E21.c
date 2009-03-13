@@ -1,33 +1,26 @@
+/* programe for Exercise 21
+ * When either a tab or a single blank would suffice to reach a tab stop,
+ * use tabstop
+ * */
 #include <stdio.h>
 
 #define TABSTOP 4
 
 int main()
 {
-    int c;
-    int nb, nt, pos;
-
-    nb = nt = 0;
-    pos = 1;
+    int c;          //charactor buffer
+    int nb = 0;     //blank counter
+    int nt = 0;     //tabstop counter
+    int pos= 0;     //position in the line
 
     while ((c = getchar()) != EOF)
     {
-        if ( c == ' ')
+        if (' ' == c)
         {
-            if ((pos % TABSTOP) == 0)
+            if (((pos + 1) % TABSTOP) == 0)
             {    
-                if (nb == 0)
-                {    
-                    nb++;
-                }
-                else
-                {
-                    nt++;
-                    if (nb > TABSTOP)
-                        nb -= TABSTOP;
-                    else
-                        nb = 0;
-                }
+                nt++;
+                nb = 0;
             }
             else
             {
@@ -49,7 +42,7 @@ int main()
             putchar(c);
         }
         if (c == '\n')
-            pos = 1;
+            pos = 0;
         else 
             ++pos;
     }

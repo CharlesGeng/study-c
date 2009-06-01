@@ -9,9 +9,9 @@ void splitline(char[], int);    //split line
 int main()
 {
     int i;
-    char str[MAXLENGTH];
+    char str[LINEMAX];
 
-    while ((i = getline(str, LINEMAX)) > 0) 
+    while ((i = getline(str, LINEMAX)) > 0)
     {
         if (i > MAXLENGTH)
         {
@@ -38,7 +38,7 @@ int getline(char str[], int limit)
     {
         str[i++] = '\n';
     }
-    str[i] = '\0'; 
+    str[i] = '\0';
     return i;
 }
 

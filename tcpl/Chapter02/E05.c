@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "GetLine.h"
 
 int any(char src[], char des[]);
 

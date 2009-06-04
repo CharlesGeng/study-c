@@ -1,9 +1,18 @@
+/*
+ * Use ^ to invert number
+ * */
 #include <stdio.h>
 
 int invert(int x, int p, int n)
 {
     return x & ~((~(~0 << n)) << (p + 1 -n)) |
         (~x >> (p + 1 -n) & ~(~0 << n)) << (p + 1 -n);
+}
+
+//2009-06-04 added
+int invertEX(int x, int p, int n)
+{
+    return x ^ (~(~0U << n) << p);
 }
 
 //print the integer in hex

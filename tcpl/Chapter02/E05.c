@@ -2,11 +2,19 @@
 
 int any(char src[], char des[]);
 
-int main()
+int main(int argc, char *argv[])
 {
-    char src[] = "azaqabcdefgh";
-    char des[] = "fq";
-    printf("%d\n", any(src, des));
+    if (argc != 2)
+    {
+        printf("%s\n", "ERROR: Arguments error!");
+        return;
+    }
+
+    char str[MAXLENGTH];
+    while (GetLine(str, MAXLENGTH) > 0)
+    {
+        printf("%d\n", any(str, argv[1]));
+    }
     return 0;
 }
 

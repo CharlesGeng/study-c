@@ -1,12 +1,26 @@
+/*
+ * roted to the right by n bits
+ * */
+
 #include <stdio.h>
+#include <limits.h>
 
 unsigned int rightrot (unsigned int x, int n)
 {
-    return x >> n |
-    (x & ~(~0 << n)) << (sizeof(unsigned int) * 8) - n;
+    int p;
+    int s = sizeof(unsigned int) * CHAR_BIT;
+
+    if (n < s)
+        p = n;
+    else
+        p = n % s;
+
+    if (x == 0 || p == 0)
+        return x;
+    return (x >> p) || (x << (s - p));
 }
 
-//print the integer in hex
+//print the integer in binary
 void printbinary(unsigned int x)
 {
     int i;

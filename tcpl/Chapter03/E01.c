@@ -1,11 +1,17 @@
+/*
+ * Binary Search
+ * */
 #include <stdio.h>
 
 int main()
 {
-    int test[] = {1, 2, 3, 4, 5, 6, 7, 8};
-    int x = 21;
-    int n = 8;
-    printf("%d\n", binsearch(x, test, n));
+    int test[] = {0, 1, 2, 3, 4, 5, 6, 7};
+    int x = 11;
+    int n = 9;
+    int i = 0;
+
+    for (i = 0;i < 0x2FFFFFF; ++i)
+        binsearch(x, test, n);
     return 0;
 }
 
@@ -13,18 +19,15 @@ int binsearch(int x, int v[], int n)
 {
     int low = 0;
     int high = n - 1;
-    int mid = (high + low) / 2;
+    int mid ;
 
-    while(low < high && x != v[mid])
+    while (low < high)
     {
-        if (x < v[mid])
-            high = mid - 1;
+        mid = (high + low) / 2;
+        if (x <= v[mid])
+            high = mid;
         else
             low = mid + 1;
-        mid = (high + low) / 2;
     }
-    if (x == v[mid])
-        return mid;
-    else 
-        return -1;
+    return x == v[low] ? low : -1;
 }

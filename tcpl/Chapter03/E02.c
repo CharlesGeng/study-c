@@ -1,19 +1,38 @@
-#include <stdio.h>
+/*
+ * This Programe is used to convert tabstop and newline to '\t' and '\n',
+ * Convert '\t' and '\n' to tabstop and newline
+ *
+ * BUG:
+ * 1.Couldn't deal with the char '\t' and '\n' in Comments string
+ *
+ * Modified at:
+ *      2009-06-05
+ *      by Neil Gunn
+ * */
+
+#include "GetLine.h"
 
 void escape (char s[], char t[]);
 void unescape (char s[], char t[]);
 
 int main()
 {
-    char s[] = "abcd\tefgh\n";
-    char t[100];
-    char tt[100];
-    escape (s, t);
-    unescape (t, tt);
+    char s[MAXLENGTH];
+    char t[MAXLENGTH];
+    char tt[MAXLENGTH];
+    while (GetLine(s, MAXLENGTH) > 0)
+    {
+        printf ("ORIGINAL: %s", s);
+        escape (s, t);
+        printf ("ESCAPED: %s\n", t);
+        unescape (t, tt);
+        printf ("UNESCAPED: %s\n", tt);
+        printf ("\n");
+    }
     return 0;
 }
 
-void escape (char s[], char t[])
+void escape (char *s, char *t)
 {
     int i = 0;
     int j = 0;
@@ -34,10 +53,10 @@ void escape (char s[], char t[])
                 break;
         }
     }
-    printf ("escaped:%s\n", t);
+    t[j] = '\0';
 }
 
-void unescape (char s[], char t[])
+void unescape (char *s, char *t)
 {
     int i = 0;
     int j = 0;
@@ -68,5 +87,4 @@ void unescape (char s[], char t[])
         }
     }
     t[j] = s[i];
-    printf ("unescaped:%s\n", t);
 }

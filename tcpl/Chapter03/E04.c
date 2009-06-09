@@ -40,7 +40,7 @@ int main()
     char c[SHRT_MAX];
     itoa(n, c);
 
-    n = INT_MAX;
+    n = LONG_MIN;
     printf ("%d\n", n);
     itoa(n, c);
     return 0;

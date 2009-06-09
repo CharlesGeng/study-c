@@ -65,6 +65,8 @@ void expandex (char *s1, char *s2)
                         *s2++ = j;
                     break;
                 case EQUAL:
+                    *s2++ = s1[i-1];
+                    ++i;
                     break;
                 default:
                     *s2++ = s1[i];

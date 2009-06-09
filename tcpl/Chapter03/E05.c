@@ -4,9 +4,10 @@
 
 #define abs(x) ((x) >= 0 ? x : -x)
 
-void itob(int n, char c[], int b)
+void itob(int n, char *c, int b)
 {
     int i = 0;
+    printf("SRC: %d\n", n);
     do
     {
         int t = abs(n % b); 
@@ -17,15 +18,33 @@ void itob(int n, char c[], int b)
     c[i] = '\0';
 
     //print result;
+    printf("DES: ");
     i = strlen(c);
     for (; i >= 0; --i)
-        printf("%c", c[i]);
-    printf("\n");
+        putchar(c[i]);
+    putchar('\n');
 }
 
-int main()
+int atoi (char *str)
 {
-    char c[10];
-    itob (0xFF, c, 17);
+    int result = 0;
+    while (*str != '\0')
+    {
+        if (*str >= '0' && *str <= '9')
+            result = result * 10 + (*str - '0');
+        ++str;
+    }
+    return result;
+}
+
+int main(int argc, char *argv[])
+{
+    char c[100];
+    if (argc != 3)
+    {
+        printf("%s\n", "USEAGE: E05 value base");
+        return 0;
+    }
+    itob (atoi(argv[1]), c, atoi(argv[2]));
     return 0;
 }

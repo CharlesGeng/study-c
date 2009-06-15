@@ -1,4 +1,4 @@
-#include "getch.h"
+#include "calculator.h"
 
 #define BUFSIZE 100
 

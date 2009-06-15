@@ -2,8 +2,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-#include "opval.h"
-#include "getch.h"
+#include "calculator.h"
 
 #define MAXOP   100
 #define NUMBER  '0'
@@ -15,18 +14,18 @@ int getop(char s[])
     while ((s[0] = c = getch()) == ' '|| c == '\t')
         ;
 
-    s[1]='\0';
+    s[1] = '\0';
     if (!isdigit(c) && c != '.')
         return c;
-    i=0;
+    i = 0;
     if (isdigit(c))
-        while (isdigit(s[++i]=c=getch()))
+        while (isdigit(s[++i] = c = getch()))
             ;
     if (c=='.')
-        while (isdigit(s[++i]=c=getch()))
+        while (isdigit(s[++i] = c = getch()))
             ;
     s[i]='\0';
-    if (c!=EOF)
+    if (c != EOF)
         ungetch(c);
     return NUMBER;
 }
@@ -36,7 +35,6 @@ int main()
     int type;
     double op2;
     char s[MAXOP];
-    getop(s);
 
     while ((type = getop(s)) != EOF) 
     {
@@ -68,5 +66,3 @@ int main()
     }
     return 0;
 }
-
-

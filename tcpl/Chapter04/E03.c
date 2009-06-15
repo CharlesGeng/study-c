@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "calculator.h"
 
@@ -56,6 +57,13 @@ int main()
                 op2=pop();
                 if(op2!=0.0)
                     push(pop()/op2);
+                else
+                    printf("error:zero divisor\n");
+                break;
+            case '%':
+                op2 = pop();
+                if(op2 != 0.0)
+                    push(fmod(pop(), op2));
                 else
                     printf("error:zero divisor\n");
                 break;

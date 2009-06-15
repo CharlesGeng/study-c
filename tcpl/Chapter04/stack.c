@@ -3,7 +3,7 @@
 #define MAXLENGTH   100    //the maximum length of the stack
 
 static double stack[MAXLENGTH];         //the stack
-static int index = 0;      //index of the stack
+static int index;						//index of the stack
 
 /*
  * pop up a charactor from the stack;
@@ -12,7 +12,7 @@ double pop(void)
 {
     if (index > 0)
     {
-        return stack[index--];
+        return stack[--index];
     }
     else
     {
@@ -28,7 +28,7 @@ void push(double c)
 {
     if (index < MAXLENGTH)
         stack[index++] = c;
-    else 
+    else
     {
         printf("ERROR: The stack is full!");
     }

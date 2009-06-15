@@ -7,3 +7,5 @@ E03: E03.c calculator.h stack.c getch.c
 	cc -o E03 E03.c calculator.h stack.c getch.c
 clean:
 	rm E01 $(obj)
+clear:
+	rm *.exe

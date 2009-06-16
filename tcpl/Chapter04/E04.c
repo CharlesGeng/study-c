@@ -1,7 +1,4 @@
 #include "calculator.h"
-#include <stdlib.h>
-
-#define MAXLENGTH   1000
 
 void showinf(char *str)
 {

@@ -1,5 +1,12 @@
 #include <stdio.h>
 #include <strings.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define MAXLENGTH   1000
+
+
 
 // Functions in stack.c
 double pop();

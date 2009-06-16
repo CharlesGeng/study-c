@@ -1,9 +1,7 @@
 #include "calculator.h"
 
-#define MAXLENGTH   100    //the maximum length of the stack
-
 static double stack[MAXLENGTH];         //the stack
-static int si;						//index of the stack
+int si;						//index of the stack
 
 /*
  * pop up a charactor from the stack;

@@ -52,53 +52,70 @@ int getop(char *s)
     //over blank charactor
     while ((s[i] = c = getch()) == ' ' || c == '\t')
         ;
+    s[1] = '\0';
+
+    //Get Function Name
+    if (isalpha(c))
+    {
+        while (isalpha(s[++i] = c = getch()))
+            ;
+        s[i] = '\0';
+        ungetch(c);
+        return FUNCTION;
+    }
 
     //Get Number
-    while(isdigit(c = getch()))
+    if (isdigit(c))
     {
-        s[i++] = c;
-    }
-
-    if (c == '.')
-    {
-        s[i++] = '.';
-        //unsupport float: 123.123e-2
-        while(isdigit(c = getch()))
+        while(isdigit(s[++i] = c = getch()))
+            ;
+        if (c == '.')
         {
-            s[i++] = c;
+            //unsupport float: 123.123e-2
+            while(isdigit(s[++i] = c = getch()))
+                ;
         }
-    }
-    if (i > 1)
-    {
         s[i] = '\0';
         ungetch(c);
         return NUMBER;
     }
+
     return c;
 }
 
 void DealFunction(char *s)
 {
-/*    char *fn = tolower(s);
+    int i = 0;
     double temp = 0.0;
-    switch (fn)
+    for (; s[i] != '\0'; ++i)
     {
-        case "sin":
-            push(sin(pop()));
-            break;
-        case "cos":
-            push(cos(pop()));
-            break;
-        case "exp":
-            push(exp(pop()));
-            break;
-        case "pow":
-            temp = pop();
-            push(pow(pop(), temp));
-            break;
-        default:
-            printf("Unsupport function!");
-            break;
-    }*/
+        s[i] = tolower(s[i]);
+    }
+
+    if (!strcmp(s, "sin"))
+    {
+        printf("Do SIN.\n");
+        push(sin(pop()));
+    }
+    else if (!strcmp(s, "cos"))
+    {
+        printf("Do COS.\n");
+        push(cos(pop()));
+    }
+    else if (!strcmp(s, "exp"))
+    {
+        printf("Do EXP.\n");
+        push(exp(pop()));
+    }
+    else if (!strcmp(s, "pow"))
+    {
+        printf("Do POW.\n");
+        temp = pop();
+        push(pow(pop(), temp));
+    }
+    else
+    {
+        printf("Unsupport function!\n");
+    }
 }
 

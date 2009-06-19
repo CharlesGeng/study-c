@@ -1,12 +1,17 @@
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <math.h>
 
 #define MAXLENGTH   1000
+#define NAMELENGTH	10
 
-
+typedef struct
+{
+    char name[NAMELENGTH];
+    double value;
+}variable;
 
 // Functions in stack.c
 double pop();

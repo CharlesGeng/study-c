@@ -24,3 +24,4 @@ void clear();
 //Functions in getch.c
 int getch();
 void ungetch(int);
+void ungets(char *s);

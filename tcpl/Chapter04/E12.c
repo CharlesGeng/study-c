@@ -4,21 +4,14 @@
 
 #define MAXLENGTH   100
 
-char *myitoa(int data)
+void itoa1(int data, char *str)
 {
-    char *s;
-    return s;
+    int i = 0;
+    do
+    {}
+    while(0);
 }
 
 int main()
 {
-    int i = 0;
-    for (i = 0; i < 10; ++i)
-    {
-        srand((int)time(0));
-        int data = rand();
-        printf("Data: %d\n", data);
-        sleep(1);
-        printf("String: %s\n", myitoa(data));
-    }
 }

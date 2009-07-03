@@ -17,3 +17,7 @@ void ungetch(int c)
     else
         buff[bufp++] = c;
 }
+
+void ungets(char *s)
+{
+}

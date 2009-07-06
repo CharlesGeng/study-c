@@ -25,3 +25,5 @@ void clear();
 int getch();
 void ungetch(int);
 void ungets(char *s);
+int getsinglech();
+void ungetsinglech(int);

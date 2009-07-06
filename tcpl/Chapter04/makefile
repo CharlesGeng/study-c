@@ -17,6 +17,8 @@ E08: E08.c calculator.h stack.c getch.c
 	cc -o E08 E08.c calculator.h stack.c getch.c
 E10: E10.c calculator.h stack.c getch.c
 	cc -o E10 E10.c calculator.h stack.c getch.c
+E11: E11.c calculator.h stack.c getch.c
+	cc -o E11 E11.c calculator.h stack.c getch.c
 clean:
 	rm E01 $(obj)
 clear:

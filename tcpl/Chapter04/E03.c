@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <math.h>
-
+#include <tgmath.h>
 #include "calculator.h"
 
 #define MAXOP   100

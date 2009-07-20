@@ -69,7 +69,6 @@ void swaptop()
 
 void duplicatetop()
 {
-    double top = pop();
     if (si < 1)
     {
         printf("DUPLICATE ERROR: The stack is empty!\n");

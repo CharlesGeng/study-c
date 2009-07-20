@@ -39,7 +39,7 @@ void calc(int type)
             printf("\t%.8g\n",pop());
             break;
         default:
-            printf("error:unknown command %s\n",type);
+            printf("error:unknown command %d\n",type);
             break;
     }
 }

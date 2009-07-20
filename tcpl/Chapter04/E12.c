@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     if (argc != 2)
     {
         printf("USEAGE: E12 DATA\n");
-        return;
+        return 0;
     }
 
     int data = atoi(argv[1]);
@@ -33,4 +33,5 @@ int main(int argc, char *argv[])
     printf("Input Data is: %d\n", data);
     itoa(data, ia);
     printf("The String is: %s\n", ia);
+    return 0;
 }

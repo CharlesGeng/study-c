@@ -11,28 +11,23 @@ void Mult(char *, char *, char *);
 
 int main()
 {
-    char R[R_LENGTH];
-    int n;
     char result[1000];
+    /*char R[R_LENGTH];
+    int n;
     char temp[1000];
     while(scanf("%s%d", R, &n) == 2)
     {
-        int i = 0;
+        int i = 1;
+        strcpy(result, R);
         for (; i < n; ++i)
         {
             strcpy(temp, result);
             Mult(temp, R, result);
         }
     }
+    */
+    Mult("95.123", "95.123", result);
     return 0;
-}
-
-void calculate(const char *R, int n, char *result)
-{
-    int i;
-    for(i = 0; i < n; ++i)
-    {
-    }
 }
 
 void Mult(char *A, char *B, char *rst)
@@ -80,17 +75,33 @@ void Mult(char *A, char *B, char *rst)
         }
     }
 
-    /*strcpy(rst, Result[0]);
+    strcpy(rst, Result[0]);
     int x = 1;
     for (; x < R_DATALENGTH; ++x)
     {
         int index = 0;
         int flag = 0;
-        for (; index < strlen(Result[x]); ++index)
+        int rstLEN = strlen(rst);
+        int riLEN  = strlen(Result[x]);
+        for (; index < riLEN; ++index)
         {
+            int temp = 0;
+            if (rst[index] >= '0' && rst[index] <= '9')
+                temp = rst[index] - 0x30 + Result[x][index] - 0x30 + flag;
+            else
+                temp = Result[x][index] - 0x30 + flag;
+            rst[index] = temp % 10 + 0x30;
+            flag = temp / 10;
         }
-    }*/
-
+        while (flag > 0)
+        {
+            rst[index++] = flag % 10 + 0x30;
+            flag /= 10;
+        }
+        if (index >= rstLEN)
+            rst[index] = '\0';
+    }
+    printf("%s\n", rst);
 }
 
 //remove zeros

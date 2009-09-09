@@ -12,17 +12,15 @@ void Mult(char *, char *, char *);
 int main()
 {
     char result[1000];
-    char R[10];
+    char R[100];
     int n;
     char temp[1000];
+    int i = 0;
     while(scanf("%s%d", R, &n) == 2)
     {
-        R[R_LENGTH] = '\0';
-        strcpy(result, R);
-        int i = 1;
-        for (; i < n; ++i)
+        for (i = 0; i < n; ++i)
         {
-            strcpy(temp, result);
+            strcpy(temp, R);
             Mult(temp, R, result);
         }
         printf("%s\n", result);
@@ -124,38 +122,64 @@ void Mult(char *A, char *B, char *rst)
     rst[len + 1] = '\0';
 
     rst[len - pi] = '.';
-    for (x = len; x >= len - pi; --x )
+
+}
+
+
+void RemoveZeros(char *rst)
+{
+    int len = strlen(rst);
+    int pi = -1;
+    int i = 0;
+
+    //get the index of point
+    while (rst[i] != '\0')
     {
-        if (rst[x] == '0')
+        if (rst[i] == '.')
         {
-            rst[x] = '\0';
-            continue;
-        }
-        else if (rst[x] == '.')
-        {
-            rst[x] = '\0';
+            pi = i;
             break;
         }
-        else
+        ++i;
+    }
+
+    //have point, remove the tail of zeros.
+    if (pi != -1)
+    {
+        for (i = len; i >= len - pi; --i)
         {
-            break;
+            if (rst[i] == '0')
+            {
+                rst[i] = '\0';
+                continue;
+            }
+            else if (rst[i] == '.')
+            {
+                rst[i] = '\0';
+                break;
+            }
+            else
+            {
+                break;
+            }
         }
     }
 
-    for (x = 0; x < len - pi; ++x)
+    //remove the head of zeros.
+    for (i = 0; i < len - pi; ++i)
     {
-        if (rst[x] != '0')
+        if (rst[i] != '0')
             break;
     }
 
-    if (x > 0)
+    if (i > 0)
     {
-        j = x;
+        int j = i;
         while (rst[j] != '\0')
         {
-            rst[j - x] = rst[j];
+            rst[j - i] = rst[j];
             ++j;
         }
-        rst[j - x] = '\0';
+        rst[j - i] = '\0';
     }
 }

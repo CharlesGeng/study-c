@@ -1,26 +1,29 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-//CONSTANTS
-#define R_LENGTH        6
-#define R_DATALENGTH    5
-
 //functions
 void Mult(char *, char *, char *);
+void RemoveZeros(char *rst);
 
 int main()
 {
-    char result[1000];
-    char R[100];
     int n;
+    char R[100];
     char temp[1000];
+    char result[1000];
     int i = 0;
     while(scanf("%s%d", R, &n) == 2)
     {
+        if (atoi(R) == 0.0)
+            strcpy(result, "0");
+        else
+            strcpy(result, "1");
+
         for (i = 0; i < n; ++i)
         {
-            strcpy(temp, R);
+            strcpy(temp, result);
             Mult(temp, R, result);
         }
         printf("%s\n", result);
@@ -30,11 +33,11 @@ int main()
 
 void Mult(char *A, char *B, char *rst)
 {
-    char Result[R_DATALENGTH][1000];
+    char Result[strlen(B)][1000];
     int iA  = strlen(A) - 1;
     int iB  = strlen(B) - 1;
-    int pa  = 0;        //store the index of point in A;
-    int pb  = 0;        //store the index of point in B;
+    int pa  = -1;        //store the index of point in A;
+    int pb  = -1;        //store the index of point in B;
     int j   = 0;
     int l   = 0;
     int maxlen = 0;
@@ -79,9 +82,10 @@ void Mult(char *A, char *B, char *rst)
             pb = iB;
     }
 
+    //sum data
     strcpy(rst, Result[0]);
     int x = 1;
-    for (; x < R_DATALENGTH; ++x)
+    for (; x < strlen(B); ++x)
     {
         int index = 0;
         int flag = 0;
@@ -106,6 +110,7 @@ void Mult(char *A, char *B, char *rst)
             rst[index] = '\0';
     }
 
+    //revert result string
     int len = strlen(rst);
     for (x = 0; x < len / 2; ++x)
     {
@@ -114,17 +119,17 @@ void Mult(char *A, char *B, char *rst)
         rst[len - x - 1] = temp;
     }
 
+    //set point
     int pi = strlen(A) - pa + strlen(B) - pb - 2;
     for (x = 0; x < pi; ++x)
     {
-        rst[len - x] = rst[len -x - 1];
+        rst[len - x] = rst[len - x - 1];
     }
     rst[len + 1] = '\0';
 
     rst[len - pi] = '.';
-
+    RemoveZeros(rst);
 }
-
 
 void RemoveZeros(char *rst)
 {

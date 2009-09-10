@@ -16,7 +16,7 @@ int main()
     int i = 0;
     while(scanf("%s%d", R, &n) == 2)
     {
-        if (atoi(R) == 0.0)
+        if (atof(R) == 0.0)
             strcpy(result, "0");
         else
             strcpy(result, "1");
@@ -26,6 +26,7 @@ int main()
             strcpy(temp, result);
             Mult(temp, R, result);
         }
+        RemoveZeros(result);
         printf("%s\n", result);
     }
     return 0;
@@ -33,14 +34,17 @@ int main()
 
 void Mult(char *A, char *B, char *rst)
 {
-    char Result[strlen(B)][1000];
-    int iA  = strlen(A) - 1;
-    int iB  = strlen(B) - 1;
-    int pa  = -1;        //store the index of point in A;
-    int pb  = -1;        //store the index of point in B;
+    char Result[100][1000];
+    int pa  = strlen(A);        //store the index of point in A;
+    int pb  = strlen(B);        //store the index of point in B;
+    int iA  = pa - 1;
+    int iB  = pb - 1;
     int j   = 0;
     int l   = 0;
-    int maxlen = 0;
+    int x   = 0;
+    int len = 0;
+    int pi = 0;
+
     rst[0] = '\0';
     for (; iB >= 0; --iB)
     {
@@ -63,7 +67,7 @@ void Mult(char *A, char *B, char *rst)
                 if (A[j] >= '0' && A[j] <= '9')
                 {
                     int temp = (A[j] - '0') * b + flag;
-                    Result[l][k++] = temp % 10 + 0x30;
+                    Result[l][k++] = temp % 10 + '0';
                     flag = temp / 10;
                 }
                 else if (A[j] == '.')
@@ -71,11 +75,10 @@ void Mult(char *A, char *B, char *rst)
             }
             while (flag > 0)
             {
-                Result[l][k++] = flag % 10 + 0x30;
+                Result[l][k++] = flag % 10 + '0';
                 flag /= 10;
             }
             Result[l][k] = '\0';
-            maxlen = maxlen > k ? maxlen : k;
             ++l;
         }
         else if (B[iB] == '.')
@@ -84,8 +87,15 @@ void Mult(char *A, char *B, char *rst)
 
     //sum data
     strcpy(rst, Result[0]);
-    int x = 1;
-    for (; x < strlen(B); ++x)
+    if (pb < strlen(B))
+    {
+        len = strlen(B) - 1;
+    }
+    else
+    {
+        len = strlen(B);
+    }
+    for (x = 1; x < len; ++x)
     {
         int index = 0;
         int flag = 0;
@@ -94,16 +104,16 @@ void Mult(char *A, char *B, char *rst)
         for (; index < riLEN; ++index)
         {
             int temp = 0;
-            if (rst[index] >= '0' && rst[index] <= '9')
-                temp = rst[index] - 0x30 + Result[x][index] - 0x30 + flag;
+            if (index < rstLEN && rst[index] >= '0' && rst[index] <= '9')
+                temp = rst[index] - '0' + Result[x][index] - '0' + flag;
             else
-                temp = Result[x][index] - 0x30 + flag;
-            rst[index] = temp % 10 + 0x30;
+                temp = Result[x][index] - '0'+ flag;
+            rst[index] = temp % 10 + '0';
             flag = temp / 10;
         }
         while (flag > 0)
         {
-            rst[index++] = flag % 10 + 0x30;
+            rst[index++] = flag % 10 + '0';
             flag /= 10;
         }
         if (index >= rstLEN)
@@ -111,7 +121,7 @@ void Mult(char *A, char *B, char *rst)
     }
 
     //revert result string
-    int len = strlen(rst);
+    len = strlen(rst);
     for (x = 0; x < len / 2; ++x)
     {
         int temp = rst[x];
@@ -120,7 +130,10 @@ void Mult(char *A, char *B, char *rst)
     }
 
     //set point
-    int pi = strlen(A) - pa + strlen(B) - pb - 2;
+    if(pa < strlen(A))
+        pi = strlen(A) - pa - 1;
+    if (pb < strlen(B))
+        pi += strlen(B) - pb - 1;
     for (x = 0; x < pi; ++x)
     {
         rst[len - x] = rst[len - x - 1];
@@ -128,7 +141,6 @@ void Mult(char *A, char *B, char *rst)
     rst[len + 1] = '\0';
 
     rst[len - pi] = '.';
-    RemoveZeros(rst);
 }
 
 void RemoveZeros(char *rst)
@@ -151,7 +163,7 @@ void RemoveZeros(char *rst)
     //have point, remove the tail of zeros.
     if (pi != -1)
     {
-        for (i = len; i >= len - pi; --i)
+        for (i = len - 1; i >= pi; --i)
         {
             if (rst[i] == '0')
             {
@@ -177,7 +189,7 @@ void RemoveZeros(char *rst)
             break;
     }
 
-    if (i > 0)
+    if (i > 0 && rst[i] != '\0')
     {
         int j = i;
         while (rst[j] != '\0')

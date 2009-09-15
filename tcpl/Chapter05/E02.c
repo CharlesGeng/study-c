@@ -2,13 +2,13 @@
 
 int main()
 {
-    int data = 0;
-    while (getint(&data) != EOF)
-        printf("you input: %d\n", data);
+    float data = 0.0;
+    while (getfloat(&data) != EOF)
+        printf("you input: %f\n", data);
     return 0;
 }
 
-int getint(int *pi)
+int getfloat(float *pf)
 {
     int c, sign;
     int temp;
@@ -33,9 +33,22 @@ int getint(int *pi)
         }
     }
 
-    for (*pi = 0; isdigit(c); c = getch())
-        *pi = 10 * *pi + c - '0';
-    *pi = sign * *pi;
+    for (*pf = 0.0; isdigit(c); c = getch())
+        *pf = 10 * *pf + c - '0';
+    if (c == '.')
+    {
+        c = getch();
+        float t = 0.1;
+        for (; isdigit(c); c = getch())
+        {
+            if (c > '0')
+            {
+                *pf = *pf + (c - '0') * t;
+            }
+            t /= 10.0;
+        }
+    }
+    *pf = sign * *pf;
     if (c != '\n' && c != EOF)
         ungetch(c);
     return c;

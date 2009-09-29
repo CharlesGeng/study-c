@@ -2,15 +2,22 @@
 #include <string.h>
 #include <ctype.h>
 
-void GetPN(char *src, char *phone);
+#define NUMBERLENGTH    9
+#define MAXCOUNT        100000
 
-static char *phoneArray[100000];
-static int counter[100000];
+int GetPhoneNumber(char *src, char *phone);
+
+struct PhoneNumber{
+    char    number[NUMBERLENGTH];
+    int     count;
+};
+
+static struct PhoneNumber phones[MAXCOUNT];
 
 int main()
 {
     char src[33];
-    char dst[10];
+    char dst[NUMBERLENGTH];
     int count = 0;
     int i = 0;
     int j = 0;
@@ -20,37 +27,40 @@ int main()
         i = 0;
         while (scanf("%s", src) == 1)
         {
-            GetPN(src, dst);
-            //check if the array Exsit the number
-            for (j = 0; j < i; ++j)
+            if (( GetPhoneNumber(src, dst) + 1) == NUMBERLENGTH)
             {
-                if (strcmp(dst, phoneArray[j]) == 0)
+                //check if the array Exsit the number
+                for (j = 0; j < i; ++j)
                 {
-                    ++counter[j];
-                    break;
+                    if (strlen(phones[j].number) > 0 &&
+                            strcmp(dst, phones[j].number) == 0)
+                    {
+                        ++phones[j].count;
+                        break;
+                    }
                 }
-            }
-            //not exsit
-            if (j == i)
-            {
-                strcpy(phoneArray[j], dst);
-                counter[j] = 1;
-                ++i;
+                //not exsit
+                if (j == i)
+                {
+                    strcpy(phones[j].number, dst);
+                    phones[j].count = 1;
+                    ++i;
+                }
             }
         }
 
         for (j = 0 ; j < i; ++j)
         {
-            if (counter[j] > 1)
+            if (phones[j].count > 1)
             {
-                printf("%s %d\n", phoneArray[j], counter[j]);
+                printf("%s %d\n", phones[j].number, phones[j].count);
             }
         }
     }
     return 0;
 }
 
-void GetPN(char *src, char *phone)
+int GetPhoneNumber(char *src, char *phone)
 {
     int i = 0;
     int j = 0;
@@ -72,4 +82,5 @@ void GetPN(char *src, char *phone)
         ++i;
     }
     phone[j] = '\0';
+    return j;
 }

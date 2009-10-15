@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -10,7 +11,11 @@ typedef struct{
 }PhoneNumber;
 
 int GetPhoneNumber(char *src, char *phone);
-void myqsort(PhoneNumber numbers[], int left, int right);
+
+int mycmp(const void *one, const void*two)
+{
+    return strcmp(((PhoneNumber *)one)->number, ((PhoneNumber *)two)->number);
+}
 
 int main()
 {
@@ -27,26 +32,24 @@ int main()
         i = 0;
         while (scanf("%s", src) == 1)
         {
-            if (( GetPhoneNumber(src, dst) + 1) == NUMBERLENGTH)
+            GetPhoneNumber(src, dst);
+            //check if the array Exsit the number
+            for (j = 0; j < i; ++j)
             {
-                //check if the array Exsit the number
-                for (j = 0; j < i; ++j)
+                if (strcmp(dst, phones[j].number) == 0)
                 {
-                    if (strcmp(dst, phones[j].number) == 0)
-                    {
-                        ++phones[j].count;
-                        break;
-                    }
+                    ++phones[j].count;
+                    break;
                 }
-                //not exsit
-                if (j == i)
-                {
-                    phones[j].number = dst;
-                    phones[j].count = 1;
-                    ++i;
-                }
-                dst += NUMBERLENGTH;
             }
+            //not exsit
+            if (j == i)
+            {
+                phones[j].number = dst;
+                phones[j].count = 1;
+                ++i;
+            }
+            dst += NUMBERLENGTH;
         }
 
         //remove single phone numbers
@@ -63,7 +66,8 @@ int main()
         if (k > 0)
         {
             //sort the numbers
-            myqsort(phones, 0, k - 1);
+            //myqsort(phones, 0, k - 1);
+            qsort(phones, k, sizeof(PhoneNumber), mycmp);
             for (j = 0; j < k; ++j)
                 printf("%s %d\n", phones[j].number, phones[j].count);
         }
@@ -75,6 +79,7 @@ int main()
     return 0;
 }
 
+
 void swap(PhoneNumber numbers[], int x, int y)
 {
     if (x != y)
@@ -82,26 +87,6 @@ void swap(PhoneNumber numbers[], int x, int y)
         PhoneNumber temp = numbers[x];
         numbers[x] = numbers[y];
         numbers[y] = temp;
-    }
-}
-
-void myqsort(PhoneNumber numbers[], int left, int right)
-{
-    if (left < right)
-    {
-        int last = left;
-        int i;
-        swap(numbers, left, (left + right) / 2);
-        for(i = left + 1; i <= right; ++i)
-        {
-            if (strcmp(numbers[i].number, numbers[left].number) < 0)
-            {
-                swap(numbers, ++last, i);
-            }
-        }
-        swap(numbers, left, last);
-        myqsort(numbers, left, last - 1);
-        myqsort(numbers, last + 1, right);
     }
 }
 

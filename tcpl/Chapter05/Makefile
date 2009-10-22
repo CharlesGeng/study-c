@@ -1,4 +1,4 @@
-objects := E01 E02 E03 E04 E05 E06 Generator
+objects := E01 E02 E03 E04 E05 E06 Generator GetLine
 all : $(objects)
 .PHONY : all clean clear
 
@@ -16,6 +16,8 @@ E06: E06.c
 	gcc -o E06 -Wall -g E06.c
 Generator: GenerateText.c
 	gcc -o Generator -Wall -g GenerateText.c
+GetLine: getline.c
+	gcc -o GetLine -Wall -g getline.c
 clean:
 	-rm -f $(objects)
 clear:

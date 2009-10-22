@@ -8,7 +8,7 @@ int GetLine(char *str, int MaxLength);
 int main()
 {
     while(GetLine(string, MAX_STRING_LENGTH) > 0)
-        printf("%s", string);
+        ;
     return 0;
 }
 

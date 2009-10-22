@@ -15,9 +15,7 @@ getop();*/
 int main()
 {
     while (getline(string, MAX_STRING_LENGTH) > 0)
-    {
-        printf("%s", string);
-    }
+        ;
     return 0;
 }
 
@@ -29,6 +27,10 @@ int getline(char *str, int length)
     {
         ++str;
     }
-    *++str = '\0';
-    return str - temp - 1;
+
+    if (*str == '\n')
+        *++str = '\0';
+    else
+        *str = '\0';
+    return str - temp;
 }

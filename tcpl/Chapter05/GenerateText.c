@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #define MAX_STRING_LENGTH   10000
-#define MAX_CIRCLE   1
+#define MAX_CIRCLE   1000
 
 static char buffer[MAX_STRING_LENGTH];
 static int bufferindex;
@@ -22,21 +22,21 @@ int main()
     int max = MAX_CIRCLE;
     char *strs[100];
     int i, j;
-    //while (max-- > 0)
+    int len = 0;
+    i = 0;
+    while ((len = getline(str, 100)) > 0)
     {
-        int len = 0;
-        i = 0;
-        while ((len = getline(str, 100)) > 0)
+        strs[i] = alloc(len);
+        if (strs[i] != NULL)
         {
-            strs[i] = alloc(len);
-            if (strs[i] != NULL)
-            {
-                strcpy(strs[i++], str);
-            }
-            else
-                break;
+            strcpy(strs[i++], str);
         }
+        else
+            break;
+    }
 
+    while (max-- > 0)
+    {
         for (j = 0; j < i; ++j)
             printf("%s", strs[j]);
     }
@@ -51,8 +51,11 @@ int getline(char *str, int length)
     {
         ++str;
     }
-    *++str = '\0';
-    return str - temp - 1;
+    if (*str == '\n')
+        *++str = '\0';
+    else 
+        *str = '\0';
+    return str - temp ;
 }
 
 char *alloc(int length)

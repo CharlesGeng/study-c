@@ -2,12 +2,12 @@
 #include <stdio.h>
 
 #define MAX_STRING_LENGTH   10000
-#define MAX_CIRCLE   1000
+#define MAX_CIRCLE   10000
 
 static char buffer[MAX_STRING_LENGTH];
 static int bufferindex;
 
-int getline(char *str, int length);
+int GetLine(char *str, int length);
 char *alloc(int length);
 
 /*atoi();
@@ -24,7 +24,7 @@ int main()
     int i, j;
     int len = 0;
     i = 0;
-    while ((len = getline(str, 100)) > 0)
+    while ((len = GetLine(str, 100)) > 0)
     {
         strs[i] = alloc(len);
         if (strs[i] != NULL)
@@ -44,7 +44,7 @@ int main()
 }
 
 //get a line, return the length
-int getline(char *str, int length)
+int GetLine(char *str, int length)
 {
     char *temp = str;
     while (length-- > 0 && (*str = getchar()) != '\n' && *str != EOF)

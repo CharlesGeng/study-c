@@ -27,7 +27,7 @@ xterm-color)
     ;;
 *)
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    PS1='\[\033[33;48m\]\u@\h:\w\[\033[00m\]\n\$ '
+    PS1='\[\033[36;48m\]\u@\h:\w\[\033[00m\]\n\$ '
     ;;
 esac
 
@@ -75,4 +75,4 @@ HISTSIZE=100
 alias su='su -'
 alias vi='vim'
 alias ll='ls -l'
-alias study='cd ~/trunk/study-c/tcpl/Chapter04'
+alias study='cd ~/trunk/study-c/tcpl/Chapter05'

@@ -1,5 +1,5 @@
 ! ~/.Xdefaults - X default resource settings
-Rxvt*geometry: 121x41
+Rxvt*geometry: 120x40
 Rxvt*background: #cce8cf
 Rxvt*foreground: #000000
 Rxvt*scrollBar: false

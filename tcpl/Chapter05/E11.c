@@ -25,11 +25,32 @@
 
 int TABLENGTH = 4;
 
-void detab(char *str)
-{}
+//Transform tabstops to space 
+void detab(char *str, int tabLength)
+{
+    int index = 0;
+    char temp[MAXLENGTH];
+    char *start = str;
+    while(*str != '\0')
+    {
+        if (*str == '\t')
+        {
+            int i = tabLength - index % tabLength;
+            while (i--)
+            {
+                temp[index++] = ' ';
+            }
+        }
+        else
+        {
+            temp[index++] = *str;
+        }
+        ++str;
+    }
+    strcpy(start, temp);
+}
 
-
-//make space to tab
+//Transform space to tabstops
 void entab(char *str, int strLength, int tabLength)
 {
     int flag = 0;
@@ -75,29 +96,35 @@ int main(int argc, char *argv[])
         switch(c = *++argv[0])
         {
             case 'e':
-                printf("%s\n", "Entab the string");
+            {
+                int tablen = TABLENGTH;
                 if (--argc > 0 && isdigit((*++argv)[0]))
                 {
-                    int len = 0;
-                    while((len = cgetline(string, MAXLENGTH)) > 0)
-                    {
-                        entab(string, len, atoi(*argv));
-                        printf("%s", string);
-                    }
+                    tablen = atoi(*argv);
                 }
-                else
+                int len = 0;
+                while((len = cgetline(string, MAXLENGTH)) > 0)
                 {
-                    int len = 0;
-                    while((len = cgetline(string, MAXLENGTH)) > 0)
-                    {
-                        printf("%d:%s", len, string);
-                        entab(string, len, TABLENGTH);
-                        printf("%s", string);
-                    }
+                    entab(string, len, tablen);
+                    printf("%s", string);
                 }
                 break;
+            }
             case 'd':
+            {
+                int tablen = TABLENGTH;
+                if (--argc > 0 && isdigit((*++argv)[0]))
+                {
+                    tablen = atoi(*argv);
+                }
+                int length = 0;
+                while((length = cgetline(string, MAXLENGTH)) > 0)
+                {
+                    detab(string, tablen);
+                    printf("%s", string);
+                }
                 break;
+            }
             default:
                 printf("%s", "Unsupport parameter!\n");
                 break;

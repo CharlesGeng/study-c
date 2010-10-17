@@ -4,7 +4,7 @@
 
 点击Emacs图标或者在终端中输入：emas 回车 |
 
-[[ge3_ch01scrn01.gif]]
+[[ge3_ch01scrn01.gif]] |
 
 启动Emacs |
 

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <title>chapter1.8</title>
+    <meta name="generator" content="muse.el">
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=gbk">
+    <style type="text/css">
+body {
+  background: white; color: black;
+  margin-left: 3%; margin-right: 7%;
+}
+
+p { margin-top: 1% }
+p.verse { margin-left: 3% }
+
+.example { margin-left: 3% }
+
+h2 {
+  margin-top: 25px;
+  margin-bottom: 0px;
+}
+h3 { margin-bottom: 0px; }
+    </style>
+  </head>
+  <body>
+    <h1>chapter1.8</h1>
+    <!-- Page published by Emacs Muse begins here -->
+<p>1.8. 保存文件</p>
+
+<p>要保存正在编辑的文件，按 <strong>C-x C-s</strong> 。Emacs将修改写入到文件。文件保存
+后，Emacs会在迷你缓冲区显示信息 <em>wrote 某某文件</em> 。如果文件没有做任何改
+动，会在迷你缓冲区显示 <em>No Changes need to be saved.</em> 你也可以通过点击工
+具栏的磁盘图标或者在文件菜单中选择保存（当前缓冲区）来对文件进行保存。</p>
+
+<p>如果你要用 <strong>C-x C-s</strong> 保存在“scratch”缓冲区中输入的内容，Emacs提示你输入文
+件名。输入文件名后，Emacs按照文件信息更新模式行。</p>
+
+<p>一个相关的指令是 <em>write-file</em> （ <strong>C-x C-w</strong> ）。这是与其他应用程序等价的文件菜单
+中的另存为功能。 <em>write-file</em> 指令要求你在迷你缓冲区输入一个新文件名。如果你
+什么也没输入就按了一个 <strong>回车键</strong> ，那么 <em>write-file</em> 会按原有的文件名称保存
+文件，与 <strong>C-x C-s</strong> 功能一样。（它会询问是否用当前缓冲区替换本地文件？）</p>
+
+<p><em>write-file</em> 写入文件指令对你没有权限编辑的文件很有用。用 <em>find-file</em> 查找
+文件命令打开你想要的文件，然后使用写入文件指令来创建你自己的不同文件名
+或路径的私有版本的文件。这个策略可以使你复制一个文件到你自己可修改的文
+件中。当然，原文件不会受到任何影响。</p>
+
+<!-- Page published by Emacs Muse ends here -->
+  </body>
+</html>

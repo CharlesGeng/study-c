@@ -5,7 +5,7 @@
 
           图1-1 了解Emacs的显示
 
-          [[ge3_fig0101.gif]]
+          [[../images/ge3_fig0101.gif]]
 
 光标显示当前位置。光标也称“插入点”，尤其是对那些对Emacs较熟的人和在线
 帮助系统里；因此，有必要记住这个别称。
@@ -25,19 +25,19 @@
 表1.3 工具栏上的图标
 
 图标 | 功能 | 相关章节	
-[[paper.gif]] | 打开文件或者创建新文件(要提供文件名) | 本章
-[[folder.gif]] | 打开目录对话框,可以操作文件或目录 | 第5章
-[[../images/x.gif]] | 关闭当前缓冲区 | 第4章
-[[diskette.gif]] | 保存当前缓冲区到文件 | 本章
-[[diskette-pencil.gif]] | 保存当前缓冲区到另一个文件 | 本章
-[[undo.gif]] | 撤销 | 第2章
-[[scissors.gif]] | 剪切选中区域的文本 | 第2章
-[[copy.gif]] | 复制当前区域的文本 | 第2章
-[[clipboard.gif]] | 粘贴已剪切的或复制的文本 | 第2章
-[[magnify.gif]] | 查找字符串 | 第3章
-[[printer.gif]] | 打印(包括标题) | 第5章
-[[tools.gif]] | 自定义选项 | 第10章
-[[lifesaver.gif]] | 打开在线帮助 | 第14章
+[[../images/paper.gif]] | 打开文件或者创建新文件(要提供文件名) | 本章
+[[../images/folder.gif]] | 打开目录对话框,可以操作文件或目录 | 第5章
+[[../images/../images/x.gif]] | 关闭当前缓冲区 | 第4章
+[[../images/diskette.gif]] | 保存当前缓冲区到文件 | 本章
+[[../images/diskette-pencil.gif]] | 保存当前缓冲区到另一个文件 | 本章
+[[../images/undo.gif]] | 撤销 | 第2章
+[[../images/scissors.gif]] | 剪切选中区域的文本 | 第2章
+[[../images/copy.gif]] | 复制当前区域的文本 | 第2章
+[[../images/clipboard.gif]] | 粘贴已剪切的或复制的文本 | 第2章
+[[../images/magnify.gif]] | 查找字符串 | 第3章
+[[../images/printer.gif]] | 打印(包括标题) | 第5章
+[[../images/tools.gif]] | 自定义选项 | 第10章
+[[../images/lifesaver.gif]] | 打开在线帮助 | 第14章
 
 如果你不喜欢工具栏，可以通过菜单选项将其隐藏（选项 -> 显示/隐藏 -> 工具栏），
 并点击保存选项。更多信息参考第2章最后的2.7节。
@@ -54,7 +54,7 @@
 角儿)来访问菜单。
 
 按:F10 |
-[[ge3_ch01scrn02.gif]] |
+[[../images/ge3_ch01scrn02.gif]] |
 使用文本格式下的菜单（Mac OS X下的Emacs） |
 
 你可以按以下三种方式选择文本格式下的菜单选项：

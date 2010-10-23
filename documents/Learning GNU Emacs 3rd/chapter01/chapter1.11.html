@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
   <head>
-    <title>chapter1.11</title>
+    <title>1.11.总结</title>
     <meta name="generator" content="muse.el">
     <meta http-equiv="Content-Type"
-          content="text/html; charset=gbk">
+          content="text/html; charset=iso-8859-1">
     <style type="text/css">
 body {
   background: white; color: black;
@@ -24,105 +24,103 @@ h3 { margin-bottom: 0px; }
     </style>
   </head>
   <body>
-    <h1>chapter1.11</h1>
+    <h1>1.11.总结</h1>
     <!-- Page published by Emacs Muse begins here -->
-<p>1.11.�ܽ�</p>
-
-<p>�������Ѿ�֪���˻�����ָ��򿪣��ر�Emacs���Լ���β����ļ����ڶ���
-��������ܱ༭�ļ�ʱ�������ָ������ܽ�һ�±��½��ܵ�ָ�</p>
+<p>现在你已经知道了基本的指令：打开，关闭Emacs，以及如何操作文件。第二章
+将向你介绍编辑文件时所必须的指令。下面总结一下本章介绍的指令。</p>
 
 <center>
-<p>��1-4 �ļ�����ָ��</p>
+<p>表1-4 文件操作指令</p>
 </center>
 
 <table class="muse-table" border="2" cellpadding="5">
   <tbody>
     <tr>
-      <td>��ݼ�</td>
-      <td>ָ����</td>
-      <td>����</td>
+      <td>快捷键</td>
+      <td>指令名</td>
+      <td>功能</td>
     </tr>
     <tr>
-      <td>C-x C-f <em>File</em>  ���ļ�</td>
+      <td>C-x C-f <em>File</em>  打开文件</td>
       <td>find-file</td>
-      <td>�����ļ�����������һ���µĻ�������</td>
+      <td>查找文件并将其载入一个新的缓冲区。</td>
     </tr>
     <tr>
       <td>C-x C-v</td>
       <td>find-alternate-file</td>
-      <td>�����һ�ļ����滻 <strong>C-x C-f</strong> �򿪵��ļ���</td>
+      <td>载入别一文件来替换 <strong>C-x C-f</strong> 打开的文件。</td>
     </tr>
     <tr>
-      <td>C-x i <em>File</em> �����ļ�</td>
+      <td>C-x i <em>File</em> 插入文件</td>
       <td>insert-file</td>
-      <td>�ڹ�������ļ���</td>
+      <td>在光标后插入文件。</td>
     </tr>
     <tr>
-      <td>C-x C-s <em>File</em> ���浱ǰ���������ļ�</td>
+      <td>C-x C-s <em>File</em> 保存当前缓冲区到文件</td>
       <td>save-buffer</td>
-      <td>�����ļ�</td>
+      <td>保存文件</td>
     </tr>
     <tr>
-      <td>C-x C-w <em>File</em> ����Ϊ</td>
+      <td>C-x C-w <em>File</em> 另存为</td>
       <td>write-file</td>
-      <td>�ѻ��������ݱ��浽�ļ���</td>
+      <td>把缓冲区内容保存到文件。</td>
     </tr>
     <tr>
-      <td>C-x C-c <em>File</em> �ر�Emacs</td>
+      <td>C-x C-c <em>File</em> 关闭Emacs</td>
       <td>save-buffers-kill-emacs</td>
-      <td>�˳�Emacs</td>
+      <td>退出Emacs</td>
     </tr>
     <tr>
       <td>C-h</td>
       <td>help-command</td>
-      <td>�������߰���ϵͳ��</td>
+      <td>进入在线帮助系统。</td>
     </tr>
     <tr>
-      <td>C-h f Help ��������</td>
+      <td>C-h f Help 描述功能</td>
       <td>describe-function</td>
-      <td>��ʾ����ָ�����İ�����Ϣ��</td>
+      <td>显示给定指令名的帮助信息。</td>
     </tr>
     <tr>
-      <td>C-h k Help  ������ݼ�</td>
+      <td>C-h k Help  描述快捷键</td>
       <td>describe-key</td>
-      <td>��ʾ������ݼ��İ�����Ϣ��</td>
+      <td>显示给定快捷键的帮助信息。</td>
     </tr>
     <tr>
-      <td>C-h t Help  Emacs����ָ��</td>
+      <td>C-h t Help  Emacs快速指南</td>
       <td>help-with-tutorial</td>
-      <td>����Emacs�Ŀ���ָ�ϡ�</td>
+      <td>启动Emacs的快速指南。</td>
     </tr>
     <tr>
-      <td>C-h i Help  ��������ֲ�</td>
+      <td>C-h i Help  浏览帮助手册</td>
       <td>info-goto-emacs-command-node</td>
-      <td>����Info�ĵ��Ķ�����</td>
+      <td>启动Info文档阅读器。</td>
     </tr>
   </tbody>
 </table>
 
-<p>1.11.1 ���������������</p>
+<p>1.11.1 你可能遇到的问题</p>
 
 <ul>
-<li>Emacs ���û�а���������˵���������л���Ҳ�������еĽ�ͼ����ȷ�����
-GNU Emacs��21.3.5�����µİ汾������ ��M-x version Enter������ѡ��˵���
-��Help��ť�����&quot;About Emacs&quot;ѡ����Բ鿴GNU Emacs�İ汾�����Ķ��ڶ���
-�С���Emacs��������Ҫ�ķ�ʽ��������һ�ڡ���������ն˴�������Emacs������
-Ҫ��װһ��ͼ�ν���汾��Emacs����13������ϸ���ܡ�</li>
+<li>Emacs 如果没有按照我们所说的那样运行或者也不像书中的截图。请确认你的
+GNU Emacs是21.3.5版或更新的版本。输入 “M-x version Enter”或者选择菜单栏
+的Help按钮，点击&quot;About Emacs&quot;选项可以查看GNU Emacs的版本。并阅读第二章
+中“让Emacs按照你想要的方式工作”这一节。如果是在终端窗口运行Emacs，你需
+要安装一个图形界面版本的Emacs，第13章有详细介绍。</li>
 
-<li>������ͼ����ȫ��ͬ��ͼ����21.3.1���Emacs��21.3.5���Emacs֮���������
-�ġ��ϰ汾��ͼ��Ҳ�����ͬ�Ĺ��ܣ������°汾��ͼ��ӵ�и���ʵ�����Ҳ��
-ֱ�ۡ����ݵ�13�µĽ��ܶ�Emacs����������</li>
+<li>工具栏图标完全不同。图标在21.3.1版的Emacs和21.3.5版的Emacs之间进行了修
+改。老版本的图标也完成相同的功能；不过新版本的图标拥有更充实的外观也更
+直观。根据第13章的介绍对Emacs进行升级。</li>
 
-<li>�����������ݲ˵�������ͨ����F10����M-`��ʾ�ı���ʽ�Ĳ˵������档����
-�ķ�ʽ�ǣ����ݵ�13�µĽ��ܰ�װһ��ͼ�ΰ汾��Emacs��</li>
+<li>不能用鼠标操纵菜单。可以通过按F10或者M-`显示文本方式的菜单来代替。更好
+的方式是，根据第13章的介绍安装一个图形版本的Emacs。</li>
 
-<li>PgUp���ı���ʽ�Ĳ˵��в�������������PgUp���ܿ��ܱ��󶨵������������ˣ�
-������Mac OS X���ն˳����У�PgUp�ǹ����Ĺ��ܡ����԰�Shift-PgUp��F10����
-��M-`�����ʲ˵���</li>
+<li>PgUp在文本方式的菜单中不能正常工作。PgUp键很可能被绑定到其他功能上了，
+比如在Mac OS X的终端程序中，PgUp是滚屏的功能。可以按Shift-PgUp，F10，或
+者M-`来访问菜单。</li>
 
-<li>������ģʽ�л������㻺������Emacs�Ĵ��ڱ���Ļ��ʾ��Χ�󡣿���10�������
-Emacs�������Ĵ����С��������Ϊһ����ʱ���������������ֱ�ӵ������ڴ�
-С.(��һЩ�������ϵͳ�У���󻯰�ť����ʹ�����С��Ҳ���Խ��������⡣)</li>
+<li>看不到模式行或者迷你缓冲区。Emacs的窗口比屏幕显示范围大。看第10章如何让
+Emacs按合理的窗体大小启动。作为一个临时的替代方案，可以直接调整窗口大
+小.(在一些界面操作系统中，最大化按钮反倒使窗体变小，也可以解决这个问题。)</li>
 </ul>
 
 <!-- Page published by Emacs Muse ends here -->

@@ -1,4 +1,4 @@
-﻿1.9. 关闭Emacs
+﻿#title 1.9. 关闭Emacs
 
 要离开Emacs，按 **C-x C-c** 或者像关闭其他程序一样关闭Emacs。如果你修改了
 一个缓冲区，Emacs会提示你是否保存修改内容。[5]如果你按 *y* ，Emacs保存文

@@ -1,0 +1,83 @@
+2.3 删除,移动或修改标记的文本
+
+如果你想删除一个短语,半个段落或者多个段落会怎么做？在Emacs中,你选择的
+一块文本称为区域.你可以用鼠标或者键盘标记一个区域.用鼠标时会有些复杂,
+所以我们会在讨论系统剪切板后再行介绍.
+
+
+用键盘定义一个区域,你使用一个辅助指针,我们称之为"标志".一些版本的Emacs
+会在显示屏上显示"标志";不幸的是,在GNU Emacs里不显示"标志".
+
+在区域的一端按C-Space或者C-@设置标记,然后移动光标到区域的另一端.(光标
+有时也被称为点--Point.然而,光标和点有一个小小的但是很重要的区别.光标是
+在字符之上的,而点是实际上是在光标所在字符与之前字符之间.正如我们所言,
+这是一个比较小的区别,但它有助于你理解在标定区域时光标应该到标记到什么
+位置.)图2-5说明点,标志,和区域.
+
+图2-5 点,标志和区域
+
+
+我们来标记一个示例区域,移除短语"it was the worst of times".首先,我们找
+到短语的开头,然后我们设置标记,向前移动到短语结尾,然后剪切.
+
+Move to the "i" in "it was the age of wisdom." Because the point is really just before the "i," this placement will be just right.
+
+Now the region is marked. If the region is not highlighted, you'll want to make sure it is marked correctly before giving the delete command. Press C-x C-x (for exchange-point-and-mark); this command swaps the locations of the mark and the point. If the cursor moves to where you thought the mark was, the region is marked correctly. Especially because you can't see the mark, it's a good habit to check its location using C-x C-x before deleting a region. People who have used Emacs for years still forget to set the mark and then make a deletion without knowing what they've just deleted. (The undo command, bound to C-_ and C-x u, comes in handy in such a case.)
+
+To cut the region, press C-w (for kill-region). (The scissors icon on the toolbar also works.)
+
+If you're not sure of what you deleted, just press C-_ to undo it. The text is still marked, and you can delete it again with C-w if you want to. To move text, mark it, press C-w to cut the region, then move the cursor to the place you want to insert the text, and press C-y. If you yank the text back into the wrong location, just type C-_ to undo it, then move to the place you really wanted to put the text, and press C-y again.
+
+When you're defining a region, you normally set the mark at one end and then move the cursor to the other end of the region. A few shortcuts are helpful in some of the most common situations. To mark a paragraph, press M-h. This sets the mark at the end of the paragraph and places the cursor at the beginning automatically. Similarly, C-x h (for mark-whole-buffer) marks the entire buffer; the cursor goes to the beginning, and the mark is placed at the end. Finally, C-x C-p marks the current page, with pages being defined by the C-l character if you are in text mode. Of course, marking a paragraph, page, or buffer is usually only the prelude to some other operation, like killing (C-w).
+
+2.3.1 Copying Text
+To copy text, mark a region, then press M-w (for kill-ring-save; the toolbar icon with two pieces of paper also runs this command). Move the cursor to the place where you want to insert the copied text and press C-y. Copying text is exactly the same as killing it, except that Emacs doesn't delete anything. The text you have copied is placed in the kill ring, so you can use C-y to access it as often as you like.
+
+One advantage to M-w is that it works on read-only files and buffers. For example, if you wanted to create a file of Emacs hints, you could use M-w to copy some text from online help into one of your buffers.
+
+Here are the steps for some common deletion tasks.
+
+To mark a region:
+
+Move the cursor to the beginning of the area you want to delete.
+
+Press C-Space. Emacs displays the message Mark set.
+
+Move the cursor to the end of the region you want to delete.
+
+To delete a region:
+
+Mark the region to be deleted.
+
+Press C-w to delete the region.
+
+To move text:
+
+Delete the text you want to move using the procedures for marking and deleting a region.
+
+Move the cursor where you want to insert the text.
+
+Press C-y. Emacs inserts the text you deleted.
+
+To copy text:
+
+Mark the region you want to copy.
+
+Press M-w to copy the text.
+
+Move the cursor where you want to insert the copied text and press C-y. Emacs inserts the text you copied.
+
+2.3.2 Recovering Earlier Deletions
+Earlier we mentioned the kill ring, a temporary storage area in which Emacs saves the stuff you delete. So far, we've assumed that you're interested in resurrecting what you've most recently killed. However, the kill ring does a lot more. It actually stores your last 30 deletions. We've seen that C-y restores the text you deleted most recently. Typing M-y deletes the text you just yanked and gets the next most recent text from the kill ring.
+
+Here's how it works. In Table 2-4, assume that you've just killed the words "most recent." C-y retrieves these words from the kill ring. When you press M-y, Emacs gets rid of "most recent" and gets the next entry from the kill ring ("second-last").
+
+You can keep on typing M-y, retrieving successively more ancient deletions, until you reach the end of the kill ring (at which point it cycles back to the most recently killed text; that's why it's called a ring).
+
+Thirty deletions by default is a nice size—far more generous than most programs offer. But you can enlarge or reduce the size of the kill ring if you wish, using a variable called kill-ring-max. To experiment, give the command: M-x set-variable Enter kill-ring-max Enter new-value Enter (where new-value is a number).
+
+2.3.3 Selecting and Pasting
+Using the menus, you can access text from the kill ring in a more straightforward way: by choosing Edit Select and Paste. A menu showing deletions appears, with the most recent ones on top. To show you as many deletions as possible, each line in the window represents a separate deletion. So if you've killed a large region, say 500 lines, you see only the beginning of the first line of that deletion, ellipses, and the end of the deletion. Your selection is pasted into the buffer at the cursor position.
+
+Table 2-5 summarizes commands for working with regions.
+

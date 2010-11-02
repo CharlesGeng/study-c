@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>2.2删除文本</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2010-11-02 14:56:49 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">2.2删除文本</h1>
+
+<p>在学习删除指令之前，你或许想先知道撤消指令，我们会在本章后面对撤消指令
+做全面介绍。输入 <b>C-_</b> 或者 <b>C-x u</b> 来撤消最近一次的编辑操作，再次执行撤
+消指令来撤消上上次操作，依次类推。
+</p>
+<p>
+Emacs提供许多删除文本的方法，最简单的方法是按 <b>Dle</b> 键，按完之后会立即
+删除光标左侧的字符。看一下 <b>Del</b> 键在你的键盘上的位置，有时它被称为
+<b>BackSpace</b> 键。 <b>Del</b> 清晰的表述了它的功能:删除前一个字符。如果你在录
+入的时候想删除最后一个录入的字符，应该按哪个键呢?应该按在Emacs中称为
+<b>Del</b> 的键。
+</p>
+<p>
+Emacs提供很多种其他的删除指令，或许对你来说太多了，然而你最终会因为某种
+原因使用它们中大部分指令。例如: <b>C-d</b> (表示 <b>delete-char</b> )删除光标下的
+字符。删除下一个单词的指令是 <b>M-d</b> (表示 <b>kill-word</b> )。再次注意
+<b>Meta</b> 键的增强指令的特性: <b>C-d</b> 操作一个字符，而 <b>M-d</b> 操作一个单词。
+</p>
+<p>
+Emacs具有删除前一个或后一个单词，句子和段落的指令。通过他们的名字你也能
+猜出他们在单词间，句子间，段落间的功能。如果光标在一个实体的中间，他们
+做的事会有点儿古怪:它们会删除单词，句子或段落的一部分。 向前删除还是向
+后删除是由指令自身决定的。例如，下面显示了 <b>M-d</b> 删除时的不同行为，这是
+由光标位置决定的。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup>
+<thead>
+<tr><th scope="col">如果光标在这个位置</th><th scope="col">M-d的处理结果</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td>It was the w <span style="text-decoration:underline;">o</span> rst of times.</td><td>It was the w_ of times.</td></tr>
+</tbody>
+<tbody>
+<tr><td>It was the <span style="text-decoration:underline;">w</span> orst of times.</td><td>It was the_of times.</td></tr>
+</tbody>
+<tbody>
+<tr><td>It was the wors <span style="text-decoration:underline;">t</span> of times.</td><td>It was the wors_ of times.</td></tr>
+</tbody>
+</table>
+
+
+<p>
+类似的，如果光标在一个单词的中间，你要删除单词的前半部分，按 <b>M-Del</b>
+(表示 <b>backward-kill-word</b> )，它会删除当前单词中从光标位置到单词开头的
+部分。
+</p>
+<p>
+如果想删除整行或者一行的一部分，可以用 <b>C-k</b> (表示 <b>kill-line</b> )指令，
+这个指令会删除从光标位置到行尾的全部内容。在一个空白行输入 <b>C-k</b> ，会删
+除当前的空白行。因此，一般输入两次 <b>C-k</b> 来删除一行内容:一次删除文本内
+容，第二次删除前一次产生的空白行。如果想删除从行首到光标位置的内容，可
+以输入一个更复杂的指令 <b>Meta - C-k</b> (也就是，按住 <b>Meta</b> 键，再按连字符
+<b>-</b> ，再按 <b>C-k</b> )。
+</p>
+<p>
+也可以使用 <b>C-k</b> 连接两行。在行尾输入 <b>C-k</b> ，会删除换行符，就可以有效
+的将两行连接成一个更长的行。
+</p>
+<p>
+2.2.1杀戮环(The Kill Ring)
+</p>
+<p>
+你或许已经注意到Emacs中的一些删除指令被称为 <i>杀戮(kill)</i> 指令，例如:
+<b>kill-region</b> ， <b>kill-word</b> 等等。在Emacs中，删除指令并不致命，事实上
+却恰恰相反。被删除的文本不是被永久删除而是被隐藏在被称为 <i>杀戮环(kill ring)</i> 内。尽管杀戮环听起来像个暴力团伙，它仅是一个存储区域用于存储复制
+或删除的内容。不要将杀戮环和可以在应用程序之间进行复制粘贴操作的系统剪
+切板混淆。我们会在本章后面介绍Emacs如何使用系统剪切板。
+</p>
+<p>
+你可以输入 <b>C-y</b> (表示 <b>yank</b> )恢复删除的内容。<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup>如果你连续删除了多
+行，Emacs会将他们收集到一个单独的单元并将其放入杀戮环，一个简单的指令
+<b>C-y</b> 可以方便的将所有东东恢复。在下面的例子中，我们会使用 <b>C-k</b> 四次来
+删除<a name="两人城市的尾巴" class="target">两人城市的尾巴</a> 的前两行。(记住，第一个 <b>C-k</b> 删除文本，第二个
+<b>C-k</b> 删除空白行)然后我们使用一个 <b>C-y</b> 就可以恢复删除的内容。
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">初始状态:</th></tr>
+</thead>
+<tbody>
+<tr><td><img src="../images/ge3_ch02scrn01.gif"  alt="../images/ge3_ch02scrn01.gif" /></td></tr>
+</tbody>
+<tbody>
+<tr><td>光标在左上角</td></tr>
+</tbody>
+</table>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">输入:C-k C-k C-k C-k</th></tr>
+</thead>
+<tbody>
+<tr><td><img src="../images/ge3_ch02scrn02.gif"  alt="../images/ge3_ch02scrn02.gif" /></td></tr>
+</tbody>
+<tbody>
+<tr><td>你已经用C-k指令删除了前两行</td></tr>
+</tbody>
+</table>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">输入:C-y</th></tr>
+</thead>
+<tbody>
+<tr><td><img src="../images/ge3_ch02scrn03.gif"  alt="../images/ge3_ch02scrn03.gif" /></td></tr>
+</tbody>
+<tbody>
+<tr><td>通过一个指令就恢复了全部内容</td></tr>
+</tbody>
+</table>
+
+
+
+
+<p>
+哪些内容会完整的保存到杀戮环?用 <b>C-k</b> 或者 <b>C-w</b> 指令删除的内容，以及
+<b>M-w</b> 复制的内容(这两个指令会马上介绍。)都会保存到杀戮环。被 <b>M-d</b> ，
+<b>M-del</b> 和其他相关指令删除的单词，句子和段落也会保存进去。此外，你用
+<b>C-u Del</b> 或 <b>C-u C-d</b> 删除的内容也会保存。唯一不会保存的就是用 <b>Del</b>
+和 <b>C-d</b> 删除的字符(如果你想恢复，可以将此类删除通过撤消指令恢复，快捷
+键为 <b>C-_</b> 和 <b>C-x u</b> 。)
+</p>
+<p>
+Emacs对哪些内容保存到杀戮环是比较聪明的:当它根据一组删除操作重组一大块
+文档时，它一般都能保持文本排版的正确。便即，你输入几次 <b>M-d</b> ，然后输入
+几次 <b>M-del</b> ，再穿插输入几次 <b>C-k</b> 。当你输入 <b>C-y</b> ，Emacs会按照原版
+恢复文本。
+</p>
+<p>
+然而，你需要注意的是：当你执行一个非杀戮指令后，Emacs会立即停止组装文本
+块。例如：你用 <b>C-k</b> 删除一行，又用 <b>C-d</b> 删除一个字符，再用 <b>C-k</b> 删除
+一行，你已经打断了执行顺序。Emacs不认为删除字符指令 <b>C-d</b> 是一个'杀戮'
+指令，它只是一个删除操作而且并没有存储它。这种情况下，你没有后成一个连
+续的杀戮指令存储区，你生成了两个存储区。后面，我们会介绍如何获取之前'杀
+戮'掉的文档。
+</p>
+<p>
+表2-3 删除，杀戮，还原指令汇总，以及对应的编辑菜单中的选项。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup>
+<thead>
+<tr><th scope="col">快捷键</th><th scope="col">指令名称</th><th scope="col">功能</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td>C-d</td><td>delete-char</td><td>删除光标下的字符</td></tr>
+</tbody>
+<tbody>
+<tr><td>Del</td><td>delete-backward-char</td><td>删除光标前的字符</td></tr>
+</tbody>
+<tbody>
+<tr><td>M-d</td><td>kill-word</td><td>删除下一个单词</td></tr>
+</tbody>
+<tbody>
+<tr><td>M-Del</td><td>backward-kill-word</td><td>删除前一个单词</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-k</td><td>kill-line</td><td>删除一行</td></tr>
+</tbody>
+<tbody>
+<tr><td>M-k</td><td>kill-sentence</td><td>删除下一句话</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-x Del</td><td>backward-kill-sentence</td><td>删除前一句话</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-y</td><td>yank</td><td>还原之前删除的内容</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-w <i>Edit-&gt;Cut</i></td><td>kill-region</td><td>删除标记的区域（见下一章）</td></tr>
+</tbody>
+<tbody>
+<tr><td>(none)</td><td>kill-paragraph</td><td>删除下一段</td></tr>
+</tbody>
+<tbody>
+<tr><td>(none)</td><td>backward-kill-paragraph</td><td>删除前一段</td></tr>
+</tbody>
+</table>
+
+
+
+
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> 如果你是一个Linux或者Windows用户，或许已经习惯于在各应用程序中使
+用C-v来执行粘贴操作。Emacs有选项可以改变其默认的粘贴，剪切，和复制指
+令，重新定义成你熟悉的C-v，C-x和C-c。见'让Emacs按照你的方式工作'，了解
+详情。对那些正在学习Emacs的vi使用者提出一个警告:vi也使用术语yank，但是
+两处的yank的含义几乎完全相反。别混淆两者的概念。
+</p>
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: 
+<a href="mailto:qgeng@NOTEBOOK-50B5">&lt;qgeng@NOTEBOOK-50B5&gt;</a>
+</p>
+<p class="date"> Date: 2010-11-02 14:56:49 </p>
+<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,24 +1,24 @@
-2.3 É¾³ı,ÒÆ¶¯»òĞŞ¸Ä±ê¼ÇµÄÎÄ±¾
+2.3 åˆ é™¤,ç§»åŠ¨æˆ–ä¿®æ”¹æ ‡è®°çš„æ–‡æœ¬
 
-Èç¹ûÄãÏëÉ¾³ıÒ»¸ö¶ÌÓï,°ë¸ö¶ÎÂä»òÕß¶à¸ö¶ÎÂä»áÔõÃ´×ö£¿ÔÚEmacsÖĞ,ÄãÑ¡ÔñµÄ
-Ò»¿éÎÄ±¾³ÆÎªÇøÓò.Äã¿ÉÒÔÓÃÊó±ê»òÕß¼üÅÌ±ê¼ÇÒ»¸öÇøÓò.ÓÃÊó±êÊ±»áÓĞĞ©¸´ÔÓ,
-ËùÒÔÎÒÃÇ»áÔÚÌÖÂÛÏµÍ³¼ôÇĞ°åºóÔÙĞĞ½éÉÜ.
-
-
-ÓÃ¼üÅÌ¶¨ÒåÒ»¸öÇøÓò,ÄãÊ¹ÓÃÒ»¸ö¸¨ÖúÖ¸Õë,ÎÒÃÇ³ÆÖ®Îª"±êÖ¾".Ò»Ğ©°æ±¾µÄEmacs
-»áÔÚÏÔÊ¾ÆÁÉÏÏÔÊ¾"±êÖ¾";²»ĞÒµÄÊÇ,ÔÚGNU EmacsÀï²»ÏÔÊ¾"±êÖ¾".
-
-ÔÚÇøÓòµÄÒ»¶Ë°´C-Space»òÕßC-@ÉèÖÃ±ê¼Ç,È»ºóÒÆ¶¯¹â±êµ½ÇøÓòµÄÁíÒ»¶Ë.(¹â±ê
-ÓĞÊ±Ò²±»³ÆÎªµã--Point.È»¶ø,¹â±êºÍµãÓĞÒ»¸öĞ¡Ğ¡µÄµ«ÊÇºÜÖØÒªµÄÇø±ğ.¹â±êÊÇ
-ÔÚ×Ö·ûÖ®ÉÏµÄ,¶øµãÊÇÊµ¼ÊÉÏÊÇÔÚ¹â±êËùÔÚ×Ö·ûÓëÖ®Ç°×Ö·ûÖ®¼ä.ÕıÈçÎÒÃÇËùÑÔ,
-ÕâÊÇÒ»¸ö±È½ÏĞ¡µÄÇø±ğ,µ«ËüÓĞÖúÓÚÄãÀí½âÔÚ±ê¶¨ÇøÓòÊ±¹â±êÓ¦¸Ãµ½±ê¼Çµ½Ê²Ã´
-Î»ÖÃ.)Í¼2-5ËµÃ÷µã,±êÖ¾,ºÍÇøÓò.
-
-Í¼2-5 µã,±êÖ¾ºÍÇøÓò
+å¦‚æœä½ æƒ³åˆ é™¤ä¸€ä¸ªçŸ­è¯­,åŠä¸ªæ®µè½æˆ–è€…å¤šä¸ªæ®µè½ä¼šæ€ä¹ˆåšï¼Ÿåœ¨Emacsä¸­,ä½ é€‰æ‹©çš„
+ä¸€å—æ–‡æœ¬ç§°ä¸ºåŒºåŸŸ.ä½ å¯ä»¥ç”¨é¼ æ ‡æˆ–è€…é”®ç›˜æ ‡è®°ä¸€ä¸ªåŒºåŸŸ.ç”¨é¼ æ ‡æ—¶ä¼šæœ‰äº›å¤æ‚,
+æ‰€ä»¥æˆ‘ä»¬ä¼šåœ¨è®¨è®ºç³»ç»Ÿå‰ªåˆ‡æ¿åå†è¡Œä»‹ç».
 
 
-ÎÒÃÇÀ´±ê¼ÇÒ»¸öÊ¾ÀıÇøÓò,ÒÆ³ı¶ÌÓï"it was the worst of times".Ê×ÏÈ,ÎÒÃÇÕÒ
-µ½¶ÌÓïµÄ¿ªÍ·,È»ºóÎÒÃÇÉèÖÃ±ê¼Ç,ÏòÇ°ÒÆ¶¯µ½¶ÌÓï½áÎ²,È»ºó¼ôÇĞ.
+ç”¨é”®ç›˜å®šä¹‰ä¸€ä¸ªåŒºåŸŸ,ä½ ä½¿ç”¨ä¸€ä¸ªè¾…åŠ©æŒ‡é’ˆ,æˆ‘ä»¬ç§°ä¹‹ä¸º"æ ‡å¿—".ä¸€äº›ç‰ˆæœ¬çš„Emacs
+ä¼šåœ¨æ˜¾ç¤ºå±ä¸Šæ˜¾ç¤º"æ ‡å¿—";ä¸å¹¸çš„æ˜¯,åœ¨GNU Emacsé‡Œä¸æ˜¾ç¤º"æ ‡å¿—".
+
+åœ¨åŒºåŸŸçš„ä¸€ç«¯æŒ‰C-Spaceæˆ–è€…C-@è®¾ç½®æ ‡è®°,ç„¶åç§»åŠ¨å…‰æ ‡åˆ°åŒºåŸŸçš„å¦ä¸€ç«¯.(å…‰æ ‡
+æœ‰æ—¶ä¹Ÿè¢«ç§°ä¸ºç‚¹--Point.ç„¶è€Œ,å…‰æ ‡å’Œç‚¹æœ‰ä¸€ä¸ªå°å°çš„ä½†æ˜¯å¾ˆé‡è¦çš„åŒºåˆ«.å…‰æ ‡æ˜¯
+åœ¨å­—ç¬¦ä¹‹ä¸Šçš„,è€Œç‚¹æ˜¯å®é™…ä¸Šæ˜¯åœ¨å…‰æ ‡æ‰€åœ¨å­—ç¬¦ä¸ä¹‹å‰å­—ç¬¦ä¹‹é—´.æ­£å¦‚æˆ‘ä»¬æ‰€è¨€,
+è¿™æ˜¯ä¸€ä¸ªæ¯”è¾ƒå°çš„åŒºåˆ«,ä½†å®ƒæœ‰åŠ©äºä½ ç†è§£åœ¨æ ‡å®šåŒºåŸŸæ—¶å…‰æ ‡åº”è¯¥åˆ°æ ‡è®°åˆ°ä»€ä¹ˆ
+ä½ç½®.)å›¾2-5è¯´æ˜ç‚¹,æ ‡å¿—,å’ŒåŒºåŸŸ.
+
+å›¾2-5 ç‚¹,æ ‡å¿—å’ŒåŒºåŸŸ
+
+
+æˆ‘ä»¬æ¥æ ‡è®°ä¸€ä¸ªç¤ºä¾‹åŒºåŸŸ,ç§»é™¤çŸ­è¯­"it was the worst of times".é¦–å…ˆ,æˆ‘ä»¬æ‰¾
+åˆ°çŸ­è¯­çš„å¼€å¤´,ç„¶åæˆ‘ä»¬è®¾ç½®æ ‡è®°,å‘å‰ç§»åŠ¨åˆ°çŸ­è¯­ç»“å°¾,ç„¶åå‰ªåˆ‡.
 
 Move to the "i" in "it was the age of wisdom." Because the point is really just before the "i," this placement will be just right.
 
@@ -74,7 +74,7 @@ Here's how it works. In Table 2-4, assume that you've just killed the words "mos
 
 You can keep on typing M-y, retrieving successively more ancient deletions, until you reach the end of the kill ring (at which point it cycles back to the most recently killed text; that's why it's called a ring).
 
-Thirty deletions by default is a nice size¡ªfar more generous than most programs offer. But you can enlarge or reduce the size of the kill ring if you wish, using a variable called kill-ring-max. To experiment, give the command: M-x set-variable Enter kill-ring-max Enter new-value Enter (where new-value is a number).
+Thirty deletions by default is a nice sizeâ€•far more generous than most programs offer. But you can enlarge or reduce the size of the kill ring if you wish, using a variable called kill-ring-max. To experiment, give the command: M-x set-variable Enter kill-ring-max Enter new-value Enter (where new-value is a number).
 
 2.3.3 Selecting and Pasting
 Using the menus, you can access text from the kill ring in a more straightforward way: by choosing Edit Select and Paste. A menu showing deletions appears, with the most recent ones on top. To show you as many deletions as possible, each line in the window represents a separate deletion. So if you've killed a large region, say 500 lines, you see only the beginning of the first line of that deletion, ellipses, and the end of the deletion. Your selection is pasted into the buffer at the cursor position.

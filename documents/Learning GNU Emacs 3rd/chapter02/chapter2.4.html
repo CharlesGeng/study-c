@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>2.4. Emacs和剪切板</title>
+<meta http-equiv="Content-Type" content="text/html;charset=gb2312"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2010-11-08 21:48:05 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">2.4. Emacs和剪切板</h1>
+
+<p>Emacs 21 可以很好的支持剪切板，尽管它并不能每次都按你想要的方式工作。
+现在来进一步介绍些细节。
+</p>
+<p>
+<b>2.4.1 将文本存到剪切板</b>
+</p>
+<p>
+一般情况下，使用工具栏的剪切或复制图标或者选项中的编辑菜单会将文本保存
+到剪切板并且可以被其他程序访问。
+</p>
+<p>
+不幸的是，Emacs在这个问题上不同平台有所区别。大部分平台特性会在第13章
+介绍，但是剪切和粘贴这种至关重要的操作必须要先介绍一下。
+</p>
+<p>
+在Windows和Mac OS X (不包括Linux）中，用 <b>C-w</b> 剪切或者 <b>M-w</b> 复制也会
+将文本放到剪切板中。
+</p>
+<p>
+在Windows和Mac OS X中，只要用鼠标选择文本就可以将其存入剪切板（不能
+在Linux中使用）。大部分编辑器要先高亮文本，再执行拷贝指令，Emacs却不用。
+表2-6显示Emacs在不同平台如何工作的。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption><b>表2-6.用鼠标选择文本</b></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left"></th><th scope="col" class="left">linux</th><th scope="col" class="left">Windows</th><th scope="col" class="left">Mac OS X graphical</th><th scope="col" class="left">Mac OS X terminal</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left">发送到剪切板</td><td class="left">否</td><td class="left">是</td><td class="left">是</td><td class="left">否<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">发送到Kill Ring</td><td class="left">是</td><td class="left">是</td><td class="left">是</td><td class="left">否</td></tr>
+</tbody>
+</table>
+
+
+<p>
+在Linux中将文本保存到剪切板，先用鼠标选择（或者标记区域），然后按工具
+栏的剪切或复制按钮或者菜单栏选项。你可以用表2-7列出的在不同平台上都可
+使用的剪切板特殊命令。
+</p>
+<p>
+<b>2.4.2 重新得到剪切板中的文本</b>
+</p>
+<p>
+如刚才介绍的，在其他应用程序中，一般执行剪切和粘贴前要先选择文本再执行
+复制命令。那么如何粘贴到Emacs中呢？
+</p>
+<p>
+毫无疑问，用工具栏的粘贴按钮或者编辑菜单里的相关功能就可以完成这些操作
+（见表2-7；Mac OS X 上的Emacs禁用了图标以及菜单选项；不过，相关功能
+<b>clipboard-yank</b> 可以完成此功能）。 <b>C-y</b> 也可以插入剪切板的文本。此
+外，一个简单的鼠标操作可以在大部分平台使用。在Emacs窗口中，单击鼠标中
+键或者滚轮就可以从剪切板粘贴文本。当然，你的鼠标必须有中键。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption><b>表2-7. 从剪切板粘贴</b></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left"></th><th scope="col" class="left">Linux</th><th scope="col" class="left">Windows</th><th scope="col" class="left">Mac OS X graphical</th><th scope="col" class="left">Mac OS X terminal</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left"><b>C-y</b> 粘贴?</td><td class="left">yes</td><td class="left">yes</td><td class="left">yes</td><td class="left">no<sup><a class="footref" name="fnr.2" href="#fn.2">2</a></sup></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">工具栏粘贴?</td><td class="left">yes</td><td class="left">yes</td><td class="left">no</td><td class="left">no</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">编辑菜单粘贴选项?</td><td class="left">yes</td><td class="left">yes</td><td class="left">no</td><td class="left">no</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">鼠标中键粘贴?</td><td class="left">yes</td><td class="left">yes</td><td class="left">yse</td><td class="left">no</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>M-x clipboard-yank</b> 粘贴?</td><td class="left">yes</td><td class="left">yes</td><td class="left">yse</td><td class="left">no</td></tr>
+</tbody>
+</table>
+
+
+<p>
+另一个关于剪切和粘贴的问题就是编码格式。编码格式是Emacs中一个复杂的问
+题；Emacs 22支持全编码功能被人们所诟病。在这个问题上，我们仅向你介绍一
+个变量用于解决剪切和粘贴相关的编码问题： <b>set-clipboard-coding-system</b>.
+</p>
+<p>
+如果你喜欢用剪切板，可以修改Emacs的剪切和粘贴快捷键为更常用的 <b>C-x*， *C-c</b> ,和 <b>C-v</b> 。见本章后面的“让EMacs按你的方式工作”的详细介绍。
+</p>
+<p>
+表 2-8 总结了剪切板相关指令。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption><b>表2-8 剪切b板指令</b></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">快捷键</th><th scope="col" class="left">命令名</th><th scope="col" class="left">功能</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left">无</td><td class="left"><b>clipboard-kill-region</b></td><td class="left">剪切区域同时保存到杀戮环和系统剪切板</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">无</td><td class="left"><b>clipboard-yank</b></td><td class="left">从剪切板粘贴文本</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">无</td><td class="left"><b>clipboard-kill-ring-save</b></td><td class="left">复制文本到剪切板</td></tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> 可能通过先选择文本再按 <b>xxxMacSymxxx-C</b> 来完成此操作。只是选择文本并不能
+复制到剪切板。
+</p>
+<p class="footnote"><sup><a class="footnum" name="fn.2" href="#fnr.2">2</a></sup> <b>xxxMacSymxxx-v</b> 从剪切板粘贴文本。
+</p>
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: 
+</p>
+<p class="date"> Date: 2010-11-08 21:48:05 </p>
+<p class="creator">HTML generated by org-mode 7.3 in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

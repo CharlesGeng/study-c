@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>2.3 删除，移动或修改标记的文本</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2010-11-17 23:02:15 CST"/>
+<meta name="author" content="moomu"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">2.3 删除，移动或修改标记的文本</h1>
+
+<p>如果你想删除一个短语，半个段落或者多个段落会怎么做？在Emacs中，你选择的一块文本称为 <i>区域</i> 。你可以用
+鼠标或者键盘标记一个区域。用鼠标时会有些复杂，所以我们会在讨论系统剪切板后再行介绍。
+</p>
+<p>
+用键盘定义一个区域，你使用一个辅助指针，我们称之为 <i>标志</i> 。一些版本的Emacs会在显示屏上显示标志；不幸
+的是，在GNU Emacs里不显示。
+</p>
+<p>
+在区域的一端按 <b>C-Space</b> 或者 <b>C-@</b> 设置标记，然后移动光标到区域的另一端。(光标有时也被称为 <i>点 (Point)</i> 。然而，光标和点有一个小小的但是很重要的区别。光标是在字符之上的，而点是实际上是在光标所在字
+符与之前字符之间。正如我们所言，这是一个比较小的区别，但它有助于你理解在标定区域时光标应该到标记到什
+么位置。)图2-5说明点，标志，和区域。
+</p>
+
+<div class="figure">
+<p><img src="../images/ge3_fig0205.gif"  alt="../images/ge3_fig0205.gif" /></p>
+<p>图2-5 点，标志和区域</p>
+</div>
+
+<p>
+我们来标记一个示例区域，移除短语"it was the worst of times"。首先，我们找到短语的开头，然后我们设置标
+记，向前移动到短语结尾，然后剪切。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">移动到起始位置“it”然后按 <b>C-space</b></th></tr>
+</thead>
+<tbody>
+<tr><td><img src="../images/ge3_ch02scrn04.gif"  alt="../images/ge3_ch02scrn04.gif" /></td></tr>
+</tbody>
+<tbody>
+<tr><td>设置标志； <b>Mark Set</b> 出现在迷你缓冲区中</td></tr>
+</tbody>
+</table>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">将光标移动到“it was the age of wisdom。”中的“i”。</th></tr>
+</thead>
+<tbody>
+<tr><td><img src="../images/ge3_ch02scrn05.gif"  alt="../images/ge3_ch02scrn05.gif" /></td></tr>
+</tbody>
+<tbody>
+<tr><td>因为点（point）就在当前标记的区域之后。</td></tr>
+</tbody>
+</table>
+
+
+
+<p>
+现在已经标记好区域。在执行删除指令之前，如果标记区域没有高亮显示，你需要先确认是否已经正确地标记区域
+了。按 <b>C-x C-x</b> (表示*exchange-point-and-mark* )；这个指令让光标显示位置在标志与点之间相互切换。如果
+光标移动到了你想标记的位置，说明区域已经正确标记了。尤其是在你看不到 <i>标记</i> 的时候，删除区域前用
+<b>C-x C-x</b> 检查标记的区域是个良好的习惯。一些用了几年Emacs的人仍然会忘了标记区域就在不知情的情况进行删
+除操作。（绑定到 <b>c-_</b> 和 <b>c-x u</b> 的撤消指令迟早会在派上用场）
+</p>
+<p>
+删除区域，按 <b>C-w</b> （表示 <b>kill-region</b> )。（工具栏的剪刀图标也是这个功能。）
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">按： <b>C-w</b></th></tr>
+</thead>
+<tbody>
+<tr><td><img src="../images/ge3_ch02scrn06.gif"  alt="../images/ge3_ch02scrn06.gif" /></td></tr>
+</tbody>
+<tbody>
+<tr><td><b>C-w</b> 剪切区域</td></tr>
+</tbody>
+</table>
+
+
+<p>
+如果不确定删除了哪些内容，只要按 <b>C-_</b> 就可以还原。文本仍旧被标记着，你可以再次按C-w来删除它。移动文
+本，标记区域，按 <b>C-w</b> 剪切区域，移动光标到你想插入文本的位置，然后按 <b>C-y</b> 。如果你在错误的位置还原
+了文本，只要按 <b>C-_</b> 来撤销，然后移动到正确的位置，再次按*C-y* 插入文本。
+</p>
+<p>
+标记一个区域时，一般是先标记一端然后把光标移动到区域的另一端。针对一些常见情况定义了相应的快捷键。标
+记一个段落，按 <b>M-h</b> 。可以设置标记到段尾并将光标自动移动到开始位置。类似的， <b>C-x h</b> (表示
+<b>mark-whole-buffer</b> )标记整个缓冲区；光标移动到开头，并且标记到尾部。最后， <b>C-x C-p</b> 标记当前页，标
+记那些在文本模式下用 <b>C-l</b> 分页符分割好的文本。当然，标记段落，页面，或者缓冲区一般只是其他操作（剪
+切， <b>C-w</b> ）的前奏而已。
+</p>
+<p>
+<b>2.3.1 复制文本</b>
+</p>
+<p>
+要复制文本，先标记一个区域，再按 <b>M-w</b> （表示 <b>kill-ring-save</b> ; 工具栏的两张纸的图标也可以执行此功
+能）。将光标移动到你想插入复制的文本的位置然后按 <b>C-y</b> 。复制文本与剪切文本是一样的，只不过Emacs不删
+除任何东东而已。复制的文本被放入杀戮环（kill ring），所以你可以随时通过 <b>C-y</b> 访问它。
+</p>
+<p>
+<b>M-w</b> 的优势还在于可以在只读文件和缓冲区中使用。例如，如果你想创建一个Emacs技巧文件，可以使用 <b>M-w</b>
+来复制在线帮助文本到你的缓冲区中。
+</p>
+<p>
+针对一般的删除任务的操作。
+</p>
+<p>
+标记区域：
+</p>
+<ol>
+<li>
+将光标移动到要删除区域的起始位置。
+</li>
+<li>
+按 <b>C-Space</b> 。Emacs显示提示信息 <b>Mark set</b> 。
+</li>
+<li>
+将光标移动到要删除区域的结束位置。
+
+</li>
+</ol>
+
+<p>删除一个区域：
+</p>
+<ol>
+<li>
+标记被删除区域。
+</li>
+<li>
+按 <b>C-w</b> 删除区域。
+
+</li>
+</ol>
+
+<p>移动文本：
+</p>
+<ol>
+<li>
+使用标记和删除区域的过程来删除你想移动的文本。
+</li>
+<li>
+将光标移动到你想插入文本的位置。
+</li>
+<li>
+按 <b>C-y</b> 。Emacs插入刚删除的文本。
+
+</li>
+</ol>
+
+<p>复制文本：
+</p>
+<ol>
+<li>
+标记你想复制的区域。
+</li>
+<li>
+按 <b>M-w</b> 复制文本。
+</li>
+<li>
+移动光标到你想插入文本的位置，然后按 *C-y*。Emacs插入刚复制的文本。
+
+</li>
+</ol>
+
+<p><b>2.3.2 还原早期的删除内容</b>
+</p>
+<p>
+之前提到的杀戮环是Emacs存储你删除内容的区域。当下，我们假设你想还原你刚刚删除的内容。然而杀戮环会做的
+更多。它能保存你最近30次的删除内容。我们已经看过了， <b>C-y</b> 可以还原你最近删除的内容。输入 <b>M-y</b> 删除
+你刚还原的文本，并从杀戮环还原次最近的文本。
+</p>
+<p>
+这里显示它如何工作。在表2-4中，假设你已经删除了“most recent”。 <b>C-y</b> 从杀戮环中还原这几个单词。当你按
+<b>M-y</b> ,Emacs会删除“most recent”并且得到下一个杀戮环的内容（“倒数第二个”）。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption><b>表2-4. 杀戮环的操作</b></caption>
+<colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup>
+<thead>
+<tr><th scope="col">快捷键</th><th scope="col">功能</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td>C-y</td><td>这是最后一次删除的内容</td></tr>
+</tbody>
+<tbody>
+<tr><td>M-y</td><td>这是倒数第二次删除的内容</td></tr>
+</tbody>
+<tbody>
+<tr><td>M-y</td><td>这是倒数第三次删除的内容</td></tr>
+</tbody>
+<tbody>
+<tr><td>M-y</td><td>这是倒数第四次删除的内容</td></tr>
+</tbody>
+</table>
+
+
+
+<p>
+你可以连续按 <b>M-y</b> ,获取更早删除的内容，直到你达到杀戮环的尾部（此时，又会循环到最近一次删除的文本，
+这就是为什么称其为环的原因）。
+</p>
+<p>
+保存最近30次删除是比较合适的，这比大部分程序提供的多多了。不过你可以修改参数 <b>kill-ring-max</b> 来增大或
+减小杀戮环的保存次数。做个试验，执行指令： <b>M-x set-variable Enter kill-ring-max Enter new-value Enter</b> ( <b>new-value</b> 表示一个数字)。
+</p>
+<p>
+<b>2.3.3 选择和粘贴</b>
+</p>
+<p>
+使用菜单，你可以更直接的访问杀戮环中的内容：选择 <b>Edit</b> -&gt; <b>Select and Paste</b> 。菜单会显示删除的内
+容，并且在最上面显示最近删除的内容。为了尽量显示更多的删除内容，窗口中每行代表一组删除的内容。所以，
+如果你删除了一个很大的区域，比如500行，那么你只能看到第一行，省略号，和删除内容的结尾。你的选择会插入
+到光标所在位置。
+</p>
+<p>
+表2-5 总结了对区域操作的指令
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption><b>区域操作的指令</b></caption>
+<colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup>
+<thead>
+<tr><th scope="col">快捷键</th><th scope="col">指令名称</th><th scope="col">功能</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td>C-@ or C- Space</td><td>set-mark-command</td><td>标记区域的开始或结束</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-x C-x</td><td>exchange-point-and-mark</td><td>将光标在区域的两端切换</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-w</td><td>kill-region</td><td>剪切区域</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-y</td><td>yank</td><td>粘贴最近删除或复制的文本</td></tr>
+</tbody>
+<tbody>
+<tr><td>M-w</td><td>kill-ring-save</td><td>复制区域到杀戮环，因此可以用　*C-y* 粘贴</td></tr>
+</tbody>
+<tbody>
+<tr><td>M-h</td><td>mark-paragraph</td><td>标记段落。</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-x C-p</td><td>mark-page</td><td>标记页。</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-x h</td><td>mark-whole-buffer</td><td>标记整个缓冲区。</td></tr>
+</tbody>
+<tbody>
+<tr><td>M-y</td><td>yank-pop</td><td>执行 <b>C-y</b> 之后，粘贴之前的删除内容。</td></tr>
+</tbody>
+</table>
+
+<div id="postamble">
+<p class="author"> Author: moomu
+</p>
+<p class="date"> Date: 2010-11-17 23:02:15 CST</p>
+<p class="creator">HTML generated by org-mode 6.36c in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

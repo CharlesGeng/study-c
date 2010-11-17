@@ -180,7 +180,7 @@ Emacs。我们建议你学习标准Emacs指令;他们可以在任何键盘上工
 学会，它们也比较容易够到。
 
 
-#+CAPTION: Figure 2-4. Emacs commands and your keyboard
+#+CAPTION: *图2-4. Emacs指令与键盘*
 [[../images/ge3_fig0204.gif]]
 
 

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="iso-2022-cn"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>2.6. $AH!O{V8An:M37OzP^8D(B</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-2022-cn"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2010-11-11 20:16:51 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">2.6. $AH!O{V8An:M37OzP^8D(B</h1>
+
+<p>$ASPJ1V4PPV8AnJGSISZ2;P!PD;rU_AYJ18DVwRb!#2;SC5#PD#:Dc?IRTVP6O;r37OzV8An!#(B
+</p>
+<p>
+<b>2.6.1 $AH!O{V8An(B</b>
+</p>
+<p>
+When you want to cancel any command that's in progress, press C-g. The
+word Quit appears in the command area. This command is helpful when
+you are stuck in the minibuffer and didn't really mean to go
+there. Depending on what you were doing, you may have to press C-g a
+few times.
+</p>
+
+
+
+<p>
+2.6.2 Undoing Changes
+What happens if you make a mistake while you're editing? You can undo your changes by pressing C-_ or C-x u (for undo; conveniently, the toolbar also has an undo icon, a curved left arrow). By typing undo repeatedly, you can gradually work your way back to a point before your mistake.<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup> Although the undo command is very powerful, saving your file frequently, if not compulsively, is nevertheless a good idea. We usually save a file whenever we stop typing$(G!7(Beven if only for a few seconds. Train your fingers to press C-x C-s whenever you pause; it's a good habit to form.
+</p>
+<p>
+If you're used to typing C-z to undo, you can easily change Emacs's behavior to match your habits. See "Making Emacs Work the Way You Want" at the end of this chapter for information on CUA mode.
+</p>
+<p>
+What if you'd like to redo a command after you type undo? There is no formal redo command, but you can use undo in the following way. Just move the cursor in any direction, and type C-_ or C-x u again. Emacs redoes the last command you undid. You can repeat it to redo previous undos.
+</p>
+<p>
+Although undo is an important command, it can be slow if you want to undo a large number of changes. Table 2-11 summarizes three methods for undoing changes and circumstances in which you might want to use them.
+</p>
+<p>
+Table 2-11. Methods for undoing changes If you:
+Use this command:
+</p>
+<p>
+Don't like the recent changes you've made and want to undo them one by one
+C-_ or C-x u (undo)
+</p>
+<p>
+Want to undo all changes made since you last saved the file
+M-x revert-buffer Enter
+</p>
+<p>
+Want to go back to an earlier version of the file (the file as it was when you started this editing session)
+C-x C-f filename~ Enter C-x C-w filename Enter
+</p>
+
+
+
+
+<p>
+We've already talked about undoing changes with undo; next we describe how to revert a buffer from a file and how to go back to an earlier version.
+</p>
+<p>
+2.6.3 Reverting a Buffer from a File
+If the undo command isn't useful, there's another way to restore a file to an earlier state. If you want to get the file back to the state that is stored on disk, type M-x revert-buffer Enter. Emacs asks the following question:
+</p>
+<p>
+Revert buffer from file filename? (yes or no)
+</p>
+
+<p>
+The filename is the name of your original file. Type yes if you want to restore the file, or no if you've changed your mind. Emacs copies the file stored on disk into the buffer, conveniently forgetting everything that happened since the last time you saved the file. Although this command is called revert-buffer, note that it can revert only buffers associated with files.
+</p>
+<p>
+2.6.4 Going Back to a Previous Version: Backup Files
+The first time you save a file during an editing session, Emacs creates a backup file. If something disastrous happens, and the other techniques for undoing changes won't help you, you can always return to the backup file. The name of the backup file is the same as the name of the file you're editing, with a tilde (<code>) added. For example, if you are editing the file text, the backup file is text</code>.
+</p>
+<p>
+Emacs doesn't provide any special commands for restoring a buffer from the backup copy. The easiest way to do this is to edit the backup copy and then save it as the real file. For example, if you were working with a file called text, you could: exit Emacs by typing C-x C-c, then start Emacs again by typing emacs text~. After the backup file is displayed, save it as the real file by typing C-x C-w text Enter. As a safeguard, Emacs asks you before it writes over the original file:
+</p>
+<p>
+File text exists; overwrite? (y or n)
+</p>
+
+<p>
+Type y to overwrite the original file with the backup file.
+</p>
+<p>
+GNU Emacs also has a numbered backup facility. If you turn on numbered backups, Emacs creates a backup file (with the suffix <code>n</code>) every time you save your file. n increments with each successive save. If you are nervous about deleting older versions, it might be worth using: you can keep all of your old versions forever, if you want to. However, numbered backups can also waste disk space; a happy medium may be to tell Emacs to keep the last n versions, where n is the number of versions you want to keep. The variables that control numbered backups are described in Appendix A. If you are interested in full-blown version control, check out VC mode, discussed in Chapter 12. Table 2-12 summarizes the commands for stopping commands and undoing changes.
+</p>
+<p>
+Table 2-12. Stopping and undoing commands Keystrokes
+Command name
+Action
+</p>
+<p>
+C-g
+keyboard-quit
+Abort current command.
+</p>
+<p>
+C-x u
+advertised-undo<sup><a class="footref" name="fnr.2" href="#fn.2">2</a></sup>
+Undo last edit (can be done repeatedly).
+</p>
+<p>
+C-_ Edit  Undo
+undo
+Undo last edit (can be done repeatedly).
+</p>
+<p>
+(none)
+revert-buffer
+Restore buffer to the state it was in when the file was last saved (or auto-saved).
+</p>
+<p>
+2.6.5 Recovering Lost Changes
+We've just discussed how to eliminate changes you don't want to keep; getting back changes you've lost is a different kind of problem. You might lose changes if the power goes out momentarily or if the computer you're working on suddenly freezes or is turned off accidentally. You might also lose changes if you exit Emacs abnormally. Luckily, Emacs, being the watchful editor that it is, saves your file for you every so often in auto-save files. If you watch carefully, you'll see the message Auto saving in the minibuffer from time to time. Using auto-save files, you can get back most, if not all, of your changes. The name of an auto-save file is the same as the name of the file you are editing, with a sharp (#) added to the beginning and the end. For example, if you are editing the file text, its auto-save file is #text#.
+</p>
+<p>
+To recover text from an auto-save file, type M-x recover-file Enter. Emacs opens a window that lists both the file and its associated auto-save file so that you can compare the time at which they were created, their size, and so forth. Emacs asks you the following question:
+</p>
+<p>
+Recover auto-save file #text#? (yes or no)
+</p>
+
+<p>
+Type yes to confirm that you want to copy the contents of the auto-save file into the current file or no if you change your mind. (If you are unsure, you might want to use C-x C-f to read the auto-save file #text# into a buffer first and look it over carefully before using the recover-file command. If you really want to compare the differences between the two versions, see "Comparing Files Between Windows" in Chapter 4.)
+</p>
+<p>
+When does Emacs create auto-save files? Emacs creates an auto-save file every few hundred keystrokes or if Emacs is terminated abnormally.<sup><a class="footref" name="fnr.3" href="#fn.3">3</a></sup> You can change the frequency with which Emacs creates auto-save files by changing the variable auto-save-interval. By default, Emacs creates an auto-save file every 300 keystrokes. For more information on changing variable values, see Chapter 10.
+</p>
+<p>
+There's one more important fact to know about Emacs and auto-save files. If you delete a large portion of a file, Emacs stops auto-saving the file and displays a message telling you so. To make Emacs start auto-saving again, save the file with C-x C-s or type M-1 M-x auto-save Enter (that's the number 1).
+</p>
+<p>
+Now you've learned enough commands for most of the editing you'll do with Emacs. At this point, you may want to learn how to make Emacs turn on certain features like auto-fill mode automatically, so you don't have to turn them on every time you enter Emacs. The next section provides a brief introduction to customization; this topic is covered in much greater detail in Chapter 10.
+</p>
+
+
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> If you find that you repeat the undo command frequently, it's worth getting fluent with C-_. It's true that this requires holding down Ctrl and Shift at the same time, but once you've got that down, pressing _ repeatedly is much easier than typing C-x u again and again.
+</p>
+<p class="footnote"><sup><a class="footnum" name="fn.2" href="#fnr.2">2</a></sup> There is no real difference between undo and advertised-undo. They work the same way.
+</p>
+<p class="footnote"><sup><a class="footnum" name="fn.3" href="#fnr.3">3</a></sup> We should say that Emacs tries to do this. In some cases, Emacs can't, and there is really no guarantee. Power surges and OS crashes are examples of times where things happen so fast that Emacs may not be able to create an auto-save file. But we are surprised at how often it manages to do so.
+</p>
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: 
+</p>
+<p class="date"> Date: 2010-11-11 20:16:51 </p>
+<p class="creator">HTML generated by org-mode 7.3 in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

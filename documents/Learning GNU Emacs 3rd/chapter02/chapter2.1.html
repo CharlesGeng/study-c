@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>2.1.移动光标</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2010-11-02 10:32:03 "/>
+<meta name="generated" content="2010-11-11 11:43:12 "/>
 <meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -21,6 +21,9 @@ lang="en" xml:lang="en">
   .target { }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
   p.verse { margin-left: 3% }
   pre {
 	border: 1pt solid #AEBDCC;
@@ -31,10 +34,17 @@ lang="en" xml:lang="en">
         overflow:auto;
   }
   table { border-collapse: collapse; }
-  td, th { vertical-align: top; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
   dt { font-weight: bold; }
   div.figure { padding: 0.5em; }
   div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
   .linenr { font-size:smaller }
   .code-highlighted {background-color:#ffff00;}
   .org-info-js_info-navigation { border-style:none; }
@@ -66,6 +76,7 @@ lang="en" xml:lang="en">
  }
 /*]]>*///-->
 </script>
+
 </head>
 <body>
 <div id="content">
@@ -89,7 +100,7 @@ lang="en" xml:lang="en">
 
 <div class="figure">
 <p><img src="../images/ge3_fig0202.gif"  alt="../images/ge3_fig0202.gif" /></p>
-<p>*图2-2.基本光标移动*</p>
+<p><b>图2-2.基本光标移动</b></p>
 </div>
 
 <p>
@@ -116,7 +127,7 @@ lang="en" xml:lang="en">
 
 <div class="figure">
 <p><img src="../images/ge3_fig0203.gif"  alt="../images/ge3_fig0203.gif" /></p>
-<p>*2-3.移动光标位置不止一个字符*</p>
+<p><b>2-3.移动光标位置不止一个字符</b></p>
 </div>
 
 <p>
@@ -222,81 +233,81 @@ error on line 356。(第356行语法错误)。使用这些指令你可以很容�
 表2-2 列出光标移动指令。如果指令是便于记忆的，助记单词会以斜体形式给出。
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption>*表2-2，光标移动指令*</caption>
-<colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup>
+<caption><b>表2-2，光标移动指令</b></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
 <thead>
-<tr><th scope="col">快捷键</th><th scope="col">指令名</th><th scope="col">行为</th></tr>
+<tr><th scope="col" class="left">快捷键</th><th scope="col" class="left">指令名</th><th scope="col" class="left">行为</th></tr>
 </thead>
 <tbody>
 </tbody>
 <tbody>
-<tr><td>C-f</td><td>forward-char</td><td>向前移动一个字符（右）</td></tr>
+<tr><td class="left">C-f</td><td class="left">forward-char</td><td class="left">向前移动一个字符（右）</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-b</td><td>backward-char</td><td>向后移动一个字符（左）</td></tr>
+<tr><td class="left">C-b</td><td class="left">backward-char</td><td class="left">向后移动一个字符（左）</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-p</td><td>previous-line</td><td>移动到上一行（向上）</td></tr>
+<tr><td class="left">C-p</td><td class="left">previous-line</td><td class="left">移动到上一行（向上）</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-n</td><td>next-line</td><td>移动到下一行（向下）</td></tr>
+<tr><td class="left">C-n</td><td class="left">next-line</td><td class="left">移动到下一行（向下）</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-f</td><td>forward-word</td><td>向前移动一个单词</td></tr>
+<tr><td class="left">M-f</td><td class="left">forward-word</td><td class="left">向前移动一个单词</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-b</td><td>backward-word</td><td>向后移动一个单词</td></tr>
+<tr><td class="left">M-b</td><td class="left">backward-word</td><td class="left">向后移动一个单词</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-a</td><td>beginning-of-line</td><td>移动到行首</td></tr>
+<tr><td class="left">C-a</td><td class="left">beginning-of-line</td><td class="left">移动到行首</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-e</td><td>end-of-line</td><td>移动到行尾</td></tr>
+<tr><td class="left">C-e</td><td class="left">end-of-line</td><td class="left">移动到行尾</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-e</td><td>forward-sentence</td><td>向前移动一句</td></tr>
+<tr><td class="left">M-e</td><td class="left">forward-sentence</td><td class="left">向前移动一句</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-a</td><td>backward-sentence</td><td>向后移动一句</td></tr>
+<tr><td class="left">M-a</td><td class="left">backward-sentence</td><td class="left">向后移动一句</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-}</td><td>forward-paragraph</td><td>向前移动一段</td></tr>
+<tr><td class="left">M-}</td><td class="left">forward-paragraph</td><td class="left">向前移动一段</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-{</td><td>backward-paragraph</td><td>向后移动一段</td></tr>
+<tr><td class="left">M-{</td><td class="left">backward-paragraph</td><td class="left">向后移动一段</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-v</td><td>scroll-up</td><td>向上滚动一屏</td></tr>
+<tr><td class="left">C-v</td><td class="left">scroll-up</td><td class="left">向上滚动一屏</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-v</td><td>scroll-down</td><td>向下流动一屏</td></tr>
+<tr><td class="left">M-v</td><td class="left">scroll-down</td><td class="left">向下流动一屏</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-x ]</td><td>forward-page</td><td>向前移动一页</td></tr>
+<tr><td class="left">C-x ]</td><td class="left">forward-page</td><td class="left">向前移动一页</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-x [</td><td>backward-page</td><td>向后移动一页</td></tr>
+<tr><td class="left">C-x [</td><td class="left">backward-page</td><td class="left">向后移动一页</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-&lt;</td><td>beginning-of-buffer</td><td>移动到缓冲区头</td></tr>
+<tr><td class="left">M-&lt;</td><td class="left">beginning-of-buffer</td><td class="left">移动到缓冲区头</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-&gt;</td><td>end-of-buffer</td><td>移动到缓冲区尾</td></tr>
+<tr><td class="left">M-&gt;</td><td class="left">end-of-buffer</td><td class="left">移动到缓冲区尾</td></tr>
 </tbody>
 <tbody>
-<tr><td>(none)</td><td>goto-line</td><td>移动到指定行</td></tr>
+<tr><td class="left">(none)</td><td class="left">goto-line</td><td class="left">移动到指定行</td></tr>
 </tbody>
 <tbody>
-<tr><td>(none)</td><td>goto-char</td><td>移动到指定字符</td></tr>
+<tr><td class="left">(none)</td><td class="left">goto-char</td><td class="left">移动到指定字符</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-l</td><td>recenter</td><td>当前行居中显示</td></tr>
+<tr><td class="left">C-l</td><td class="left">recenter</td><td class="left">当前行居中显示</td></tr>
 </tbody>
 <tbody>
-<tr><td>M-n</td><td>digit-argument</td><td>执行 <i>n</i> 次后面的命令</td></tr>
+<tr><td class="left">M-n</td><td class="left">digit-argument</td><td class="left">执行 <i>n</i> 次后面的命令</td></tr>
 </tbody>
 <tbody>
-<tr><td>C-u n</td><td>universal-argument</td><td>执行 <i>n</i> 次后面的命令（忽略n时执行 <b>4</b> 次)</td></tr>
+<tr><td class="left">C-u n</td><td class="left">universal-argument</td><td class="left">执行 <i>n</i> 次后面的命令（忽略n时执行 <b>4</b> 次)</td></tr>
 </tbody>
 </table>
 
@@ -316,7 +327,7 @@ Emacs。我们建议你学习标准Emacs指令;他们可以在任何键盘上工
 
 <div class="figure">
 <p><img src="../images/ge3_fig0204.gif"  alt="../images/ge3_fig0204.gif" /></p>
-<p>Figure 2-4. Emacs commands and your keyboard</p>
+<p><b>图2-4. Emacs指令与键盘</b></p>
 </div>
 
 
@@ -334,10 +345,9 @@ Emacs。我们建议你学习标准Emacs指令;他们可以在任何键盘上工
 </div>
 <div id="postamble">
 <p class="author"> Author: 
-<a href="mailto:qgeng@NOTEBOOK-50B5">&lt;qgeng@NOTEBOOK-50B5&gt;</a>
 </p>
-<p class="date"> Date: 2010-11-02 10:32:03 </p>
-<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+<p class="date"> Date: 2010-11-11 11:43:12 </p>
+<p class="creator">HTML generated by org-mode 7.3 in emacs 23</p>
 </div>
 </div>
 </body>

@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>2.5. 编辑窍门和技巧</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2010-11-11 12:54:44 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">2.5. 编辑窍门和技巧</h1>
+
+<p>你已经学习了基本编辑操作&ndash;移动光标到正确的位置，删除，复制和移动文本--
+你可以学习一些技巧让编辑更容易。
+</p>
+<p>
+<b>2.5.1 处理字符换位</b>
+</p>
+<p>
+最常见的排版工作就是互换两个字符的位置，并且大部分情况下，都是在你输入
+后马上就发现了。按 <b>C-t</b> 互换两个字符的位置，并将他们正确排序：
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">按 <b>C-t</b> 之前</th><th scope="col" class="left">按 <b>C-t</b> 之后</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left">the best of tims <span style="text-decoration:underline;">e</span>, it</td><td class="left">the best of times_  it</td></tr>
+</tbody>
+</table>
+
+
+
+<p>
+互换字符时，将光标移动到要互换位置的两个字符的第二个字符上，按 *C-t*。
+（如果你经常要互换字符，第三章介绍的单词缩略模式会自动修正排版错误。）
+</p>
+<p>
+也可以互换两个单词，行，段或句子。要互换两个单词，先将光标移动到两词之
+间再按 <b>M-t</b> 。Emacs执行完成后，光标会移动第二个（移动后的）单词后面。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">按 <b>M-t</b> 之前</th><th scope="col" class="left">按 <b>M-t</b> 之后</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left">one three_two</td><td class="left">one two three_</td></tr>
+</tbody>
+</table>
+
+
+<p>
+有趣的是，Emacs只移动单词，不移动标点。 以互换两个名字为例：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">按 <b>M-t</b> 之前</th><th scope="col" class="left">按 <b>M-t</b> 之后</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left">Charles, <span style="text-decoration:underline;">D</span> ickens</td><td class="left">Dickens, Charles_</td></tr>
+</tbody>
+</table>
+
+
+<p>
+要移动两行，先将光标移动到第二行的任意位置然后按 <b>C-x C-t</b> 。Emacs会将
+第二行移动到第一行前面：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">按 <b>C-x C-t</b> 之前</th><th scope="col" class="left">按 <b>C-x C-t</b> 之后</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left">second line</td><td class="left">first line</td></tr>
+<tr><td class="left">first line</td><td class="left">second line</td></tr>
+<tr><td class="left">third line</td><td class="left">third line</td></tr>
+</tbody>
+</table>
+
+
+<p>
+表 2-9 总结了移位指令
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption><b>表 2-9. 移位指令</b></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">快捷键</th><th scope="col" class="left">指令名称</th><th scope="col" class="left">功能</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left"><b>C-t</b></td><td class="left"><b>transpose-chars</b></td><td class="left">互换两个字符。</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>M-t</b></td><td class="left"><b>transpose-words</b></td><td class="left">互换两个单词。</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>C-x C-t</b></td><td class="left"><b>transpose-lines</b></td><td class="left">互换两行。</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">（无）</td><td class="left"><b>transpose-sentences</b></td><td class="left">互换两个句子。</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">（无）</td><td class="left"><b>transpose-paragraphs</b></td><td class="left">互换两段。</td></tr>
+</tbody>
+</table>
+
+
+<p>
+<b>2.5.2 转换大小写</b>
+</p>
+<p>
+大写错误也是常见并且烦人的输入错误。Emacs有一些特殊的指令来处理大写问
+题。要将单词的第一个字母变成大写，先将光标移动到单词的首字符，然后按
+<b>M-c</b> 。要将单词变成小写，按 <b>M-l</b> 。要将一个单词变成大写，按 <b>M-u</b> 。
+按键绑定是有助于记忆的： <b>Meta</b> 后面的 <b>c</b> 表示大写（capitalize)， <b>l</b>
+表示小写（lowercase)， <b>u</b> 表示全部大写（uppercase)。需要注意的是，如
+果光标在一个单词的中间，操作仅对光标下的字符至单词结尾部分启作用。你可
+以很容易地用 <b>M-l</b> 将单词的后半部分变成小写，依此类推。
+</p>
+
+<p>
+如果你发现刚输入的单词不正确，在使用指令前先按 <b>Meta-</b> （按住 <b>Meta</b>
+并按连字符）。这样可以修正之前的单词而不移动光标。如果光标在单词的中
+间，在执行指令前按 <b>M-</b> 会操作单词的前半部分（光标之前的部分），而不是
+光标之后的部分。
+</p>
+
+<p>
+例如，以 abcd <span style="text-decoration:underline;">e</span> fghi:
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">如果你按：</th><th scope="col" class="left">将得到：</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left"><b>Meta - u</b></td><td class="left">abcdEFGHIJ</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>Meta - M-u</b></td><td class="left">ABCDefghij</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>M-c</b></td><td class="left">abcdEfghij</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>Meta - M-c</b></td><td class="left">Abcdefghij</td></tr>
+</tbody>
+</table>
+
+
+<p>
+表 2-10 总结了大小写指令
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption><b>表2-10. 大小写指令</b></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">快捷键</th><th scope="col" class="left">指令名</th><th scope="col" class="left">功能</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left"><b>M-c</b></td><td class="left"><b>capitalize-word</b></td><td class="left">大写单词第一个字母</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>M-u</b></td><td class="left"><b>upcase-word</b></td><td class="left">大写单词</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>M-l</b></td><td class="left"><b>downcase-word</b></td><td class="left">小写单词</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>Meta - M-c</b></td><td class="left"><b>negative-argument; capitalize-word</b></td><td class="left">大写前一单词的首字母</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>Meta - M-u</b></td><td class="left"><b>negative-argument; upcase-word</b></td><td class="left">大写前一单词</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"><b>Meta - M-l</b></td><td class="left"><b>negative-argument; downcase-word</b></td><td class="left">小写前一字母</td></tr>
+</tbody>
+</table>
+
+
+<p>
+<b>2.5.3 改写模式</b>
+</p>
+<p>
+你或许习惯于直接输入来覆盖原文本而不是删除。这样删除错误的文本的确比较
+方便。进入名为 <b>overwirte</b> 的副模式，你也可以在Emacs中这样做。当进入改
+写模式下,任何输入的新文本都会擦除其下面的文本。当你不在改写模式下时
+（如，在Emacs的正常情况下），任何新输入的文本都会插入到光标位置且后面
+的文本会向右移。（其他软件可能称此为插入模式；因为Emacs一般情况下就是
+如此，所以它没有特殊的名字）。
+</p>
+<p>
+要进入改写模式，按 <b>Insert</b> 键。<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup> <b>Ovwrt</b> 会在模式行显示。如果这
+样不起作用（或者你没有 <b>Insert</b> 键），可以输入 <b>M-x overwrite-mode Enter</b> 。再次输入 <b>M-x overwrite-mode Enter</b> 可以关闭改写模式。使用
+Emacs的指令完成功能，只要输入 <b>M-x ov</b> 再按回车键。这个唯一字符串已经
+足以告诉Emacs你要切换改写模式。自动完成功能，Emacs中最好的快捷键之一会
+在第14章进一步介绍。
+</p>
+<p>
+<b>Footnotes</b>
+</p>
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> 在Mac键盘上， <b>Home</b> 键左侧的 <b>Help</b> 可以开关改写模式。
+</p>
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: 
+</p>
+<p class="date"> Date: 2010-11-11 12:54:44 </p>
+<p class="creator">HTML generated by org-mode 7.3 in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

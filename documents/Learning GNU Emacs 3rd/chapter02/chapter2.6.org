@@ -1,149 +1,115 @@
-#+TITLE:2.6. $AH!O{V8An:M37OzP^8D(B
+#+TITLE:2.6. 取消指令和撤销修改
 
-$ASPJ1V4PPV8AnJGSISZ2;P!PD;rU_AYJ18DVwRb!#2;SC5#PD#:Dc?IRTVP6O;r37OzV8An!#(B
+有时执行指令是由于不小心或者临时改主意。不用担心：你可以中断或撤销指令。
 
-*2.6.1 $AH!O{V8An(B*
+*2.6.1 取消指令*
 
-$A04(B *C-g* $A?IRTMK3vHN:N51G0U}TZ4&@m5DV8An!#TZV8AnGxSr;aOTJ>5%4J(B *Quit* $A!#51Dc1;@'TZCTDc;:3eGxJ1#,Ub8vV8An?IRT0oVzDc@k?*!#8y>]V.G02;M,(B
-$A5D2YWw#,?ID\PhR*046`4N(B *C-g* $A@4H!O{V.G05DV8An!#(B
+按 *C-g* 可以退出任何当前正在处理的指令。在指令区域会显示单词 *Quit* 。当你被困在迷你缓冲区时，这个指令可以帮助你离开。根据之前不同
+的操作，可能需要按多次 *C-g* 来取消之前的指令。
 
-*2.6.2 $AH!O{P^8D(B*
+*2.6.2 取消修改*
 
-$(GGc$A1`<-J1$(G!"GqN*Ex$AOV$(GD'$A4mNs;a$(GQ+$AQy$(G!)I#F+EhQ:(B *C-_* $(GMPO/(B *C-x u* $(G!>OPF|(B undo$(G!'EIOmN{QR!"DVL&$A@8$(GD>H4htV<$AM<1j$(G!"D!$A8v$(GGWFJN{$AMd$(Gn-$AM7$(G!?$A@4$(GhtV<(B
-$(GT:JQ!$Sl$A84V4$(GHghtV<pgI"!"I#$A;a$(GXMG_L/Fg$A4m$(GDfP)N{K[D!$A5c$(G!$(B[fn:1] $A>!9\37O{V8An9&D\G?4s#,Hg9{2;Bi735D;0#,>-3#1#4fND<~2;J'N*R;8v:C5DVwRb!#(B
-$A51M#V9JdHkJ1#,<4J9C;9}6`3$J1<d#,NRCG>-3#R2;a1#4fR;OBND<~!#HCDc5DJVV8TZT]M#J104(B *C-x C-s* $A#,UbJGR;8v:CO09_!#(B
+在编辑时，如果出现了错误会怎样？你可以按 *C-_* 或者 *C-x u* （表示 undo；方便的是，工具栏也有撤消图标，一个向左的弯箭头）来撤消
+修改。重复执行撤消操作，你会退回到犯错之前的那一点。[fn:1] 尽管撤消指令功能强大，如果不麻烦的话，经常保存文件不失为一个好的主意。
+当停止输入时，即使没过多长时间，我们经常也会保存一下文件。让你的手指在暂停时按 *C-x C-s* ，这是一个好习惯。
 
-$(GGqN*I#$AO09_$(GD@KpFn(B *C-z* $A@4$(GhtV<pgI"!"I#F+EhP~U)MxN{T:JQ(BEmacs$A@4JJS&$(GI#N{$AO09_$(G!$$A<{$(GF[]}$A=a$(GJ"N{!f$AHC(BEmacs$(GQ:I#N{EIH"DVI"!gDc$A9X$(GD@(BCUA$(Gm<H"N{Du(B
-$AI\$(G!$(B
+如果你习惯于使用 *C-z* 来撤消操作，你可以很容易的修改Emacs来适应你的习惯。见本章结尾的“让Emacs按你的方式工作”中关于CUA模式的介
+绍。
 
-$AV4$(GHghtV<DfG[!"GqN*cw$A;9$(GTO$A8C$(GQ+D=$A0l$(G!)(BEmacs$(GDc$AC;$(GH4F_H"N{$A;9$(GTOQ@Eo!"H~QRI#F+EhQ:EhD6EIH"KpFnhtV<Q@Eo!$F7SQ$AKf$(GOm\C$A6/$(GD6G<$A1j$(G!"GBQ:(B *C-_* $(GMP(B
-$(GO/(B *C-x u* $(G!"(BEmacs$A;9$(GTO^2G[D!H9pgI"!$I#F+Eh$AUbQy;9$(GTOJUGiDfP)htV<N{$ADZ$(GU)!$(B
+执行撤消之后，如果想还原该怎么办？Emacs中没有正式的还原指令，但是你可以按以下方式使用撤消指令。只要随便移动下光标，再按 *C-_* 或
+者 *C-x u* ，Emacs还原最后一次操作。你可以这样还原更多之前撤消的内容。
 
-$AKd$(G`S(B *undo* $(GQRD!$A8v$(GSlSQN{Q@Eo!"Db$A9}$(GGqN*cwSl$A84V4$(GHgP~GiH9htV<!"]ZPy$A;a$(GER$A=O$(Ghj!$OP(B2-11$AW\=a$(GD'D5$A8v$(GEINN$A@4$(GhtV<T:JQLOI#cwKpFnEl$ACG$(GN{$A;7$(Gh:!$(B
+虽然 *undo* 是一个重要的指令，不过如果想重复执行很多次撤消，速度会比较慢。表2-11总结了三个方法来撤消修改和你想使用他们的环境。
 
-#+CAPTION: *$(GOP(B2-11. Methods for undoing changes*
-|   | If you: | Use this command: |
-|---+---------+-------------------|
-| / | <>      | <>                |
-|---+---------+-------------------|
-| # |         |                   |
+#+CAPTION: *表2-11. 撤销的方法*
+|   | If you:                                                | Use this command:         |
+|---+--------------------------------------------------------+---------------------------|
+| / | <>                                                     | <>                        |
+|---+--------------------------------------------------------+---------------------------|
+| # | 不想要当前的修改，并且想一步一步的撤销时               | *C-_* 或者 *C-x u(undo)*  |
+|---+--------------------------------------------------------+---------------------------|
+| # | 想撤销最后一次保存后的所有修改                         | *M-x revert-buffer Enter* |
+|---+--------------------------------------------------------+---------------------------|
+| # | 想还原到文件的上一个版本（还原到你刚打开文件时的状态） | *C-x C-f* /filename~/ *Enter C-x C-w* /filename/ *Enter* |
  
-Don't like the recent changes you've made and want to undo them one by one C-_ or C-x u (undo)
+我们已经介绍了如何用 *undo* 撤销操作；下面我们介绍如何从一个文件还原缓冲区以及还原到文件的一个早期版本。
+
+*2.6.3 从文件还原缓冲区*
+
+如果 *undo* 指令不启作用，可以用另一个方法把文件还原到早期状态。如果你想把文件还原成其存储在硬盘上的状态，输入 *M-x
+revert-buffer Enter* .Emacs会问以下问题：
+
+*Revert buffer from file* /filename/ *? (yes or no)*
+
+文件名是指文件的原名。如果想还原文件输入 *yes* ，如果改变主意了就输入*no* 。Emacs将硬盘上的文件拷贝到缓冲区中，放弃你在最后一次保
+存后做的所有修改。尽管这个指令名为 *revert-buffer* ,不过他只能从相应的文件还原缓冲区。
+
+*2.6.4 还原到早期版本：备份文件*
+
+Emacs会在你通过编辑会话第一次保存文件时创建一个备份文件。如果有严重的问题发生，并且各种撤销操作都不能帮助你时，你也可以通过备份文
+件还原。备份文件名与编辑的文件名相同，只是多一个波浪字符（~）。例如你在编辑文件 /text/ , 则备份文件名为 /text~/ 。
+
+Emacs中没有提供任何从备份文件还原到缓冲区的指令。最简单的方法就是，编辑备份文件然后将其保存成实际文件。例如，如果你编辑一个名为
+/text/ 的文件，你可以：按 *C-x C-c* 退出Emacs，然后输入 *emacs* /text~/ 重新启动Emacs。当备份文件显示出来之后，通过输入 *C-x C-w
+text Enter* 保存为实际文件。作为保护方式，Emacs会问你是否覆盖原文件:
+
+*File text exists; overwrite? (y or n)*
+
+输入 *y* 用备份文件覆盖原文件。
+
+GNU Emacs也具备一个编号备份的功能。如果打开编号备份功能，Emacs每次在保存的时候备份一个文件（以 /~n~/ 为后缀）。 *n* 会在每次成功
+保存后递增。如果你比较在意删除老版本，这样做或许有帮助：你可以保存所有老版本。不过，编号备份文件比较浪费磁盘空间，一个比较折中的
+办法就是告诉Emacs保存最近 *n* 个版本， *n* 是你想保存的版本数。控制备份文件数的变量在附录A中有介绍。如果想了解完全版本控制，看看
+第12章介绍的 *VC* 模式，表 2-12总结了中断和撤销指令。
+
+#+LABLE: *Table 2-12. 中断和撤销快捷键*
+|   | 快捷键               | 指令名                | 功能                             |
+|---+----------------------+-----------------------+----------------------------------|
+| / | <>                   | <>                    | <>                               |
+|---+----------------------+-----------------------+----------------------------------|
+| # | *C-g*                | keyboard-quit         | 退出当前指令                     |
+|---+----------------------+-----------------------+----------------------------------|
+| # | *C-x u*              | advertised-undo[fn:2] | 撤消最后一次编辑（可以重复执行） |
+|---+----------------------+-----------------------+----------------------------------|
+| # | *C-_* /Edit -> Undo/ | undo                  | 撤消最后一次编辑（可以重复执行） |
+|---+----------------------+-----------------------+----------------------------------|
+| # | (none)               | revert-buffer         | 将缓冲区还原到最近一次手工保存时的状态（或者自动保存）      |
  
-Want to undo all changes made since you last saved the file M-x revert-buffer Enter
- 
-Want to go back to an earlier version of the file (the file as it was when you started this editing session) C-x C-f filename~
- Enter C-x C-w filename Enter
- 
-We've already talked about undoing changes with undo; next we describe how to revert a buffer from a file and how to go back to
-an earlier version.
+*2.6.5 恢复失去的修改*
 
-2.6.3 Reverting a Buffer from a File
+刚介绍了消除你不想保存的修改，而还原修改是另一种不同类型的问题。可能由于临时断电，死机或者意外关机等原因丢失修改内容。也可能由于
+异常退出Emacs导致修改丢失。幸运的是，Emacs作为一个警觉的编辑器，会通过自动保存文件（ /auto-save files/ ）定期为你保存。如果你观
+察仔细的话，你能在迷你缓冲区时常看到消息 *Auto saving* 。使用自动保存文件，虽然不能全部但是可以大部分还原你的修改。自动保存文件
+的文件名与你编辑的文件的文件名相同，只是在文件名的前后加一个井号（#）。例如你在编辑文件 /text/ , 则自动保存文件为 /#text#/ 。
 
-If the undo command isn't useful, there's another way to restore a file to an earlier state. If you want to get the file back to
-the state that is stored on disk, type M-x revert-buffer Enter. Emacs asks the following question:
+从自动保存文件还原文本，输入 *M-x recover-file Enter* 。Emacs 打开一个窗口，显示当前文件和自动保存文件的属性用于比较他们的创建时
+间，大小等等。Emacs 会问你以下问题：
 
-Revert buffer from file filename? (yes or no)
+/Recover auto-save file #text#? (yes or no)/ (还原自动保存文件 #text# ?)
 
+如果确定把自动保存文件的内容复制到当前文件中，录入 *yes* 否则录入 *no* 。(如果不太确定，你最好先用 *C-x C-f* 载入自动保存文
+件 #text# 到缓冲区，仔细检查一遍文本再使用 *recover-file* 指令。如果想仔细比较两个版本的区别，见第4章的“在窗口中比较文件”。）
 
-The filename is the name of your original file. Type yes if you want to restore the file, or no if you've changed your
-mind. Emacs copies the file stored on disk into the buffer, conveniently forgetting everything that happened since the last time
-you saved the file. Although this command is called revert-buffer, note that it can revert only buffers associated with files.
+Emacs什么时候创建自动保存文件？Emacs会在几百次按键之后或者异常退出的情况下创建自动保存文件。[fn:3] 可以通过修改变量
+*auto-save-interval* 来改变Ｅmacs创建自动备份文件的频率。默认情况下，Ｅmacs每300次按键后创建自动保存文件。更多关于可变值
+的信息在第10章有介绍。
 
-2.6.4 Going Back to a Previous Version: Backup Files
+还有一个重要的问题关于Ｅmacs和自动保存文件。如果你删除文件中一大块内容，Ｅmacs停止自动保存文件并且显示该消息告诉你。要让
+Emacs重新开始自动保存文件，用 *C-x C-s* 保存文件或者输入 *M-1 M-x auto-save Enter* (这里是数字１)。
 
-The first time you save a file during an editing session, Emacs creates a backup file. If something disastrous happens, and the
-other techniques for undoing changes won't help you, you can always return to the backup file. The name of the backup file is
-the same as the name of the file you're editing, with a tilde (~) added. For example, if you are editing the file text, the
-backup file is text~.
+Now you've learned enough commands for most of the editing you'll do with Emacs. At this point, you may want to learn
+how to make Emacs turn on certain features like auto-fill mode automatically, so you don't have to turn them on every
+time you enter Emacs. The next section provides a brief introduction to customization; this topic is covered in much
+greater detail in Chapter 10.
 
-Emacs doesn't provide any special commands for restoring a buffer from the backup copy. The easiest way to do this is to edit
-the backup copy and then save it as the real file. For example, if you were working with a file called text, you could: exit
-Emacs by typing C-x C-c, then start Emacs again by typing emacs text~. After the backup file is displayed, save it as the real
-file by typing C-x C-w text Enter. As a safeguard, Emacs asks you before it writes over the original file:
-
-File text exists; overwrite? (y or n)
-
-
-Type y to overwrite the original file with the backup file.
-
-GNU Emacs also has a numbered backup facility. If you turn on numbered backups, Emacs creates a backup file (with the suffix
-~n~) every time you save your file. n increments with each successive save. If you are nervous about deleting older versions, it
-might be worth using: you can keep all of your old versions forever, if you want to. However, numbered backups can also waste
-disk space; a happy medium may be to tell Emacs to keep the last n versions, where n is the number of versions you want to
-keep. The variables that control numbered backups are described in Appendix A. If you are interested in full-blown version
-control, check out VC mode, discussed in Chapter 12. Table 2-12 summarizes the commands for stopping commands and undoing
-changes.
-
-Table 2-12. Stopping and undoing commands Keystrokes
- Command name
- Action
- 
-C-g
- keyboard-quit
- Abort current command.
- 
-C-x u
- advertised-undo[8]
- Undo last edit (can be done repeatedly).
- 
-C-_ Edit  Undo
- undo
- Undo last edit (can be done repeatedly).
- 
-(none)
- revert-buffer
- Restore buffer to the state it was in when the file was last saved (or auto-saved).
- 
-
-
-
-
-[8] There is no real difference between undo and advertised-undo. They work the same way.
-
-2.6.5 Recovering Lost Changes
-
-We've just discussed how to eliminate changes you don't want to keep; getting back changes you've lost is a different kind of
-problem. You might lose changes if the power goes out momentarily or if the computer you're working on suddenly freezes or is
-turned off accidentally. You might also lose changes if you exit Emacs abnormally. Luckily, Emacs, being the watchful editor
-that it is, saves your file for you every so often in auto-save files. If you watch carefully, you'll see the message Auto
-saving in the minibuffer from time to time. Using auto-save files, you can get back most, if not all, of your changes. The name
-of an auto-save file is the same as the name of the file you are editing, with a sharp (#) added to the beginning and the
-end. For example, if you are editing the file text, its auto-save file is #text#.
-
-To recover text from an auto-save file, type M-x recover-file Enter. Emacs opens a window that lists both the file and its
-associated auto-save file so that you can compare the time at which they were created, their size, and so forth. Emacs asks you
-the following question:
-
-Recover auto-save file #text#? (yes or no)
-
-
-Type yes to confirm that you want to copy the contents of the auto-save file into the current file or no if you change your
-mind. (If you are unsure, you might want to use C-x C-f to read the auto-save file #text# into a buffer first and look it over
-carefully before using the recover-file command. If you really want to compare the differences between the two versions, see
-"Comparing Files Between Windows" in Chapter 4.)
-
-When does Emacs create auto-save files? Emacs creates an auto-save file every few hundred keystrokes or if Emacs is terminated
-abnormally.[9] You can change the frequency with which Emacs creates auto-save files by changing the variable
-auto-save-interval. By default, Emacs creates an auto-save file every 300 keystrokes. For more information on changing variable
-values, see Chapter 10.
-
-[9] We should say that Emacs tries to do this. In some cases, Emacs can't, and there is really no guarantee. Power surges and OS
-crashes are examples of times where things happen so fast that Emacs may not be able to create an auto-save file. But we are
-surprised at how often it manages to do so.
-
-There's one more important fact to know about Emacs and auto-save files. If you delete a large portion of a file, Emacs stops
-auto-saving the file and displays a message telling you so. To make Emacs start auto-saving again, save the file with C-x C-s or
-type M-1 M-x auto-save Enter (that's the number 1).
-
-Now you've learned enough commands for most of the editing you'll do with Emacs. At this point, you may want to learn how to
-make Emacs turn on certain features like auto-fill mode automatically, so you don't have to turn them on every time you enter
-Emacs. The next section provides a brief introduction to customization; this topic is covered in much greater detail in Chapter
-10.
-
+现在已经介绍用Emacs编辑常用的指令。你或许想知道如何让Emacs自动开启特定功能，如自动换行模式，就不用每次进入Emacs时都要手
+工打开他们了。下一节会有一个简短的关于个性化定制介绍，这个主题还会在第10章有详细描述。
 
 * Footnotes
-[fn:1] 
-[7] If you find that you repeat the undo command frequently, it's worth getting fluent with C-_. It's true that this
-requires holding down Ctrl and Shift at the same time, but once you've got that down, pressing _ repeatedly is much easier than
-typing C-x u again and again.
+[fn:1] 如果需要重复执行撤销指令，使用 *C-_* 会比较方便。这需要同时按住 *Ctrl* 和 *Shift* ，不过你按下之后，重复按 *_* 要
+比重复按 *C-x u* 容易得多。
+
+[fn:2] *undo* 和 *advertised-undo* 没有任何区别，他们的功能相同。
+
+[fn:3] Emacs　努力尝试这样做，不过在一些情况下，Ｅmacs也的确无能为力，电源冲击，系统崩溃这种突发情况下，Emacs来不及创建自
+动保存文件。但是我们对其多长时间保存一次比较困惑。

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>2.7.定制Emacs</title>
+<meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2010-11-28 15:15:14 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">2.7.定制Emacs</h1>
+
+<p>如果你是一页挨一页读到这里的话，或许你已想好如何打造自己个性化的Emacs了，例如：
+</p>
+<ul>
+<li>
+隐藏工具栏
+</li>
+<li>
+将剪切，复制，粘贴的快捷键改为 <b>C-x C-c C-v</b>
+</li>
+<li>
+打开文本模式和换行模式，让Emacs可以自动换行
+</li>
+<li>
+改变一些按键的功能
+
+</li>
+</ul>
+
+<p>现在向你介绍如何给Emacs提供TODO列表，它可以让Emacs每次进入时都将指定选项打开。这些选项被定义在一个名为 <i>.emacs</i> 的初始化文件中。
+初始化文件会自动被执行。所以 <i>.emacs</i> 文件在启动Emacs会被自动执行，里面定义的选项都会被打开。Emacs的运行并不依赖于该文件，这个文
+件就是为了让你定制Emacs。
+</p>
+<p>
+<i>.emacs</i> 文件由Lisp语句组成。如果你不了解Lisp，那么可以把每行都想成是一个有固定格式的咒语，他们必须得输入正确。
+</p>
+<p>
+Emacs现在提供另一种定制方式：一个名为Custom交互接口，它可以帮你将Lisp语句写入你的 <i>.emacs</i> 文件中。Custom会在
+第10章里介绍，不过现在向你介绍一个快速定制常用选项的方法。
+</p>
+<p>
+请按以下方式向 <i>.emacs</i> 文件中添加内容：
+</p>
+<ol>
+<li>
+进入Emacs。
+</li>
+<li>
+输入 <b>C-x C-f ~/.emacs Enter</b> 。
+</li>
+<li>
+按书中显示的方式正确录入文本，然后按Enter。
+</li>
+<li>
+按 <b>C-x C-s</b> 保存 <i>.emacs</i> 文件。
+</li>
+<li>
+按 <b>C-x C-c</b> 退出Emacs。
+</li>
+<li>
+重启Emacs从而让新选项生效。
+
+</li>
+</ol>
+
+<p>如果输入时有个小错误（例如忘记一个引号或者圆括号），当重启Emacs时会提醒你在初始化文件中有一个错误。重新编辑 <i>.emacs</i> 文件，检查
+你刚加的配置信息与它的来源（本书或者其他使用者的 <i>.emacs</i> 文件）是否一致。如果仔细看，你一般能发现问题的原因；如果没有，找一个了
+解 <i>.emacs</i> 文件的人（对Lisp比较了解）寻求帮助。修改，保存文件，然后重启Emacs。
+</p>
+<p>
+当你做了一些修改从而导致Emacs无法启动时该怎么办？你可以退出Emacs，重命名文件，编辑文件，保存为 <i>.emacs</i> 再试试。
+</p>
+<p>
+<b>2.7.1 隐藏工具栏</b>
+</p>
+<p>
+一些新用户可能觉得工具栏比较有用。但是其他人或许不这么觉得。可以很容易的选择Options -&gt; Show/Hide -&gt; Tollbar，然后选Options -&gt;
+Save Options.
+</p>
+<p>
+当Emacs通过Custom为你设置选项时（即使你通过选项菜单也是如此），它会写入 <i>.emacs</i> 文件。如果你已经有一个 <i>.emacs</i> 文件，它会追加
+到文件中。Custom会把他的选项集中在文件的某个位置上，并且它的注释中指出你不能手工修改。这里是
+</p>
+<p>
+(custom-set-variables
+</p>
+<p>
+;; custom-set-variables was added by Custom.
+</p>
+<p>
+;; If you edit it by hand, you could mess it up, so be careful.
+</p>
+<p>
+;; Your init file should contain only one such instance.
+</p>
+<p>
+;; If there is more than one, they won't work right.
+</p>
+<p>
+'(tool-bar-mode nil nil (tool-bar)))
+</p>
+<p>
+(custom-set-faces
+</p>
+<p>
+;; custom-set-faces was added by Custom.
+</p>
+<p>
+;; If you edit it by hand, you could mess it up, so be careful.
+</p>
+<p>
+;; Your init file should contain only one such instance.
+</p>
+<p>
+;; If there is more than one, they won't work right.
+</p>
+<p>
+)
+</p>
+<p>
+这些看起来或许有些庞大，但是我们会在下节看到，Emacs只添加一次这个节内容，当你通过菜单选项或直接通过Custom接口添加更多选项时。也
+要注意的是这个自动生成的Lisp肯定没有你在 <i>.emacs</i> 文件其他部分的Lisp语句那样简洁。这也是另一个不要直接编辑Custom的原因。
+</p>
+<p>
+<b>2.7.2 开启CUA模式，用C-x，C-c和C-v剪切，复制和粘贴</b>
+</p>
+<p>
+如果刚开始用Emacs，你或许习惯于剪切，复制和粘贴的一般用户访问习惯， 用 <b>C-x</b> ， <b>C-c</b> 和 <b>C-v</b> 来执行。你或许用 <b>C-z</b> 来撤销。
+CUA模式曾经作为一种附加模式需要独立安装，但是它很受欢迎，现在已成为Emacs的一部分。它以一种聪明的编码方式来实现，不会影响到以
+<b>C-x*和 *C-c</b> 开头的快捷键。
+</p>
+<p>
+你可以通过选项选项菜单打开此功能来尝试一下。只要简单的选择 Options -&gt; C-x/C-c/C-v cut and paste(CUA)。当你选中这个选项后，一个选
+择标记会出现在菜单选项上。要保持以后每次使用时都打开，选择菜单选项的Save Options。Emacs会为你修改 <i>.emacs</i> 。如果你不显示工具栏
+并且打开此功能的话，你的 <i>.emacs</i> 文件看起来是这样的（与CUA模式相关的行被加粗显示，这样你就能看出与之前的例子的区别了）：
+</p>
+<p>
+(custom-set-variables
+</p>
+<p>
+;; custom-set-variables was added by Custom.
+</p>
+<p>
+;; If you edit it by hand, you could mess it up, so be careful.
+</p>
+<p>
+;; Your init file should contain only one such instance.
+</p>
+<p>
+;; If there is more than one, they won't work right.
+</p>
+<p>
+'<b>(cua-mode t nil (cua-base))</b> 
+</p>
+<p>
+'(tool-bar-mode nil nil (tool-bar)))
+</p>
+<p>
+(custom-set-faces
+</p>
+<p>
+;; custom-set-faces was added by Custom.
+</p>
+<p>
+;; If you edit it by hand, you could mess it up, so be careful.
+</p>
+<p>
+;; Your init file should contain only one such instance.
+</p>
+<p>
+;; If there is more than one, they won't work right.
+</p>
+<p>
+)
+</p>
+<p>
+有趣的是，Emacs很乐于改写 <i>.emacs</i> ，甚至在打开的时候。当你选择 Save Options 时，如果你打开了 <i>.emacs</i> ，你就能看到Emacs在修改该
+文件。
+</p>
+<p>
+<b>2.7.3自动运行文本模式和自动换行模式</b>
+</p>
+<p>
+要想将文本模式设置为主模式，并且让自动换行模式每次开启Emacs时自动运行，将下面几行添加到 <i>.emacs</i> 文件里：
+</p>
+<p>
+(setq default-major-mode 'text-mode)
+</p>
+<p>
+(add-hook 'text-mode-hook  'turn-on-auto-fill)
+</p>
+<p>
+第一行告诉Emacs让文本模式作为默认的主模式；换言之，“如果没有特别指明，就打开文本模式。”第二行意思是只要是在文本模式下就打开自动换行
+模式。另一种方式，选择 Options -&gt; Word Wrap in Text Modes，然后选择Options -&gt; Save Options，就会直接把自动换行添加到 <i>.emacs</i> 文
+件中。不过这样不会把文本模式设置成默认的主模式。
+</p>
+<p>
+如果你喜欢重换行模式，用下面的语句替换第二行：
+</p>
+<p>
+(add-hook 'text-mode-hook (lambda ( ) (refill-mode 1)))
+</p>
+<p>
+<b>2.7.4 重定义快捷键</b>
+</p>
+<p>
+另一个 <i>.EMACS</i> 的主要功能就是重新定义那些让你不便的选项。不止一个人由于使用默认的快捷键都导致腕管综合症的恶化。你或许已经习惯于
+按特定的键来完成某些功能，那么就定制一下EMACS而不是你的习惯吧。不过，本节只是简要的介绍了一个按键绑定，在第10章会有更多介绍。
+</p>
+<p>
+如果你在使用默认的按键绑定（不是CUA模式）,你得用 <b>C-X U</b> 来撤销。<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup>（撤销是个很常用的指令，不过在重复执行时，很容易按成 <b>C-x C-u</b> 。不幸的是， <b>C-x C-u</b> 是 <b>upcase-region</b> 的关闭命令。如果你输入 <b>C-x C-u</b> ，会弹出一个烦人的关于启用指令的提示框。
+</p>
+<p>
+如果你不经常使用区域大写功能，可以重新定义 <b>C-x C-u</b> ，让它也执行撤销操作。要实现这个功能，只须将下面一行添加到你的 <i>.emacs</i> 文
+件中：
+</p>
+<p>
+(define-key global-map "\C-x\C-u" 'undo)
+</p>
+<p>
+做了上述修改后，录入 <b>C-x C-u</b> 的功能就和 <b>C-x u</b> 一样了。
+</p>
+<p>
+Emacs的定制功能十分强大，你可以让Emacs按照你想要的方式工作。第10章有更多的扩展功能介绍。在这里只做一个简单的介绍是想激发你的兴趣
+并且让我们在书中提到的一些潜在的自定义功能通过添加到你的 <i>.emacs</i> 中让它们生效。
+</p>
+<p>
+下一章介绍Emacs提供的许多查询功能，包括查找替换，以及拼写检查和单词缩写模式（经常被用于自动修正拼写错误）。如果想了解这些内容，
+那么就继续读下一章。从这里，你可以选择阅读本书的方式，选择你想学习的内容，而不必一章一章的连续阅读。
+</p>
+<p>
+<b>2.7.5你可能遇到的问题</b>
+</p>
+<ul>
+<li>
+<b>修改 /.emacs/ 之后，在重启动Emacs的时候，你看到一个错误信息。</b> 错误信息只显示一下；按 <b>M-p</b> 可以再次查看。编辑你的 <i>.emacs</i> ,检查
+</li>
+</ul>
+
+<p>添加的内容，和源文件仔细比对，包括细小的拼写错误。一些因为丢掉连字符或者撇号等小错误也会导致这个错误。修正错误，保存文件，退出
+Emacs再重启。在极个别情况下（ <i>.emacs</i> 文件太混乱，以致于你都不能编辑），退出Emacs，重命名 <i>.emacs</i> 文件，重启Emacs并编辑它，再
+命名为 <i>.emacs</i> ，然后重启。
+</p>
+<ul>
+<li>
+<b>格式化不正确。</b> 这一般与窗口大小有关，重新设置窗口的水平宽度，直到段落正常显示。
+
+</li>
+</ul>
+
+
+
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> 你可以使用 <b>C-_</b> 执行撤销操作，这样你就不用读本节了，不过我们还是建议你阅读一下，下次碰到其他不适的快捷键时，你就知道该如
+何修改了。
+</p>
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: 
+</p>
+<p class="date"> Date: 2010-11-28 15:15:14 </p>
+<p class="creator">HTML generated by org-mode 7.3 in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

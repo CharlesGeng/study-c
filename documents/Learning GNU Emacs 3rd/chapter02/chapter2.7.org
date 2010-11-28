@@ -1,0 +1,157 @@
+#+TITLE:2.7.定制Emacs
+
+如果你是一页挨一页读到这里的话，或许你已想好如何打造自己个性化的Emacs了，例如：
+
+ * 隐藏工具栏
+ * 将剪切，复制，粘贴的快捷键改为 *C-x C-c C-v*
+ * 打开文本模式和换行模式，让Emacs可以自动换行
+ * 改变一些按键的功能
+
+现在向你介绍如何给Emacs提供TODO列表，它可以让Emacs每次进入时都将指定选项打开。这些选项被定义在一个名为 /.emacs/ 的初始化文件中。
+初始化文件会自动被执行。所以 /.emacs/ 文件在启动Emacs会被自动执行，里面定义的选项都会被打开。Emacs的运行并不依赖于该文件，这个文
+件就是为了让你定制Emacs。
+
+/.emacs/ 文件由Lisp语句组成。如果你不了解Lisp，那么可以把每行都想成是一个有固定格式的咒语，他们必须得输入正确。
+
+Emacs现在提供另一种定制方式：一个名为Custom交互接口，它可以帮你将Lisp语句写入你的 /.emacs/ 文件中。Custom会在
+第10章里介绍，不过现在向你介绍一个快速定制常用选项的方法。
+
+请按以下方式向 /.emacs/ 文件中添加内容：
+
+ 1. 进入Emacs。
+ 2. 输入 *C-x C-f ~/.emacs Enter* 。
+ 3. 按书中显示的方式正确录入文本，然后按Enter。
+ 4. 按 *C-x C-s* 保存 /.emacs/ 文件。
+ 5. 按 *C-x C-c* 退出Emacs。
+ 6. 重启Emacs从而让新选项生效。
+
+如果输入时有个小错误（例如忘记一个引号或者圆括号），当重启Emacs时会提醒你在初始化文件中有一个错误。重新编辑 /.emacs/ 文件，检查
+你刚加的配置信息与它的来源（本书或者其他使用者的 /.emacs/ 文件）是否一致。如果仔细看，你一般能发现问题的原因；如果没有，找一个了
+解 /.emacs/ 文件的人（对Lisp比较了解）寻求帮助。修改，保存文件，然后重启Emacs。
+
+当你做了一些修改从而导致Emacs无法启动时该怎么办？你可以退出Emacs，重命名文件，编辑文件，保存为 /.emacs/ 再试试。
+
+*2.7.1 隐藏工具栏*
+
+一些新用户可能觉得工具栏比较有用。但是其他人或许不这么觉得。可以很容易的选择Options -> Show/Hide -> Tollbar，然后选Options ->
+Save Options.
+
+当Emacs通过Custom为你设置选项时（即使你通过选项菜单也是如此），它会写入 /.emacs/ 文件。如果你已经有一个 /.emacs/ 文件，它会追加
+到文件中。Custom会把他的选项集中在文件的某个位置上，并且它的注释中指出你不能手工修改。下面是我们保存选项后的 /.emacs/ 文件：
+
+ (custom-set-variables
+
+  ;; custom-set-variables was added by Custom.
+
+  ;; If you edit it by hand, you could mess it up, so be careful.
+
+  ;; Your init file should contain only one such instance.
+
+  ;; If there is more than one, they won't work right.
+
+ '(tool-bar-mode nil nil (tool-bar)))
+
+(custom-set-faces
+
+  ;; custom-set-faces was added by Custom.
+
+  ;; If you edit it by hand, you could mess it up, so be careful.
+
+  ;; Your init file should contain only one such instance.
+
+  ;; If there is more than one, they won't work right.
+
+ )
+
+这些看起来或许有些庞大，但是我们会在下节看到，Emacs只添加一次本节内容，当你通过菜单选项或直接通过Custom接口添加更多选项时。也要注
+意的是这个自动生成的Lisp肯定没有你在 /.emacs/ 文件其他部分的Lisp语句那样简洁。这也是另一个不要直接编辑Custom内容的原因。
+
+*2.7.2 开启CUA模式，用C-x，C-c和C-v剪切，复制和粘贴*
+
+如果刚开始用Emacs，你或许习惯于用 *C-x* ， *C-c* 和 *C-v* 来执行剪切，复制和粘贴这些大多用户的操作习惯。你还想用 *C-z* 来撤销。
+CUA模式曾经作为一种附加模式需要独立安装，但是它很受欢迎，现在已成为Emacs的一部分。它以一种聪明的编码方式来实现，不会影响到以
+*C-x* 和 *C-c* 开头的快捷键。
+
+你可以通过选项选项菜单打开此功能来尝试一下。只要简单的选择 Options -> C-x/C-c/C-v cut and paste(CUA)。当你选中这个选项后，一个选
+择标记会出现在菜单选项上。要保持以后每次使用时都打开，选择菜单选项的Save Options。Emacs会为你修改 /.emacs/ 。如果你关闭工具栏并且
+以后也不启用此功能的话，你的 /.emacs/ 文件看起来是这样的（与CUA模式相关的行被加粗显示，这样你就能看出与之前的例子的区别了）：
+
+ (custom-set-variables
+
+  ;; custom-set-variables was added by Custom.
+
+  ;; If you edit it by hand, you could mess it up, so be careful.
+
+  ;; Your init file should contain only one such instance.
+
+  ;; If there is more than one, they won't work right.
+
+ '*(cua-mode t nil (cua-base))* 
+
+ '(tool-bar-mode nil nil (tool-bar)))
+
+(custom-set-faces
+
+  ;; custom-set-faces was added by Custom.
+
+  ;; If you edit it by hand, you could mess it up, so be careful.
+
+  ;; Your init file should contain only one such instance.
+
+  ;; If there is more than one, they won't work right.
+
+ )
+
+有趣的是，Emacs很乐于改写 /.emacs/ ，甚至在打开的时候。当你选择 Save Options 时，如果你打开了 /.emacs/ ，你就能看到Emacs在修改该
+文件。
+
+*2.7.3自动运行文本模式和自动换行模式*
+
+要想将文本模式设置为主模式，并且让自动换行模式每次开启Emacs时自动运行，将下面几行添加到 /.emacs/ 文件里：
+
+(setq default-major-mode 'text-mode)
+
+(add-hook 'text-mode-hook  'turn-on-auto-fill)
+
+第一行告诉Emacs让文本模式作为默认的主模式；换言之，“如果没有特别指明，就打开文本模式。”第二行意思是只要是在文本模式下就打开自动换行
+模式。另一种方式，选择 Options -> Word Wrap in Text Modes，然后选择Options -> Save Options，就会直接把自动换行添加到 /.emacs/ 文
+件中。不过这样不会把文本模式设置成默认的主模式。
+
+如果你喜欢重换行模式，用下面的语句替换第二行：
+
+(add-hook 'text-mode-hook (lambda ( ) (refill-mode 1)))
+
+*2.7.4 重定义快捷键*
+
+另一个 /.EMACS/ 的主要功能就是重新定义那些让你不便的选项。不止一个人由于使用默认的快捷键都导致腕管综合症的恶化。你或许已经习惯于
+按特定的键来完成某些功能，那么就定制一下EMACS而不是你的习惯吧。不过，本节只是简要的介绍了一个按键绑定，在第10章会有更多介绍。
+
+如果你在使用默认的按键绑定（不是CUA模式）,你得用 *C-X U* 来撤销。[fn:1]（撤销是个很常用的指令，不过在重复执行时，很容易按成 *C-x
+C-u* 。不幸的是， *C-x C-u* 是 *upcase-region* 的关闭命令。如果你输入 *C-x C-u* ，会弹出一个烦人的关于启用指令的提示框。
+
+如果你不经常使用区域大写功能，可以重新定义 *C-x C-u* ，让它也执行撤销操作。要实现这个功能，只须将下面一行添加到你的 /.emacs/ 文
+件中：
+
+(define-key global-map "\C-x\C-u" 'undo)
+
+做了上述修改后，录入 *C-x C-u* 的功能就和 *C-x u* 一样了。
+
+Emacs的定制功能十分强大，你可以让Emacs按照你想要的方式工作。第10章有更多的扩展功能介绍。在这里只做一个简单的介绍是想激发你的兴趣
+并且让我们在书中提到的一些潜在的自定义功能通过添加到你的 /.emacs/ 中让它们生效。
+
+下一章介绍Emacs提供的许多查询功能，包括查找替换，以及拼写检查和单词缩写模式（经常被用于自动修正拼写错误）。如果想了解这些内容，
+那么就继续读下一章。从这里，你可以选择阅读本书的方式，选择你想学习的内容，而不必一章一章的连续阅读。
+
+*2.7.5你可能遇到的问题*
+
+ * *修改 /.emacs/ 之后，在重启动Emacs的时候，你看到一个错误信息。* 错误信息只显示一下；按 *M-p* 可以再次查看。编辑你的 /.emacs/ ,检查
+添加的内容，和源文件仔细比对，包括细小的拼写错误。一些因为丢掉连字符或者撇号等小错误也会导致这个错误。修正错误，保存文件，退出
+Emacs再重启。在极个别情况下（ /.emacs/ 文件太混乱，以致于你都不能编辑），退出Emacs，重命名 /.emacs/ 文件，重启Emacs并编辑它，再
+命名为 /.emacs/ ，然后重启。
+
+ * *格式化不正确。* 这一般与窗口大小有关，重新设置窗口的水平宽度，直到段落正常显示。
+
+
+* Footnotes
+[fn:1] 你可以使用 *C-_* 执行撤销操作，这样你就不用读本节了，不过我们还是建议你阅读一下，下次碰到其他不适的快捷键时，你就知道该如
+何修改了。

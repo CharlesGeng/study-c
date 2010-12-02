@@ -1,0 +1,199 @@
+#+title:3.1. 不同的查询方式
+
+在编辑的时候，经常会碰到查找已经输入的内容。几乎所有的编辑器都提供一些查找功能，让你查找指定的字符串，而不必翻阅整个文档。Emacs
+也是一样。它提供一个查找指令，事实上，它可能提供令人眼花缭乱的查询指令。下面对各种可用的查询方式做一个汇总：
+
+/简单查询/
+告诉Emacs一个字符串，它就会查找下一个匹配项。这和其他编辑器别无二致。
+
+/递增查询/
+递增查询时，当你开始输入字符串的第一个字符时，Emacs就开始查询字符串。在你输入的时候会不停的查询。
+
+A word search is like a simple search, except that Emacs searches only for full words and phrases. For example, if you are searching for the word hat, you don't have to worry about finding the word that. A word search is also useful when you need to find a phrase that is spread across two lines.
+/单词查询/
+单词查询与简单查询类似，
+
+Regular expression search
+To search for patterns, you can use a regular expression search. For example, if you wanted to find all instances of B1 and B2, you could search for them using the regular expression B[12]. However, regular expressions can be extremely complex. We'll give a brief introduction to this topic here; it is discussed more fully in Chapter 11.
+
+
+Incremental regular expression search
+This search procedure is a combination of an incremental search and a regular expression search.
+
+You can search forward or backward. Searches can be either case-sensitive, meaning that Emacs considers upper- and lowercase letters to be different (i.e., the words This and this are different) or case-insensitive, in which upper- and lowercase are not differentiated (i.e., This and this are equivalent). By default, searches are case-insensitive, with upper- and lowercase letters considered to be the same. One exception: if you type any uppercase letters, Emacs makes the whole search string case-sensitive; it assumes you are looking for something precise since you've made the extra effort to type some letters in uppercase.
+
+Replacement operations are closely related to searches. As with searches, Emacs offers you several different flavors:
+
+
+Simple search and replace
+In this procedure, Emacs replaces all occurrences of one string with another. Usually, this is too radical a solution and can have unintended results. Try query-replace instead.
+
+
+Query-replace
+With query-replace, Emacs conditionally replaces a string throughout a file. Emacs finds all occurrences of the search string, and for each one it asks you whether or not to perform the replacement. This type of replacement is useful if you need to change some, but not all, instances of a word or phrase throughout a file.
+
+
+Regular expression replace
+Regular expression replacement uses the powerful pattern matching facility of the same name to find strings and replace them.
+
+So now you know what you'll be looking at. Don't be intimidated by the wealth of searches that are available. In practice, you'll probably settle on one search command and one replace command and use these for 99 percent of your work. For example, we use incremental search and query-replace most of the time. If you're a writer, you may use word search all the time; if you're a programmer, you might want a regular expression search. If you're just beginning, you may want to learn incremental search and read the rest of this chapter later. However, if you know what's available, you'll be able to make use of the other search commands when they become useful.
+
+3.1.1 Incremental Search
+
+Incremental search starts to work from the moment you type the first character of the search string. Many users like the efficiency of incremental searches, and they like the highlighting as well. Emacs highlights all occurrences of the search string in aqua blue (if your display supports it) and uses purple to highlight the string at the cursor position (the current match).
+
+Type: C-s m
+
+
+
+Emacs highlights all the words that start with m.
+
+
+
+To start an incremental search, type C-s and then type the text you want to find. Emacs temporarily enters Isearch mode. Notice how this search works: Emacs looks for each character as soon as you type it. For example, if you are searching for the word meter, in an incremental search Emacs finds the next m as soon as you type the m; it finds the next me as soon as you type the e; it finds the met as soon as you type the t; and so on. Sooner or later, you either find what you want, or Emacs is unable to find anything. If you find what you want, press Enter; doing so stops the search at the current place in the file. If Emacs can't find anything that matches your search string, it prints the message Search failed at the bottom of your screen and then it beeps.
+
+Here's what happens when we search for the word meter; the numbers show how the cursor moves with each new letter in the search string.
+
+Type: C-s meter
+
+
+
+Emacs moves the cursor from one position to another as you type the letters of the search string.
+
+
+
+In this incremental search, Emacs moves the cursor from position 1 to 2, to 3, and so on, as you type the search string meter. Also, note that Isearch appears on the mode line.
+
+What happens if you find the string you're looking for but not the right occurrence of the string? Let's say you're searching for the word eschatology and you find the word, but you're still not in the right place. Simply press C-s again to find the next occurrence of the current search string. Emacs uses the same search string; you don't have to retype it.
+
+Remember to press Enter when you've found the text you want. Forgetting to stop the search (by pressing Enter or with any other cursor movement command) is a common mistake: you type a few things, and suddenly Emacs is off looking at some completely different part of the file. What has happened? Emacs thinks you're still searching, and it has just added the characters you've typed to the search string.
+
+If you type a letter in your search string incorrectly, press Del: Emacs moves back to the first instance of the reduced string in the file. If you keep pressing Del to delete characters from the search string, you'll see Emacs cycle back through the file to previous matches.
+
+To cancel a search (that is, to give up searching), type C-g. This command brings you back to the place where the search began.
+
+To search backward through a file, use C-r, which works exactly like C-s except that it searches in the opposite direction. It puts the cursor at the beginning of the text you find. Just as you can do when repeating C-s, you can press C-r to make the search go in the other direction without retyping the search string.
+
+To avoid typing your search string, you can copy text from the buffer into the search string. To copy text from the cursor position through the next space or punctuation mark into the search string, type C-s C-w (it may help to think of C-s C-w as "search a word"). To copy text from the cursor to the end of the line into the search string, type C-s C-y. Notice that the text that is yanked is always converted to lowercase; this conversion ensures that the search will be case-insensitive. You can also copy text from the kill ring to the search string by typing C-s M-y. After you've given this command, you can press M-p to see previous items from the kill ring. M-n takes you to the next item if you've gone back with M-p.
+
+Once you're in an incremental search, certain keys (such as Enter and Del) have different functions than they normally do. This situation may sound confusing, but it's actually fairly easy to get used to. Table 3-1 shows a summary of key functions during incremental search.
+
+Table 3-1. Incremental search commands
+
+Keystrokes
+
+Command name
+
+Action
+
+C-sEdit   Search  Incremental Search Forward String
+
+isearch-forward
+
+Start incremental search forward; follow by search string. Also, find next occurrence (forward) of search string.
+
+C-rEdit   Search  Incremental Search Backward String
+
+isearch-backward
+
+Start incremental search backward; follow by search string. Also, find next occurrence (backward) of search string.
+
+Enter
+
+isearch-exit
+
+In an incremental search , exit the search.
+
+C-g
+
+keyboard-quit
+
+In an incremental search , cancel the search.
+
+Del
+
+isearch-delete-char
+
+In an incremental search, delete character from search string.
+
+C-s C-w
+
+isearch-yank-word
+
+Start an incremental search with the word the cursor is on as the search string.
+
+C-s C-y
+
+isearch-yank-line
+
+Start an incremental search with the text from the cursor position to the end of the line as the search string.
+
+C-s M-y
+
+isearch-yank-kill
+
+Start an incremental search with text from the kill ring as the search string.
+
+C-s C-s
+
+isearch-repeat-forward
+
+Repeat previous search.
+
+C-r C-r
+
+isearch-repeat-backward
+
+Repeat previous search backward.
+
+
+
+3.1.2 Simple Searches
+
+Emacs also offers a simple, or nonincremental, search. To use a more straightforward search, type C-s Enter. Type the search string, press Enter, and Emacs begins the search. Simply press C-s again to repeat the search. To start a nonincremental search backwards through the file, press C-r Enter. Again, you type the search string and press Enter to begin the search.
+
+The search icon on the toolbar (a magnifying glass over paper) and the Edit Search String Forward option run the same kind of a search. The prompt is slightly different. C-s Enter prompts you with Search: in the minibuffer while the toolbar icon and the menu option prompt with Search for string:. This is a minor difference; the searches are virtually identical otherwise.
+
+Table 3-2 summarizes the simple search commands.
+
+Table 3-2. Simple search commands
+
+Keystrokes
+
+Action
+
+C-s Enter searchstring EnterEdit  Search  String Forward
+
+Start nonincremental search forward.
+
+C-s
+
+Repeat search forward.
+
+C-r Enter searchstring EnterEdit  Search  String Backwards
+
+Start nonincremental search backward.
+
+C-r
+
+Repeat search backward.
+
+
+
+3.1.3 Word Search
+
+If you're searching for a phrase and you know it's in the file but you can't find it with incremental search, try word search. (You probably can't find your phrase with incremental search because the phrase has a line break in it.) Word search is a nonincremental search that ignores line breaks, spaces, and punctuation. It also requires that your search string match entire words in the file.
+
+To do a word search, type C-s Enter C-w (for word-search-forward). The prompt Word search appears in the minibuffer. (Don't be put off by the prompts that appear along the way: you'll see an I-search prompt after typing C-s and a Search prompt after pressing Enter. Ignore these.) Type the search string and press Enter. Emacs searches for the given string. To do a word search backwards, type C-r Enter C-w instead. For example, assume that you have the following text, with the cursor at the beginning:
+
+He said, "All good elephants are wise, aren't they?"
+
+She answered, "Some are smarter than others, but we
+
+think this is socially conditioned."
+
+The command C-s Enter C-w they she Enter positions the cursor after the word She. This command looks complicated, but it's really nothing more than a word search (C-s Enter C-w) for the word they, followed by the word she. It ignores the punctuation (?") and the newline between they and she.
+
+Assume that you're looking for the word the. You don't want to bother with thence, there, theater, thesis, blithe, or any other word that happens to contain the letters the. In this situation, neither an incremental search nor a simple search is very useful—you need a word search. If you're writing a paper, word search is often exactly what you need. It is the only one of the three basic search commands that allows you to find what you want even if the phrase is split between two lines.
+
+Now that you've seen the three most commonly used searches, you might want to experiment and see which you find most useful.

@@ -1,0 +1,319 @@
+3.2. Search and Replace
+
+Search and replace definitely go together, like coffee and cream. Let's say you're working on a new software application and at the last possible moment, the Marketing Department decides to change the product's name.
+
+Tere's a press release for Whirligig, an email service that periodically reminds you to make healthy lifestyle changes like exercising, drinking water, and taking vitamins. The level of harassment or, as the marketing department says, encouragement, can be set by the user. Whirligig isn't really the most descriptive name, so at the last minute the Marketing Department changes it to HealthBug.
+3.2.1 Simple Search and Replace Operations
+
+Assume you're in the situation we just described. You want to replace every occurrence of one string with another. You know that Whirligig is never correct, and there is absolutely no ambiguity about how you want to replace it. When you want to replace every instance of a given string, you can use a simple command that tells Emacs to do just that. Type M-x replace-string Enter, then type the search string and press Enter. Now type the replacement string and press Enter again. Emacs replaces all occurrences in the file from the cursor position onward. If you want to search and replace throughout the file, press M-< to go to the beginning of the file before typing this command. Here's a quick example of using replace-string.
+
+Initial state:
+
+Whirligig appears four times, but the cursor is positioned after the first instance.
+
+Now we'll do the replacement.
+
+Type: M-x replace-string Enter Whirligig Enter HealthBug Enter
+
+Emacs replaces all instances from the cursor position onward.
+
+The replacement occurs only from the cursor position onward; Whirligig in the first sentence is still incorrect. We'll work with this example again in a moment.
+3.2.2 Query-Replace
+
+Few search and replace situations are as straightforward as those we've described. Often you're not sure that you want to replace every appearance of your search string: a global replacement can be reckless. If you want to decide whether to replace the string on a case-by-case basis, use a query-replace, which allows you to change a string conditionally throughout a file. After Emacs finds an occurrence of the search string, it asks whether it should replace it, and you respond accordingly.
+
+To use query-replace, go to the beginning of the buffer using M-< and then type M-%. The prompt Query replace: appears in the minibuffer. Type the search string and press Enter. Now this appears:
+
+Query replace searchstring  with:
+
+
+Type the replacement string and press Enter. So far, this procedure is almost identical to a replace-string operation; only the prompts are different.
+
+Emacs now searches for the first occurrence of the search string. When it finds one, a new prompt appears:
+
+Query replacing searchstring  with newstring
+
+
+Before performing the replacement, Emacs waits for a response to tell it what to do. Table 3-3 lists the possible responses and their results.
+
+Table 3-3. Responses during query-replace
+
+Keystrokes
+	
+
+Action
+
+Space or y
+	
+
+Replace searchstring with newstring and go to the next instance of the string.
+
+Del or n
+	
+
+Don't replace; move to next instance.
+
+.
+	
+
+Replace the current instance and quit.
+
+,
+	
+
+Replace and let me see the result before moving on. (Press Space or y to move on.)
+
+!
+	
+
+Replace all the rest and don't ask.
+
+^
+	
+
+Back up to the previous instance.
+
+Enter or q
+	
+
+Exit query-replace.
+
+E
+	
+
+Modify the replacement string.
+
+C-r
+	
+
+Enter a recursive edit (discussed in detail later).
+
+C-w
+	
+
+Delete this instance and enter a recursive edit (so you can make a custom replacement).
+
+C-M-c
+	
+
+Exit recursive edit and resume query-replace.
+
+C-]
+	
+
+Exit recursive edit and exit query-replace.
+
+This list seems like a lot of keystrokes to remember, but you can get away with knowing two or three. Most of the time you'll respond to the prompt by pressing Space, telling Emacs to perform the replacement and go on to the next instance, or n to skip this replacement and go on to the next instance. If you're not too sure what will happen, enter a comma (,); Emacs makes the replacement but doesn't go on until you press Space. After performing the first few replaces, you may realize that there's no need to inspect every change individually. Typing an exclamation mark (!) tells Emacs to go ahead and finish the job without bothering you anymore. If you remember these keystrokes, you're all set.
+
+How does this work in practice? Let's revisit our previous example, assuming that we want to change Whirligig to HealthBug throughout (and that we didn't save the changes we made with replace-string).
+
+Type: M-< M-% Whirligig Enter HealthBug Enter
+
+You're ready to replace the first occurrence; press Space to go on.
+
+Press: Space
+
+When you press Space, Emacs replaces the first word; the query-replace operation then moves to the second word.
+
+This procedure continues until you reach the end of the file. As we've said, typing ! fixes the rest of the file.
+
+In Table 3-3, you might have noticed that several keys, such as Space, have specialized meanings while the replacement is in progress. In practice, using these keys for a different function is not confusing, though it might sound bad on paper. You might want to try a query-replace on a practice file to get the hang of using the different responses. If you are easily amused, you might enjoy opening the Emacs FAQ, saving it as another file, then replacing Emacs throughout.
+3.2.3 Repeating Query-Replaces (and Other Complex Commands)
+
+Now that you've learned the basics of query-replace, let's talk about a shortcut that applies not only in query-replace but anywhere in Emacs: repeating complex commands, with slight modifications. We often exit a query-replace by mistake or decide that the replacement we really wanted was just slightly different. Do we have to type it all again? No. Simply go the beginning of the file and press C-x Esc Esc. The last complex command you typed appears. If it's not the one you want, type M-p to see the previous command (do this as many times as necessary; M-n goes to the next command). For example, let's go to the beginning of the file and repeat the query-replace we just carried out.
+
+Type: M-< followed by C-x Esc Esc
+
+Emacs puts the last complex command in the minibuffer; in fact it looks more complex than we remember it.
+
+When we press M-<, we move to the beginning of the file; when we press C-x Esc Esc, the last complex command is displayed. Emacs speaks to itself in dark words, but we can still see that this is the command that we want.
+
+This is the right command, so we don't have to press M-p to see a previous command. If we wanted to, we could change the query-replace strings before pressing Enter. In this case, the Marketing Department has once again changed the product's name from HealthBug (since bug could be construed as pest) to HealthBot (neutral, but a bit less descriptive in our opinion). Our earlier query replace changed Whirligig to HealthBug. We need to modify this command so it replaces Bug with Bot.
+
+In the minibuffer, change Whirligig to Bug and HealthBug to Bot and press Enter.
+
+Pressing Enter executes the command again with the modified search and replacement strings.
+
+As we mentioned, C-x Esc Esc works for any command involving input in the minibuffer, not just query-replace. But we use this feature most frequently in query-replace. It is also good for repeating keyboard macros (see Chapter 6).
+3.2.4 Recursive Editing
+
+When you do a query-replace, you inevitably see something else you want to change in the file. Try it a few times—you'll see what we mean! We typically try to remember the problem until we're done, then get frustrated when we forget exactly what and where the problem was.
+
+Fortunately, Emacs provides an easier way. It allows you to start a recursive edit while you're in the middle of a query-replace. By starting a recursive edit, you effectively put query-replace on hold while you make any other desired edits. When you exit the recursive edit, the query-replace resumes where you left off.
+
+To start a recursive edit while in query-replace, press C-r. (Note that like many other key bindings, C-r has a different meaning in query-replace than it does in standard Emacs.) When you start a recursive edit, square brackets ([ ]) appear on the mode line. Let's go back, one more time, to our public relations piece. You've used query-replace to find the first Bug to change to Bot, and you are about to press Space to fix it, when you remember that the lawyers said that the "64 ounces of water" statement was too specific and could be construed as giving medical advice. A quick recursive edit saves the day.
+
+Type: C-r
+
+Notice the square brackets around (Text Fill), indicating a recursive edit in progress.
+
+Now do any editing you want to; you are in an editing mode just like standard Emacs. Move down to the third line and delete "64 ounces of." When you want to resume the query-replace, press C-M-c. This command tells Emacs to leave the recursive edit and reactivate the query-replace. Emacs moves back to the point where you were when you started the recursive edit. You can then continue making replacements just as if nothing had happened.
+
+Delete "64 ounces of," then type C-M-c
+
+Emacs goes back to query-replace and you press Space to fix the next Bug.
+
+If you decide to exit the recursive edit and cancel the query-replace in one fell swoop, you can type C-] (for abort-recursive-edit) or M-x top-level Enter rather than C-M-c.
+
+In fact, you can start a recursive edit at any time, not just when you're in a query-replace. The command M-x recursive-edit Enter puts you into a recursive edit; C-M-c takes you out of the recursive edit and brings you back to what you were doing before. You can even have recursive edits within recursive edits, although the possibility for confusion increases with each new level.
+3.2.5 Are Emacs Searches Case-Sensitive?
+
+By default, Emacs searches are not case-sensitive. Look at the Options menu and you'll see that the option Case-Insensitive Search is the only option that is checked by default.
+
+What does this mean in practical terms? If you search for the word random, the search finds random, Random, and RANDOM, as well as oddities like RanDoM and rANdOM. When doing replacements, Emacs pays attention to the form of the word being replaced and replaces it with the same case. If you replaced random with tandem, Random would be replaced with Tandem, and RANDOM would be replaced with TANDEM. If you mix capitalization, the replacement string appears just as you type it. healthbug would be replaced with HealthBug if that was the case in the replacement string. In other words, the default search and replacement operations usually do what you want: they find a search string regardless of its case and adjust the replacement appropriately for its context. However, sometimes you need finer control.
+
+The variable case-fold-search determines whether searches are case-sensitive. It applies to all searches: incremental searches, word searches, searches within search-and-replace operations, and so on. By default, case-fold-search is set to t, which means "ignore case unless the user types in mixed or uppercase." This sensible default is usually just what you want. But if you need case-sensitive searches, the Case-Insensitive Search option on the Options menu provides an easy way to experiment with this variable.
+
+Likewise, if you don't want Emacs to adjust the case of your replacement strings, you can set the variable case-replace. Again, its value is t (for "true") by default, which means "adjust the case of a replacement string to match the original text"—that is, capitalize the replacement if the original word was capitalized and so on. Setting this variable to nil means "never adjust the case of the replacement string; always put it in exactly as I typed it." To change the value of case-replace, type M-x set-variable Enter case-replace Enter nil Enter (there's no menu option for this variable).
+
+Both the menu option and the set-variable command change the behavior of Emacs only temporarily. If you start a new editing session, you'll be back to the default behavior. This is probably what you want, because searching separately for capitalized and lowercase words is inconvenient.
+
+You can set the value for the Case-Insensitive Search option permanently by selecting Save Options from the Options menu or by adding this line to your .emacs file:
+
+(setq-default case-fold-search nil)  ; require exact matches
+
+
+To set case-replace permanently, add the following line to your .emacs file. You'll need to restart Emacs to have the change take effect.
+
+(setq-default case-replace nil)      ; never change case when replacing
+
+
+You could change these variables through Emacs's interactive customization facility, Custom, instead (see Chapter 10).
+3.2.6 Regular Expressions for Search and Replacement Operations
+
+Sometimes none of the simpler searches described in this chapter are adequate. Regular expressions allow you to build searches with strings that contain various wildcards.
+
+Table 3-4 shows some of the characters you can use in creating a regular expression.
+
+Table 3-4. Characters for creating regular expressions
+
+Character(s)
+	
+
+Match
+
+^
+	
+
+Matches the beginning of a line.
+
+$
+	
+
+Matches the end of a line.
+
+.
+	
+
+Matches any single character (like ? in filenames).
+
+.*
+	
+
+Matches any group of zero or more characters (. matches any character and * matches zero or more of the previous character).
+
+\<
+	
+
+Matches the beginning of a word.
+
+\>
+	
+
+Matches the end of a word.
+
+[ ]
+	
+
+Matches any character specified within the brackets; for example, [a-z] matches any alphabetic character.
+
+\s, \S
+	
+
+Matches any whitespace character: space, a newline, a tab, a carriage return, a formfeed, or a backspace; \S matches any character except whitespace.
+
+\d, \D
+	
+
+Matches any single digit, 0-9; \D matches any character but a digit.
+
+\w, \W
+	
+
+Matches any "word" character (upper- and lowercase letters, digits, and the underscore character); \W matches any character but these.
+
+If you do a regular expression search for ^word$, you would find instances of word on a line by itself. The ^ says that the w must be the first character on the line, the $ says that the d must be the last character.
+
+If you wanted to find all words starting with beg and ending with the letter s, you could use beg[a-z]*s as your regular expression. This would find the words begins, begets, and begonias, in addition to really odd words like shibegrees and altbegaslia. If you don't want these mutants—that is, if you really want words that begin with beg and end with s, use \<beg[a-z]*s\>. The \< is a special sequence that matches the beginning of a word; \> matches the end of a word. If you wanted to find the words beg, big, and bag; but not begonias, and certainly not any strange words with beg on the inside, you would use \<b[a-z]g\> as the regular expression.
+
+To search for a ^, $, ., *, [, ], or any number of other special characters, you obviously can't use the character itself. Put a backslash (\) first—i.e., to search for a period, search for \. For example, to search for the electronic mail address`:
+
+howie@mcds.com
+
+
+the regular expression would be:
+
+howie@mcds\.com
+
+
+This is a barebones introduction to regular expressions; see Chapter 11 for more details and Mastering Regular Expressions by Jeffrey Friedl (O'Reilly) for a book-length treatment of this topic.
+
+You can use regular expressions in incremental searches and in query-replace. Table 3-5 lists the commands you use for regular expression searches. Although they are initiated with slightly different commands, the searches are the same as those described earlier in this chapter.
+
+Table 3-5. Regular expression search commands
+
+Keystrokes
+	
+
+Command name
+	
+
+Action
+
+C-M-s EnterEdit Search Regexp Forward
+	
+
+re-search-forward
+	
+
+Search for a regular expression forward.
+
+C-M-r EnterEdit Search Regexp Backwards
+	
+
+re-search-backward
+	
+
+Search for a regular expression backward.
+
+C-M-sEdit Search Incremental Search Forward Regexp
+	
+
+isearch-forward-regexp
+	
+
+Search incrementally forward for a regular expression.
+
+C-M-rEdit Search Incremental Search Backward Regexp
+	
+
+isearch-backward-regexp
+	
+
+Search incrementally backward for a regular expression.
+
+C-M-%Edit Replace Replace Regexp
+	
+
+query-replace-regexp
+	
+
+Query-replace a regular expression.
+
+(none)
+	
+
+replace-regexp
+	
+
+Globally replace a regular expression unconditionally (use with caution).

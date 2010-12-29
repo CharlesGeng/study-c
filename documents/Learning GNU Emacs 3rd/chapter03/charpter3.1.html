@@ -7,8 +7,8 @@ lang="en" xml:lang="en">
 <title>3.1. 不同的查询方式</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2010-12-11 18:35:55 CST"/>
-<meta name="author" content="Neil Gunn"/>
+<meta name="generated" content="2010-12-20 23:02:59 CST"/>
+<meta name="author" content="moomu"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <style type="text/css">
@@ -21,9 +21,6 @@ lang="en" xml:lang="en">
   .target { }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
   p.verse { margin-left: 3% }
   pre {
 	border: 1pt solid #AEBDCC;
@@ -34,13 +31,7 @@ lang="en" xml:lang="en">
         overflow:auto;
   }
   table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  td, th { vertical-align: top; }
   dt { font-weight: bold; }
   div.figure { padding: 0.5em; }
   div.figure p { text-align: center; }
@@ -76,7 +67,6 @@ lang="en" xml:lang="en">
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
 <div id="content">
@@ -109,7 +99,7 @@ lang="en" xml:lang="en">
 这个查询方式是 <i>递增查询</i> 和 <i>正则表达式查询</i> 的组合。
 </p>
 <p>
-你可以向前查询，也可以向后。查询可以是大小写敏感的（例如， <i>This</i> 和 <i>this</i> 是不同的）或者大小写不敏感（例如， <i>This</i> 和 <i>this</i>
+你可以向下查询，也可以向上。查询可以是大小写敏感的（例如， <i>This</i> 和 <i>this</i> 是不同的）或者大小写不敏感（例如， <i>This</i> 和 <i>this</i>
 是相同的）。默认情况下，查询是不区分大小写的。不过，如果你输入了大写字母，那么这此查询就是大小写敏感的了，因为Emacs认为你既然费
 力地准确输入字符就是为了准确查询。
 </p>
@@ -144,292 +134,196 @@ lang="en" xml:lang="en">
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption></caption>
-<colgroup><col class="left" /></colgroup>
+<colgroup><col align="left" /></colgroup>
 <thead>
-<tr><th scope="col" class="left">Type: C-s m</th></tr>
+<tr><th scope="col">Type: C-s m</th></tr>
 </thead>
 <tbody>
 </tbody>
 <tbody>
-<tr><td class="left"><img src="../images/ge3_ch03scrn01.gif"  alt="../images/ge3_ch03scrn01.gif" /></td></tr>
+<tr><td><img src="../images/ge3_ch03scrn01.gif"  alt="../images/ge3_ch03scrn01.gif" /></td></tr>
 </tbody>
 <tbody>
-<tr><td class="left">Emacs高亮显示全部以m开头的单词</td></tr>
+<tr><td>Emacs高亮显示全部以m开头的单词</td></tr>
+</tbody>
+</table>
+
+
+<p>
+打开递增查询，输入 <b>C-s</b> 并输入你要查询的文本。Emacs临时进入Isearch模式。要注意这种查询是如何工作的：Emacs在你输入字符时马上查询
+匹配项。例如，如果你在查询单词 <i>meter</i> ，在递增查询中，Emacs在你输入完 <i>m</i> 后立即查询下一个 <i>m</i> ；在输入完 <i>e</i> 后立即查询 <i>me</i>
+；在输入完 <i>t</i> 后立即查询 <i>met</i> ，等等。或早或晚，你会找到你想找的内容，或者Emacs没有找到任何匹配项。如果你找到了想找的内容，按
+<b>Enter</b> ；就可以停留到文件中查询到的位置了。如果没有找到任何匹配项，会在窗口的最正文打印消息 <b>Search Failed</b> 并鸣叫。
+</p>
+<p>
+下面显示我们在查询单词 <i>meter</i> 时的情况；数字指示出在要查询的字符串中每个字符输入时，光标是如何移动的。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /></colgroup>
+<thead>
+<tr><th scope="col">Type: C-s meter</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td><img src="../images/ge3_ch03scrn02.gif"  alt="../images/ge3_ch03scrn02.gif" /></td></tr>
+</tbody>
+<tbody>
+<tr><td>在你输入查询字符串的字母时，光标从一个位置移动到另一个位置</td></tr>
+</tbody>
+</table>
+
+
+<p>
+在这个递增查询字符串 <i>meter</i> 的过程中，Emacs将光标从位置１移动到２，到３，等等。并且，注意 <i>Isearch</i> 在模式行中显示。
+</p>
+<p>
+当你找到了要查询的字符串，不过找到的位置不对，怎么办？如果你找到文件最后一个单词，不过还不是你要找的那个位置。只要再按
+<b>C-s</b> 来查找下一个匹配项。Emacs按照相同的字符串查询，而不必重新输入。
+</p>
+<p>
+查到你要找的文本后，记得按 <b>Enter</b> 。忘记停止查询（通过按 <b>Enter</b> 或者其他光标移动指令）是一个常见失误：在你输入的时
+候，Emacs突然在不同的地方停止显示。发生的什么？Emacs以为仍然在查询，并将你输入的字符增加到查询字符串上。
+</p>
+<p>
+如果你输入了错误的字符，按 <b>Del</b> : Emacs退回到文件中前一个匹配字符串。如果连续按 <b>Del</b> 删除查询字符串的字符，你会看到
+Emacs会依次回退到前一匹配项。
+</p>
+<p>
+取消查询（换言之，退出查询），输入 <b>C-g</b> 。这个指令会带你退回到查询前的位置。
+</p>
+<p>
+在文件中向上查询时，使用 <b>C-r</b> ，它和 <b>C-s</b> 工作方式一样，只不过方向相反。它会将光标移动到查询字符串的首字符处显示。和
+<b>C-s</b> 一样，你可以重复按 <b>C-r</b> 查找前一个匹配项，而不必重新输入字符串。
+</p>
+<p>
+要不想输入查询字符串，你可以从缓冲区内复制文本到查询字符串。要复制从光标处到下一个空格或者标点符号的文本到查询字符串时，输入
+<b>C-s C-w</b> （可以把 <b>C-s C-w</b> 想成 “search a word”)。要复制从光标处到行尾的文本到查询字符串中，输入 <b>C-s C-y</b> 。值得注意的是，
+复制的文本会被轮换成小写格式；这个转换可以让查询大小写不敏感。也可以通过按 <b>C-s M-y</b> 将杀戮环中的内容复制到查询字符串中。在输入
+这个指令后，你可以通过按 <b>M-p</b> 查看杀戮环中前一个文本项，按 <b>M-n</b> 查看下一个。
+</p>
+<p>
+在递增查询状态下，一些键（如：回车，删除）会有与平常不同的功能。听起来有些迷糊，实际上相当容易使用。表 3-1 介绍了递增查询情况下
+的按键功能
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>表 3-1. 递增查询指令</caption>
+<colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup>
+<thead>
+<tr><th scope="col">快捷键</th><th scope="col">指令名称</th><th scope="col">功能</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td><b>C-s</b> Edit-&gt; Search-&gt; Incremental Search-&gt; Forward String</td><td>isearch-forward</td><td>开始向下递增查询，后面输入查询字符串，并且向下查询第一个匹配项。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>C-r</b> Edit-&gt; Search-&gt; Incremental Search-&gt; Backward String</td><td>isearch-backward</td><td>开始向上递增查询，后面输入查询字符串，并且向上查询第一个匹配项。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>Enter</b></td><td>isearch-exit</td><td>在递增查询时，结束递增查询。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>C-g</b></td><td>keyboard-quit</td><td>在递增查询时，取消递增查询。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>Del</b></td><td>isearch-delete-char</td><td>在递增查询时，删除查询字符串的字符。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>C-s C-w</b></td><td>isearch-yank-word</td><td>以光标所在字符串为查询字符串执行递增查询。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>C-s C-y</b></td><td>isearch-yank-line</td><td>以光标所在位置到行尾的文本作为查询字符串执行递增查询。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>C-s M-y</b></td><td>isearch-yank-kill</td><td>以杀戮环的最近一个文本作为查询字符串执行递增查询。</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-s C-s</td><td>isearch-repeat-forward</td><td>重复执行向下查询。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>C-r C-r</b></td><td>isearch-repeat-backward</td><td>重复执行向上查询。</td></tr>
+</tbody>
+</table>
+
+
+<p>
+<b>3.1.2 简单查询</b>
+</p>
+<p>
+Emacs也提供简单的，非递增查询。要使用这种更直接的查询，输入 <b>C-s Enter</b> 。输入查询字符串，按 <b>Enter</b> ，然后Emacs开始查询。只要按
+<b>C-s</b> 就可以查询下一个。同样， <b>C-r Enter</b> 可以执行向上查询。
+</p>
+<p>
+工具栏的查询图标（放在纸上的放大镜）和Edit -&gt; Search -&gt;  String Forward选项功能一样。不过提示有一点区别。 <b>C-s Enter</b> 在迷你缓冲
+区的的提示为 <i>Search:</i> 而工具栏按钮和菜单选项的提示为 <i>Search for string:</i> 。
+</p>
+<p>
+表3-2总结了简单查询的指令。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>简单查询指令</caption>
+<colgroup><col align="left" /></colgroup><colgroup><col align="left" /></colgroup>
+<thead>
+<tr><th scope="col">快捷键</th><th scope="col">功能</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td><b>C-s</b> <i>searchstring</i> <b>Enter</b> Edit-&gt; Search-&gt; String Forward</td><td>开始非递增向下查询。</td></tr>
+</tbody>
+<tbody>
+<tr><td>C-s</td><td>重复查询下一个。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>C-r</b> <i>searchstring</i> <b>Enter</b> Edit-&gt; Search-&gt; String Backwards</td><td>开始非递增向上查询。</td></tr>
+</tbody>
+<tbody>
+<tr><td><b>C-r</b></td><td>重复查询上一个。</td></tr>
 </tbody>
 </table>
 
 
 
-
-
-
-
 <p>
-Emacs highlights all the words that start with m.
+<b>3.1.3 短语查询</b>
 </p>
-
-
 <p>
-To start an incremental search, type C-s and then type the text you want to find. Emacs temporarily enters Isearch mode. Notice
-how this search works: Emacs looks for each character as soon as you type it. For example, if you are searching for the word
-meter, in an incremental search Emacs finds the next m as soon as you type the m; it finds the next me as soon as you type the
-e; it finds the met as soon as you type the t; and so on. Sooner or later, you either find what you want, or Emacs is unable to
-find anything. If you find what you want, press Enter; doing so stops the search at the current place in the file. If Emacs
-can't find anything that matches your search string, it prints the message Search failed at the bottom of your screen and then
-it beeps.
+如果你要查询一个短语，并且你知道它在文章中，不过用递增查询又找不到，就试试短语查询吧。（很可能由于短语中间有个换行符递增查询就找
+不到这个短语了。）短语查询是非递增查询的，并且忽略换行符，空格和标点。它也要求你查询的字符串完全匹配。
 </p>
 <p>
-Here's what happens when we search for the word meter; the numbers show how the cursor moves with each new letter in the search
-string.
+执行短语查询，输入 <b>C-s Enter C-w</b> (表示 <b>word-search-forward</b> ).提示信息 <i>Word search</i> 显示在迷你缓冲区内。（不要因为提示信息而
+终止：按完 <b>C-s</b> 迷你缓冲区会显示 <i>I-search</i> ，按完 <b>Enter</b> 会显示 <i>Search</i> ，不必在意）。输入查询字符串，然后按 <b>Enter</b>
+。Emacs查找字符串。要向上查询短语，输入 <b>C-r Enter C-w</b> 。例如，假设你有以下文本，并且光标在开头：
 </p>
 <p>
-Type: C-s meter
+<i>He said, "All good elephants are wise, aren't they?</i>" 
 </p>
-
-
 <p>
-Emacs moves the cursor from one position to another as you type the letters of the search string.
+<i>She answered, "Some are smarter than others, but we</i>
 </p>
-
-
 <p>
-In this incremental search, Emacs moves the cursor from position 1 to 2, to 3, and so on, as you type the search string
-meter. Also, note that Isearch appears on the mode line.
+<i>think this is socially conditioned.</i>"
 </p>
 <p>
-What happens if you find the string you're looking for but not the right occurrence of the string? Let's say you're searching
-for the word eschatology and you find the word, but you're still not in the right place. Simply press C-s again to find the next
-occurrence of the current search string. Emacs uses the same search string; you don't have to retype it.
+输入指令 <b>C-s Enter C-w they she Enter</b> ，光标显示在单词 <i>she</i> 的后面。这个指令看着很复杂，但是相对要查询的短语，他们
+（C-s Enter C-w)就显得不那么复杂了。它忽略了 <i>they</i> 和　/she/ 标点（？“）和换行符。
 </p>
 <p>
-Remember to press Enter when you've found the text you want. Forgetting to stop the search (by pressing Enter or with any other
-cursor movement command) is a common mistake: you type a few things, and suddenly Emacs is off looking at some completely
-different part of the file. What has happened? Emacs thinks you're still searching, and it has just added the characters you've
-typed to the search string.
+假设你要查询单词 <i>the</i> 。而不想被 <i>thence</i> , <i>there</i> , <i>theater</i> , <i>thesis</i> , <i>blithe</i> , 或者其他恰巧包含字母组合 <i>the</i>
+。这时，递增查询和简单查询就不太适合了－－你应该用词组查询。如果你在写论文，词组查询会比较有用。它是三种基本查询功能中唯
+一一种让你能找到词组被分割到两行的查询功能。
 </p>
 <p>
-If you type a letter in your search string incorrectly, press Del: Emacs moves back to the first instance of the reduced string
-in the file. If you keep pressing Del to delete characters from the search string, you'll see Emacs cycle back through the file
-to previous matches.
-</p>
-<p>
-To cancel a search (that is, to give up searching), type C-g. This command brings you back to the place where the search began.
-</p>
-<p>
-To search backward through a file, use C-r, which works exactly like C-s except that it searches in the opposite direction. It
-puts the cursor at the beginning of the text you find. Just as you can do when repeating C-s, you can press C-r to make the
-search go in the other direction without retyping the search string.
-</p>
-<p>
-To avoid typing your search string, you can copy text from the buffer into the search string. To copy text from the cursor
-position through the next space or punctuation mark into the search string, type C-s C-w (it may help to think of C-s C-w as
-"search a word"). To copy text from the cursor to the end of the line into the search string, type C-s C-y. Notice that the text
-that is yanked is always converted to lowercase; this conversion ensures that the search will be case-insensitive. You can also
-copy text from the kill ring to the search string by typing C-s M-y. After you've given this command, you can press M-p to see
-previous items from the kill ring. M-n takes you to the next item if you've gone back with M-p.
-</p>
-<p>
-Once you're in an incremental search, certain keys (such as Enter and Del) have different functions than they normally do. This
-situation may sound confusing, but it's actually fairly easy to get used to. Table 3-1 shows a summary of key functions during
-incremental search.
-</p>
-<p>
-Table 3-1. Incremental search commands
-</p>
-<p>
-Keystrokes
-</p>
-<p>
-Command name
-</p>
-<p>
-Action
-</p>
-<p>
-C-sEdit Search Incremental Search Forward String
-</p>
-<p>
-isearch-forward
-</p>
-<p>
-Start incremental search forward; follow by search string. Also, find next occurrence (forward) of search string.
-</p>
-<p>
-C-rEdit Search Incremental Search Backward String
-</p>
-<p>
-isearch-backward
-</p>
-<p>
-Start incremental search backward; follow by search string. Also, find next occurrence (backward) of search string.
-</p>
-<p>
-Enter
-</p>
-<p>
-isearch-exit
-</p>
-<p>
-In an incremental search , exit the search.
-</p>
-<p>
-C-g
-</p>
-<p>
-keyboard-quit
-</p>
-<p>
-In an incremental search , cancel the search.
-</p>
-<p>
-Del
-</p>
-<p>
-isearch-delete-char
-</p>
-<p>
-In an incremental search, delete character from search string.
-</p>
-<p>
-C-s C-w
-</p>
-<p>
-isearch-yank-word
-</p>
-<p>
-Start an incremental search with the word the cursor is on as the search string.
-</p>
-<p>
-C-s C-y
-</p>
-<p>
-isearch-yank-line
-</p>
-<p>
-Start an incremental search with the text from the cursor position to the end of the line as the search string.
-</p>
-<p>
-C-s M-y
-</p>
-<p>
-isearch-yank-kill
-</p>
-<p>
-Start an incremental search with text from the kill ring as the search string.
-</p>
-<p>
-C-s C-s
-</p>
-<p>
-isearch-repeat-forward
-</p>
-<p>
-Repeat previous search.
-</p>
-<p>
-C-r C-r
-</p>
-<p>
-isearch-repeat-backward
-</p>
-<p>
-Repeat previous search backward.
-</p>
-
-
-<p>
-3.1.2 Simple Searches
-</p>
-<p>
-Emacs also offers a simple, or nonincremental, search. To use a more straightforward search, type C-s Enter. Type the search
-string, press Enter, and Emacs begins the search. Simply press C-s again to repeat the search. To start a nonincremental search
-backwards through the file, press C-r Enter. Again, you type the search string and press Enter to begin the search.
-</p>
-<p>
-The search icon on the toolbar (a magnifying glass over paper) and the Edit Search String Forward option run the same kind of a
-search. The prompt is slightly different. C-s Enter prompts you with Search: in the minibuffer while the toolbar icon and the
-menu option prompt with Search for string:. This is a minor difference; the searches are virtually identical otherwise.
-</p>
-<p>
-Table 3-2 summarizes the simple search commands.
-</p>
-<p>
-Table 3-2. Simple search commands
-</p>
-<p>
-Keystrokes
-</p>
-<p>
-Action
-</p>
-<p>
-C-s Enter searchstring EnterEdit Search String Forward
-</p>
-<p>
-Start nonincremental search forward.
-</p>
-<p>
-C-s
-</p>
-<p>
-Repeat search forward.
-</p>
-<p>
-C-r Enter searchstring EnterEdit Search String Backwards
-</p>
-<p>
-Start nonincremental search backward.
-</p>
-<p>
-C-r
-</p>
-<p>
-Repeat search backward.
-</p>
-
-
-<p>
-3.1.3 Word Search
-</p>
-<p>
-If you're searching for a phrase and you know it's in the file but you can't find it with incremental search, try word
-search. (You probably can't find your phrase with incremental search because the phrase has a line break in it.) Word search is
-a nonincremental search that ignores line breaks, spaces, and punctuation. It also requires that your search string match entire
-words in the file.
-</p>
-<p>
-To do a word search, type C-s Enter C-w (for word-search-forward). The prompt Word search appears in the minibuffer. (Don't be
-put off by the prompts that appear along the way: you'll see an I-search prompt after typing C-s and a Search prompt after
-pressing Enter. Ignore these.) Type the search string and press Enter. Emacs searches for the given string. To do a word search
-backwards, type C-r Enter C-w instead. For example, assume that you have the following text, with the cursor at the beginning:
-</p>
-<p>
-He said, "All good elephants are wise, aren't they?"
-</p>
-<p>
-She answered, "Some are smarter than others, but we
-</p>
-<p>
-think this is socially conditioned."
-</p>
-<p>
-The command C-s Enter C-w they she Enter positions the cursor after the word She. This command looks complicated, but it's
-really nothing more than a word search (C-s Enter C-w) for the word they, followed by the word she. It ignores the punctuation
-(?") and the newline between they and she.
-</p>
-<p>
-Assume that you're looking for the word the. You don't want to bother with thence, there, theater, thesis, blithe, or any other
-word that happens to contain the letters the. In this situation, neither an incremental search nor a simple search is very
-useful—you need a word search. If you're writing a paper, word search is often exactly what you need. It is the only one of the
-three basic search commands that allows you to find what you want even if the phrase is split between two lines.
-</p>
-<p>
-Now that you've seen the three most commonly used searches, you might want to experiment and see which you find most useful.
+你已经看了三种最基本的查询功能，实验一下，看看哪种你觉得最有用。
 </p><div id="postamble">
-<p class="author"> Author: Neil Gunn
+<p class="author"> Author: moomu
 </p>
-<p class="date"> Date: 2010-12-11 18:35:55 CST</p>
-<p class="creator">HTML generated by org-mode 7.4 in emacs 23</p>
+<p class="date"> Date: 2010-12-20 23:02:59 CST</p>
+<p class="creator">HTML generated by org-mode 6.36c in emacs 23</p>
 </div>
 </div>
 </body>

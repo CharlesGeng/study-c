@@ -1,0 +1,392 @@
+3.4. Word Abbreviations
+
+Word abbreviation mode and dynamic abbreviations are two features that lazy typists will love. The authors proudly include themselves in that category, so you'll be in good company if you choose to explore these features. Dynamic abbreviations are less complex, so we'll discuss them first.
+3.4.1 Dynamic Abbreviations
+
+Let's say that you are a scientist writing a paper on invertebrates. You're likely to have many long technical words in your paper, and if you're like us, you get tired of typing long words.
+
+Dynamic abbreviations come to the rescue. After you've typed a long word once, you can simply type a few letters and give the command M-/ (for dabbrev-expand). Emacs inserts the nearest word that starts with that string.
+
+Type: In M-/
+
+Emacs inserts the last word starting with in, in this case, interesting.
+
+Interesting was not the word we were hoping for; it's invertebrates we wanted. Without moving the cursor, type M-/ again.
+
+Type: M-/
+
+Emacs inserts the word Invertebrates, which is what we wanted.
+
+The word being expanded need not be earlier in the file to be considered nearest. Emacs looks behind and ahead of the cursor position to find words it can expand. If there are eligible words that are equidistant above and below the cursor position both, Emacs selects the word that is above as the expansion.
+
+Earlier we talked about completing a word with Ispell. Dynamic abbreviations are a bit different. When you complete a word, the word probably isn't in the buffer (yet). When you use a dynamic abbreviation, you simply don't want to type a word you typed earlier and you're asking Emacs to do it for you.
+
+Using dynamic abbreviations doesn't require entering a special minor mode, as standard word abbreviations do. They are simply an aid for the tired typist. Word abbreviation mode has some other advantages, though, such as the ability to create an abbreviation for a phrase or a habitual typo, as we will see next.
+3.4.2 Word Abbreviation Mode
+
+Word abbreviation mode lets you define abbreviations for special words and phrases. You can use it in many ways. Traditionally, abbreviation mode is used so that you don't have to type long words or phrases in their entirety. For example, let's say you are writing a contract that repeatedly references the National Institute of Standards and Technology, and you are not allowed to use an acronym. Rather than typing the full name, you can define the abbreviation nist. Once you have set up this definition, Emacs inserts the full name whenever you type the abbreviation nist, followed by a space, tab, or punctuation mark. Emacs watches for you to type an abbreviation, then expands it automatically for you.
+
+Before showing you how to get into word abbreviation mode and define your abbreviation list, we'll start with an example. Our favorite nontraditional use for word abbreviation mode is to correct misspellings as you type.[2] Almost everyone has a dozen or so words that they habitually type incorrectly because of worn neural pathways. You can simply tell Emacs that these misspellings are "abbreviations" for the correct versions, and Emacs fixes the misspellings every time you type them; you may not even notice that you typed the word wrong before Emacs fixes it. So assume that you've entered word abbreviation mode, and that you've defined receive as an abbreviation for recieve; now, as you're typing, you make an innocent mistake.
+
+    [2] Once upon a time this use of word abbreviation mode was nontraditional; these days Flyspell, described earlier, automatically defines misspellings as abbreviations.
+
+Type: You will recieve
+
+You type the offending word but haven't yet pressed Space, which will cue Emacs to correct it (Windows).
+
+Type: Space the materials you requested shortly
+
+Emacs corrects the word automatically after you press Space; you need not stop typing or even be aware that a mistake has been made and corrected (Windows).
+
+Besides the convenience of being able to invent abbreviations for phrases that you frequently type, you can see that setting up a short list of abbreviations for common misspellings could reduce the time it takes to proofread files and reduce the number of common typing errors.
+
+When you define abbreviations, never use abbreviations that are words in their own right or Emacs may expand the word when you don't want it to, because expansion takes place without asking. For example, if you frequently write about the World Association for Replicant Technology, don't define an abbreviation of wart, or you won't be able to write about the difficulties of handling toads. (If you use the word wart so infrequently that you think the convenience of the acronym warrants it, you can use C-_ to undo the abbreviation when you really want to type wart.)
+
+Emacs knows the abbreviations exactly as you define them. If you define recieve as an abbreviation for receive, you must also define recieves, recieving, and recieved as abbreviations to cover all the forms of the word you might misspell.
+
+Before you go ahead and define some abbreviations, here's one more basic fact you should know. Emacs classifies abbreviations according to which modes they work in. Global abbreviations work in all modes; local abbreviations work only in the mode in which they were defined. For example, if you want abbreviations to work only in text mode and not in C mode, define them as local while you are in text mode. If you want abbreviations to work in any mode, define them as global. Remember: abbreviations are local to modes, not to files or buffers.
+
+Emacs also provides an inverse method for defining abbreviations. This method is called inverse because you type the abbreviation and then the definition. Some commands (which we won't discuss) let you type the definition and then the abbreviation, but they require some tricky key sequences to let Emacs know how many words preceding the cursor are part of the abbreviation. The inverse method is easier and it works whether the definition for the abbreviation is one word or ten words.
+3.4.2.1 Trying word abbreviations for one session
+
+Usually, if you go to the trouble of defining a word abbreviation, you will use it in more than one Emacs session. But if you'd like to try out abbreviation mode to see if you want to incorporate it into your startup, use the following procedure.
+
+To define word abbreviations for this buffer and session:
+
+   1.
+
+      Enter word abbreviation mode by typing M-x abbrev-mode Enter. Abbrev appears on the mode line. For a global abbreviation, type the abbreviation you want to use and type C-x a i g or C-x a - (for add-inverse-global). (For a local abbreviation, type C-x a i l for add-inverse-local instead.) Emacs then asks you for the expansion.
+   2.
+
+      Type the definition for the abbreviation and press Enter. Emacs then expands the abbreviation and will do so each time you type it followed by a space or punctuation mark.
+   3.
+
+      When you exit Emacs. it asks if you want to save the abbreviations in .abbrev_defs. Type y if you want to save them.
+   4.
+
+      The abbreviations you've defined will work only in buffers where you enter abbrev mode.
+
+If you find that you like using word abbreviation mode, you may want to make it part of your startup, as described in the following section.
+3.4.2.2 Making word abbreviations part of your startup
+
+Once you become hooked on using abbreviation mode, it's easiest to incorporate it into your .emacs file. This procedure creates a permanent file of your word abbreviations that is loaded every time you start Emacs. You can also delete abbreviations from this file; we'll discuss how to do so in the next section.
+
+To define word abbreviations and make them part of your startup:
+
+   1.
+
+      Add these lines to your .emacs file:
+
+      (setq-default abbrev-mode t)
+
+      (read-abbrev-file "~/.abbrev_defs")
+
+      (setq save-abbrevs t)
+
+
+   2.
+
+      Save the .emacs file and reenter Emacs. Abbrev appears on the mode line. You may get an error message saying Emacs can't load your abbrev file (understandable if you haven't created the file yet). Ignore this error message; it won't happen again.
+   3.
+
+      Type an abbreviation and type C-x a i g or C-x a - following the abbreviation. These commands create a global abbreviation; if you want to create a local abbreviation instead, type C-x a i l. Emacs asks you for the expansion.
+   4.
+
+      Type the definition for the abbreviation and press Enter. Emacs expands the abbreviation and will do so each time you type it followed by a space or punctuation mark. You can define as many abbreviations as you want to by repeating Steps 3 and 4.
+   5.
+
+      Type C-x C-c to exit Emacs. Emacs asks if you want to save the abbreviations in .abbrev_defs.
+   6.
+
+      Type y to save your abbreviations.
+
+After you define some abbreviations and save them, Emacs loads the abbreviations file automatically. When you define word abbreviations in subsequent sessions, Emacs asks again whether you want to save the abbreviations file. Respond with a y to save the new abbreviations you've defined and have them take effect automatically.
+3.4.2.3 Deleting a word abbreviation
+
+If you use word abbreviations frequently, you may define an abbreviation and later change your mind. You can edit the word abbreviation list by typing M-x edit-abbrevs Enter. You can see (but not edit) the list by typing M-x list-abbrevs Enter.
+
+After the list is displayed, use C-k (or any other editing commands) to delete the abbreviations you don't want to use. Because Emacs itself formats this list, don't try to edit lines or add new lines; deleting is about the only operation that's safe. Here's how the abbreviations look when you edit word abbreviations. The file is divided into different sections based on whether the abbreviations are global or local to a particular mode:
+
+(text-mode-abbrev-table)
+
+
+
+(lisp-mode-abbrev-table)
+
+
+
+(fundamental-mode-abbrev-table)
+
+
+
+(global-abbrev-table)
+
+
+
+"iwthout" 1        "without"
+
+"prhase"  1        "phrase"
+
+"teh"     1        "the"
+
+"fo"      1        "of"
+
+"eamcs"   2        "Emacs"
+
+"wrok"    1        "work"
+
+"aslo"    1        "also"
+
+"sotred"  1        "stored"
+
+"inforamtion" 1    "information"
+
+"esc"     6        "Esc"
+
+"taht"    1        "that"
+
+"chatper" 1        "chapter"
+
+"adn"     1        "and"
+
+"iwth"    1        "with"
+
+"chpater" 1        "chapter"
+
+"loaction" 1       "location"
+
+"recieve" 1        "receive"
+
+"wart"    1        "World Association for Replicant Technology"
+
+
+The file is divided into sections by mode. We defined global abbreviations in this case; any abbreviations Flyspell (described earlier in this chapter) creates are local abbreviations and would be listed under the mode in which they were defined.
+
+In this buffer, the first column lists the abbreviations (in this case, mostly misspellings). The second column is for internal record keeping; you don't need to concern yourself with it. The third column provides the definitions of the abbreviations, the word or phrase that Emacs substitutes whenever it sees the abbreviation.
+
+To delete any abbreviation, delete the line for that abbreviation and save the file by typing M-x write-abbrev-file. You can move back to the buffer you were editing before by typing C-x b (a command for working with multiple buffers, discussed in Chapter 4).
+3.4.2.4 Disabling word abbreviations
+
+You can get rid of word abbreviations completely in one of two ways. First, you can type M-x kill-all-abbrevs Enter. This command disables word abbreviations for the current session.
+
+Second, you can delete the file the abbreviations are in. If you made word abbreviations part of your startup, delete the read-abbrev-file line from your .emacs file.
+3.4.2.5 Abbreviations and capitalization
+
+Usually, Emacs capitalizes abbreviations exactly the way you want. If you run into special situations with abbreviations and capitalization, however, you may wantl to know what's going on behind the scenes. Here are the rules:
+
+    *
+
+      If the abbreviation's definition contains any uppercase letters, Emacs always inserts the definition without changing anything. For example, if you define ora as an abbreviation for O'Reilly Media, O'Reilly will always be capitalized exactly as shown.
+    *
+
+      If the abbreviation's definition is all lowercase, Emacs capitalizes according to the following rules:
+          o
+
+            If you type all of the letters of the abbreviation in lowercase, Emacs inserts the definition in lowercase.
+          o
+
+            If you type any of the letters of the abbreviation in uppercase, Emacs capitalizes the first letter of the first word.
+          o
+
+            If you type all of the letters of the abbreviation in uppercase, Emacs capitalizes the first letter of every word, unless the variable abbrev-all-caps is set to t; in this case, it capitalizes all letters.
+
+Table 3-7 shows some examples.
+
+Table 3-7. Word abbreviation capitalization
+
+Abbreviation
+	
+
+Definition
+	
+
+You type:
+	
+
+Expands to:
+	
+
+Because:
+ 	 	 	 	 
+
+lc
+	
+
+lamb chop
+	
+
+lc
+	
+
+lamb chop
+	
+
+lc is lowercase, so lamb chop is lowercase.
+
+lc
+	
+
+lamb chop
+	
+
+Lc
+	
+
+Lamb chop
+	
+
+There's one capital in Lc, so Lamb is capitalized.
+
+lc
+	
+
+lamb chop
+	
+
+lC
+	
+
+Lamb chop
+	
+
+There's one capital in lC, so Lamb is capitalized.
+
+lc
+	
+
+lamb chop
+	
+
+LC
+	
+
+Lamb Chop
+	
+
+LC is all capitals, so both words are capitalized.
+
+lc
+	
+
+Lamb Chop
+	
+
+lc
+	
+
+Lamb Chop
+	
+
+Capitals in the definition are always unchanged.
+
+lc
+	
+
+Lamb Chop
+	
+
+LC
+	
+
+Lamb Chop
+	
+
+Capitals in the definition are always unchanged.
+
+You don't need to remember the rules, but looking them over may help you out if you can't understand how Emacs is capitalizing. In our experience, defining abbreviations in lowercase circumvents most capitalization problems.
+
+Table 3-8 summarizes word abbreviation commands.
+
+Table 3-8. Word abbreviation commands
+
+Keystrokes
+	
+
+Command name
+	
+
+Action
+
+M-/
+	
+
+dabbrev-expand
+	
+
+Complete this word based on the nearest word that starts with this string (press M-/ again if that's not the word you want).
+
+(none)
+	
+
+abbrev-mode
+	
+
+Enter (or exit) word abbreviation mode.
+
+C-x a - or C-x a i g
+	
+
+inverse-add-global-abbrev
+	
+
+After typing the global abbreviation, type the definition.
+
+C-x a i l
+	
+
+inverse-add-mode-abbrev
+	
+
+After typing the local abbreviation, type the definition.
+
+(none)
+	
+
+unexpand-abbrev
+	
+
+Undo the last word abbreviation.
+
+(none)
+	
+
+write-abbrev-file
+	
+
+Write the word abbreviation file.
+
+(none)
+	
+
+edit-abbrevs
+	
+
+Edit the word abbreviations.
+
+(none)
+	
+
+list-abbrevs
+	
+
+View the word abbreviations.
+
+(none)
+	
+
+kill-all-abbrevs
+	
+
+Kill abbreviations for this session.
+
+3.4.3 Problems You May Encounter
+
+    *
+
+      You search for a string you can see on the screen, and Emacs can't find it. The most probable explanation is that Emacs is taking into account line breaks and punctuation, and you're not including these in the search string. Use word search, which ignores any line breaks or punctuation, to find the string.
+    *
+
+      You get a message that says, Searching for program: No such file or directory ispell. You don't have Ispell installed. Ispell is external to Emacs; see Chapter 13 for details on installing Ispell on Mac OS X and Windows.
+    *
+
+      You can't see the pop-up menu in Flyspell. You activate this pop-up menu by pointing the mouse at a given word and pressing the middle mouse button. Essentially, you need a three-button mouse to run Flyspell.

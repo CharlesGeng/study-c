@@ -1,30 +1,9 @@
+;设置编辑区背景色
 (set-background-color "#cce8cf")
+;开启保存会话模式
 (desktop-save-mode 1)
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(org-agenda-files nil))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#cce8cf" :foreground "SystemWindowText" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 143 :width normal :foundry "outline" :family "Courier New")))))
 
-(setq load-path (cons "C:/Program Files/GNU Emacs/plugins/org-7.3/lisp" load-path))
-;;(setq load-path (cons "C:/Program Files/GNU Emacs/plugins/org-7.3/contrib/lisp" load-path))
-
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(add-hook 'org-mode-hook 'turn-on-font-lock)
-(add-hook 'org-mode-hook 
-(lambda () (setq truncate-lines nil)))
- 
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
+;设置Emacs默认主模式
 (setq default-major-mode 'text-mode)
 (add-hook 'text-mode-hook  'turn-on-auto-fill)
 ;;设置行最大长度
@@ -33,20 +12,7 @@
 ;;显示行号
 (global-linum-mode t)
 
-;;CS模式
-(require 'csharp-mode)
-(setq auto-mode-alist
-(append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
-(defun my-csharp-mode-fn ()
-"function that runs when csharp-mode is initialized for a buffer."
-...insert your code here...
-...most commonly, your custom key bindings ...
-)
-(add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
-
-
-
-
+;Emacs窗口在windows下最大化，最小化，正常函数
 (defun emacs-maximize ()
   "Maximize emacs window in windows os"
   (interactive)
@@ -67,6 +33,7 @@
       (append
        '((font . "fontset-gbk")) default-frame-alist))
 
+;设置字体
 (create-fontset-from-fontset-spec
   "-outline-Courier New-normal-r-normal-normal-13-97-96-96-c-*-fontset-gbk")
 (set-fontset-font
@@ -86,4 +53,11 @@
  "-outline-新宋体-normal-r-normal-*-14-*-96-96-c-*-iso10646-1" nil 'prepend)
 (set-default-font "fontset-gbk")
 
+;关闭菜单栏
+(menu-bar-mode -1)
+
+;关闭工具栏
+(tool-bar-mode -1)
+
+;调用Emacs最大化函数
 (emacs-maximize)

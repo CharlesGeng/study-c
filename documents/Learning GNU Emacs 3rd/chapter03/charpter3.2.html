@@ -1,209 +1,345 @@
-﻿#+title: 3.2. 查找替换
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>3.2. 查找替换</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2011-02-14 10:45:28 CST"/>
+<meta name="author" content="Neil Gunn"/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color:lightblue; font-weight:normal }
+  .target { }
+  .timestamp { color: grey }
+  .timestamp-kwd { color: CadetBlue }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*/-->
+</script>
+</head><body>
+<h1 class="title">3.2. 查找替换</h1>
 
-查找和替换总是相辅相生的，就像咖啡与牛奶。假设你在开发一款新的软件，在最后时刻，市场部通知你修改产品名称。
-
+<p>查找和替换总是相辅相生的，就像咖啡与牛奶。假设你在开发一款新的软件，在最后时刻，市场部通知你修改产品名称。
+</p>
+<p>
 生命周期信息发布是一个邮件服务，它会定期提醒你改善生活习惯，例如锻炼，喝水，以及摄取维生素。市场部提出，烦恼或者鼓励级别可以由用
 户自行设定。生命周期并不能说是最恰当的名字，所以最后市场部提出要改成健康隐患。
-
-*3.2.1 简单查询和替换操作*
-
+</p>
+<p>
+<b>3.2.1 简单查询和替换操作</b>
+</p>
+<p>
 假设你正处于我们刚刚描述的场景中，需要将一个字符串全部替换为另一个。你已经确定要替换全文中的单词生命周期（Whirligig）.你可以使用
-一个简单指令让Emacs替换每一个给定的字符串。输入 *M-x replace-string Enter* ,然后输入查询字符串，按 *Enter* .现在输入替换字符串并
-再次按 *Enter* 。Emacs会替换掉从光标开始到文件末尾的全部字符串。如果想替换掉全文中的字符串，先按 *M-<* 回到文章开头，再输入指令。
-下面是一个使用 *replace-string* 的简单例子。
-
+一个简单指令让Emacs替换每一个给定的字符串。输入 <b>M-x replace-string Enter</b> ,然后输入查询字符串，按 <b>Enter</b> .现在输入替换字符串并
+再次按 <b>Enter</b> 。Emacs会替换掉从光标开始到文件末尾的全部字符串。如果想替换掉全文中的字符串，先按 <b>M-&lt;</b> 回到文章开头，再输入指令。
+下面是一个使用 <b>replace-string</b> 的简单例子。
+</p>
+<p>
 初始状态：
-*Whirligig* 出现了四次，但是光标在第一个匹配项之后。
-
+<b>Whirligig</b> 出现了四次，但是光标在第一个匹配项之后。
+</p>
+<p>
 现在开始执行替换操作。
-
-输入： *M-x replace-string Enter Whirligig Enter HealthBug Enter*
-
+</p>
+<p>
+输入： <b>M-x replace-string Enter Whirligig Enter HealthBug Enter</b>
+</p>
+<p>
 Emacs替换掉下文出现的全部实例。
-
-替换操作只从光标位置向下执行；第一句中的 *Whirligig* 还没有被替换。我们一会儿会再次处理这个例子。
-
-*3.2.2 询问替换*
+</p>
+<p>
+替换操作只从光标位置向下执行；第一句中的 <b>Whirligig</b> 还没有被替换。我们一会儿会再次处理这个例子。
+</p>
+<p>
+<b>3.2.2 询问替换</b>
 Few search and replace situations are as straightforward as those we've described. Often you're not sure that you want to
 replace every appearance of your search string: a global replacement can be reckless. If you want to decide whether to replace
 the string on a case-by-case basis, use a query-replace, which allows you to change a string conditionally throughout a
 file. After Emacs finds an occurrence of the search string, it asks whether it should replace it, and you respond accordingly.
-
-To use query-replace, go to the beginning of the buffer using M-< and then type M-%. The prompt Query replace: appears in the
+</p>
+<p>
+To use query-replace, go to the beginning of the buffer using M-&lt; and then type M-%. The prompt Query replace: appears in the
 minibuffer. Type the search string and press Enter. Now this appears:
-
+</p>
+<p>
 Query replace searchstring with:
+</p>
 
-
+<p>
 Type the replacement string and press Enter. So far, this procedure is almost identical to a replace-string operation; only the
 prompts are different.
-
+</p>
+<p>
 Emacs now searches for the first occurrence of the search string. When it finds one, a new prompt appears:
-
+</p>
+<p>
 Query replacing searchstring with newstring
+</p>
 
-
+<p>
 Before performing the replacement, Emacs waits for a response to tell it what to do. Table 3-3 lists the possible responses and
 their results.
-
+</p>
+<p>
 Table 3-3. Responses during query-replace
-
+</p>
+<p>
 Keystrokes
-	
+</p>
 
+<p>
 Action
-
+</p>
+<p>
 Space or y
-	
+</p>
 
+<p>
 Replace searchstring with newstring and go to the next instance of the string.
-
+</p>
+<p>
 Del or n
-	
+</p>
 
+<p>
 Don't replace; move to next instance.
-
+</p>
+<p>
 .
-	
+</p>
 
+<p>
 Replace the current instance and quit.
-
+</p>
+<p>
 ,
-	
+</p>
 
+<p>
 Replace and let me see the result before moving on. (Press Space or y to move on.)
-
+</p>
+<p>
 !
-	
+</p>
 
+<p>
 Replace all the rest and don't ask.
-
+</p>
+<p>
 ^
-	
+</p>
 
+<p>
 Back up to the previous instance.
-
+</p>
+<p>
 Enter or q
-	
+</p>
 
+<p>
 Exit query-replace.
-
+</p>
+<p>
 E
-	
+</p>
 
+<p>
 Modify the replacement string.
-
+</p>
+<p>
 C-r
-	
+</p>
 
+<p>
 Enter a recursive edit (discussed in detail later).
-
+</p>
+<p>
 C-w
-	
+</p>
 
+<p>
 Delete this instance and enter a recursive edit (so you can make a custom replacement).
-
+</p>
+<p>
 C-M-c
-	
+</p>
 
+<p>
 Exit recursive edit and resume query-replace.
-
+</p>
+<p>
 C-]
-	
+</p>
 
+<p>
 Exit recursive edit and exit query-replace.
-
+</p>
+<p>
 This list seems like a lot of keystrokes to remember, but you can get away with knowing two or three. Most of the time you'll
 respond to the prompt by pressing Space, telling Emacs to perform the replacement and go on to the next instance, or n to skip
 this replacement and go on to the next instance. If you're not too sure what will happen, enter a comma (,); Emacs makes the
 replacement but doesn't go on until you press Space. After performing the first few replaces, you may realize that there's no
 need to inspect every change individually. Typing an exclamation mark (!) tells Emacs to go ahead and finish the job without
 bothering you anymore. If you remember these keystrokes, you're all set.
-
+</p>
+<p>
 How does this work in practice? Let's revisit our previous example, assuming that we want to change Whirligig to HealthBug
 throughout (and that we didn't save the changes we made with replace-string).
-
-Type: M-< M-% Whirligig Enter HealthBug Enter
-
+</p>
+<p>
+Type: M-&lt; M-% Whirligig Enter HealthBug Enter
+</p>
+<p>
 You're ready to replace the first occurrence; press Space to go on.
-
+</p>
+<p>
 Press: Space
-
+</p>
+<p>
 When you press Space, Emacs replaces the first word; the query-replace operation then moves to the second word.
-
+</p>
+<p>
 This procedure continues until you reach the end of the file. As we've said, typing ! fixes the rest of the file.
-
+</p>
+<p>
 In Table 3-3, you might have noticed that several keys, such as Space, have specialized meanings while the replacement is in
 progress. In practice, using these keys for a different function is not confusing, though it might sound bad on paper. You might
 want to try a query-replace on a practice file to get the hang of using the different responses. If you are easily amused, you
 might enjoy opening the Emacs FAQ, saving it as another file, then replacing Emacs throughout.  3.2.3 Repeating Query-Replaces
 (and Other Complex Commands)
-
+</p>
+<p>
 Now that you've learned the basics of query-replace, let's talk about a shortcut that applies not only in query-replace but
 anywhere in Emacs: repeating complex commands, with slight modifications. We often exit a query-replace by mistake or decide
 that the replacement we really wanted was just slightly different. Do we have to type it all again? No. Simply go the beginning
 of the file and press C-x Esc Esc. The last complex command you typed appears. If it's not the one you want, type M-p to see the
 previous command (do this as many times as necessary; M-n goes to the next command). For example, let's go to the beginning of
 the file and repeat the query-replace we just carried out.
-
-Type: M-< followed by C-x Esc Esc
-
+</p>
+<p>
+Type: M-&lt; followed by C-x Esc Esc
+</p>
+<p>
 Emacs puts the last complex command in the minibuffer; in fact it looks more complex than we remember it.
-
-When we press M-<, we move to the beginning of the file; when we press C-x Esc Esc, the last complex command is displayed. Emacs
+</p>
+<p>
+When we press M-&lt;, we move to the beginning of the file; when we press C-x Esc Esc, the last complex command is displayed. Emacs
 speaks to itself in dark words, but we can still see that this is the command that we want.
-
+</p>
+<p>
 This is the right command, so we don't have to press M-p to see a previous command. If we wanted to, we could change the
 query-replace strings before pressing Enter. In this case, the Marketing Department has once again changed the product's name
 from HealthBug (since bug could be construed as pest) to HealthBot (neutral, but a bit less descriptive in our opinion). Our
 earlier query replace changed Whirligig to HealthBug. We need to modify this command so it replaces Bug with Bot.
-
+</p>
+<p>
 In the minibuffer, change Whirligig to Bug and HealthBug to Bot and press Enter.
-
+</p>
+<p>
 Pressing Enter executes the command again with the modified search and replacement strings.
-
+</p>
+<p>
 As we mentioned, C-x Esc Esc works for any command involving input in the minibuffer, not just query-replace. But we use this
 feature most frequently in query-replace. It is also good for repeating keyboard macros (see Chapter 6).  3.2.4 Recursive
 Editing
-
+</p>
+<p>
 When you do a query-replace, you inevitably see something else you want to change in the file. Try it a few times鈥攜ou'll see
 what we mean! We typically try to remember the problem until we're done, then get frustrated when we forget exactly what and
 where the problem was.
-
+</p>
+<p>
 Fortunately, Emacs provides an easier way. It allows you to start a recursive edit while you're in the middle of a
 query-replace. By starting a recursive edit, you effectively put query-replace on hold while you make any other desired
 edits. When you exit the recursive edit, the query-replace resumes where you left off.
-
+</p>
+<p>
 To start a recursive edit while in query-replace, press C-r. (Note that like many other key bindings, C-r has a different
 meaning in query-replace than it does in standard Emacs.) When you start a recursive edit, square brackets ([ ]) appear on the
 mode line. Let's go back, one more time, to our public relations piece. You've used query-replace to find the first Bug to
 change to Bot, and you are about to press Space to fix it, when you remember that the lawyers said that the "64 ounces of water"
 statement was too specific and could be construed as giving medical advice. A quick recursive edit saves the day.
-
+</p>
+<p>
 Type: C-r
-
+</p>
+<p>
 Notice the square brackets around (Text Fill), indicating a recursive edit in progress.
-
+</p>
+<p>
 Now do any editing you want to; you are in an editing mode just like standard Emacs. Move down to the third line and delete "64
 ounces of." When you want to resume the query-replace, press C-M-c. This command tells Emacs to leave the recursive edit and
 reactivate the query-replace. Emacs moves back to the point where you were when you started the recursive edit. You can then
 continue making replacements just as if nothing had happened.
-
+</p>
+<p>
 Delete "64 ounces of," then type C-M-c
-
+</p>
+<p>
 Emacs goes back to query-replace and you press Space to fix the next Bug.
-
+</p>
+<p>
 If you decide to exit the recursive edit and cancel the query-replace in one fell swoop, you can type C-] (for
 abort-recursive-edit) or M-x top-level Enter rather than C-M-c.
-
+</p>
+<p>
 In fact, you can start a recursive edit at any time, not just when you're in a query-replace. The command M-x recursive-edit
 Enter puts you into a recursive edit; C-M-c takes you out of the recursive edit and brings you back to what you were doing
 before. You can even have recursive edits within recursive edits, although the possibility for confusion increases with each new
 level.  3.2.5 Are Emacs Searches Case-Sensitive?
-
+</p>
+<p>
 By default, Emacs searches are not case-sensitive. Look at the Options menu and you'll see that the option Case-Insensitive
 Search is the only option that is checked by default.
-
+</p>
+<p>
 What does this mean in practical terms? If you search for the word random, the search finds random, Random, and RANDOM, as well
 as oddities like RanDoM and rANdOM. When doing replacements, Emacs pays attention to the form of the word being replaced and
 replaces it with the same case. If you replaced random with tandem, Random would be replaced with Tandem, and RANDOM would be
@@ -211,184 +347,254 @@ replaced with TANDEM. If you mix capitalization, the replacement string appears 
 with HealthBug if that was the case in the replacement string. In other words, the default search and replacement operations
 usually do what you want: they find a search string regardless of its case and adjust the replacement appropriately for its
 context. However, sometimes you need finer control.
-
+</p>
+<p>
 The variable case-fold-search determines whether searches are case-sensitive. It applies to all searches: incremental searches,
 word searches, searches within search-and-replace operations, and so on. By default, case-fold-search is set to t, which means
 "ignore case unless the user types in mixed or uppercase." This sensible default is usually just what you want. But if you need
 case-sensitive searches, the Case-Insensitive Search option on the Options menu provides an easy way to experiment with this
 variable.
-
+</p>
+<p>
 Likewise, if you don't want Emacs to adjust the case of your replacement strings, you can set the variable case-replace. Again,
 its value is t (for "true") by default, which means "adjust the case of a replacement string to match the original text"鈥攖hat
 is, capitalize the replacement if the original word was capitalized and so on. Setting this variable to nil means "never adjust
 the case of the replacement string; always put it in exactly as I typed it." To change the value of case-replace, type M-x
 set-variable Enter case-replace Enter nil Enter (there's no menu option for this variable).
-
+</p>
+<p>
 Both the menu option and the set-variable command change the behavior of Emacs only temporarily. If you start a new editing
 session, you'll be back to the default behavior. This is probably what you want, because searching separately for capitalized
 and lowercase words is inconvenient.
-
+</p>
+<p>
 You can set the value for the Case-Insensitive Search option permanently by selecting Save Options from the Options menu or by
 adding this line to your .emacs file:
-
+</p>
+<p>
 (setq-default case-fold-search nil) ; require exact matches
+</p>
 
-
+<p>
 To set case-replace permanently, add the following line to your .emacs file. You'll need to restart Emacs to have the change
 take effect.
-
+</p>
+<p>
 (setq-default case-replace nil) ; never change case when replacing
+</p>
 
-
+<p>
 You could change these variables through Emacs's interactive customization facility, Custom, instead (see Chapter 10).  3.2.6
 Regular Expressions for Search and Replacement Operations
-
+</p>
+<p>
 Sometimes none of the simpler searches described in this chapter are adequate. Regular expressions allow you to build searches
 with strings that contain various wildcards.
-
+</p>
+<p>
 Table 3-4 shows some of the characters you can use in creating a regular expression.
-
+</p>
+<p>
 Table 3-4. Characters for creating regular expressions
-
+</p>
+<p>
 Character(s)
-	
+</p>
 
+<p>
 Match
-
+</p>
+<p>
 ^
-	
+</p>
 
+<p>
 Matches the beginning of a line.
-
+</p>
+<p>
 $
-	
+</p>
 
+<p>
 Matches the end of a line.
-
+</p>
+<p>
 .
-	
+</p>
 
+<p>
 Matches any single character (like ? in filenames).
-
+</p>
+<p>
 .*
-	
+</p>
 
+<p>
 Matches any group of zero or more characters (. matches any character and * matches zero or more of the previous character).
+</p>
+<p>
+\&lt;
+</p>
 
-\<
-	
-
+<p>
 Matches the beginning of a word.
+</p>
+<p>
+\&gt;
+</p>
 
-\>
-	
-
+<p>
 Matches the end of a word.
+</p>
+<p>
+<b>[<span style="visibility:hidden;">X</span>]</b>
+</p>
 
-[ ]
-	
-
+<p>
 Matches any character specified within the brackets; for example, [a-z] matches any alphabetic character.
-
+</p>
+<p>
 \s, \S
-	
+</p>
 
+<p>
 Matches any whitespace character: space, a newline, a tab, a carriage return, a formfeed, or a backspace; \S matches any
 character except whitespace.
-
+</p>
+<p>
 \d, \D
-	
+</p>
 
+<p>
 Matches any single digit, 0-9; \D matches any character but a digit.
-
+</p>
+<p>
 \w, \W
-	
+</p>
 
+<p>
 Matches any "word" character (upper- and lowercase letters, digits, and the underscore character); \W matches any character but
 these.
-
-If you do a regular expression search for ^word$, you would find instances of word on a line by itself. The ^ says that the w
+</p>
+<p>
+If you do a regular expression search for <sup>word</sup>$, you would find instances of word on a line by itself. The ^ says that the w
 must be the first character on the line, the $ says that the d must be the last character.
-
+</p>
+<p>
 If you wanted to find all words starting with beg and ending with the letter s, you could use beg[a-z]*s as your regular
 expression. This would find the words begins, begets, and begonias, in addition to really odd words like shibegrees and
 altbegaslia. If you don't want these mutants鈥攖hat is, if you really want words that begin with beg and end with s, use
-\<beg[a-z]*s\>. The \< is a special sequence that matches the beginning of a word; \> matches the end of a word. If you wanted
+\&lt;beg[a-z]*s\&gt;. The \&lt; is a special sequence that matches the beginning of a word; \&gt; matches the end of a word. If you wanted
 to find the words beg, big, and bag; but not begonias, and certainly not any strange words with beg on the inside, you would use
-\<b[a-z]g\> as the regular expression.
-
+\&lt;b[a-z]g\&gt; as the regular expression.
+</p>
+<p>
 To search for a ^, $, ., *, [, ], or any number of other special characters, you obviously can't use the character itself. Put a
 backslash (\) first鈥攊.e., to search for a period, search for \. For example, to search for the electronic mail address`:
-
+</p>
+<p>
 howie@mcds.com
+</p>
 
-
+<p>
 the regular expression would be:
-
+</p>
+<p>
 howie@mcds\.com
+</p>
 
-
+<p>
 This is a barebones introduction to regular expressions; see Chapter 11 for more details and Mastering Regular Expressions by
 Jeffrey Friedl (O'Reilly) for a book-length treatment of this topic.
-
+</p>
+<p>
 You can use regular expressions in incremental searches and in query-replace. Table 3-5 lists the commands you use for regular
 expression searches. Although they are initiated with slightly different commands, the searches are the same as those described
 earlier in this chapter.
-
+</p>
+<p>
 Table 3-5. Regular expression search commands
-
+</p>
+<p>
 Keystrokes
-	
+</p>
 
+<p>
 Command name
-	
+</p>
 
+<p>
 Action
-
+</p>
+<p>
 C-M-s EnterEdit Search Regexp Forward
-	
+</p>
 
+<p>
 re-search-forward
-	
+</p>
 
+<p>
 Search for a regular expression forward.
-
+</p>
+<p>
 C-M-r EnterEdit Search Regexp Backwards
-	
+</p>
 
+<p>
 re-search-backward
-	
+</p>
 
+<p>
 Search for a regular expression backward.
-
+</p>
+<p>
 C-M-sEdit Search Incremental Search Forward Regexp
-	
+</p>
 
+<p>
 isearch-forward-regexp
-	
+</p>
 
+<p>
 Search incrementally forward for a regular expression.
-
+</p>
+<p>
 C-M-rEdit Search Incremental Search Backward Regexp
-	
+</p>
 
+<p>
 isearch-backward-regexp
-	
+</p>
 
+<p>
 Search incrementally backward for a regular expression.
-
+</p>
+<p>
 C-M-%Edit Replace Replace Regexp
-	
+</p>
 
+<p>
 query-replace-regexp
-	
+</p>
 
+<p>
 Query-replace a regular expression.
-
+</p>
+<p>
 (none)
-	
+</p>
 
+<p>
 replace-regexp
-	
+</p>
 
+<p>
 Globally replace a regular expression unconditionally (use with caution).
+</p><div id="postamble"><p class="author"> Author: Neil Gunn
+<a href="mailto:neil@neil">&lt;neil@neil&gt;</a>
+</p>
+<p class="date"> Date: 2011-02-14 10:45:28 CST</p>
+<p>HTML generated by org-mode 6.21b in emacs 23</p>
+</div></body>
+</html>

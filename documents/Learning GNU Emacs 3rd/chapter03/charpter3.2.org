@@ -1,6 +1,6 @@
 ﻿#+title: 3.2. 查找替换
 
-查找和替换总是相辅相生的，就像咖啡与牛奶。假设你在开发一款新的软件，在最后时刻，市场部通知你修改产品名称。
+查找和替换总是相辅相生的，就像咖啡与牛奶。假设你在开发一款新的软件，而市场部在最后时刻决定修改产品名称。
 
 生命周期信息发布是一个邮件服务，它会定期提醒你改善生活习惯，例如锻炼，喝水，以及摄取维生素。市场部提出，烦恼或者鼓励级别可以由用
 户自行设定。生命周期并不能说是最恰当的名字，所以最后市场部提出要改成健康隐患。
@@ -12,159 +12,146 @@
 再次按 *Enter* 。Emacs会替换掉从光标开始到文件末尾的全部字符串。如果想替换掉全文中的字符串，先按 *M-<* 回到文章开头，再输入指令。
 下面是一个使用 *replace-string* 的简单例子。
 
-初始状态：
-*Whirligig* 出现了四次，但是光标在第一个匹配项之后。
+|   | 初始状态：                                           |
+|---+------------------------------------------------------|
+| / | <>                                                   |
+|---+------------------------------------------------------|
+| # | [[../images/ge3_ch03scrn03.gif]]                         |
+|---+------------------------------------------------------|
+| # | *Whirligig* 出现了四次，但是光标在第一个匹配项之后。 |
 
-现在开始执行替换操作。
 
-输入： *M-x replace-string Enter Whirligig Enter HealthBug Enter*
-
-Emacs替换掉下文出现的全部实例。
+ 现在开始执行替换操作。
+|    | 输入： *M-x replace-string Enter Whirligig Enter HealthBug Enter* |
+|----+-------------------------------------------------------------------|
+| /  | <>                                                                |
+|----+-------------------------------------------------------------------|
+| #  | [[../images/ge3_ch03scrn04.gif]]                                      |
+|----+-------------------------------------------------------------------|
+| # | Emacs替换掉光标之后出现的全部实例。                               |
 
 替换操作只从光标位置向下执行；第一句中的 *Whirligig* 还没有被替换。我们一会儿会再次处理这个例子。
 
 *3.2.2 询问替换*
-Few search and replace situations are as straightforward as those we've described. Often you're not sure that you want to
-replace every appearance of your search string: a global replacement can be reckless. If you want to decide whether to replace
-the string on a case-by-case basis, use a query-replace, which allows you to change a string conditionally throughout a
-file. After Emacs finds an occurrence of the search string, it asks whether it should replace it, and you respond accordingly.
+
+只有少数的查找替换情况像我们刚才描述的那样简单直接。通常情况下，你并不确定替换掉每个查找到的字符串：全局替换可能导致不可预期的后
+果。如果你想一个一个的决定是否要替换字符串，可以使用询问替换，它可以让你有条件的替换文件中的字符串。当Emacs查找到一个查询字符串
+的匹配项后，它会询问是否需要替换，然后你相应的做出操作。
 
 To use query-replace, go to the beginning of the buffer using M-< and then type M-%. The prompt Query replace: appears in the
 minibuffer. Type the search string and press Enter. Now this appears:
 
-Query replace searchstring with:
+要使用询问替换，先使用 *M-<* 跳到缓冲区开头，然后输入 *M-%* 。提示信息 _Query replace:_ 出现的迷你缓冲区。输入查询字符串再按
+*Enter* 。现在又提示：
 
+_Query replace searchstring with:_
 
-Type the replacement string and press Enter. So far, this procedure is almost identical to a replace-string operation; only the
-prompts are different.
+输入替换字符串再按 *Enter* 。目前为止，这个操作过程与替换字符几乎完全相同；只是提示信息不同。
 
-Emacs now searches for the first occurrence of the search string. When it finds one, a new prompt appears:
+Emacs现在查找第一个查询字符串。当找到一个匹配项，新的提示信息出现：
 
-Query replacing searchstring with newstring
-
+_Query replacing_ *searchstring* _with_  *newstring*
 
 Before performing the replacement, Emacs waits for a response to tell it what to do. Table 3-3 lists the possible responses and
 their results.
 
-Table 3-3. Responses during query-replace
+在执行替换操作前，Emacs会一直等待回复，来告诉它下一步执行什么操作。表3－3可用的回复和相应的执行结果。
 
-Keystrokes
-	
+表3－3.询问替换过程中的回复
 
-Action
+|   | 按键           | 行为                                                               |
+|---+----------------+--------------------------------------------------------------------|
+| / | <>             | <>                                                                 |
+|---+----------------+--------------------------------------------------------------------|
+| # | *Space* 或 *y* | 用新字符串替换查询字符串并移动到下一匹配项。                       |
+|---+----------------+--------------------------------------------------------------------|
+| # | *Del* 或 *n*   | 不替换并移动到下一匹配项。                                         |
+|---+----------------+--------------------------------------------------------------------|
+| # | *.*            | 替换当前实例并退出。                                               |
+|---+----------------+--------------------------------------------------------------------|
+| # | *，*           | 替换当前匹配项并查看替换后效果。（按 *Space* 或 *y* 来向前移动）。 |
+|---+----------------+--------------------------------------------------------------------|
+| # | *!*            | 替换剩下的全部匹配项且不再询问执行什么操作。                       |
+|---+----------------+--------------------------------------------------------------------|
+| # | *^*            | 跳回到前一匹配项。                                                 |
+|---+----------------+--------------------------------------------------------------------|
+| # | *Enter* or *q* | 退出询问替换。                                                     |
+|---+----------------+--------------------------------------------------------------------|
+| # | *E*            | 修改替换字符串。                                                   |
+|---+----------------+--------------------------------------------------------------------|
+| # | *C-r*          | 进入递归编辑状态（在后面会有详细介绍）                             |
+|---+----------------+--------------------------------------------------------------------|
+| # | *C-w*          | 删除当前匹配项并进入递归编辑状态（你就可以进行自定义替换了）       |
+|---+----------------+--------------------------------------------------------------------|
+| # | *C-M-c*        | 退出递归编辑状态，继续询问替换。                                   |
+|---+----------------+--------------------------------------------------------------------|
+| # | *C-]*          | 退出递归编辑并退出询问替换。                                       |
 
-Space or y
-	
+这个表罗列出很多快捷键要记，但是你可以少记两三个。大部分时候，你只要按 *Space* 来响应提示信息，告诉Emacs执行替换操作并跳到下一个
+实例，或者 *n* 跳过当前替换并跳到下一实例。如果你不太确定会发生什么，输入一个逗号（，）；Emacs执行替换但不会跳到下一实例直到你按
+*Space* 。在执行了一些替换之后，你发现不需要分别检查每一个修改。输入感叹号（！）让Emacs执行余下的替换工作，并不再询问你是否替换。
+如果记住这几个快捷键，你也基本就准备好了。
 
-Replace searchstring with newstring and go to the next instance of the string.
+询问替换在实际操作中怎么用呢？让我们再看下之前的例子，假设我们想把 *Whirligig* 全部替换为 *HealthBug* （之前做的替换字符串操作并没有保存
+修改）。
 
-Del or n
-	
+|   | 输入：M-< M-% Whirligig Enter HealthBug Enter |
+|---+-----------------------------------------------|
+| / | <>                                            |
+|---+-----------------------------------------------|
+| # | [[../images/ge3_ch03scrn05.gif]]                  |
+|---+-----------------------------------------------|
+| # | 已经准备好替换第一个匹配项；按 *Space* 继续                    |
 
-Don't replace; move to next instance.
+|   | 按： *Space*                                                                      |
+|---+-----------------------------------------------------------------------------------|
+| / | <>                                                                                |
+|---+-----------------------------------------------------------------------------------|
+| # | [[../images/ge3_ch03scrn06.gif]]                                                                |
+|---+-----------------------------------------------------------------------------------|
+| # | 当你按了 *Space* ,Emacs替换掉第一个匹配项，然后询问替换操作移动到第二个匹配项上。 |
 
-.
-	
+在达到文件结尾前，这个操作会一直重复执行。如前所说，输入 *!* 替换文件中其他匹配项。
 
-Replace the current instance and quit.
+在表3－3中，你或许已经注意到一些按键（如 *Space* ）在执行替换操作时具有特定的含义。尽管在书面上看这些操作让人觉得有些诡异，实际
+上，使用这些按键执行不同的操作并不混乱。你或许在一个练习文件中尝试询问查询操作来掌握不同的操作。如果觉得有趣，你可以打开Emacs的
+FAQ，把它保存为另外的文件，然后替换文件中全部 *Emacs* 。
 
-,
-	
+*3.2.3 重复执行询问替换（以及其他复杂指令）*
 
-Replace and let me see the result before moving on. (Press Space or y to move on.)
-
-!
-	
-
-Replace all the rest and don't ask.
-
-^
-	
-
-Back up to the previous instance.
-
-Enter or q
-	
-
-Exit query-replace.
-
-E
-	
-
-Modify the replacement string.
-
-C-r
-	
-
-Enter a recursive edit (discussed in detail later).
-
-C-w
-	
-
-Delete this instance and enter a recursive edit (so you can make a custom replacement).
-
-C-M-c
-	
-
-Exit recursive edit and resume query-replace.
-
-C-]
-	
-
-Exit recursive edit and exit query-replace.
-
-This list seems like a lot of keystrokes to remember, but you can get away with knowing two or three. Most of the time you'll
-respond to the prompt by pressing Space, telling Emacs to perform the replacement and go on to the next instance, or n to skip
-this replacement and go on to the next instance. If you're not too sure what will happen, enter a comma (,); Emacs makes the
-replacement but doesn't go on until you press Space. After performing the first few replaces, you may realize that there's no
-need to inspect every change individually. Typing an exclamation mark (!) tells Emacs to go ahead and finish the job without
-bothering you anymore. If you remember these keystrokes, you're all set.
-
-How does this work in practice? Let's revisit our previous example, assuming that we want to change Whirligig to HealthBug
-throughout (and that we didn't save the changes we made with replace-string).
-
-Type: M-< M-% Whirligig Enter HealthBug Enter
-
-You're ready to replace the first occurrence; press Space to go on.
-
-Press: Space
-
-When you press Space, Emacs replaces the first word; the query-replace operation then moves to the second word.
-
-This procedure continues until you reach the end of the file. As we've said, typing ! fixes the rest of the file.
-
-In Table 3-3, you might have noticed that several keys, such as Space, have specialized meanings while the replacement is in
-progress. In practice, using these keys for a different function is not confusing, though it might sound bad on paper. You might
-want to try a query-replace on a practice file to get the hang of using the different responses. If you are easily amused, you
-might enjoy opening the Emacs FAQ, saving it as another file, then replacing Emacs throughout.  3.2.3 Repeating Query-Replaces
-(and Other Complex Commands)
-
-Now that you've learned the basics of query-replace, let's talk about a shortcut that applies not only in query-replace but
-anywhere in Emacs: repeating complex commands, with slight modifications. We often exit a query-replace by mistake or decide
-that the replacement we really wanted was just slightly different. Do we have to type it all again? No. Simply go the beginning
-of the file and press C-x Esc Esc. The last complex command you typed appears. If it's not the one you want, type M-p to see the
-previous command (do this as many times as necessary; M-n goes to the next command). For example, let's go to the beginning of
-the file and repeat the query-replace we just carried out.
+已经学习了基本的询问替换，现在来介绍一些快捷键，他们不仅可以用于询问查询也可以用于Emacs中的其他地方：用简单的修改来重复执行复杂指
+令。我们可能不小心退出了询问替换操作或者执行的替换操作与我们实际想要的替换有些微差别。难道我们还要一个字母一个字母重新输入？不。
+只要移动到文件开头，按 *C-x Esc Esc* 。最后一次输入的复杂指令会出现。如果不是你想要的指令，按 *M-p* 查看前一个指令（必要的话可以
+重复执行该操作； *M-n* 显示后一个指令）。例如，跳到文件开头并重复执行刚才做的询问替换操作。
 
 Type: M-< followed by C-x Esc Esc
+|   | 输入： *M-<* 再输入 *C-x Esc Esc* |
+|---+-----------------------------------|
+| / | <>                                |
+|---+-----------------------------------|
+| # | [[../images/ge3_ch03scrn07.gif]]      |
+|---+-----------------------------------|
+| # | Emacs在迷你缓冲区显示最近一个复杂指令；事实上指令看上去比我们记忆中的显得更复杂一些。 |
 
-Emacs puts the last complex command in the minibuffer; in fact it looks more complex than we remember it.
+当我们按 *M-<* ，光标移动到文件开头；当按 *C-x Esc Esc* , 最近一个复杂指令显示出来。Emacs用暗语通知自己，但是我们仍能看到我们想
+要的指令。
 
-When we press M-<, we move to the beginning of the file; when we press C-x Esc Esc, the last complex command is displayed. Emacs
-speaks to itself in dark words, but we can still see that this is the command that we want.
+显示的指令是正确的，所以我们就不用按 *M-p* 来查看前一个指令。如果必要的话，在按 *Enter* 之前，我们可以修改询问替换操作的字符串。
+在这个例子中，市场部还要将HealthBug（因为bug也可以被解释为害虫）替换为HealthBot（相对而言，我们的感觉中更容易接受一些）。我们之前
+的询问替换将Whirligig替换为HealthBug。我们需要修改这个指令，可以把Bug改为Bot。
 
-This is the right command, so we don't have to press M-p to see a previous command. If we wanted to, we could change the
-query-replace strings before pressing Enter. In this case, the Marketing Department has once again changed the product's name
-from HealthBug (since bug could be construed as pest) to HealthBot (neutral, but a bit less descriptive in our opinion). Our
-earlier query replace changed Whirligig to HealthBug. We need to modify this command so it replaces Bug with Bot.
+|   | 在迷你缓冲区中，修改 /Whirligig/ 为 /Bug/ ，修改 /HealthBug/ 为 /Bot/ 再按 *Enter*. |
+|---+-------------------------------------------------------------------------------------|
+| / | <>                                                                                  |
+|---+-------------------------------------------------------------------------------------|
+| # | [[../images/ge3_ch03scrn08.gif]]                                                        |
+|---+-------------------------------------------------------------------------------------|
+| # | 按 *Enter* 重新执行指令，用修改过的字符串替换修改过的查找项。                                                 |
 
-In the minibuffer, change Whirligig to Bug and HealthBug to Bot and press Enter.
+如我们刚才所提到的， *C-x Esc Esc* 可以操作任何在迷你缓冲区输入过的指令，而不仅仅是询问替换操作。但是我们主要还是在查询替换这个
+操作中使用该功能。不过它也适用于键盘宏（见第6章）。
 
-Pressing Enter executes the command again with the modified search and replacement strings.
-
-As we mentioned, C-x Esc Esc works for any command involving input in the minibuffer, not just query-replace. But we use this
-feature most frequently in query-replace. It is also good for repeating keyboard macros (see Chapter 6).  3.2.4 Recursive
-Editing
+ 3.2.4 Recursive Editing
 
 When you do a query-replace, you inevitably see something else you want to change in the file. Try it a few times鈥攜ou'll see
 what we mean! We typically try to remember the problem until we're done, then get frustrated when we forget exactly what and

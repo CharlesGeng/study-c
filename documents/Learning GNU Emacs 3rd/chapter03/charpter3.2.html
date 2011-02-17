@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>3.2. 查找替换</title>
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-02-15 19:49:24 CST"/>
+<meta name="generated" content="2011-02-16 21:25:04 CST"/>
 <meta name="author" content="nale"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -334,52 +334,71 @@ Type: M-&lt; followed by C-x Esc Esc
 操作中使用该功能。不过它也适用于键盘宏（见第6章）。
 </p>
 <p>
-3.2.4 Recursive Editing
+<b>3.2.4 递归编辑</b>
 </p>
 <p>
-When you do a query-replace, you inevitably see something else you want to change in the file. Try it a few times鈥攜ou'll see
-what we mean! We typically try to remember the problem until we're done, then get frustrated when we forget exactly what and
-where the problem was.
+当你执行询问替换时，不可避免的，你会碰到其他一些想要修改的内容。试几次－－你就知道我们的意思了！我们一般会在执行完操作前先努力记
+住问题，然后，由于忘记了具体问题或位置而沮丧。
 </p>
 <p>
-Fortunately, Emacs provides an easier way. It allows you to start a recursive edit while you're in the middle of a
-query-replace. By starting a recursive edit, you effectively put query-replace on hold while you make any other desired
-edits. When you exit the recursive edit, the query-replace resumes where you left off.
+幸运的是，Emacs提供一个比较简单的方式。它允许你在执行询问替换的过程中启动递归编辑。启动递归编辑后，你可以先挂起询问替换操作，再
+执行你的编辑工作。当你退出递归编辑后，询问替换回到你刚刚操作的位置。
 </p>
 <p>
-To start a recursive edit while in query-replace, press C-r. (Note that like many other key bindings, C-r has a different
-meaning in query-replace than it does in standard Emacs.) When you start a recursive edit, square brackets ([ ]) appear on the
-mode line. Let's go back, one more time, to our public relations piece. You've used query-replace to find the first Bug to
-change to Bot, and you are about to press Space to fix it, when you remember that the lawyers said that the "64 ounces of water"
-statement was too specific and could be construed as giving medical advice. A quick recursive edit saves the day.
+要想在询问替换时启动递归编辑，按 <b>C-r</b> 。（值得注意的是，和其他快捷键绑定一样， <b>C-r</b> 在询问替换操作和通常状态下的Emacs中有不同的
+含义）。 当启动一个递归编辑，方括号（［］）会出现在模式行。让我们再次回到之前的例子中。你已经使用询问替换来查找第一个BUG，并将其
+替换为Bot，你得按空格来处理时，你突然想起律师说的“64盎司的水”这个精辟并且可以作为医疗建议的句子时，递归编辑将派上用场了。
 </p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">输入： C-r</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left"><img src="../images/ge3_ch03scrn09.gif"  alt="../images/ge3_ch03scrn09.gif" /></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">注意（Text Fill）两边的方括号，表明正处于递归编辑状态。</td></tr>
+</tbody>
+</table>
+
+
 <p>
-Type: C-r
-</p>
-<p>
-Notice the square brackets around (Text Fill), indicating a recursive edit in progress.
-</p>
-<p>
-Now do any editing you want to; you are in an editing mode just like standard Emacs. Move down to the third line and delete "64
-ounces of." When you want to resume the query-replace, press C-M-c. This command tells Emacs to leave the recursive edit and
-reactivate the query-replace. Emacs moves back to the point where you were when you started the recursive edit. You can then
-continue making replacements just as if nothing had happened.
+现在你可以随便编辑了；和在一般编辑状态下没有什么区别。移动到第三行并删除"64 ounces of." 如果想回到询问替换，按 <b>C-M-c</b> 。这个命令
+告诉Emacs退出递归编辑并激活询问替换。Emacs将光标退回到启动递归编辑时的位置。你就可以像什么事儿都没有发生一样继续替换操作了。
 </p>
 <p>
 Delete "64 ounces of," then type C-M-c
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">删除 “64 ounces of,”然后按 C-M-c</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left"><img src="../images/ge3_ch03scrn10.gif"  alt="../images/ge3_ch03scrn10.gif" /></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Emacs退回到询问替换，并且按空格来修正下一个BUG</td></tr>
+</tbody>
+</table>
+
+
+<p>
+如果你想一下就退出递归编辑并退出询问替换，你可以按 <b>C-]</b> （表示 abort-recursive-edit）或者输入 <b>M-x top-level Enter</b> 而不是
+<b>C-M-c</b>  。
 </p>
 <p>
-Emacs goes back to query-replace and you press Space to fix the next Bug.
+事实上，你不仅可以在询问替换时启动递归编辑，其他任何时都可以。指令 <b>M-x recursive-edit Enter</b> 可以进行递归编辑； <b>C-M-c</b> 让你退
+出递归编辑，并回到之前的编辑状态。甚至可以在递归编辑状态下再次进入递归编辑，尽管这样做会不断增加迷惑性。
 </p>
 <p>
-If you decide to exit the recursive edit and cancel the query-replace in one fell swoop, you can type C-] (for
-abort-recursive-edit) or M-x top-level Enter rather than C-M-c.
-</p>
-<p>
-In fact, you can start a recursive edit at any time, not just when you're in a query-replace. The command M-x recursive-edit
-Enter puts you into a recursive edit; C-M-c takes you out of the recursive edit and brings you back to what you were doing
-before. You can even have recursive edits within recursive edits, although the possibility for confusion increases with each new
-level.  3.2.5 Are Emacs Searches Case-Sensitive?
+3.2.5 Are Emacs Searches Case-Sensitive?
 </p>
 <p>
 By default, Emacs searches are not case-sensitive. Look at the Options menu and you'll see that the option Case-Insensitive
@@ -640,7 +659,7 @@ Globally replace a regular expression unconditionally (use with caution).
 </p><div id="postamble">
 <p class="author"> Author: nale
 </p>
-<p class="date"> Date: 2011-02-15 19:49:24 CST</p>
+<p class="date"> Date: 2011-02-16 21:25:04 CST</p>
 <p class="creator">HTML generated by org-mode 7.4 in emacs 23</p>
 </div>
 </div>

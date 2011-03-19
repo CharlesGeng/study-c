@@ -189,24 +189,24 @@ Delete "64 ounces of," then type C-M-c
 事实上，你不仅可以在询问替换时启动递归编辑，其他任何时都可以。指令 *M-x recursive-edit Enter* 可以进行递归编辑； *C-M-c* 让你退
 出递归编辑，并回到之前的编辑状态。甚至可以在递归编辑状态下再次进入递归编辑，尽管这样做会不断增加迷惑性。
 
- 3.2.5 Are Emacs Searches Case-Sensitive?
+*3.2.5 Emacs查询时是大小写敏感的吗？*
 
-By default, Emacs searches are not case-sensitive. Look at the Options menu and you'll see that the option Case-Insensitive
-Search is the only option that is checked by default.
+默认情况下，Emacs查询时不区分大小写。查看选项菜单，你会发现 *Case-Insensitive* 选项是唯一一个默认选中的选项。
 
-What does this mean in practical terms? If you search for the word random, the search finds random, Random, and RANDOM, as well
-as oddities like RanDoM and rANdOM. When doing replacements, Emacs pays attention to the form of the word being replaced and
-replaces it with the same case. If you replaced random with tandem, Random would be replaced with Tandem, and RANDOM would be
-replaced with TANDEM. If you mix capitalization, the replacement string appears just as you type it. healthbug would be replaced
-with HealthBug if that was the case in the replacement string. In other words, the default search and replacement operations
-usually do what you want: they find a search string regardless of its case and adjust the replacement appropriately for its
-context. However, sometimes you need finer control.
+在实际使用中，这样做有什么意义呢？如果你查找单词 *randon* , 会找到 *random* , *Random* 和 *RANDOM* ，甚至像 *RanDoM* 和 *rANdOM*
+这样怪异的匹配项也能找到。Emacs在替换时会注意要被替换的单词并且按照原词的大小写样式替换。如果你想将 /random/ 替换成 /tandem/ ,那
+么 /Random/ 会被替换成 /Tandem/ ， /RANDOM/ 替换成 /TANDEM/ 。如果你按大小写混合输入替换的字符串，那么替换操作会按照你输入的格式替换。
+当输入的字符串为大小写区分的方式输入HealthBug，那么 /healthbug/ 会被替换为 /HealthBug/ 。换言之，查找替换操作默认情况下一般按照
+以下方式工作：Emacs查找字符串时不区分大小写并根据上下文适当地执行替换操作。不过，有时你需要更好的控制。
 
 The variable case-fold-search determines whether searches are case-sensitive. It applies to all searches: incremental searches,
 word searches, searches within search-and-replace operations, and so on. By default, case-fold-search is set to t, which means
 "ignore case unless the user types in mixed or uppercase." This sensible default is usually just what you want. But if you need
 case-sensitive searches, the Case-Insensitive Search option on the Options menu provides an easy way to experiment with this
 variable.
+
+变量 *case-fold-search* 决定查询时是否大小写敏感。它适用于所有的查询操作：递增查询，单词查询，以及查询替换操作中的查询等等。默认
+情况下，变量 *case-fold-search* 被设置为 *t* , *t* 表示“除非用户按大小写混合输入或者全部大写，否则不区分大小写”。
 
 Likewise, if you don't want Emacs to adjust the case of your replacement strings, you can set the variable case-replace. Again,
 its value is t (for "true") by default, which means "adjust the case of a replacement string to match the original text"鈥攖hat

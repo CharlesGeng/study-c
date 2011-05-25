@@ -3,7 +3,7 @@
 #define LINEMAX     2000        //the max lenth of a line
 #define MAXLENGTH   20          //ideal length
 
-int getline(char[], int);       //get a line
+int mygetline(char[], int);       //get a line
 void splitline(char[], int);    //split line
 
 int main()
@@ -11,7 +11,7 @@ int main()
     int i;
     char str[LINEMAX];
 
-    while ((i = getline(str, LINEMAX)) > 0)
+    while ((i = mygetline(str, LINEMAX)) > 0)
     {
         if (i > MAXLENGTH)
         {
@@ -25,7 +25,7 @@ int main()
 }
 
 //initialize the line and return the length
-int getline(char str[], int limit)
+int mygetline(char str[], int limit)
 {
     int c;
     int i = 0;

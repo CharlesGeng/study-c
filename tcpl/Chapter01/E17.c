@@ -7,7 +7,7 @@
 #define MAXLENGHT   1000
 #define LONGLINE    80
 
-int getline(char str[]);
+int mygetline(char str[]);
 
 int main()
 {
@@ -16,7 +16,7 @@ int main()
     int max = 0;    //Longest String's Length
     int len = 0;
 
-    while ((len = getline(str)) > 0)
+    while ((len = mygetline(str)) > 0)
     {
         if (len > LONGLINE)
             printf("%d:%s", len, str);
@@ -25,7 +25,7 @@ int main()
 }
 
 // Get Str's Length
-int getline(char str[])
+int mygetline(char str[])
 {
     char c;
     int i = 0;

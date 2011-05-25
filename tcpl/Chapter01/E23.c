@@ -17,14 +17,14 @@
 
 #define MAXLINELENGTH 1000          //The Maximum Length Of A Line
 
-int getline(char *str, int maxlength);
+int mygetline(char *str, int maxlength);
 int RemoveComments(char *str, int length);
 
 int main(int argc, char *argv[])
 {
     char str[MAXLINELENGTH];
     int strLength = 0;
-    while ((strLength = getline(str, MAXLINELENGTH)) > 0)
+    while ((strLength = mygetline(str, MAXLINELENGTH)) > 0)
     {
         if( RemoveComments(str, strLength) > 0)
         {
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 }
 
 //get string and return string's length
-int getline(char str[], int maxlength)
+int mygetline(char str[], int maxlength)
 {
     int i;
     int c = 0;

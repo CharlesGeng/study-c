@@ -31,7 +31,7 @@ int strrindex(char sf[], char ss[])
     return -1;
 }
 
-int getline(char line[], int length)
+int mygetline(char line[], int length)
 {
     int i, c;
     i = c = 0;
@@ -47,7 +47,7 @@ int main()
 {
     char line[MAXLINE];
     char *partern = "ould";
-    while(getline(line, MAXLINE) > 0)
+    while(mygetline(line, MAXLINE) > 0)
         strrindex(line, partern);
     return 0;
 }

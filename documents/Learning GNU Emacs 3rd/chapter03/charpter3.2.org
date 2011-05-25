@@ -206,7 +206,8 @@ case-sensitive searches, the Case-Insensitive Search option on the Options menu 
 variable.
 
 变量 *case-fold-search* 决定查询时是否大小写敏感。它适用于所有的查询操作：递增查询，单词查询，以及查询替换操作中的查询等等。默认
-情况下，变量 *case-fold-search* 被设置为 *t* , *t* 表示“除非用户按大小写混合输入或者全部大写，否则不区分大小写”。
+情况下，变量 *case-fold-search* 被设置为 *t* , *t* 表示“除非用户按大小写混合输入或者全部大写，否则不区分大小写”。这个明智的默
+认项与用户一般要求相符。不过，如果需要大小写敏感，菜单中
 
 Likewise, if you don't want Emacs to adjust the case of your replacement strings, you can set the variable case-replace. Again,
 its value is t (for "true") by default, which means "adjust the case of a replacement string to match the original text"鈥攖hat

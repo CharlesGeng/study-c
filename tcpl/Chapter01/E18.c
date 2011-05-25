@@ -2,13 +2,13 @@
 
 #define MAXLENGTH   1000
 
-int getline(char string[]);
+int mygetline(char string[]);
 
 int main()
 {
     int len = 0;
     char line[MAXLENGTH];
-    while ((len = getline(line)) > 0)
+    while ((len = mygetline(line)) > 0)
     {
         if (len < 2)
             continue;
@@ -18,7 +18,7 @@ int main()
     return 0;
 }
 
-int getline(char line[]) 
+int mygetline(char line[]) 
 {
     int i = 0;
     char c;

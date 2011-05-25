@@ -3,20 +3,20 @@
 #define MAXLINE     1000
 
 const int TABLEN = 8;
-int getline(char str[]);
+int mygetline(char str[]);
 void outputline(char str[]);
 
 int main()
 {
     char str[MAXLINE];
-    while (getline(str) > 0)
+    while (mygetline(str) > 0)
     {
         outputline(str);
     }
     return 0;
 }
 
-int getline(char str[])
+int mygetline(char str[])
 {
     char c;
     int i = 0;

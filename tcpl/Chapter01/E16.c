@@ -4,7 +4,7 @@
 
 #define MAXLENGHT 1000
 
-int getline(char[]);
+int mygetline(char[]);
 void copystr(char[], char[]);
 
 int main()
@@ -14,7 +14,7 @@ int main()
     int max = 0;    //Longest String's Length
     int len = 0;
 
-    while ((len = getline(str)) > 0)
+    while ((len = mygetline(str)) > 0)
     {
         if (len > max)
         {
@@ -31,7 +31,7 @@ int main()
 }
 
 // Get Str's Length
-int getline(char str[])
+int mygetline(char str[])
 {
     char c;
     int i = 0;

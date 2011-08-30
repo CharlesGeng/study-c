@@ -5,7 +5,7 @@ Rxvt*foreground: #000000
 Rxvt*scrollBar: false
 Rxvt*scrollBar_right: True
 !Rxvt*font: Fixedsys
-Rxvt.font:xft:Bitstream Vera Sans Mono-12,xft:WenQuanYi Bitmap Song-12
+Rxvt.font:xft:WenQuanYi Micro Hei Mono -12
 Rxvt*mfont: Terminal
 Rxvt*SaveLines: 2000
 Rxvt*loginShell: True

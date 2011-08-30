@@ -19,5 +19,16 @@
 (set-fill-column 128)
 
 (global-linum-mode t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
+
+;该函数用于最大化,状态值为1说明最大化后不会被还原
+;因为这里有两次最大化 (分别是水平和垂直)
+(defun my-maximized ()
+  (interactive)
+  (x-send-client-message
+   nil 0 nil "_NET_WM_STATE" 32
+   '(1 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+  (interactive)
+  (x-send-client-message
+   nil 0 nil "_NET_WM_STATE" 32
+   '(1 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
+(my-maximized) 

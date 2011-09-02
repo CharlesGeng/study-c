@@ -26,6 +26,7 @@
             </td>
         </tr>
     </table>
+    <hr/>
     <p>
     有表头的表格
     </p>
@@ -64,6 +65,7 @@
             </td>
         </tr>
     </table>
+    <hr/>
     <p>
         包含空白元素的表格，使用&amp;nbsp
     </p>
@@ -91,7 +93,7 @@
             </td>
         </tr>
     </table>
-
+    <hr/>
     <p>
         带有标题的表格
     </p>
@@ -113,17 +115,136 @@
                 004
             </td>
             <td>
-                005
-            </td>
+                005        
             <td>
                 &nbsp
             </td>
         </tr>
     </table>
+
+    <hr/>
     <p>
-      
+        跨行和跨列
     </p>
-    <tag>
-      
-    </tag>
+    <table border="1">
+        <caption>
+            跨列
+        </caption>
+        <tr>
+            <th colspan="2">
+                name
+            </th>
+            <th>
+                &nbsp
+            </th> </tr>
+        <tr>
+            <th>
+                first name
+            </th>
+            <th>
+                last name
+            </th>
+            <th>
+                age
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Bill
+            </td>
+            <td>
+                Gunn 
+            </td>
+            <td>
+                30
+            </td>
+        </tr>
+    </table>
+    <table border="1">
+        <caption>
+            跨行
+        </caption>
+        <tr>
+            <th rowspan="2">
+                name
+            </th>
+            <th>
+                first name
+            </th>
+            <td>
+                Bill
+            </td>
+        </tr>
+        <tr>
+            <th>
+                last name
+            </th>
+            <td>
+                Gunn
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp
+            </td>
+            <th>
+                age
+            </th>
+            <td>
+                30
+            </td>
+        </tr>
+    </table>
+    <hr/>
+    <p>
+    单元格内的标签
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <p>
+                这是一个段落。
+                </p>
+                <p>
+                这是另一个段落。
+                </p>
+            </td>
+            <td>
+                <p>
+                    这个单元格包括一个表格。
+                </p>
+                <table border="1">
+                    <tr>
+                        <td>
+                            a
+                        </td>
+                        <td>
+                            b
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            c
+                        </td>
+                        <td>
+                            d
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                这个单元格包括一个列表。
+                <ul>
+                    <li> 苹果</li>
+                    <li> 香蕉</li>
+                    <li> 桔子</li>
+                </ul>
+            </td>
+            <td>
+                Hello.
+            </td>
+        </tr>
+    </table>
 </html>

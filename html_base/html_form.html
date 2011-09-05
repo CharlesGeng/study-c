@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <script language="javascript" type="text/javascript">
+            function helloworld(){
+                alert("Hello, world!");
+            }
+        </script>
+    </head>
+    <body>
+        <form>
+            <table >
+                <tr>
+                    <td align="right"> UserName:</td>
+                    <td><input type="text"></input></td>
+                </tr>
+                <tr>
+                    <td align="right">Password:</td>
+                    <td><input type="password"></input></td>
+                </tr>
+            </table>
+        </form>
+        <p> <b>NOTE:</b>The characters in password fields are marsked! </p>
+        <hr />
+        <form>
+            <table>
+                <tr>
+                    <td> First name:</td>
+                    <td> <input type="text"></td>
+                </tr>
+                <tr>
+                    <td> Last name:</td>
+                    <td> <input type="text"></td>
+                </tr>
+            </table>
+        </form>
+        <hr />
+        <form>
+            <input type="radio" name="sex"> male</input> 
+            <br />
+            <input type="radio" name="sex">female</input> 
+        </form>
+        <form>
+            <p> Which fruit do you like best?  </p>
+            <input type="radio" name="fruit" value="banana">banana</input>
+            <br />
+            <input type="radio" name="fruit" value="apple">apple</input>
+            <br />
+            <input type="radio" name="fruit" value="orange">orange</input>
+            <br />
+            <input type="radio" name="fruit" value="peach">peach</input>
+            <br />
+        </form>
+        <hr />
+        <form>
+            <input type="checkbox" name="vehicle" name="Bike">I have a Bike</input>
+            <br />
+            <input type="checkbox" name="vehicle" name="Car">I have a Car</input>
+        </form>
+        <hr />
+        <form>
+            <input type="button" value="Hello world!" onclick="helloworld()"></input>
+        </form>
+        <hr />
+        <p> 不带默认值的下拉框 </p>
+        <form>
+            <select name="traffic tools">
+                <option value="train"> Train </option>
+                <option value="car"> Car</option>
+                <option value="airplane"> Airplane</option>
+            </select>
+        </form>
+        <hr />
+        <p> 带默认值的下拉框 </p>
+        <form>
+            <select name="traffic tools">
+                <option value="train"> Train </option>
+                <option value="car" selected="selected"> Car</option>
+                <option value="airplane"> Airplane</option>
+            </select>
+        </form>
+        <hr/>
+        <textarea rows="10" cols="32">
+            这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。
+            这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。
+            这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。
+            这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。
+            这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。
+            这是一个测试区。 这是一个测试区。 这是一个测试区。 这是一个测试区。
+        </textarea>
+        <hr />
+        <fieldset >
+            <legend>身高体重</legend>
+            <table>
+                <tr> 
+                    <td> 身高：</td>
+                    <td> <input type="text" size="3"></input></td>
+                    <td> 体重：</td>
+                    <td> <input type="text" size="3"></input></td>
+                </tr>
+            </table>
+        </fieldset>
+    </body>
+</html>

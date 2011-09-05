@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo apt-get install build-essential make gdb automake autoconf vim-gtk emacs python3.2 subversion git
+sudo apt-get install build-essential make gdb automake autoconf vim-gtk emacs python3.2 subversion git rxvt-unicode

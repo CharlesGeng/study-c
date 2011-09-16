@@ -40,3 +40,4 @@ def action(x):
 
 act = action(2)
 print act(4)
+tmp = input()

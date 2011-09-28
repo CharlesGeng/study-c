@@ -565,3 +565,7 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
     set tabstop=4
     set shiftwidth=4
     set autowrite
+    "Open recent files
+    au VimEnter * '0
+    "NERDtree
+    nmap <leader>do :NERDTreeToggle<cr>

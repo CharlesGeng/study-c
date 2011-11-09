@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>基础知识</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-11-08 10:50:06 CST"/>
+<meta name="generated" content="2011-11-08 13:37:03 CST"/>
 <meta name="author" content="Bill Gunn"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -93,6 +93,7 @@ lang="en" xml:lang="en">
 <li><a href="#sec-1-2">1.2 除号－// </a></li>
 </ul>
 </li>
+<li><a href="#sec-2">2 幂运算符 </a></li>
 </ul>
 </div>
 </div>
@@ -140,11 +141,11 @@ lang="en" xml:lang="en">
 <div class="outline-text-3" id="text-1-2">
 
 <ol>
-<li>说明：／／是整除符号，两个浮点数相除，商也会只保留整数。
+<li>说明：//是整除符号，两个浮点数相除，商也会只保留整数。
 </li>
 <li>注意：
 <ul>
-<li>整除不会进行四舍五入操作；
+<li>整除 <b>不</b> 会进行四舍五入操作；
 </li>
 <li>如果除数和被除数都是整型，则结果也是整型；
 </li>
@@ -173,11 +174,51 @@ lang="en" xml:lang="en">
 
 
 
+
 </div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 幂运算符 </h2>
+<div class="outline-text-2" id="text-2">
+
+<ol>
+<li>说明：** 用于计算乘方。
+</li>
+<li>注意：
+<ol>
+<li>幂运算比取反运算优先级高；
+</li>
+</ol>
+
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="example">&gt;&gt;&gt; 2 ** 3
+8
+&gt;&gt;&gt; 3 ** 2
+9
+&gt;&gt;&gt; -3 ** 2
+-9
+&gt;&gt;&gt; (-3)** 2
+9
+
+
+</pre>
+
+
+
 </div>
 </div>
 <div id="postamble">
-<p class="date">Date: 2011-11-08 10:50:06 CST</p>
+<p class="date">Date: 2011-11-08 13:37:03 CST</p>
 <p class="author">Author: Bill Gunn</p>
 <p class="creator">Org version 7.6 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

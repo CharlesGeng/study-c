@@ -45,5 +45,89 @@
   -9
   >>> (-3)** 2
   9
+ #+END_SRC
+
+* 长整型
+  1. 在后面加 *L*
+
+* TODO 十六进制和八进制
+  1) 十六进制：0x0123456789ABCDEF
+  2) 八进制：001234567
+ 
+* 变量
+  1. 使用变量前必须对其赋值。
+
+* 语句
+  1. 语句改变了事物（p12）
+
+* 获取用户输入
+  1. 说明：input 获取用户输入。
+  2. 例子：
+#+BEGIN_SRC python
+  num = raw_input("Please input a number:")
+  print ("The number is %r" % num)
+  #运行结果:
+  #Please input a number:123
+  #The number is '123'
+  
+#+END_SRC
+* if 语句
+  1. 判断语句
+  2. 例子：
+#+BEGIN_SRC python
+  if 1 == 2:
+      print ("1 == 2")
+  if 1 < 2:
+      print ("1 < 2")
+  
+#+END_SRC
+
+* 函数
+  1. 说明：函数就是实现特定功能的小程序。
+  2. 例子：
+#+BEGIN_SRC python
+  #幂函数
+  >>> pow(2, 3)
+  8
+  >>> 10 + pow(2, 10) / 3
+  351.3333333333333
+  
+  #绝对值函数
+  >>> abs(10)
+  10
+  >>> abs(-10)
+  10
+  
+  #四舍五入函数,将浮点数四舍五入为整数
+  >>> round(3.444)
+  3
+  >>> round (3.5001)
+  4
+  
+#+END_SRC
+
+* 模块
+  1. 说明：可以把模块想像成功能集。用 *import* 关键字导入模块
+     1. 导入模块的方法1：import 模块
+     2. 导入模块的方法2：from 模块 import 函数
+  2. 注意：应该多使用第一种模块导入的方法，这样就不会因为不同模块中有
+     相同函数而导致冲突。
+  3. 例子：
+#+BEGIN_SRC python
+  #python 3.2中，math.floor直接返回整型，与int的效果相同  
+  #使用第一种模块导入方法
+  >>> import math
+  >>> math.floor(32.99999)
+  32
+  >>> int(32.99999)
+  32
+  
+  #使用第二种模块导入方法
+  >>> from math import sqrt
+  >>> sqrt(169)
+  13.0
+  
+  #cmath
+    
   
 #+END_SRC

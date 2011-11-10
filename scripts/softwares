@@ -1,2 +1,6 @@
 #!/bin/bash
-sudo apt-get install build-essential make gdb automake autoconf vim-gtk emacs python3.2 subversion git rxvt-unicode
+#install softwares
+sudo apt-get install build-essential make gdb automake autoconf vim-gtk emacs python3.2 subversion git rxvt-unicode org-mode
+sudo cp spring.vim /usr/share/vim/vim73/colors/
+cp .vimrc .emacs .Xdefaults ~/
+

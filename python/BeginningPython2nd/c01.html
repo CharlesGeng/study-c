@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>基础知识</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-11-08 13:37:03 CST"/>
+<meta name="generated" content="2011-11-10 16:29:07 CST"/>
 <meta name="author" content="Bill Gunn"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -94,6 +94,21 @@ lang="en" xml:lang="en">
 </ul>
 </li>
 <li><a href="#sec-2">2 幂运算符 </a></li>
+<li><a href="#sec-3">3 长整型 </a></li>
+<li><a href="#sec-4">4 十六进制和八进制 </a></li>
+<li><a href="#sec-5">5 变量 </a></li>
+<li><a href="#sec-6">6 语句 </a></li>
+<li><a href="#sec-7">7 获取用户输入 </a></li>
+<li><a href="#sec-8">8 if 语句 </a></li>
+<li><a href="#sec-9">9 函数 </a></li>
+<li><a href="#sec-10">10 模块 </a></li>
+<li><a href="#sec-11">11 字符串 </a>
+<ul>
+<li><a href="#sec-11-1">11.1 单引号和双引号 </a></li>
+<li><a href="#sec-11-2">11.2 转义字符 </a></li>
+<li><a href="#sec-11-3">11.3 拼接字符串 </a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -210,15 +225,307 @@ lang="en" xml:lang="en">
 &gt;&gt;&gt; (-3)** 2
 9
 
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 长整型 </h2>
+<div class="outline-text-2" id="text-3">
+
+<ol>
+<li>在后面加 <b>L</b>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> <span class="todo TODO"> TODO</span> 十六进制和八进制 </h2>
+<div class="outline-text-2" id="text-4">
+
+<ol>
+<li>十六进制：0x0123456789ABCDEF
+</li>
+<li>八进制：001234567
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 变量 </h2>
+<div class="outline-text-2" id="text-5">
+
+<ol>
+<li>使用变量前必须对其赋值。
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 语句 </h2>
+<div class="outline-text-2" id="text-6">
+
+<ol>
+<li>语句改变了事物（p12）
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 获取用户输入 </h2>
+<div class="outline-text-2" id="text-7">
+
+<ol>
+<li>说明：input 获取用户输入。
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="example">num = raw_input("Please input a number:")
+print ("The number is %r" % num)
+#运行结果:
+#Please input a number:123
+#The number is '123'
+
 
 </pre>
 
 
 
 </div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> if 语句 </h2>
+<div class="outline-text-2" id="text-8">
+
+<ol>
+<li>判断语句
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="example">if 1 == 2:
+    print ("1 == 2")
+if 1 &lt; 2:
+    print ("1 &lt; 2")
+
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> 函数 </h2>
+<div class="outline-text-2" id="text-9">
+
+<ol>
+<li>说明：函数就是实现特定功能的小程序。
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="example">#幂函数
+&gt;&gt;&gt; pow(2, 3)
+8
+&gt;&gt;&gt; 10 + pow(2, 10) / 3
+351.3333333333333
+
+#绝对值函数
+&gt;&gt;&gt; abs(10)
+10
+&gt;&gt;&gt; abs(-10)
+10
+
+#四舍五入函数,将浮点数四舍五入为整数
+&gt;&gt;&gt; round(3.444)
+3
+&gt;&gt;&gt; round (3.5001)
+4
+
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> 模块 </h2>
+<div class="outline-text-2" id="text-10">
+
+<ol>
+<li>说明：可以把模块想像成功能集。用 <b>import</b> 关键字导入模块
+<ol>
+<li>导入模块的方法1：import 模块
+</li>
+<li>导入模块的方法2：from 模块 import 函数
+</li>
+</ol>
+
+</li>
+<li>注意：应该多使用第一种模块导入的方法，这样就不会因为不同模块中有
+     相同函数而导致冲突。
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="example">#python 3.2中，math.floor直接返回整型，与int的效果相同  
+#使用第一种模块导入方法
+&gt;&gt;&gt; import math
+&gt;&gt;&gt; math.floor(32.99999)
+32
+&gt;&gt;&gt; int(32.99999)
+32
+
+#使用第二种模块导入方法
+&gt;&gt;&gt; from math import sqrt
+&gt;&gt;&gt; sqrt(169)
+13.0
+
+#cmath
+&gt;&gt;&gt; import cmath
+&gt;&gt;&gt; cmath.sqrt(-1)
+1j
+
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> 字符串 </h2>
+<div class="outline-text-2" id="text-11">
+
+
+</div>
+
+<div id="outline-container-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> 单引号和双引号 </h3>
+<div class="outline-text-3" id="text-11-1">
+
+<ol>
+<li>说明：打印时，单引号和双引号都可以使用。
+</li>
+<li>注意：在字符串中有单引号时，可以使用双引号，在字符串中有双引号时，
+      可以使用单引号
+</li>
+<li>例子
+</li>
+</ol>
+
+
+
+
+<pre class="example">&gt;&gt;&gt; print ("This is a test!")
+This is a test!
+&gt;&gt;&gt; print ('I said:"I will be there!"')
+I said:"I will be there!"
+&gt;&gt;&gt; print ("Let's go!")
+Let's go!
+
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11-2" class="outline-3">
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> 转义字符 </h3>
+<div class="outline-text-3" id="text-11-2">
+
+<ol>
+<li>说明：对字符串中的引号用 <b>\</b> 进行转义
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="example">&gt;&gt;&gt; print ("\"")
+"
+&gt;&gt;&gt; print ('\'')
+'
+
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11-3" class="outline-3">
+<h3 id="sec-11-3"><span class="section-number-3">11.3</span> 拼接字符串 </h3>
+<div class="outline-text-3" id="text-11-3">
+
+<ol>
+<li>说明：用加法符号拼接 <b>+</b> 字符串
+</li>
+</ol>
+
+</div>
+</div>
 </div>
 <div id="postamble">
-<p class="date">Date: 2011-11-08 13:37:03 CST</p>
+<p class="date">Date: 2011-11-10 16:29:07 CST</p>
 <p class="author">Author: Bill Gunn</p>
 <p class="creator">Org version 7.6 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

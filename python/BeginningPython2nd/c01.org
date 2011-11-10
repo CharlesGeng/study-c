@@ -128,6 +128,54 @@
   13.0
   
   #cmath
-    
+  >>> import cmath
+  >>> cmath.sqrt(-1)
+  1j
+ #+END_SRC
+* 字符串
+** 单引号和双引号
+   1. 说明：打印时，单引号和双引号都可以使用。
+   2. 注意：在字符串中有单引号时，可以使用双引号，在字符串中有双引号时，
+      可以使用单引号
+   3. 例子
+#+BEGIN_SRC python
+  >>> print ("This is a test!")
+  This is a test!
+  >>> print ('I said:"I will be there!"')
+  I said:"I will be there!"
+  >>> print ("Let's go!")
+  Let's go!
+  
+#+END_SRC
+
+** 转义字符
+   1. 说明：对字符串中的引号用 *\* 进行转义
+   2. 例子：
+#+BEGIN_SRC python
+  >>> print ("\"")
+  "
+  >>> print ('\'')
+  '
+  
+#+END_SRC
+
+** 拼接字符串
+   1. 说明：用加法符号拼接 *+* 字符串
+   2. 例子：
+#+BEGIN_SRC python
+  >>> print ("Let's say:\"" + "Hello, world!\"")  
+  Let's say:"Hello, world!"  
+  
+#+END_SRC
+** 值被转换为字符串的两种机制
+   1. 说明：两种机制
+      - 用str转换，它会把字符串转换成合法形式的字符串，以便用户可以理
+        解。
+      - 用repr转换，它会创建一个字符串，以合法的Python表达式的形式来表
+        示值。repr的功能可以用反引号（数字键1旁边的那个键）实现。
+#+BEGIN_SRC python
+  >>> x = 10000000000000000000
+  >>> print ("x is " + repr(x))
+  x is 1000000000000000000000000000  
   
 #+END_SRC

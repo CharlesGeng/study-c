@@ -172,10 +172,36 @@
       - 用str转换，它会把字符串转换成合法形式的字符串，以便用户可以理
         解。
       - 用repr转换，它会创建一个字符串，以合法的Python表达式的形式来表
-        示值。repr的功能可以用反引号（数字键1旁边的那个键）实现。
+        示值。
 #+BEGIN_SRC python
   >>> x = 10000000000000000000
   >>> print ("x is " + repr(x))
   x is 1000000000000000000000000000  
   
 #+END_SRC
+** input和raw_input的区别
+   1. 说明：在python3中，取消了raw_input函数．
+   2. 例子：
+#+BEGIN_SRC python
+  >>> name = input("Your name: ")
+  Your name: Bill Gunn
+  >>> print("Hello " + name)
+  Hello Bill Gunn
+#+end_src
+** 长字符串
+   1. 说明：用三个双引号来引用长字符串．
+   2. 例子：
+
+#+BEGIN_SRC python
+  >>> print (""" 
+  ... This is a very long string.
+  ... It continues here.
+  ... END.
+  ... """)
+  
+  This is a very long string.
+  It continues here.
+  END.
+  
+  
+#+end_src

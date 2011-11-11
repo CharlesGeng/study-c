@@ -7,8 +7,8 @@ lang="en" xml:lang="en">
 <title>基础知识</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-11-10 16:29:07 CST"/>
-<meta name="author" content="Bill Gunn"/>
+<meta name="generated" content="2011-11-11 15:45:58 "/>
+<meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <style type="text/css">
@@ -79,9 +79,14 @@ lang="en" xml:lang="en">
 
 </head>
 <body>
-<div id="content">
 
+<div id="preamble">
+
+</div>
+
+<div id="content">
 <h1 class="title">基础知识</h1>
+
 
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
@@ -107,6 +112,11 @@ lang="en" xml:lang="en">
 <li><a href="#sec-11-1">11.1 单引号和双引号 </a></li>
 <li><a href="#sec-11-2">11.2 转义字符 </a></li>
 <li><a href="#sec-11-3">11.3 拼接字符串 </a></li>
+<li><a href="#sec-11-4">11.4 值被转换为字符串的两种机制 </a></li>
+<li><a href="#sec-11-5">11.5 input和raw_input的区别 </a></li>
+<li><a href="#sec-11-6">11.6 长字符串 </a></li>
+<li><a href="#sec-11-7">11.7 原始字符串 </a></li>
+<li><a href="#sec-11-8">11.8 Unicode字符串 </a></li>
 </ul>
 </li>
 </ul>
@@ -126,7 +136,7 @@ lang="en" xml:lang="en">
 <div class="outline-text-3" id="text-1-1">
 
 <ol>
-<li>说明：／是除法符号，两个整型数相除，如果商不是整数，会显示小数。
+<li>说明： <b>/</b> 是除法符号，两个整型数相除，如果商不是整数，会显示小数。
 </li>
 <li>注意：商虽然是小数，但是最后一位不会做四舍五入运算。
 </li>
@@ -137,11 +147,10 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example">&gt;&gt;&gt; 1/3
+<pre class="src src-python">&gt;&gt;&gt; 1/3
 0.3333333333333333
 &gt;&gt;&gt; 2/3
 0.6666666666666666
-
 
 </pre>
 
@@ -176,7 +185,7 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example">&gt;&gt;&gt; 1 // 3
+<pre class="src src-python">&gt;&gt;&gt; 1 // 3
 0
 &gt;&gt;&gt; 2 // 3
 0
@@ -184,7 +193,6 @@ lang="en" xml:lang="en">
 0.0
 &gt;&gt;&gt; 3.1 // 3
 1.0
-
 </pre>
 
 
@@ -216,7 +224,7 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example">&gt;&gt;&gt; 2 ** 3
+<pre class="src src-python">&gt;&gt;&gt; 2 ** 3
 8
 &gt;&gt;&gt; 3 ** 2
 9
@@ -224,7 +232,6 @@ lang="en" xml:lang="en">
 -9
 &gt;&gt;&gt; (-3)** 2
 9
-
 </pre>
 
 
@@ -249,15 +256,37 @@ lang="en" xml:lang="en">
 </div>
 
 <div id="outline-container-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> <span class="todo TODO"> TODO</span> 十六进制和八进制 </h2>
+<h2 id="sec-4"><span class="section-number-2">4</span> 十六进制和八进制 </h2>
 <div class="outline-text-2" id="text-4">
 
 <ol>
-<li>十六进制：0x0123456789ABCDEF
+<li>说明：
+<ol>
+<li>十六进制：数字以 <b>0x</b> 开头
 </li>
-<li>八进制：001234567
+<li>八进制：数字以 <b>0o</b> 开关
 </li>
 </ol>
+
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#&#21313;&#20845;&#36827;&#21046;</span>
+&gt;&gt;&gt; 0x1234567890ABCDEF
+1311768467294899695
+
+<span style="color: #b22222;">#&#20843;&#36827;&#21046;</span>
+&gt;&gt;&gt; 0o1234567
+342391
+
+</pre>
+
+
 
 
 </div>
@@ -297,7 +326,7 @@ lang="en" xml:lang="en">
 <div class="outline-text-2" id="text-7">
 
 <ol>
-<li>说明：input 获取用户输入。
+<li>说明：input 获取用户输入。raw_input已经不被python3支持
 </li>
 <li>例子：
 </li>
@@ -306,14 +335,13 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example">num = raw_input("Please input a number:")
-print ("The number is %r" % num)
-#运行结果:
-#Please input a number:123
-#The number is '123'
-
+<pre class="src src-python">&gt;&gt;&gt; num = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please input a number:"</span>)
+Please <span style="color: #7a378b;">input</span> a number:123
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"The number you input is:%r"</span> % num)
+The number you <span style="color: #7a378b;">input</span> <span style="color: #a020f0;">is</span>:<span style="color: #8b2252;">'123'</span>
 
 </pre>
+
 
 
 
@@ -335,11 +363,11 @@ print ("The number is %r" % num)
 
 
 
-<pre class="example">if 1 == 2:
-    print ("1 == 2")
-if 1 &lt; 2:
-    print ("1 &lt; 2")
-
+<pre class="src src-python"><span style="color: #a020f0;">if</span> 1 == 2:
+    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"1 == 2"</span>)
+<span style="color: #a020f0;">if</span> 1 &lt; 2:
+    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"1 &lt; 2"</span>)
+1&lt;2
 
 </pre>
 
@@ -364,24 +392,23 @@ if 1 &lt; 2:
 
 
 
-<pre class="example">#幂函数
-&gt;&gt;&gt; pow(2, 3)
+<pre class="src src-python"><span style="color: #b22222;">#&#24130;&#20989;&#25968;</span>
+&gt;&gt;&gt; <span style="color: #7a378b;">pow</span>(2, 3)
 8
-&gt;&gt;&gt; 10 + pow(2, 10) / 3
+&gt;&gt;&gt; 10 + <span style="color: #7a378b;">pow</span>(2, 10) / 3
 351.3333333333333
 
-#绝对值函数
-&gt;&gt;&gt; abs(10)
+<span style="color: #b22222;">#&#32477;&#23545;&#20540;&#20989;&#25968;</span>
+&gt;&gt;&gt; <span style="color: #7a378b;">abs</span>(10)
 10
-&gt;&gt;&gt; abs(-10)
+&gt;&gt;&gt; <span style="color: #7a378b;">abs</span>(-10)
 10
 
-#四舍五入函数,将浮点数四舍五入为整数
-&gt;&gt;&gt; round(3.444)
+<span style="color: #b22222;">#&#22235;&#33293;&#20116;&#20837;&#20989;&#25968;,&#23558;&#28014;&#28857;&#25968;&#22235;&#33293;&#20116;&#20837;&#20026;&#25972;&#25968;</span>
+&gt;&gt;&gt; <span style="color: #7a378b;">round</span>(3.444)
 3
-&gt;&gt;&gt; round (3.5001)
+&gt;&gt;&gt; <span style="color: #7a378b;">round</span> (3.5001)
 4
-
 
 </pre>
 
@@ -406,8 +433,8 @@ if 1 &lt; 2:
 </ol>
 
 </li>
-<li>注意：应该多使用第一种模块导入的方法，这样就不会因为不同模块中有
-     相同函数而导致冲突。
+<li>注意：应该多使用第一种模块导入的方法，这样就不会因为不同模块中有相
+     同函数而导致冲突。
 </li>
 <li>例子：
 </li>
@@ -416,24 +443,23 @@ if 1 &lt; 2:
 
 
 
-<pre class="example">#python 3.2中，math.floor直接返回整型，与int的效果相同  
-#使用第一种模块导入方法
-&gt;&gt;&gt; import math
+<pre class="src src-python"><span style="color: #b22222;">#python 3.2&#20013;&#65292;math.floor&#30452;&#25509;&#36820;&#22238;&#25972;&#22411;&#65292;&#19982;int&#30340;&#25928;&#26524;&#30456;&#21516;</span>
+<span style="color: #b22222;">#&#20351;&#29992;&#31532;&#19968;&#31181;&#27169;&#22359;&#23548;&#20837;&#26041;&#27861;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">import</span> math
 &gt;&gt;&gt; math.floor(32.99999)
 32
-&gt;&gt;&gt; int(32.99999)
+&gt;&gt;&gt; <span style="color: #7a378b;">int</span>(32.99999)
 32
 
-#使用第二种模块导入方法
-&gt;&gt;&gt; from math import sqrt
+<span style="color: #b22222;">#&#20351;&#29992;&#31532;&#20108;&#31181;&#27169;&#22359;&#23548;&#20837;&#26041;&#27861;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">from</span> math <span style="color: #a020f0;">import</span> sqrt
 &gt;&gt;&gt; sqrt(169)
 13.0
 
-#cmath
-&gt;&gt;&gt; import cmath
+<span style="color: #b22222;">#cmath&#27169;&#22359;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">import</span> cmath
 &gt;&gt;&gt; cmath.sqrt(-1)
 1j
-
 </pre>
 
 
@@ -466,13 +492,12 @@ if 1 &lt; 2:
 
 
 
-<pre class="example">&gt;&gt;&gt; print ("This is a test!")
-This is a test!
-&gt;&gt;&gt; print ('I said:"I will be there!"')
-I said:"I will be there!"
-&gt;&gt;&gt; print ("Let's go!")
-Let's go!
-
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"This is a test!"</span>)
+This <span style="color: #a020f0;">is</span> a test!
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'I said:"I will be there!"'</span>)
+I said:<span style="color: #8b2252;">"I will be there!"</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"Let's go!"</span>)
+Let<span style="color: #8b2252;">'s go!</span>
 
 </pre>
 
@@ -497,11 +522,10 @@ Let's go!
 
 
 
-<pre class="example">&gt;&gt;&gt; print ("\"")
-"
-&gt;&gt;&gt; print ('\'')
-'
-
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"\""</span>)
+<span style="color: #8b2252;">"</span>
+<span style="color: #8b2252;">&gt;&gt;&gt; print ('\'')</span>
+<span style="color: #8b2252;">'</span>
 
 </pre>
 
@@ -519,17 +543,224 @@ Let's go!
 <ol>
 <li>说明：用加法符号拼接 <b>+</b> 字符串
 </li>
+<li>例子：
+</li>
 </ol>
+
+
+
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"Let's say:\""</span> + <span style="color: #8b2252;">"Hello, world!\""</span>)
+Let<span style="color: #8b2252;">'s say:"Hello, world!"</span>
+
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11-4" class="outline-3">
+<h3 id="sec-11-4"><span class="section-number-3">11.4</span> 值被转换为字符串的两种机制 </h3>
+<div class="outline-text-3" id="text-11-4">
+
+<ol>
+<li>说明：两种机制
+<ul>
+<li>用str转换，它会把字符串转换成合法形式的字符串，以便用户可以理
+        解。
+</li>
+<li>用repr转换，它会创建一个字符串，以合法的Python表达式的形式来表
+        示值。
+</li>
+</ul>
+
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#str&#19982;repr&#30340;&#21306;&#21035;</span>
+&gt;&gt;&gt; c = r<span style="color: #8b2252;">"c:\nowhere"</span>
+&gt;&gt;&gt; c
+<span style="color: #8b2252;">'c:\\nowhere'</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(c)
+c:\nowhere
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #7a378b;">str</span>(c))
+c:\nowhere
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #7a378b;">repr</span>(c))
+<span style="color: #8b2252;">'c:\\nowhere'</span>
+
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11-5" class="outline-3">
+<h3 id="sec-11-5"><span class="section-number-3">11.5</span> input和raw_input的区别 </h3>
+<div class="outline-text-3" id="text-11-5">
+
+<ol>
+<li>说明：在python3中，取消了raw_input函数．
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python">&gt;&gt;&gt; name = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Your name: "</span>)
+Your name: Bill Gunn
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Hello "</span> + name)
+Hello Bill Gunn
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11-6" class="outline-3">
+<h3 id="sec-11-6"><span class="section-number-3">11.6</span> 长字符串 </h3>
+<div class="outline-text-3" id="text-11-6">
+
+<ol>
+<li>说明：
+<ol>
+<li>用三个双引号来引用长字符串．
+</li>
+<li>在字符串的行尾添加 <b>\</b>
+</li>
+</ol>
+
+</li>
+<li>注意：三个双引号的字符串会保留换行符，而反斜线不会保留，见示例
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#&#19977;&#20010;&#24341;&#21495;&#30340;&#31034;&#20363;</span>
+
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"""</span>
+<span style="color: #8b2252;">... This is a very long string.</span>
+<span style="color: #8b2252;">... It continues here.</span>
+<span style="color: #8b2252;">... END.</span>
+<span style="color: #8b2252;">... """</span>)
+
+This <span style="color: #a020f0;">is</span> a very <span style="color: #7a378b;">long</span> string.
+It continues here.
+END.
+
+<span style="color: #b22222;">#&#21453;&#26012;&#32447;&#30340;&#31034;&#20363;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"This is a long string \</span>
+<span style="color: #8b2252;">... It continues here.\</span>
+<span style="color: #8b2252;">... This is the end!"</span>)
+This <span style="color: #a020f0;">is</span> a <span style="color: #7a378b;">long</span> string It continues here. This <span style="color: #a020f0;">is</span> the end
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11-7" class="outline-3">
+<h3 id="sec-11-7"><span class="section-number-3">11.7</span> 原始字符串 </h3>
+<div class="outline-text-3" id="text-11-7">
+
+<ol>
+<li>说明：在字符串前面添加字母 <b>r</b> ， 这在正则表达式中非常有用！
+</li>
+<li>注意：
+<ol>
+<li>原始字符串不能以反斜线结尾；
+</li>
+<li>如果需要在原始字符串输出时以反斜线结尾，可以按最后一个例子的
+         方法实现。
+</li>
+</ol>
+
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#&#21453;&#26012;&#32447;&#34987;&#24403;&#25104;&#36716;&#20041;&#23383;&#31526;&#25171;&#21360;&#20986;&#26469;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"C:\nowhere"</span>)
+C:
+owhere
+
+<span style="color: #b22222;">#&#30452;&#25509;&#25171;&#21360;&#21453;&#26012;&#32447;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (r<span style="color: #8b2252;">"C:\nowhere"</span>)
+C:\nowher
+
+<span style="color: #b22222;">#&#19981;&#33021;&#22312;&#21407;&#22987;&#23383;&#31526;&#20018;&#32467;&#23614;&#20351;&#29992;&#21453;&#26012;&#32447;</span>
+&gt;&gt;&gt; c = r<span style="color: #8b2252;">"test\"</span>
+<span style="color: #8b2252;">SyntaxError: EOL while scanning string literal</span>
+
+<span style="color: #8b2252;">#&#22312;&#21407;&#22987;&#23383;&#31526;&#20018;&#32467;&#23614;&#36755;&#20986;&#21453;&#26012;&#32447;&#30340;&#26041;&#27861;</span>
+<span style="color: #8b2252;">&gt;&gt;&gt; print (r"</span>C:\windows<span style="color: #8b2252;">""</span>\\<span style="color: #8b2252;">")</span>
+<span style="color: #8b2252;">C:\windows\</span>
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11-8" class="outline-3">
+<h3 id="sec-11-8"><span class="section-number-3">11.8</span> Unicode字符串 </h3>
+<div class="outline-text-3" id="text-11-8">
+
+<ol>
+<li>说明：在字符串前加字母 <b>u</b> 来表示立unicode字符串，但是这个功能已
+      经在python3中废弃了。
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python">&gt;&gt;&gt; u<span style="color: #8b2252;">'&#20013;&#25991;'</span>
+<span style="color: #228b22;">SyntaxError</span>: invalid syntax
+</pre>
+
+
 
 </div>
 </div>
 </div>
-<div id="postamble">
-<p class="date">Date: 2011-11-10 16:29:07 CST</p>
-<p class="author">Author: Bill Gunn</p>
-<p class="creator">Org version 7.6 with Emacs version 23</p>
-<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
 </div>
+
+<div id="postamble">
+<p class="date">Date: 2011-11-11 15:45:58 </p>
+<p class="author">Author: </p>
+<p class="creator">Org version 7.7 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
 </div>
 </body>
 </html>

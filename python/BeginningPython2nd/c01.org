@@ -3,7 +3,7 @@
 * 除法
 
 ** 除号－/
-  1. 说明：／是除法符号，两个整型数相除，如果商不是整数，会显示小数。
+  1. 说明： */* 是除法符号，两个整型数相除，如果商不是整数，会显示小数。
   2. 注意：商虽然是小数，但是最后一位不会做四舍五入运算。
   3. 例子：
 #+BEGIN_SRC python
@@ -11,7 +11,7 @@
   0.3333333333333333
   >>> 2/3
   0.6666666666666666
-  
+
 #+END_SRC
 ** 除号－//
    1. 说明：//是整除符号，两个浮点数相除，商也会只保留整数。
@@ -50,10 +50,22 @@
 * 长整型
   1. 在后面加 *L*
 
-* TODO 十六进制和八进制
-  1) 十六进制：0x0123456789ABCDEF
-  2) 八进制：001234567
- 
+* 十六进制和八进制
+  1. 说明：
+     1. 十六进制：数字以 *0x* 开头
+     2. 八进制：数字以 *0o* 开关
+  2. 例子：
+#+BEGIN_SRC python
+  #十六进制
+  >>> 0x1234567890ABCDEF
+  1311768467294899695
+  
+  #八进制
+  >>> 0o1234567
+  342391
+  
+#+END_SRC
+
 * 变量
   1. 使用变量前必须对其赋值。
 
@@ -61,16 +73,16 @@
   1. 语句改变了事物（p12）
 
 * 获取用户输入
-  1. 说明：input 获取用户输入。
+  1. 说明：input 获取用户输入。raw\_input已经不被python3支持
   2. 例子：
 #+BEGIN_SRC python
-  num = raw_input("Please input a number:")
-  print ("The number is %r" % num)
-  #运行结果:
-  #Please input a number:123
-  #The number is '123'
+  >>> num = input("Please input a number:")
+  Please input a number:123
+  >>> print("The number you input is:%r" % num)
+  The number you input is:'123'
   
 #+END_SRC
+
 * if 语句
   1. 判断语句
   2. 例子：
@@ -79,9 +91,10 @@
       print ("1 == 2")
   if 1 < 2:
       print ("1 < 2")
+  1<2
   
 #+END_SRC
-
+  
 * 函数
   1. 说明：函数就是实现特定功能的小程序。
   2. 例子：
@@ -91,43 +104,43 @@
   8
   >>> 10 + pow(2, 10) / 3
   351.3333333333333
-  
+
   #绝对值函数
   >>> abs(10)
   10
   >>> abs(-10)
   10
-  
+
   #四舍五入函数,将浮点数四舍五入为整数
   >>> round(3.444)
   3
   >>> round (3.5001)
   4
-  
+
 #+END_SRC
 
 * 模块
   1. 说明：可以把模块想像成功能集。用 *import* 关键字导入模块
      1. 导入模块的方法1：import 模块
      2. 导入模块的方法2：from 模块 import 函数
-  2. 注意：应该多使用第一种模块导入的方法，这样就不会因为不同模块中有
-     相同函数而导致冲突。
+  2. 注意：应该多使用第一种模块导入的方法，这样就不会因为不同模块中有相
+     同函数而导致冲突。
   3. 例子：
 #+BEGIN_SRC python
-  #python 3.2中，math.floor直接返回整型，与int的效果相同  
+  #python 3.2中，math.floor直接返回整型，与int的效果相同
   #使用第一种模块导入方法
   >>> import math
   >>> math.floor(32.99999)
   32
   >>> int(32.99999)
   32
-  
+
   #使用第二种模块导入方法
   >>> from math import sqrt
   >>> sqrt(169)
   13.0
-  
-  #cmath
+
+  #cmath模块
   >>> import cmath
   >>> cmath.sqrt(-1)
   1j
@@ -145,7 +158,7 @@
   I said:"I will be there!"
   >>> print ("Let's go!")
   Let's go!
-  
+
 #+END_SRC
 
 ** 转义字符
@@ -156,16 +169,16 @@
   "
   >>> print ('\'')
   '
-  
+
 #+END_SRC
 
 ** 拼接字符串
    1. 说明：用加法符号拼接 *+* 字符串
    2. 例子：
 #+BEGIN_SRC python
-  >>> print ("Let's say:\"" + "Hello, world!\"")  
-  Let's say:"Hello, world!"  
-  
+  >>> print ("Let's say:\"" + "Hello, world!\"")
+  Let's say:"Hello, world!"
+
 #+END_SRC
 ** 值被转换为字符串的两种机制
    1. 说明：两种机制
@@ -174,13 +187,20 @@
       - 用repr转换，它会创建一个字符串，以合法的Python表达式的形式来表
         示值。
 #+BEGIN_SRC python
-  >>> x = 10000000000000000000
-  >>> print ("x is " + repr(x))
-  x is 1000000000000000000000000000  
+  #str与repr的区别
+  >>> c = r"c:\nowhere"
+  >>> c
+  'c:\\nowhere'
+  >>> print(c)
+  c:\nowhere
+  >>> print(str(c))
+  c:\nowhere
+  >>> print(repr(c))
+  'c:\\nowhere'
   
 #+END_SRC
-** input和raw_input的区别
-   1. 说明：在python3中，取消了raw_input函数．
+** input和raw\_input的区别
+   1. 说明：在python3中，取消了raw\_input函数．
    2. 例子：
 #+BEGIN_SRC python
   >>> name = input("Your name: ")
@@ -189,19 +209,66 @@
   Hello Bill Gunn
 #+end_src
 ** 长字符串
-   1. 说明：用三个双引号来引用长字符串．
-   2. 例子：
+   1. 说明：
+      1. 用三个双引号来引用长字符串．
+      2. 在字符串的行尾添加 *\*
+   2. 注意：三个双引号的字符串会保留换行符，而反斜线不会保留，见示例
+   3. 例子：
 
 #+BEGIN_SRC python
-  >>> print (""" 
+  #三个引号的示例
+
+  >>> print ("""
   ... This is a very long string.
   ... It continues here.
   ... END.
   ... """)
-  
+
   This is a very long string.
   It continues here.
   END.
-  
-  
+
+  #反斜线的示例
+  >>> print ("This is a long string \
+  ... It continues here.\
+  ... This is the end!")
+  This is a long string It continues here. This is the end
+
+#+end_src
+
+** 原始字符串
+   1. 说明：在字符串前面添加字母 *r* ， 这在正则表达式中非常有用！
+   2. 注意：
+      1. 原始字符串不能以反斜线结尾；
+      2. 如果需要在原始字符串输出时以反斜线结尾，可以按最后一个例子的
+         方法实现。
+   3. 例子：
+
+#+BEGIN_SRC python
+  #反斜线被当成转义字符打印出来
+  >>> print ("C:\nowhere")
+  C:
+  owhere
+
+  #直接打印反斜线
+  >>> print (r"C:\nowhere")
+  C:\nowher
+
+  #不能在原始字符串结尾使用反斜线
+  >>> c = r"test\"
+  SyntaxError: EOL while scanning string literal
+
+  #在原始字符串结尾输出反斜线的方法
+  >>> print (r"C:\windows""\\")
+  C:\windows\
+
+#+end_src
+
+** Unicode字符串
+   1. 说明：在字符串前加字母 *u* 来表示立unicode字符串，但是这个功能已
+      经在python3中废弃了。
+   2. 例子：
+#+begin_src python
+  >>> u'中文'
+  SyntaxError: invalid syntax
 #+end_src

@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>列表和元组</title>
+<meta http-equiv="Content-Type" content="text/html;charset=gb2312"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2011-11-13 00:43:25 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">列表和元组</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 序列概览 </a></li>
+<li><a href="#sec-2">2 通用序列操作 </a>
+<ul>
+<li><a href="#sec-2-1">2.1 索引 </a></li>
+<li><a href="#sec-2-2">2.2 分片 </a></li>
+<li><a href="#sec-2-3">2.3 序列相加 </a></li>
+<li><a href="#sec-2-4">2.4 乘法 </a></li>
+<li><a href="#sec-2-5">2.5 成员资格 </a></li>
+<li><a href="#sec-2-6">2.6 长度，最大值，最小值 </a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 序列概览 </h2>
+<div class="outline-text-2" id="text-1">
+
+<ol>
+<li>说明：序列包括（列表，元组，字符串，buffer对象，xrange对象）
+</li>
+<li>注意：列表可以修改，元组不能被修改。
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python">&gt;&gt;&gt; edward=[<span style="color: #8b2252;">"Edward Gumby"</span>, 42]
+&gt;&gt;&gt; bill =[<span style="color: #8b2252;">"Bill Gunn"</span>, 30]
+&gt;&gt;&gt; database = [edward, bill]
+&gt;&gt;&gt; database
+[[<span style="color: #8b2252;">'Edward Gumby'</span>, 42], [<span style="color: #8b2252;">'Bill Gunn'</span>, 30]]
+&gt;&gt;&gt; database[0]
+[<span style="color: #8b2252;">'Edward Gumby'</span>, 42]
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 通用序列操作 </h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 索引 </h3>
+<div class="outline-text-3" id="text-2-1">
+
+<ol>
+<li>说明：
+<ol>
+<li>索引值可正可负，正索引从0开始，从左往右；负索引从-1开始，从右往左。使用负数索引时，python会从最后一个元素开始计
+         数。最后一个元素的位置编号是-1；
+</li>
+<li>字符串可以直接使用索引；
+</li>
+</ol>
+
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #7a378b;">str</span> = <span style="color: #8b2252;">"Test"</span>
+
+<span style="color: #b22222;">#&#19968;&#33324;&#32034;&#24341;</span>
+&gt;&gt;&gt; <span style="color: #7a378b;">str</span>[0]
+<span style="color: #8b2252;">'T'</span>
+&gt;&gt;&gt; <span style="color: #7a378b;">str</span>[1]
+<span style="color: #8b2252;">'e'</span>
+
+<span style="color: #b22222;">#&#36127;&#25968;&#32034;&#24341;</span>
+&gt;&gt;&gt; <span style="color: #7a378b;">str</span>[-1]
+<span style="color: #8b2252;">'t'</span>
+&gt;&gt;&gt; <span style="color: #7a378b;">str</span>[-2]
+<span style="color: #8b2252;">'s'</span>
+
+<span style="color: #b22222;">#&#23383;&#31526;&#20018;&#30452;&#25509;&#32034;&#24341;</span>
+&gt;&gt;&gt; <span style="color: #8b2252;">"Test"</span>[0]
+<span style="color: #8b2252;">'T'</span>
+&gt;&gt;&gt; <span style="color: #8b2252;">"Test"</span>[1]
+<span style="color: #8b2252;">'e'</span>
+&gt;&gt;&gt; <span style="color: #8b2252;">"Test"</span>[-1]
+<span style="color: #8b2252;">'t'</span>
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 分片 </h3>
+<div class="outline-text-3" id="text-2-2">
+
+<ol>
+<li>说明：使用分片操作来访问一定范围内的元素。分片通过冒号相隔的两个
+      索引来实现。
+</li>
+<li>注意：
+<ol>
+<li>第一个索引是需要提取部分的第一个元素的索引值，而最后的索引
+         则是分片之后右侧剩下部分的第一个元素的索引；
+</li>
+<li>如果右侧全部提取，则分片时，可以不写右侧索引，也可以将右侧索引
+         写最后一个元素的下一个索引；
+</li>
+<li>如果左侧全部提取，刚分片时，左侧索引可以写0，也可以不写；
+</li>
+<li>设置步长：不指明步长时，步长取1，也可以指定步长，步长不能为
+         <b>0</b> ，步长也可以是负数，可以反序输出提取部分。
+</li>
+</ol>
+
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python">&gt;&gt;&gt; data=[1,2,3,4,5,6,7,8,9,10]
+<span style="color: #b22222;">#&#25552;&#21462;&#24207;&#21015;&#30340;&#19968;&#37096;&#20998;</span>
+&gt;&gt;&gt; data[1:6]
+[2, 3, 4, 5, 6]
+
+<span style="color: #b22222;">#&#25552;&#21462;&#21491;&#20391;&#20840;&#37096;</span>
+&gt;&gt;&gt; data[3:]
+[4, 5, 6, 7, 8, 9, 10]
+&gt;&gt;&gt; data[7:10]
+[8, 9, 10]
+
+<span style="color: #b22222;">#&#25552;&#21462;&#24038;&#20391;&#20840;&#37096;</span>
+&gt;&gt;&gt; data[:3]
+[1, 2, 3]
+&gt;&gt;&gt; data[0:3]
+[1, 2, 3]
+
+<span style="color: #b22222;">#&#36127;&#32034;&#24341;&#25552;&#21462;</span>
+&gt;&gt;&gt; data[-3:-1]
+[8, 9]
+&gt;&gt;&gt; data[-3:]
+[8, 9, 10]
+
+<span style="color: #b22222;">#&#35774;&#32622;&#27493;&#38271;</span>
+&gt;&gt;&gt; data[::2]
+[1, 3, 5, 7, 9]
+&gt;&gt;&gt; data[1::2]
+[2, 4, 6, 8, 10]
+
+<span style="color: #b22222;">#&#27493;&#38271;&#20063;&#21487;&#20197;&#26159;&#36127;&#25968;</span>
+&gt;&gt;&gt; data[::-1]
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+&gt;&gt;&gt; data[-1:-8:-1]
+[10, 9, 8, 7, 6, 5, 4]
+&gt;&gt;&gt; data[8:1:-1]
+[9, 8, 7, 6, 5, 4, 3]
+
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 序列相加 </h3>
+<div class="outline-text-3" id="text-2-3">
+
+<ol>
+<li>说明：通过加号可以进行序列连接；
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#&#24207;&#21015;&#30456;&#21152;</span>
+&gt;&gt;&gt; first=[1,2]
+&gt;&gt;&gt; second=[3,4]
+&gt;&gt;&gt; first+second
+[1, 2, 3, 4]
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 乘法 </h3>
+<div class="outline-text-3" id="text-2-4">
+
+<ol>
+<li>说明：用一个正整型数乘以序列，可以得到一个新的重复了n次的序列
+</li>
+<li>注意：
+<ol>
+<li>空列表可以简单地通过两个中括号进行表示（[]）
+</li>
+<li><b>None</b> 是Python关键字，表示“什么也没有”
+</li>
+</ol>
+
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#10&#20010;python</span>
+&gt;&gt;&gt; <span style="color: #8b2252;">'python '</span> * 10
+<span style="color: #8b2252;">'python python python python python python python python python python '</span>
+
+<span style="color: #b22222;">#10&#20010;&#31354;&#23545;&#35937;</span>
+&gt;&gt;&gt; [<span style="color: #008b8b;">None</span>] * 10
+[<span style="color: #008b8b;">None</span>, <span style="color: #008b8b;">None</span>, <span style="color: #008b8b;">None</span>, <span style="color: #008b8b;">None</span>, <span style="color: #008b8b;">None</span>, <span style="color: #008b8b;">None</span>, <span style="color: #008b8b;">None</span>, <span style="color: #008b8b;">None</span>, <span style="color: #008b8b;">None</span>, <span style="color: #008b8b;">None</span>]
+
+<span style="color: #b22222;">#&#25171;&#21360;&#30418;&#23376;</span>
+<span style="color: #a0522d;">mystr</span> = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please input a string:"</span>)
+<span style="color: #a0522d;">strLen</span> = <span style="color: #7a378b;">len</span>(mystr)
+<span style="color: #a0522d;">lineStart</span> = 20
+<span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">" "</span> * lineStart + <span style="color: #8b2252;">"+"</span> + <span style="color: #8b2252;">"-"</span> * strLen + <span style="color: #8b2252;">"+"</span>)
+<span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">" "</span> * lineStart + <span style="color: #8b2252;">"|"</span> + <span style="color: #8b2252;">" "</span> * strLen + <span style="color: #8b2252;">"|"</span>)
+<span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">" "</span> * lineStart + <span style="color: #8b2252;">"|"</span> + mystr + <span style="color: #8b2252;">"|"</span>)
+<span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">" "</span> * lineStart + <span style="color: #8b2252;">"|"</span> + <span style="color: #8b2252;">" "</span> * strLen + <span style="color: #8b2252;">"|"</span>)
+<span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">" "</span> * lineStart + <span style="color: #8b2252;">"+"</span> + <span style="color: #8b2252;">"-"</span> * strLen + <span style="color: #8b2252;">"+"</span>)
+
+&gt;&gt;&gt;
+Please <span style="color: #7a378b;">input</span> a string:My name <span style="color: #a020f0;">is</span> Bill Gunn
+                    +--------------------+
+                    |                    |
+                    |My name <span style="color: #a020f0;">is</span> Bill Gunn|
+                    |                    |
+                    +--------------------+
+
+
+
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 成员资格 </h3>
+<div class="outline-text-3" id="text-2-5">
+
+<ol>
+<li>说明：使用关键字 <b>in</b> 检查值是否在序列中。如果值在序列中返回
+      “True”，否则返回“False”。值可以是元素也可以是子序列。
+</li>
+<li>例子：
+</li>
+</ol>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#&#26816;&#26597;&#20540;&#26159;&#21542;&#22312;&#24207;&#21015;&#20013;</span>
+&gt;&gt;&gt; mystr=<span style="color: #8b2252;">"this is a string"</span>
+&gt;&gt;&gt; <span style="color: #8b2252;">'this'</span> <span style="color: #a020f0;">in</span> mystr
+<span style="color: #a020f0;">True</span>
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 长度，最大值，最小值 </h3>
+<div class="outline-text-3" id="text-2-6">
+
+<ol>
+<li>说明：
+<ol>
+<li><b>len</b> ：返回序列包含元素的数量；
+</li>
+<li><b>min</b> ：返回序列中的最小值；
+</li>
+<li><b>max</b> ：返回序列中的最大值；
+</li>
+</ol>
+
+</li>
+</ol>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#min,max&#21644;len&#30340;&#29992;&#27861;</span>
+&gt;&gt;&gt; data = [12,31,2,1,3,12,3,13,131234,12]
+&gt;&gt;&gt; <span style="color: #7a378b;">min</span>(data)
+1
+&gt;&gt;&gt; <span style="color: #7a378b;">max</span>(data)
+131234
+&gt;&gt;&gt; <span style="color: #7a378b;">len</span>(data)
+10
+
+</pre>
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2011-11-13 00:43:25 </p>
+<p class="author">Author: </p>
+<p class="creator">Org version 7.7 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

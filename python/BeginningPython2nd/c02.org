@@ -1,0 +1,207 @@
+#+title:列表和元组
+
+* 序列概览
+  1. 说明：序列包括（列表，元组，字符串，buffer对象，xrange对象）
+  2. 注意：列表可以修改，元组不能被修改。
+  3. 例子：
+#+begin_src python
+  >>> edward=["Edward Gumby", 42]
+  >>> bill =["Bill Gunn", 30]
+  >>> database = [edward, bill]
+  >>> database
+  [['Edward Gumby', 42], ['Bill Gunn', 30]]
+  >>> database[0]
+  ['Edward Gumby', 42]
+
+#+end_src
+
+* 通用序列操作
+** 索引
+   1. 说明：
+      1. 索引值可正可负，正索引从0开始，从左往右；负索引从-1开始，从右往左。使用负数索引时，python会从最后一个元素开始计
+	 数。最后一个元素的位置编号是-1；
+      2. 字符串可以直接使用索引；
+   2. 例子：
+#+begin_src python
+  >>> str = "Test"
+
+  #一般索引
+  >>> str[0]
+  'T'
+  >>> str[1]
+  'e'
+
+  #负数索引
+  >>> str[-1]
+  't'
+  >>> str[-2]
+  's'
+
+  #字符串直接索引
+  >>> "Test"[0]
+  'T'
+  >>> "Test"[1]
+  'e'
+  >>> "Test"[-1]
+  't'
+#+end_src
+
+** 分片
+   1. 说明：使用分片操作来访问一定范围内的元素。分片通过冒号相隔的两个
+      索引来实现。
+   2. 注意：
+      1. 第一个索引是需要提取部分的第一个元素的索引值，而最后的索引
+	 则是分片之后右侧剩下部分的第一个元素的索引；
+      2. 如果右侧全部提取，则分片时，可以不写右侧索引，也可以将右侧索引
+         写最后一个元素的下一个索引；
+      3. 如果左侧全部提取，刚分片时，左侧索引可以写0，也可以不写；
+      4. 设置步长：不指明步长时，步长取1，也可以指定步长，步长不能为
+         *0* ，步长也可以是负数，可以反序输出提取部分。
+   3. 例子：
+#+begin_src python
+  >>> data=[1,2,3,4,5,6,7,8,9,10]
+  #提取序列的一部分
+  >>> data[1:6]
+  [2, 3, 4, 5, 6]
+
+  #提取右侧全部
+  >>> data[3:]
+  [4, 5, 6, 7, 8, 9, 10]
+  >>> data[7:10]
+  [8, 9, 10]
+
+  #提取左侧全部
+  >>> data[:3]
+  [1, 2, 3]
+  >>> data[0:3]
+  [1, 2, 3]
+
+  #负索引提取
+  >>> data[-3:-1]
+  [8, 9]
+  >>> data[-3:]
+  [8, 9, 10]
+
+  #设置步长
+  >>> data[::2]
+  [1, 3, 5, 7, 9]
+  >>> data[1::2]
+  [2, 4, 6, 8, 10]
+
+  #步长也可以是负数
+  >>> data[::-1]
+  [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+  >>> data[-1:-8:-1]
+  [10, 9, 8, 7, 6, 5, 4]
+  >>> data[8:1:-1]
+  [9, 8, 7, 6, 5, 4, 3]
+
+
+#+end_src
+
+** 序列相加
+   1. 说明：通过加号可以进行序列连接；
+   2. 例子：
+#+begin_src python
+  #序列相加
+  >>> first=[1,2]
+  >>> second=[3,4]
+  >>> first+second
+  [1, 2, 3, 4]
+
+#+end_src
+
+** 乘法
+   1. 说明：用一个正整型数乘以序列，可以得到一个新的重复了n次的序列
+   2. 注意：
+      1. 空列表可以简单地通过两个中括号进行表示（[]）
+      2.  *None* 是Python关键字，表示“什么也没有”
+   3. 例子：
+#+begin_src python
+  #10个python
+  >>> 'python ' * 10
+  'python python python python python python python python python python '
+
+  #10个空对象
+  >>> [None] * 10
+  [None, None, None, None, None, None, None, None, None, None]
+
+  #打印盒子
+  mystr = input("Please input a string:")
+  strLen = len(mystr)
+  lineStart = 20
+  print (" " * lineStart + "+" + "-" * strLen + "+")
+  print (" " * lineStart + "|" + " " * strLen + "|")
+  print (" " * lineStart + "|" + mystr + "|")
+  print (" " * lineStart + "|" + " " * strLen + "|")
+  print (" " * lineStart + "+" + "-" * strLen + "+")
+
+  >>>
+  Please input a string:My name is Bill Gunn
+                      +--------------------+
+                      |                    |
+                      |My name is Bill Gunn|
+                      |                    |
+                      +--------------------+
+
+
+
+#+end_src
+** 成员资格
+   1. 说明：使用关键字 *in* 检查值是否在序列中。如果值在序列中返回
+      “True”，否则返回“False”。值可以是元素也可以是子序列。
+   2. 例子：
+
+#+begin_src python
+  #检查值是否在序列中
+  >>> mystr="this is a string"
+  >>> 'this' in mystr
+  True
+    
+#+end_src
+
+** 长度，最大值，最小值
+   1. 说明：
+      1. *len* ：返回序列包含元素的数量；
+      2. *min* ：返回序列中的最小值；
+      3. *max* ：返回序列中的最大值；
+
+#+begin_src python
+  #min,max和len的用法
+  >>> data = [12,31,2,1,3,12,3,13,131234,12]
+  >>> min(data)
+  1
+  >>> max(data)
+  131234
+  >>> len(data)
+  10
+  
+#+end_src
+#+begin_src python
+
+#+end_src
+#+begin_src python
+
+#+end_src
+#+begin_src python
+
+#+end_src
+#+begin_src python
+
+#+end_src
+#+begin_src python
+
+#+end_src
+#+begin_src python
+
+#+end_src
+#+begin_src python
+
+#+end_src
+#+begin_src python
+
+#+end_src
+#+begin_src python
+
+#+end_src
+

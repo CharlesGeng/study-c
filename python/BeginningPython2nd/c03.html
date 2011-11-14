@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>使用字符串</title>
+<meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2011-11-14 16:59:23 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">使用字符串</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 基本字符串操作 </a></li>
+<li><a href="#sec-2">2 字符串格式化：精简版 </a>
+<ul>
+<li><a href="#sec-2-1">2.1 用字符串格式化操作符 </a></li>
+<li><a href="#sec-2-2">2.2 用string的Template格式化字符串 </a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 字符串格式化：完整版 </a>
+<ul>
+<li><a href="#sec-3-1">3.1 转换说明符 </a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 基本字符串操作 </h2>
+<div class="outline-text-2" id="text-1">
+
+<ol>
+<li>说明：字符串也是序列的一种，所以分片，乘法，索引，求长度，最大，
+     最小，判断成员资格等都可以应用在字符串上；
+</li>
+<li>注意：字符串是不可变的，所以不能对其进行赋值；
+</li>
+<li>例子
+
+
+
+<pre class="src src-python">&gt;&gt;&gt; mystr=<span style="color: #8b2252;">"Test string"</span>
+&gt;&gt;&gt; mystr[0] = <span style="color: #8b2252;">'t'</span>
+Traceback (most recent call last):
+File <span style="color: #8b2252;">"&lt;pyshell#1&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
+  mystr[0] = <span style="color: #8b2252;">'t'</span>
+<span style="color: #228b22;">TypeError</span>: <span style="color: #8b2252;">'str'</span> <span style="color: #7a378b;">object</span> does <span style="color: #a020f0;">not</span> support item assignment
+&gt;&gt;&gt;
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 字符串格式化：精简版 </h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 用字符串格式化操作符 </h3>
+<div class="outline-text-3" id="text-2-1">
+
+<ol>
+<li>说明：字符串格式化使用字符串格式化操作符百分号（ <b>%</b> ）实现，在操作符的左侧是格式化字符串，右侧是希望被格式化的值；
+</li>
+<li>注意：
+<ol>
+<li>只有元组和字典可以被格式化为一个以上的值，列表和其他序列会被格式化为一个值；
+</li>
+<li>转换说明符，用于标记需要插入转换值的位置；
+</li>
+<li>如果在格式化字符串中要输出百分号，则需要使用 <b>%%</b>
+</li>
+</ol>
+
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#&#19968;&#33324;&#26684;&#24335;&#21270;</span>
+&gt;&gt;&gt; myformat = <span style="color: #8b2252;">"Hello, my name is %s %s"</span>
+&gt;&gt;&gt; name = (<span style="color: #8b2252;">'Bill'</span>,<span style="color: #8b2252;">'Gunn'</span>)
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (myformat % name) 
+Hello, my name <span style="color: #a020f0;">is</span> Bill Gunn
+&gt;&gt;&gt;
+
+<span style="color: #b22222;">#&#29992;&#21015;&#34920;&#26684;&#24335;&#21270;</span>
+&gt;&gt;&gt; myformat = <span style="color: #8b2252;">'Hello, my name is %s'</span> 
+&gt;&gt;&gt; name=[<span style="color: #8b2252;">'Bill'</span>, <span style="color: #8b2252;">'Gunn'</span>]
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(myformat % name) 
+Hello, my name <span style="color: #a020f0;">is</span> [<span style="color: #8b2252;">'Bill'</span>, <span style="color: #8b2252;">'Gunn'</span>]
+
+<span style="color: #b22222;">#&#25171;&#21360;&#28014;&#28857;&#25968;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">import</span> math
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"PI = %.5f"</span> % pi)
+<span style="color: #a0522d;">PI</span> = 3.14159
+
+<span style="color: #b22222;">#&#25171;&#21360;&#30334;&#20998;&#21495;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"%.2f%%"</span>% 22.3)
+22.30%
+&gt;&gt;&gt;
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 用string的Template格式化字符串 </h3>
+<div class="outline-text-3" id="text-2-2">
+
+<ol>
+<li>说明：类似于Unix Shell中的变量替换，使用substitute方法，将字符串
+      模板中的$foo替换为传递进来的参数foo
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#&#20174;string&#27169;&#22359;&#20013;&#23548;&#20837;Template</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">from</span> string <span style="color: #a020f0;">import</span> Template
+<span style="color: #b22222;">#&#21019;&#24314;&#27169;&#26495;</span>
+&gt;&gt;&gt; myformat = Template(<span style="color: #8b2252;">"My name is $name"</span>)
+<span style="color: #b22222;">#&#26367;&#25442;&#21464;&#37327;&#24182;&#25171;&#21360;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(myformat.substitute(name=<span style="color: #8b2252;">"Bill Gunn"</span>))
+My name <span style="color: #a020f0;">is</span> Bill Gunn
+&gt;&gt;&gt; 
+
+<span style="color: #b22222;">#&#36755;&#20986;&#32654;&#20803;&#31526;&#21495;&#30340;&#26041;&#27861;&#65292;&#22312;&#27169;&#26495;&#37324;&#36755;&#20837;&#20004;&#20010;$</span>
+&gt;&gt;&gt; mytemplate = Template(<span style="color: #8b2252;">"The price is $$$price"</span>)
+&gt;&gt;&gt; mytemplate.substitute(price=100)
+<span style="color: #8b2252;">'The price is $100'</span>
+&gt;&gt;&gt; 
+
+<span style="color: #b22222;">#&#22914;&#26524;&#21442;&#25968;&#19982;&#21518;&#38754;&#30340;&#23383;&#31526;&#20018;&#30456;&#36830;&#65292;&#38656;&#35201;&#29992;&#22823;&#25324;&#21495;&#23558;&#20854;&#25324;&#36215;&#26469;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">from</span> string <span style="color: #a020f0;">import</span> Template
+&gt;&gt;&gt; mytemplate = Template(<span style="color: #8b2252;">"It's ${x}tastic!"</span>)
+&gt;&gt;&gt; mytemplate.substitute(x=<span style="color: #8b2252;">'slum'</span>)
+<span style="color: #8b2252;">"It's slumtastic!"</span>
+&gt;&gt;&gt; 
+
+<span style="color: #b22222;">#&#20351;&#29992;&#23383;&#20856;&#26367;&#25442;&#21442;&#25968;</span>
+&gt;&gt;&gt; mytemplate = Template(<span style="color: #8b2252;">"My $property is $value"</span>)
+&gt;&gt;&gt; name = {}
+&gt;&gt;&gt; name[<span style="color: #8b2252;">"property"</span>] = <span style="color: #8b2252;">"name"</span>
+&gt;&gt;&gt; name[<span style="color: #8b2252;">"value"</span>] = <span style="color: #8b2252;">"Bill Gunn"</span>
+&gt;&gt;&gt; mytemplate.substitute(name)
+<span style="color: #8b2252;">'My name is Bill Gunn'</span>
+&gt;&gt;&gt; 
+
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 字符串格式化：完整版 </h2>
+<div class="outline-text-2" id="text-3">
+
+<ol>
+<li>说明：字符串格式化操作符的右操作数如果是元组，那么在格式化字符串
+     中必须将元组中的各个元素都有对应的转义说明符。
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python">&gt;&gt;&gt; data = <span style="color: #7a378b;">tuple</span>(<span style="color: #7a378b;">list</span>(<span style="color: #8b2252;">"123"</span>))
+&gt;&gt;&gt; data
+(<span style="color: #8b2252;">'1'</span>, <span style="color: #8b2252;">'2'</span>, <span style="color: #8b2252;">'3'</span>)
+<span style="color: #b22222;">#&#26684;&#24335;&#21270;&#23383;&#31526;&#20018;&#20013;&#21482;&#26377;&#19968;&#20010;&#36716;&#20041;&#35828;&#26126;&#31526;&#65292;&#32780;&#20803;&#32452;&#20013;&#26377;&#19977;&#20010;&#20803;&#32032;&#65292;&#36716;&#25442;&#20250;&#25253;&#38169;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"data is %s"</span> % data)
+Traceback (most recent call last):
+  File <span style="color: #8b2252;">"&lt;pyshell#18&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
+    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"data is %s"</span> % data)
+<span style="color: #228b22;">TypeError</span>: <span style="color: #a020f0;">not</span> <span style="color: #7a378b;">all</span> arguments converted during string formatting
+<span style="color: #b22222;">#&#26174;&#31034;&#20803;&#32452;&#20013;&#30340;&#20840;&#37096;&#20803;&#32032;</span>
+&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"data is %s %s %s"</span> % data)
+data <span style="color: #a020f0;">is</span> 1 2 3
+&gt;&gt;&gt; 
+
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 转换说明符 </h3>
+<div class="outline-text-3" id="text-3-1">
+
+<ol>
+<li>转换说明符
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+<tr><th scope="col" class="left">转义说明符</th><th scope="col" class="left">含义</th></tr>
+</thead>
+<tbody>
+</tbody>
+<tbody>
+<tr><td class="left">d,i</td><td class="left">带符号的十进制整数</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">o</td><td class="left">不带符号的八进制</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">u</td><td class="left">不带符号的十进制</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">x</td><td class="left">不带符号的十六进制（小写）</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">X</td><td class="left">不带符号的十六进制（大写）</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">e</td><td class="left">科学计数法的浮点数（小写）</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">E</td><td class="left">科学计数法的浮点数（大写）</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">f，F</td><td class="left">十进制浮点数</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">g</td><td class="left">如果指数大于－4或者小于精度值则和e相同，否则和f相同</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">G</td><td class="left">如果指数大于－4或者小于精度值则和E相同，否则和F相同</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">C</td><td class="left">单字符（接受整数或者单字符字符串）</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">r</td><td class="left">字符串（使用repr转换任意Python对象）</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">s</td><td class="left">字符串（使用str转换任意Python对象）</td></tr>
+</tbody>
+</table>
+
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
+
+
+<span style="color: #b22222;">#+BEGIN_SRC python </span>
+
+</pre>
+
+
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2011-11-14 16:59:23 </p>
+<p class="author">Author: </p>
+<p class="creator">Org version 7.7 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

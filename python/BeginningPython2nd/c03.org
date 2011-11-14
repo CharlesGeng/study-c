@@ -1,0 +1,220 @@
+#+title:使用字符串
+
+* 基本字符串操作
+  1. 说明：字符串也是序列的一种，所以分片，乘法，索引，求长度，最大，
+     最小，判断成员资格等都可以应用在字符串上；
+  2. 注意：字符串是不可变的，所以不能对其进行赋值；
+  3. 例子
+    #+begin_src python
+    >>> mystr="Test string"
+    >>> mystr[0] = 't'
+    Traceback (most recent call last):
+    File "<pyshell#1>", line 1, in <module>
+      mystr[0] = 't'
+    TypeError: 'str' object does not support item assignment
+    >>>
+    #+end_src
+
+* 字符串格式化：精简版
+** 用字符串格式化操作符
+  1. 说明：字符串格式化使用字符串格式化操作符百分号（ *%* ）实现，在操作符的左侧是格式化字符串，右侧是希望被格式化的值；
+  2. 注意：
+     1. 只有元组和字典可以被格式化为一个以上的值，列表和其他序列会被格式化为一个值；
+     2. 转换说明符，用于标记需要插入转换值的位置；
+     3. 如果在格式化字符串中要输出百分号，则需要使用 *%%*
+  3. 例子：
+     #+begin_src python
+       #一般格式化
+       >>> myformat = "Hello, my name is %s %s"
+       >>> name = ('Bill','Gunn')
+       >>> print (myformat % name) 
+       Hello, my name is Bill Gunn
+       >>>
+       
+       #用列表格式化
+       >>> myformat = 'Hello, my name is %s' 
+       >>> name=['Bill', 'Gunn']
+       >>> print(myformat % name) 
+       Hello, my name is ['Bill', 'Gunn']
+       
+       #打印浮点数
+       >>> import math
+       >>> print ("PI = %.5f" % pi)
+       PI = 3.14159
+       
+       #打印百分号
+       >>> print("%.2f%%"% 22.3)
+       22.30%
+       >>>
+     #+end_src
+  
+** 用string的Template格式化字符串
+   1. 说明：类似于Unix Shell中的变量替换，使用substitute方法，将字符串
+      模板中的$foo替换为传递进来的参数foo
+   2. 例子：
+      #+begin_src python
+        #从string模块中导入Template
+        >>> from string import Template
+        #创建模板
+        >>> myformat = Template("My name is $name")
+        #替换变量并打印
+        >>> print(myformat.substitute(name="Bill Gunn"))
+        My name is Bill Gunn
+        >>> 
+        
+        #输出美元符号的方法，在模板里输入两个$
+        >>> mytemplate = Template("The price is $$$price")
+        >>> mytemplate.substitute(price=100)
+        'The price is $100'
+        >>> 
+        
+        #如果参数与后面的字符串相连，需要用大括号将其括起来
+        >>> from string import Template
+        >>> mytemplate = Template("It's ${x}tastic!")
+        >>> mytemplate.substitute(x='slum')
+        "It's slumtastic!"
+        >>> 
+        
+        #使用字典替换参数
+        >>> mytemplate = Template("My $property is $value")
+        >>> name = {}
+        >>> name["property"] = "name"
+        >>> name["value"] = "Bill Gunn"
+        >>> mytemplate.substitute(name)
+        'My name is Bill Gunn'
+        >>> 
+        
+      #+end_src
+
+* 字符串格式化：完整版
+  1. 说明：字符串格式化操作符的右操作数如果是元组，那么在格式化字符串
+     中必须将元组中的各个元素都有对应的转义说明符。
+  2. 例子：
+     #+begin_src python
+       >>> data = tuple(list("123"))
+       >>> data
+       ('1', '2', '3')
+       #格式化字符串中只有一个转义说明符，而元组中有三个元素，转换会报错
+       >>> print ("data is %s" % data)
+       Traceback (most recent call last):
+         File "<pyshell#18>", line 1, in <module>
+           print ("data is %s" % data)
+       TypeError: not all arguments converted during string formatting
+       #显示元组中的全部元素
+       >>> print ("data is %s %s %s" % data)
+       data is 1 2 3
+       >>> 
+       
+     #+end_src
+** 转换说明符
+   1. 转换说明符
+     |   | 转义说明符 | 含义                                                |
+     |---+------------+-----------------------------------------------------|
+     | / | <>         | <>                                                  |
+     |---+------------+-----------------------------------------------------|
+     | # | d,i        | 带符号的十进制整数                                  |
+     |---+------------+-----------------------------------------------------|
+     | # | o          | 不带符号的八进制                                    |
+     |---+------------+-----------------------------------------------------|
+     | # | u          | 不带符号的十进制                                    |
+     |---+------------+-----------------------------------------------------|
+     | # | x          | 不带符号的十六进制（小写）                          |
+     |---+------------+-----------------------------------------------------|
+     | # | X          | 不带符号的十六进制（大写）                          |
+     |---+------------+-----------------------------------------------------|
+     | # | e          | 科学计数法的浮点数（小写）                          |
+     |---+------------+-----------------------------------------------------|
+     | # | E          | 科学计数法的浮点数（大写）                          |
+     |---+------------+-----------------------------------------------------|
+     | # | f，F       | 十进制浮点数                                        |
+     |---+------------+-----------------------------------------------------|
+     | # | g          | 如果指数大于－4或者小于精度值则和e相同，否则和f相同 |
+     |---+------------+-----------------------------------------------------|
+     | # | G          | 如果指数大于－4或者小于精度值则和E相同，否则和F相同 |
+     |---+------------+-----------------------------------------------------|
+     | # | C          | 单字符（接受整数或者单字符字符串）                  |
+     |---+------------+-----------------------------------------------------|
+     | # | r          | 字符串（使用repr转换任意Python对象）                |
+     |---+------------+-----------------------------------------------------|
+     | # | s          | 字符串（使用str转换任意Python对象）                              |
+
+
+     
+
+
+
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+#+begin_src python
+
+#+end_src
+
+
+

@@ -200,8 +200,9 @@
    2. 例子：
 #+begin_src python
   >>> mylist = [1,2,3,4,5]
-
+  
   #列表元素赋值
+  #索引必须在列表范围内
   >>> mylist[10] = 10
   Traceback (most recent call last):
     File "<pyshell#2>", line 1, in <module>
@@ -210,13 +211,13 @@
   >>> mylist[0] = 100
   >>> mylist
   [100, 2, 3, 4, 5]
-
+  
   #删除元素
   >>> del(mylist[0])
   >>> mylist
   [2, 3, 4, 5]
   >>>
-
+  
   #分片赋值
   >>> mystr = list("Nale Gunn")
   >>> mystr[0:4] = list("Bill")
@@ -234,7 +235,7 @@
   >>> mystr
   ['M', 'y', ' ', 'n', 'a', 'm', 'e', ' ', 'i', 's', ' ', 'B', 'i', 'l', 'l', ' ', 'G', 'u', 'n', 'n']
   >>>
-
+  
 #+end_src
 
 ** 列表方法

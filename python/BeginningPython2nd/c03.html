@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>使用字符串</title>
 <meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-11-14 16:59:23 "/>
+<meta name="generated" content="2011-11-15 17:26:56 "/>
 <meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -102,6 +102,20 @@ lang="en" xml:lang="en">
 <li><a href="#sec-3">3 字符串格式化：完整版 </a>
 <ul>
 <li><a href="#sec-3-1">3.1 转换说明符 </a></li>
+<li><a href="#sec-3-2">3.2 简单转换 </a></li>
+<li><a href="#sec-3-3">3.3 字段宽度和精度 </a></li>
+<li><a href="#sec-3-4">3.4 符号，对齐和 0 填充 </a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4 字符串方法 </a>
+<ul>
+<li><a href="#sec-4-1">4.1 find </a></li>
+<li><a href="#sec-4-2">4.2 join </a></li>
+<li><a href="#sec-4-3">4.3 lower </a></li>
+<li><a href="#sec-4-4">4.4 replace </a></li>
+<li><a href="#sec-4-5">4.5 split </a></li>
+<li><a href="#sec-4-6">4.6 strip </a></li>
+<li><a href="#sec-4-7">4.7 translate </a></li>
 </ul>
 </li>
 </ul>
@@ -122,13 +136,13 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; mystr=<span style="color: #8b2252;">"Test string"</span>
-&gt;&gt;&gt; mystr[0] = <span style="color: #8b2252;">'t'</span>
-Traceback (most recent call last):
-File <span style="color: #8b2252;">"&lt;pyshell#1&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
-  mystr[0] = <span style="color: #8b2252;">'t'</span>
-<span style="color: #228b22;">TypeError</span>: <span style="color: #8b2252;">'str'</span> <span style="color: #7a378b;">object</span> does <span style="color: #a020f0;">not</span> support item assignment
-&gt;&gt;&gt;
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; mystr=<span style="color: #8b2252;">"Test string"</span>
+<span class="linenr">2:  </span>&gt;&gt;&gt; mystr[0] = <span style="color: #8b2252;">'t'</span>
+<span class="linenr">3:  </span>Traceback (most recent call last):
+<span class="linenr">4:  </span>File <span style="color: #8b2252;">"&lt;pyshell#1&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
+<span class="linenr">5:  </span>  mystr[0] = <span style="color: #8b2252;">'t'</span>
+<span class="linenr">6:  </span><span style="color: #228b22;">TypeError</span>: <span style="color: #8b2252;">'str'</span> <span style="color: #7a378b;">object</span> does <span style="color: #a020f0;">not</span> support item assignment
+<span class="linenr">7:  </span>&gt;&gt;&gt;
 </pre>
 
 
@@ -170,28 +184,28 @@ File <span style="color: #8b2252;">"&lt;pyshell#1&gt;"</span>, line 1, <span sty
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#&#19968;&#33324;&#26684;&#24335;&#21270;</span>
-&gt;&gt;&gt; myformat = <span style="color: #8b2252;">"Hello, my name is %s %s"</span>
-&gt;&gt;&gt; name = (<span style="color: #8b2252;">'Bill'</span>,<span style="color: #8b2252;">'Gunn'</span>)
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (myformat % name) 
-Hello, my name <span style="color: #a020f0;">is</span> Bill Gunn
-&gt;&gt;&gt;
-
-<span style="color: #b22222;">#&#29992;&#21015;&#34920;&#26684;&#24335;&#21270;</span>
-&gt;&gt;&gt; myformat = <span style="color: #8b2252;">'Hello, my name is %s'</span> 
-&gt;&gt;&gt; name=[<span style="color: #8b2252;">'Bill'</span>, <span style="color: #8b2252;">'Gunn'</span>]
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(myformat % name) 
-Hello, my name <span style="color: #a020f0;">is</span> [<span style="color: #8b2252;">'Bill'</span>, <span style="color: #8b2252;">'Gunn'</span>]
-
-<span style="color: #b22222;">#&#25171;&#21360;&#28014;&#28857;&#25968;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">import</span> math
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"PI = %.5f"</span> % pi)
-<span style="color: #a0522d;">PI</span> = 3.14159
-
-<span style="color: #b22222;">#&#25171;&#21360;&#30334;&#20998;&#21495;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"%.2f%%"</span>% 22.3)
-22.30%
-&gt;&gt;&gt;
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#19968;&#33324;&#26684;&#24335;&#21270;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; myformat = <span style="color: #8b2252;">"Hello, my name is %s %s"</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; name = (<span style="color: #8b2252;">'Bill'</span>,<span style="color: #8b2252;">'Gunn'</span>)
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (myformat % name)
+<span class="linenr"> 5:  </span>Hello, my name <span style="color: #a020f0;">is</span> Bill Gunn
+<span class="linenr"> 6:  </span>&gt;&gt;&gt;
+<span class="linenr"> 7:  </span>
+<span class="linenr"> 8:  </span><span style="color: #b22222;">#&#29992;&#21015;&#34920;&#26684;&#24335;&#21270;</span>
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; myformat = <span style="color: #8b2252;">'Hello, my name is %s'</span>
+<span class="linenr">10:  </span>&gt;&gt;&gt; name=[<span style="color: #8b2252;">'Bill'</span>, <span style="color: #8b2252;">'Gunn'</span>]
+<span class="linenr">11:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(myformat % name)
+<span class="linenr">12:  </span>Hello, my name <span style="color: #a020f0;">is</span> [<span style="color: #8b2252;">'Bill'</span>, <span style="color: #8b2252;">'Gunn'</span>]
+<span class="linenr">13:  </span>
+<span class="linenr">14:  </span><span style="color: #b22222;">#&#25171;&#21360;&#28014;&#28857;&#25968;</span>
+<span class="linenr">15:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">import</span> math
+<span class="linenr">16:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"PI = %.5f"</span> % pi)
+<span class="linenr">17:  </span><span style="color: #a0522d;">PI</span> = 3.14159
+<span class="linenr">18:  </span>
+<span class="linenr">19:  </span><span style="color: #b22222;">#&#25171;&#21360;&#30334;&#20998;&#21495;</span>
+<span class="linenr">20:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"%.2f%%"</span>% 22.3)
+<span class="linenr">21:  </span>22.30%
+<span class="linenr">22:  </span>&gt;&gt;&gt;
 </pre>
 
 
@@ -216,37 +230,37 @@ Hello, my name <span style="color: #a020f0;">is</span> [<span style="color: #8b2
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#&#20174;string&#27169;&#22359;&#20013;&#23548;&#20837;Template</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">from</span> string <span style="color: #a020f0;">import</span> Template
-<span style="color: #b22222;">#&#21019;&#24314;&#27169;&#26495;</span>
-&gt;&gt;&gt; myformat = Template(<span style="color: #8b2252;">"My name is $name"</span>)
-<span style="color: #b22222;">#&#26367;&#25442;&#21464;&#37327;&#24182;&#25171;&#21360;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(myformat.substitute(name=<span style="color: #8b2252;">"Bill Gunn"</span>))
-My name <span style="color: #a020f0;">is</span> Bill Gunn
-&gt;&gt;&gt; 
-
-<span style="color: #b22222;">#&#36755;&#20986;&#32654;&#20803;&#31526;&#21495;&#30340;&#26041;&#27861;&#65292;&#22312;&#27169;&#26495;&#37324;&#36755;&#20837;&#20004;&#20010;$</span>
-&gt;&gt;&gt; mytemplate = Template(<span style="color: #8b2252;">"The price is $$$price"</span>)
-&gt;&gt;&gt; mytemplate.substitute(price=100)
-<span style="color: #8b2252;">'The price is $100'</span>
-&gt;&gt;&gt; 
-
-<span style="color: #b22222;">#&#22914;&#26524;&#21442;&#25968;&#19982;&#21518;&#38754;&#30340;&#23383;&#31526;&#20018;&#30456;&#36830;&#65292;&#38656;&#35201;&#29992;&#22823;&#25324;&#21495;&#23558;&#20854;&#25324;&#36215;&#26469;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">from</span> string <span style="color: #a020f0;">import</span> Template
-&gt;&gt;&gt; mytemplate = Template(<span style="color: #8b2252;">"It's ${x}tastic!"</span>)
-&gt;&gt;&gt; mytemplate.substitute(x=<span style="color: #8b2252;">'slum'</span>)
-<span style="color: #8b2252;">"It's slumtastic!"</span>
-&gt;&gt;&gt; 
-
-<span style="color: #b22222;">#&#20351;&#29992;&#23383;&#20856;&#26367;&#25442;&#21442;&#25968;</span>
-&gt;&gt;&gt; mytemplate = Template(<span style="color: #8b2252;">"My $property is $value"</span>)
-&gt;&gt;&gt; name = {}
-&gt;&gt;&gt; name[<span style="color: #8b2252;">"property"</span>] = <span style="color: #8b2252;">"name"</span>
-&gt;&gt;&gt; name[<span style="color: #8b2252;">"value"</span>] = <span style="color: #8b2252;">"Bill Gunn"</span>
-&gt;&gt;&gt; mytemplate.substitute(name)
-<span style="color: #8b2252;">'My name is Bill Gunn'</span>
-&gt;&gt;&gt; 
-
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#20174;string&#27169;&#22359;&#20013;&#23548;&#20837;Template</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">from</span> string <span style="color: #a020f0;">import</span> Template
+<span class="linenr"> 3:  </span><span style="color: #b22222;">#&#21019;&#24314;&#27169;&#26495;</span>
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; myformat = Template(<span style="color: #8b2252;">"My name is $name"</span>)
+<span class="linenr"> 5:  </span><span style="color: #b22222;">#&#26367;&#25442;&#21464;&#37327;&#24182;&#25171;&#21360;</span>
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(myformat.substitute(name=<span style="color: #8b2252;">"Bill Gunn"</span>))
+<span class="linenr"> 7:  </span>My name <span style="color: #a020f0;">is</span> Bill Gunn
+<span class="linenr"> 8:  </span>&gt;&gt;&gt;
+<span class="linenr"> 9:  </span>
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#36755;&#20986;&#32654;&#20803;&#31526;&#21495;&#30340;&#26041;&#27861;&#65292;&#22312;&#27169;&#26495;&#37324;&#36755;&#20837;&#20004;&#20010;$</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; mytemplate = Template(<span style="color: #8b2252;">"The price is $$$price"</span>)
+<span class="linenr">12:  </span>&gt;&gt;&gt; mytemplate.substitute(price=100)
+<span class="linenr">13:  </span><span style="color: #8b2252;">'The price is $100'</span>
+<span class="linenr">14:  </span>&gt;&gt;&gt;
+<span class="linenr">15:  </span>
+<span class="linenr">16:  </span><span style="color: #b22222;">#&#22914;&#26524;&#21442;&#25968;&#19982;&#21518;&#38754;&#30340;&#23383;&#31526;&#20018;&#30456;&#36830;&#65292;&#38656;&#35201;&#29992;&#22823;&#25324;&#21495;&#23558;&#20854;&#25324;&#36215;&#26469;</span>
+<span class="linenr">17:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">from</span> string <span style="color: #a020f0;">import</span> Template
+<span class="linenr">18:  </span>&gt;&gt;&gt; mytemplate = Template(<span style="color: #8b2252;">"It's ${x}tastic!"</span>)
+<span class="linenr">19:  </span>&gt;&gt;&gt; mytemplate.substitute(x=<span style="color: #8b2252;">'slum'</span>)
+<span class="linenr">20:  </span><span style="color: #8b2252;">"It's slumtastic!"</span>
+<span class="linenr">21:  </span>&gt;&gt;&gt;
+<span class="linenr">22:  </span>
+<span class="linenr">23:  </span><span style="color: #b22222;">#&#20351;&#29992;&#23383;&#20856;&#26367;&#25442;&#21442;&#25968;</span>
+<span class="linenr">24:  </span>&gt;&gt;&gt; mytemplate = Template(<span style="color: #8b2252;">"My $property is $value"</span>)
+<span class="linenr">25:  </span>&gt;&gt;&gt; name = {}
+<span class="linenr">26:  </span>&gt;&gt;&gt; name[<span style="color: #8b2252;">"property"</span>] = <span style="color: #8b2252;">"name"</span>
+<span class="linenr">27:  </span>&gt;&gt;&gt; name[<span style="color: #8b2252;">"value"</span>] = <span style="color: #8b2252;">"Bill Gunn"</span>
+<span class="linenr">28:  </span>&gt;&gt;&gt; mytemplate.substitute(name)
+<span class="linenr">29:  </span><span style="color: #8b2252;">'My name is Bill Gunn'</span>
+<span class="linenr">30:  </span>&gt;&gt;&gt;
+<span class="linenr">31:  </span>
 </pre>
 
 
@@ -272,20 +286,20 @@ My name <span style="color: #a020f0;">is</span> Bill Gunn
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; data = <span style="color: #7a378b;">tuple</span>(<span style="color: #7a378b;">list</span>(<span style="color: #8b2252;">"123"</span>))
-&gt;&gt;&gt; data
-(<span style="color: #8b2252;">'1'</span>, <span style="color: #8b2252;">'2'</span>, <span style="color: #8b2252;">'3'</span>)
-<span style="color: #b22222;">#&#26684;&#24335;&#21270;&#23383;&#31526;&#20018;&#20013;&#21482;&#26377;&#19968;&#20010;&#36716;&#20041;&#35828;&#26126;&#31526;&#65292;&#32780;&#20803;&#32452;&#20013;&#26377;&#19977;&#20010;&#20803;&#32032;&#65292;&#36716;&#25442;&#20250;&#25253;&#38169;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"data is %s"</span> % data)
-Traceback (most recent call last):
-  File <span style="color: #8b2252;">"&lt;pyshell#18&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
-    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"data is %s"</span> % data)
-<span style="color: #228b22;">TypeError</span>: <span style="color: #a020f0;">not</span> <span style="color: #7a378b;">all</span> arguments converted during string formatting
-<span style="color: #b22222;">#&#26174;&#31034;&#20803;&#32452;&#20013;&#30340;&#20840;&#37096;&#20803;&#32032;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"data is %s %s %s"</span> % data)
-data <span style="color: #a020f0;">is</span> 1 2 3
-&gt;&gt;&gt; 
-
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; data = <span style="color: #7a378b;">tuple</span>(<span style="color: #7a378b;">list</span>(<span style="color: #8b2252;">"123"</span>))
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; data
+<span class="linenr"> 3:  </span>(<span style="color: #8b2252;">'1'</span>, <span style="color: #8b2252;">'2'</span>, <span style="color: #8b2252;">'3'</span>)
+<span class="linenr"> 4:  </span><span style="color: #b22222;">#&#26684;&#24335;&#21270;&#23383;&#31526;&#20018;&#20013;&#21482;&#26377;&#19968;&#20010;&#36716;&#20041;&#35828;&#26126;&#31526;&#65292;&#32780;&#20803;&#32452;&#20013;&#26377;&#19977;&#20010;&#20803;&#32032;&#65292;&#36716;&#25442;&#20250;&#25253;&#38169;</span>
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"data is %s"</span> % data)
+<span class="linenr"> 6:  </span>Traceback (most recent call last):
+<span class="linenr"> 7:  </span>  File <span style="color: #8b2252;">"&lt;pyshell#18&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
+<span class="linenr"> 8:  </span>    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"data is %s"</span> % data)
+<span class="linenr"> 9:  </span><span style="color: #228b22;">TypeError</span>: <span style="color: #a020f0;">not</span> <span style="color: #7a378b;">all</span> arguments converted during string formatting
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#26174;&#31034;&#20803;&#32452;&#20013;&#30340;&#20840;&#37096;&#20803;&#32032;</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"data is %s %s %s"</span> % data)
+<span class="linenr">12:  </span>data <span style="color: #a020f0;">is</span> 1 2 3
+<span class="linenr">13:  </span>&gt;&gt;&gt;
+<span class="linenr">14:  </span>
 </pre>
 
 
@@ -355,6 +369,349 @@ data <span style="color: #a020f0;">is</span> 1 2 3
 </ol>
 
 
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 简单转换 </h3>
+<div class="outline-text-3" id="text-3-2">
+
+<ol>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#21313;&#36827;&#21046;&#25972;&#25968;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"The price is $%d"</span> % 12)
+<span class="linenr"> 3:  </span>The price <span style="color: #a020f0;">is</span> $12
+<span class="linenr"> 4:  </span>
+<span class="linenr"> 5:  </span><span style="color: #b22222;">#&#21313;&#20845;&#36827;&#21046;&#25972;&#25968;</span>
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"Hex %x"</span> % 12)
+<span class="linenr"> 7:  </span>Hex c
+<span class="linenr"> 8:  </span>
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#20843;&#36827;&#21046;&#25972;&#25968;</span>
+<span class="linenr">10:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"Oct %o"</span> % 12)
+<span class="linenr">11:  </span>Oct 14
+<span class="linenr">12:  </span>&gt;&gt;&gt;
+<span class="linenr">13:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 字段宽度和精度 </h3>
+<div class="outline-text-3" id="text-3-3">
+
+<ol>
+<li>说明：
+<ol>
+<li>字段宽度：转换后的值所保留的最小字符个数；
+</li>
+<li>字段精度：转换后，结果中应该的小数位数；
+</li>
+<li>可以使用*作为字段宽度或者精度
+</li>
+</ol>
+
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#38480;&#21046;&#23485;&#24230;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #8b2252;">"%10f"</span> % math.pi
+<span class="linenr"> 3:  </span><span style="color: #8b2252;">'  3.141593'</span>
+<span class="linenr"> 4:  </span>
+<span class="linenr"> 5:  </span><span style="color: #b22222;">#&#38480;&#21046;&#23567;&#25968;&#20301;&#25968;</span>
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; <span style="color: #8b2252;">"%5.2f"</span> % math.pi
+<span class="linenr"> 7:  </span><span style="color: #8b2252;">' 3.14'</span>
+<span class="linenr"> 8:  </span>
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#29992;&#26143;&#21495;&#38480;&#21046;&#23485;&#24230;&#21644;&#31934;&#24230;&#65292;&#19979;&#20363;&#20013;&#65292;&#23485;&#24230;&#20026;10&#65292;&#31934;&#24230;&#20026;5</span>
+<span class="linenr">10:  </span>&gt;&gt;&gt; <span style="color: #8b2252;">'%*.*s'</span> % (10, 5, <span style="color: #8b2252;">'adfasdfadsfasdfasdfasdf'</span>)
+<span class="linenr">11:  </span><span style="color: #8b2252;">'     adfas'</span>
+<span class="linenr">12:  </span>&gt;&gt;&gt;
+<span class="linenr">13:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 符号，对齐和 0 填充 </h3>
+<div class="outline-text-3" id="text-3-4">
+
+<ol>
+<li>说明：
+<ol>
+<li>零：宽度不够时用数字0填充；
+</li>
+<li>负号：左对齐；
+</li>
+<li>正号：不管是正数还是负数都标记出符号
+</li>
+<li>空格：宽度不够时用空格填充；
+</li>
+</ol>
+
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#31354;&#30333;&#34917;0</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"%010f"</span> % math.pi)
+<span class="linenr"> 3:  </span>003.141593
+<span class="linenr"> 4:  </span>
+<span class="linenr"> 5:  </span><span style="color: #b22222;">#&#24038;&#23545;&#40784;</span>
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; <span style="color: #8b2252;">"%-10.2f"</span> % math.pi
+<span class="linenr"> 7:  </span><span style="color: #8b2252;">'3.14      '</span>
+<span class="linenr"> 8:  </span>
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#31354;&#30333;&#21491;&#23545;&#40784;</span>
+<span class="linenr">10:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"% 5d\n% 5d"</span> % (123, 12))
+<span class="linenr">11:  </span>  123
+<span class="linenr">12:  </span>   12
+<span class="linenr">13:  </span>
+<span class="linenr">14:  </span><span style="color: #b22222;">#&#26174;&#31034;&#27491;&#36127;&#31526;&#21495;</span>
+<span class="linenr">15:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"%+5d\n%+5d"</span> % (123, -123))
+<span class="linenr">16:  </span> +123
+<span class="linenr">17:  </span> -123
+<span class="linenr">18:  </span>&gt;&gt;&gt;
+<span class="linenr">19:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 字符串方法 </h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> find </h3>
+<div class="outline-text-3" id="text-4-1">
+
+<ol>
+<li>说明：用于在长字符串中查找子字符串，如果找到，则返回子字符串在左
+      侧第一次出现的索引，没找到返回－1，在查找时，还可以指定在长字符串
+      中查找的范围，提供起始索引和结束索引作为查找的参数；
+</li>
+<li>注意：查找时，包括起始索引位置，但是不包括结束索引的位置；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; string.ascii_letters
+<span class="linenr"> 2:  </span><span style="color: #8b2252;">'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; letters = string.ascii_letters
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; letters.find(<span style="color: #8b2252;">'AB'</span>)
+<span class="linenr"> 5:  </span>26
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; letters.find(<span style="color: #8b2252;">'X'</span>,30,-1)
+<span class="linenr"> 7:  </span>49
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; letters.find(<span style="color: #8b2252;">"AB"</span>,26)
+<span class="linenr"> 9:  </span>26
+<span class="linenr">10:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> join </h3>
+<div class="outline-text-3" id="text-4-2">
+
+<ol>
+<li>说明：将队列中的元素用字符串连接起来，并且列表中的元素必须是字符
+      串；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; data = <span style="color: #7a378b;">list</span>(<span style="color: #8b2252;">'123456'</span>)
+<span class="linenr">2:  </span>&gt;&gt;&gt; data
+<span class="linenr">3:  </span>[<span style="color: #8b2252;">'1'</span>, <span style="color: #8b2252;">'2'</span>, <span style="color: #8b2252;">'3'</span>, <span style="color: #8b2252;">'4'</span>, <span style="color: #8b2252;">'5'</span>, <span style="color: #8b2252;">'6'</span>]
+<span class="linenr">4:  </span>&gt;&gt;&gt; <span style="color: #8b2252;">"AB"</span>.join(data)
+<span class="linenr">5:  </span><span style="color: #8b2252;">'1AB2AB3AB4AB5AB6'</span>
+<span class="linenr">6:  </span>&gt;&gt;&gt; 
+<span class="linenr">7:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> lower </h3>
+<div class="outline-text-3" id="text-4-3">
+
+<ol>
+<li>说明：将字符串转换成小写字母，并返回，但是原字符串不改变；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; mystr=<span style="color: #8b2252;">"ABCD"</span>
+<span class="linenr">2:  </span>&gt;&gt;&gt; mystr.lower()
+<span class="linenr">3:  </span><span style="color: #8b2252;">'abcd'</span>
+<span class="linenr">4:  </span>&gt;&gt;&gt; mystr
+<span class="linenr">5:  </span><span style="color: #8b2252;">'ABCD'</span>
+<span class="linenr">6:  </span>&gt;&gt;&gt; 
+<span class="linenr">7:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> replace </h3>
+<div class="outline-text-3" id="text-4-4">
+
+<ol>
+<li>说明：返回所有匹配项都被替换之后的字符串
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; mystr = <span style="color: #8b2252;">"My name is Geng Qi"</span>
+<span class="linenr">2:  </span>&gt;&gt;&gt; mystr.replace(<span style="color: #8b2252;">"Geng Qi"</span>, <span style="color: #8b2252;">"Bill Gunn"</span>)
+<span class="linenr">3:  </span><span style="color: #8b2252;">'My name is Bill Gunn'</span>
+<span class="linenr">4:  </span>&gt;&gt;&gt; 
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> split </h3>
+<div class="outline-text-3" id="text-4-5">
+
+<ol>
+<li>说明：将字符串分割成序列；
+</li>
+<li>注意：如果不提供分割符，则会将空白符当作分割符；
+</li>
+<li>例子
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#20197;&#21152;&#21495;&#20026;&#20998;&#21106;&#31526;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; mystr = <span style="color: #8b2252;">"1+2+3+4+5+6"</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; mystr.split(<span style="color: #8b2252;">'+'</span>)
+<span class="linenr"> 4:  </span>[<span style="color: #8b2252;">'1'</span>, <span style="color: #8b2252;">'2'</span>, <span style="color: #8b2252;">'3'</span>, <span style="color: #8b2252;">'4'</span>, <span style="color: #8b2252;">'5'</span>, <span style="color: #8b2252;">'6'</span>]
+<span class="linenr"> 5:  </span>
+<span class="linenr"> 6:  </span><span style="color: #b22222;">#&#19981;&#25552;&#20379;&#20998;&#21106;&#31526;&#26102;&#65292;&#20197;&#31354;&#30333;&#31526;&#20026;&#20998;&#21106;&#31526;</span>
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; mystr = <span style="color: #8b2252;">"This    is a       test string"</span>
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; mystr.split()
+<span class="linenr"> 9:  </span>[<span style="color: #8b2252;">'This'</span>, <span style="color: #8b2252;">'is'</span>, <span style="color: #8b2252;">'a'</span>, <span style="color: #8b2252;">'test'</span>, <span style="color: #8b2252;">'string'</span>]
+<span class="linenr">10:  </span>&gt;&gt;&gt; 
+<span class="linenr">11:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-6" class="outline-3">
+<h3 id="sec-4-6"><span class="section-number-3">4.6</span> strip </h3>
+<div class="outline-text-3" id="text-4-6">
+
+<ol>
+<li>说明：去除两侧的空白，也可以去除指定的字符；
+</li>
+<li>例子
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; mystr = <span style="color: #8b2252;">"           asdfad adfasf asdf                      "</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; mystr
+<span class="linenr"> 3:  </span><span style="color: #8b2252;">'     \tasdfad adfasf asdf       \t\t'</span>
+<span class="linenr"> 4:  </span><span style="color: #b22222;">#&#21435;&#38500;&#31354;&#30333;&#31526;</span>
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; mystr.strip()
+<span class="linenr"> 6:  </span><span style="color: #8b2252;">'asdfad adfasf asdf'</span>
+<span class="linenr"> 7:  </span>
+<span class="linenr"> 8:  </span><span style="color: #b22222;">#&#21435;&#38500;&#25351;&#23450;&#23383;&#31526;</span>
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; mystr.strip(<span style="color: #8b2252;">'\t'</span>)
+<span class="linenr">10:  </span><span style="color: #8b2252;">'     \tasdfad adfasf'</span> asdf       <span style="color: #8b2252;">'</span>
+<span class="linenr">11:  </span><span style="color: #8b2252;">&gt;&gt;&gt; </span>
+<span class="linenr">12:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-7" class="outline-3">
+<h3 id="sec-4-7"><span class="section-number-3">4.7</span> translate </h3>
+<div class="outline-text-3" id="text-4-7">
 
 
 
@@ -364,102 +721,79 @@ data <span style="color: #a020f0;">is</span> 1 2 3
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
 
-
-<span style="color: #b22222;">#+BEGIN_SRC python </span>
-
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
+<span class="linenr">2:  </span>
+<span class="linenr">3:  </span>
+<span class="linenr">4:  </span>     <span style="color: #b22222;">#+BEGIN_SRC python -n</span>
+<span class="linenr">5:  </span>
 </pre>
 
 
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
-
-
-<span style="color: #b22222;">#+BEGIN_SRC python </span>
-
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
+<span class="linenr">2:  </span>
+<span class="linenr">3:  </span>
+<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
+<span class="linenr">5:  </span>
 </pre>
 
 
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
-
-
-<span style="color: #b22222;">#+BEGIN_SRC python </span>
-
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
+<span class="linenr">2:  </span>
+<span class="linenr">3:  </span>
+<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
+<span class="linenr">5:  </span>
 </pre>
 
 
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
-
-
-<span style="color: #b22222;">#+BEGIN_SRC python </span>
-
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
+<span class="linenr">2:  </span>
+<span class="linenr">3:  </span>
+<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
+<span class="linenr">5:  </span>
 </pre>
 
 
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
-
-
-<span style="color: #b22222;">#+BEGIN_SRC python </span>
-
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
+<span class="linenr">2:  </span>
+<span class="linenr">3:  </span>
+<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
+<span class="linenr">5:  </span>
 </pre>
 
 
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
-
-
-<span style="color: #b22222;">#+BEGIN_SRC python </span>
-
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
+<span class="linenr">2:  </span>
+<span class="linenr">3:  </span>
+<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
+<span class="linenr">5:  </span>
 </pre>
 
 
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
-
-
-<span style="color: #b22222;">#+BEGIN_SRC python </span>
-
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
+<span class="linenr">2:  </span>
+<span class="linenr">3:  </span>
+<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
+<span class="linenr">5:  </span>
 </pre>
-
-
-
-
-
-<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
-
-
-<span style="color: #b22222;">#+BEGIN_SRC python </span>
-
-</pre>
-
-
-
-
-
-<pre class="src src-python"><span style="color: #b22222;">#+END_SRC</span>
-
-
-<span style="color: #b22222;">#+BEGIN_SRC python </span>
-
-</pre>
-
-
 
 
 
@@ -470,7 +804,7 @@ data <span style="color: #a020f0;">is</span> 1 2 3
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2011-11-14 16:59:23 </p>
+<p class="date">Date: 2011-11-15 17:26:56 </p>
 <p class="author">Author: </p>
 <p class="creator">Org version 7.7 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

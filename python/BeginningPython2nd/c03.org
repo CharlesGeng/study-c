@@ -5,7 +5,7 @@
      最小，判断成员资格等都可以应用在字符串上；
   2. 注意：字符串是不可变的，所以不能对其进行赋值；
   3. 例子
-    #+begin_src python
+    #+begin_src python -n
     >>> mystr="Test string"
     >>> mystr[0] = 't'
     Traceback (most recent call last):
@@ -23,36 +23,36 @@
      2. 转换说明符，用于标记需要插入转换值的位置；
      3. 如果在格式化字符串中要输出百分号，则需要使用 *%%*
   3. 例子：
-     #+begin_src python
+     #+begin_src python -n
        #一般格式化
        >>> myformat = "Hello, my name is %s %s"
        >>> name = ('Bill','Gunn')
-       >>> print (myformat % name) 
+       >>> print (myformat % name)
        Hello, my name is Bill Gunn
        >>>
-       
+
        #用列表格式化
-       >>> myformat = 'Hello, my name is %s' 
+       >>> myformat = 'Hello, my name is %s'
        >>> name=['Bill', 'Gunn']
-       >>> print(myformat % name) 
+       >>> print(myformat % name)
        Hello, my name is ['Bill', 'Gunn']
-       
+
        #打印浮点数
        >>> import math
        >>> print ("PI = %.5f" % pi)
        PI = 3.14159
-       
+
        #打印百分号
        >>> print("%.2f%%"% 22.3)
        22.30%
        >>>
      #+end_src
-  
+
 ** 用string的Template格式化字符串
    1. 说明：类似于Unix Shell中的变量替换，使用substitute方法，将字符串
       模板中的$foo替换为传递进来的参数foo
    2. 例子：
-      #+begin_src python
+      #+begin_src python -n
         #从string模块中导入Template
         >>> from string import Template
         #创建模板
@@ -60,21 +60,21 @@
         #替换变量并打印
         >>> print(myformat.substitute(name="Bill Gunn"))
         My name is Bill Gunn
-        >>> 
-        
+        >>>
+
         #输出美元符号的方法，在模板里输入两个$
         >>> mytemplate = Template("The price is $$$price")
         >>> mytemplate.substitute(price=100)
         'The price is $100'
-        >>> 
-        
+        >>>
+
         #如果参数与后面的字符串相连，需要用大括号将其括起来
         >>> from string import Template
         >>> mytemplate = Template("It's ${x}tastic!")
         >>> mytemplate.substitute(x='slum')
         "It's slumtastic!"
-        >>> 
-        
+        >>>
+
         #使用字典替换参数
         >>> mytemplate = Template("My $property is $value")
         >>> name = {}
@@ -82,15 +82,15 @@
         >>> name["value"] = "Bill Gunn"
         >>> mytemplate.substitute(name)
         'My name is Bill Gunn'
-        >>> 
-        
+        >>>
+
       #+end_src
 
 * 字符串格式化：完整版
   1. 说明：字符串格式化操作符的右操作数如果是元组，那么在格式化字符串
      中必须将元组中的各个元素都有对应的转义说明符。
   2. 例子：
-     #+begin_src python
+     #+begin_src python -n
        >>> data = tuple(list("123"))
        >>> data
        ('1', '2', '3')
@@ -103,8 +103,8 @@
        #显示元组中的全部元素
        >>> print ("data is %s %s %s" % data)
        data is 1 2 3
-       >>> 
-       
+       >>>
+
      #+end_src
 ** 转换说明符
    1. 转换说明符
@@ -136,85 +136,230 @@
      |---+------------+-----------------------------------------------------|
      | # | r          | 字符串（使用repr转换任意Python对象）                |
      |---+------------+-----------------------------------------------------|
-     | # | s          | 字符串（使用str转换任意Python对象）                              |
+     | # | s          | 字符串（使用str转换任意Python对象）                 |
+
+** 简单转换
+   1. 例子：
+      #+begin_src python -n
+        #十进制整数
+        >>> print ("The price is $%d" % 12)
+        The price is $12
+
+        #十六进制整数
+        >>> print ("Hex %x" % 12)
+        Hex c
+
+        #八进制整数
+        >>> print ("Oct %o" % 12)
+        Oct 14
+        >>>
+
+      #+end_src
+** 字段宽度和精度
+   1. 说明：
+      1. 字段宽度：转换后的值所保留的最小字符个数；
+      2. 字段精度：转换后，结果中应该的小数位数；
+      3. 可以使用*作为字段宽度或者精度
+   2. 例子：
+      #+begin_src python -n
+	#限制宽度
+	>>> "%10f" % math.pi
+	'  3.141593'
+
+	#限制小数位数
+	>>> "%5.2f" % math.pi
+	' 3.14'
+
+	#用星号限制宽度和精度，下例中，宽度为10，精度为5
+	>>> '%*.*s' % (10, 5, 'adfasdfadsfasdfasdfasdf')
+	'     adfas'
+	>>>
+
+      #+end_src
+
+** 符号，对齐和 0 填充
+   1. 说明：
+      1. 零：宽度不够时用数字0填充；
+      2. 负号：左对齐；
+      3. 正号：不管是正数还是负数都标记出符号
+      4. 空格：宽度不够时用空格填充；
+   2. 例子：
+      #+begin_src python -n
+        #空白补0
+        >>> print ("%010f" % math.pi)
+        003.141593
+
+        #左对齐
+        >>> "%-10.2f" % math.pi
+        '3.14      '
+
+        #空白右对齐
+        >>> print("% 5d\n% 5d" % (123, 12))
+          123
+           12
+
+        #显示正负符号
+        >>> print ("%+5d\n%+5d" % (123, -123))
+         +123
+         -123
+        >>>
+
+      #+end_src
+
+* 字符串方法
+
+** find
+   1. 说明：用于在长字符串中查找子字符串，如果找到，则返回子字符串在左
+      侧第一次出现的索引，没找到返回－1，在查找时，还可以指定在长字符串
+      中查找的范围，提供起始索引和结束索引作为查找的参数；
+   2. 注意：查找时，包括起始索引位置，但是不包括结束索引的位置；
+   3. 例子：
+       #+begin_src python -n
+         >>> string.ascii_letters
+         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+         >>> letters = string.ascii_letters
+         >>> letters.find('AB')
+         26
+         >>> letters.find('X',30,-1)
+         49
+         >>> letters.find("AB",26)
+         26
+                  
+       #+end_src
+
+** join
+   1. 说明：将队列中的元素用字符串连接起来，并且列表中的元素必须是字符
+      串；
+   2. 例子：
+      #+begin_src python -n 
+        >>> data = list('123456')
+        >>> data
+        ['1', '2', '3', '4', '5', '6']
+        >>> "AB".join(data)
+        '1AB2AB3AB4AB5AB6'
+        >>> 
+        
+      #+end_src
+
+** lower
+   1. 说明：将字符串转换成小写字母，并返回，但是原字符串不改变；
+   2. 例子：
+      #+begin_src python -n
+        >>> mystr="ABCD"
+        >>> mystr.lower()
+        'abcd'
+        >>> mystr
+        'ABCD'
+        >>> 
+        
+      #+end_src
+
+** replace
+   1. 说明：返回所有匹配项都被替换之后的字符串
+   2. 例子：
+      #+begin_src python -n
+       >>> mystr = "My name is Geng Qi"
+       >>> mystr.replace("Geng Qi", "Bill Gunn")
+       'My name is Bill Gunn'
+       >>> 
+      #+end_src
+
+** split
+   1. 说明：将字符串分割成序列；
+   2. 注意：如果不提供分割符，则会将空白符当作分割符；
+   3. 例子
+      #+begin_src python -n
+        #以加号为分割符
+        >>> mystr = "1+2+3+4+5+6"
+        >>> mystr.split('+')
+        ['1', '2', '3', '4', '5', '6']
+        
+        #不提供分割符时，以空白符为分割符
+        >>> mystr = "This    is a       test string"
+        >>> mystr.split()
+        ['This', 'is', 'a', 'test', 'string']
+        >>> 
+        
+      #+end_src
+
+** strip
+   1. 说明：去除两侧的空白，也可以去除指定的字符；
+   2. 例子
+      #+begin_src python -n
+        >>> mystr = "           asdfad adfasf asdf                      "
+        >>> mystr
+        '     \tasdfad adfasf asdf       \t\t'
+        #去除空白符
+        >>> mystr.strip()
+        'asdfad adfasf asdf'
+        
+        #去除指定字符
+        >>> mystr.strip('\t')
+        '     \tasdfad adfasf' asdf       '
+        >>> 
+        
+      #+end_src
+
+** translate
 
 
-     
 
 
 
 
-#+begin_src python
+#+begin_src python -n
 
 #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
+     #+end_src
 
-#+begin_src python
+     #+begin_src python -n
 
-#+end_src
-
-#+begin_src python
-
-#+end_src
-
-#+begin_src python
-
-#+end_src
-
-#+begin_src python
-
-#+end_src
-
-#+begin_src python
-
-#+end_src
-
-
+     #+end_src
 

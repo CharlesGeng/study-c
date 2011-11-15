@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="gbk"?>
+<?xml version="1.0" encoding="gb2312"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 lang="en" xml:lang="en">
 <head>
 <title>使用字符串</title>
-<meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+<meta http-equiv="Content-Type" content="text/html;charset=gb2312"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-11-15 17:26:56 "/>
+<meta name="generated" content="2011-11-15 23:24:43 "/>
 <meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -681,7 +681,7 @@ lang="en" xml:lang="en">
 <ol>
 <li>说明：去除两侧的空白，也可以去除指定的字符；
 </li>
-<li>例子
+<li>例子:
 
 
 
@@ -713,90 +713,25 @@ lang="en" xml:lang="en">
 <h3 id="sec-4-7"><span class="section-number-3">4.7</span> translate </h3>
 <div class="outline-text-3" id="text-4-7">
 
+<ol>
+<li>说明：translate是单字替换，可以同时替换多个字符
+</li>
+<li>例子：
 
 
 
-
-
-
-
-
-
-<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
-<span class="linenr">2:  </span>
-<span class="linenr">3:  </span>
-<span class="linenr">4:  </span>     <span style="color: #b22222;">#+BEGIN_SRC python -n</span>
-<span class="linenr">5:  </span>
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; table = <span style="color: #7a378b;">str</span>.maketrans(<span style="color: #8b2252;">'cs'</span>, <span style="color: #8b2252;">'kz'</span>)
+<span class="linenr">2:  </span>&gt;&gt;&gt; table
+<span class="linenr">3:  </span>{115: 122, 99: 107}
+<span class="linenr">4:  </span>&gt;&gt;&gt; <span style="color: #8b2252;">"Please don't knock at my door!"</span>.translate(table)
+<span class="linenr">5:  </span><span style="color: #8b2252;">"Pleaze don't knokk at my door!"</span>
+<span class="linenr">6:  </span>
 </pre>
 
 
 
-
-
-<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
-<span class="linenr">2:  </span>
-<span class="linenr">3:  </span>
-<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
-<span class="linenr">5:  </span>
-</pre>
-
-
-
-
-
-<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
-<span class="linenr">2:  </span>
-<span class="linenr">3:  </span>
-<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
-<span class="linenr">5:  </span>
-</pre>
-
-
-
-
-
-<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
-<span class="linenr">2:  </span>
-<span class="linenr">3:  </span>
-<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
-<span class="linenr">5:  </span>
-</pre>
-
-
-
-
-
-<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
-<span class="linenr">2:  </span>
-<span class="linenr">3:  </span>
-<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
-<span class="linenr">5:  </span>
-</pre>
-
-
-
-
-
-<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
-<span class="linenr">2:  </span>
-<span class="linenr">3:  </span>
-<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
-<span class="linenr">5:  </span>
-</pre>
-
-
-
-
-
-<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#+END_SRC</span>
-<span class="linenr">2:  </span>
-<span class="linenr">3:  </span>
-<span class="linenr">4:  </span><span style="color: #b22222;">#+BEGIN_SRC python -n</span>
-<span class="linenr">5:  </span>
-</pre>
-
-
-
+</li>
+</ol>
 
 </div>
 </div>
@@ -804,7 +739,7 @@ lang="en" xml:lang="en">
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2011-11-15 17:26:56 </p>
+<p class="date">Date: 2011-11-15 23:24:43 </p>
 <p class="author">Author: </p>
 <p class="creator">Org version 7.7 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

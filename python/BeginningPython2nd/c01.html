@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>基础知识</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-11-11 15:45:58 "/>
+<meta name="generated" content="2011-11-15 23:28:47 "/>
 <meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -147,11 +147,11 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; 1/3
-0.3333333333333333
-&gt;&gt;&gt; 2/3
-0.6666666666666666
-
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; 1/3
+<span class="linenr">2:  </span>0.3333333333333333
+<span class="linenr">3:  </span>&gt;&gt;&gt; 2/3
+<span class="linenr">4:  </span>0.6666666666666666
+<span class="linenr">5:  </span>
 </pre>
 
 
@@ -185,14 +185,14 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; 1 // 3
-0
-&gt;&gt;&gt; 2 // 3
-0
-&gt;&gt;&gt; 2.9 // 3
-0.0
-&gt;&gt;&gt; 3.1 // 3
-1.0
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; 1 // 3
+<span class="linenr">2:  </span>0
+<span class="linenr">3:  </span>&gt;&gt;&gt; 2 // 3
+<span class="linenr">4:  </span>0
+<span class="linenr">5:  </span>&gt;&gt;&gt; 2.9 // 3
+<span class="linenr">6:  </span>0.0
+<span class="linenr">7:  </span>&gt;&gt;&gt; 3.1 // 3
+<span class="linenr">8:  </span>1.0
 </pre>
 
 
@@ -224,14 +224,14 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; 2 ** 3
-8
-&gt;&gt;&gt; 3 ** 2
-9
-&gt;&gt;&gt; -3 ** 2
--9
-&gt;&gt;&gt; (-3)** 2
-9
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; 2 ** 3
+<span class="linenr">2:  </span>8
+<span class="linenr">3:  </span>&gt;&gt;&gt; 3 ** 2
+<span class="linenr">4:  </span>9
+<span class="linenr">5:  </span>&gt;&gt;&gt; -3 ** 2
+<span class="linenr">6:  </span>-9
+<span class="linenr">7:  </span>&gt;&gt;&gt; (-3)** 2
+<span class="linenr">8:  </span>9
 </pre>
 
 
@@ -276,14 +276,14 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#&#21313;&#20845;&#36827;&#21046;</span>
-&gt;&gt;&gt; 0x1234567890ABCDEF
-1311768467294899695
-
-<span style="color: #b22222;">#&#20843;&#36827;&#21046;</span>
-&gt;&gt;&gt; 0o1234567
-342391
-
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#&#21313;&#20845;&#36827;&#21046;</span>
+<span class="linenr">2:  </span>&gt;&gt;&gt; 0x1234567890ABCDEF
+<span class="linenr">3:  </span>1311768467294899695
+<span class="linenr">4:  </span>
+<span class="linenr">5:  </span><span style="color: #b22222;">#&#20843;&#36827;&#21046;</span>
+<span class="linenr">6:  </span>&gt;&gt;&gt; 0o1234567
+<span class="linenr">7:  </span>342391
+<span class="linenr">8:  </span>
 </pre>
 
 
@@ -335,11 +335,11 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; num = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please input a number:"</span>)
-Please <span style="color: #7a378b;">input</span> a number:123
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"The number you input is:%r"</span> % num)
-The number you <span style="color: #7a378b;">input</span> <span style="color: #a020f0;">is</span>:<span style="color: #8b2252;">'123'</span>
-
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; num = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please input a number:"</span>)
+<span class="linenr">2:  </span>Please <span style="color: #7a378b;">input</span> a number:123
+<span class="linenr">3:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"The number you input is:%r"</span> % num)
+<span class="linenr">4:  </span>The number you <span style="color: #7a378b;">input</span> <span style="color: #a020f0;">is</span>:<span style="color: #8b2252;">'123'</span>
+<span class="linenr">5:  </span>
 </pre>
 
 
@@ -363,12 +363,12 @@ The number you <span style="color: #7a378b;">input</span> <span style="color: #a
 
 
 
-<pre class="src src-python"><span style="color: #a020f0;">if</span> 1 == 2:
-    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"1 == 2"</span>)
-<span style="color: #a020f0;">if</span> 1 &lt; 2:
-    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"1 &lt; 2"</span>)
-1&lt;2
-
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #a020f0;">if</span> 1 == 2:
+<span class="linenr">2:  </span>    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"1 == 2"</span>)
+<span class="linenr">3:  </span><span style="color: #a020f0;">if</span> 1 &lt; 2:
+<span class="linenr">4:  </span>    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"1 &lt; 2"</span>)
+<span class="linenr">5:  </span>1&lt;2
+<span class="linenr">6:  </span>
 </pre>
 
 
@@ -392,24 +392,24 @@ The number you <span style="color: #7a378b;">input</span> <span style="color: #a
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#&#24130;&#20989;&#25968;</span>
-&gt;&gt;&gt; <span style="color: #7a378b;">pow</span>(2, 3)
-8
-&gt;&gt;&gt; 10 + <span style="color: #7a378b;">pow</span>(2, 10) / 3
-351.3333333333333
-
-<span style="color: #b22222;">#&#32477;&#23545;&#20540;&#20989;&#25968;</span>
-&gt;&gt;&gt; <span style="color: #7a378b;">abs</span>(10)
-10
-&gt;&gt;&gt; <span style="color: #7a378b;">abs</span>(-10)
-10
-
-<span style="color: #b22222;">#&#22235;&#33293;&#20116;&#20837;&#20989;&#25968;,&#23558;&#28014;&#28857;&#25968;&#22235;&#33293;&#20116;&#20837;&#20026;&#25972;&#25968;</span>
-&gt;&gt;&gt; <span style="color: #7a378b;">round</span>(3.444)
-3
-&gt;&gt;&gt; <span style="color: #7a378b;">round</span> (3.5001)
-4
-
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#24130;&#20989;&#25968;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">pow</span>(2, 3)
+<span class="linenr"> 3:  </span>8
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; 10 + <span style="color: #7a378b;">pow</span>(2, 10) / 3
+<span class="linenr"> 5:  </span>351.3333333333333
+<span class="linenr"> 6:  </span>
+<span class="linenr"> 7:  </span><span style="color: #b22222;">#&#32477;&#23545;&#20540;&#20989;&#25968;</span>
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">abs</span>(10)
+<span class="linenr"> 9:  </span>10
+<span class="linenr">10:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">abs</span>(-10)
+<span class="linenr">11:  </span>10
+<span class="linenr">12:  </span>
+<span class="linenr">13:  </span><span style="color: #b22222;">#&#22235;&#33293;&#20116;&#20837;&#20989;&#25968;,&#23558;&#28014;&#28857;&#25968;&#22235;&#33293;&#20116;&#20837;&#20026;&#25972;&#25968;</span>
+<span class="linenr">14:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">round</span>(3.444)
+<span class="linenr">15:  </span>3
+<span class="linenr">16:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">round</span> (3.5001)
+<span class="linenr">17:  </span>4
+<span class="linenr">18:  </span>
 </pre>
 
 
@@ -443,23 +443,23 @@ The number you <span style="color: #7a378b;">input</span> <span style="color: #a
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#python 3.2&#20013;&#65292;math.floor&#30452;&#25509;&#36820;&#22238;&#25972;&#22411;&#65292;&#19982;int&#30340;&#25928;&#26524;&#30456;&#21516;</span>
-<span style="color: #b22222;">#&#20351;&#29992;&#31532;&#19968;&#31181;&#27169;&#22359;&#23548;&#20837;&#26041;&#27861;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">import</span> math
-&gt;&gt;&gt; math.floor(32.99999)
-32
-&gt;&gt;&gt; <span style="color: #7a378b;">int</span>(32.99999)
-32
-
-<span style="color: #b22222;">#&#20351;&#29992;&#31532;&#20108;&#31181;&#27169;&#22359;&#23548;&#20837;&#26041;&#27861;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">from</span> math <span style="color: #a020f0;">import</span> sqrt
-&gt;&gt;&gt; sqrt(169)
-13.0
-
-<span style="color: #b22222;">#cmath&#27169;&#22359;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">import</span> cmath
-&gt;&gt;&gt; cmath.sqrt(-1)
-1j
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#python 3.2&#20013;&#65292;math.floor&#30452;&#25509;&#36820;&#22238;&#25972;&#22411;&#65292;&#19982;int&#30340;&#25928;&#26524;&#30456;&#21516;</span>
+<span class="linenr"> 2:  </span><span style="color: #b22222;">#&#20351;&#29992;&#31532;&#19968;&#31181;&#27169;&#22359;&#23548;&#20837;&#26041;&#27861;</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">import</span> math
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; math.floor(32.99999)
+<span class="linenr"> 5:  </span>32
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">int</span>(32.99999)
+<span class="linenr"> 7:  </span>32
+<span class="linenr"> 8:  </span>
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#20351;&#29992;&#31532;&#20108;&#31181;&#27169;&#22359;&#23548;&#20837;&#26041;&#27861;</span>
+<span class="linenr">10:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">from</span> math <span style="color: #a020f0;">import</span> sqrt
+<span class="linenr">11:  </span>&gt;&gt;&gt; sqrt(169)
+<span class="linenr">12:  </span>13.0
+<span class="linenr">13:  </span>
+<span class="linenr">14:  </span><span style="color: #b22222;">#cmath&#27169;&#22359;</span>
+<span class="linenr">15:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">import</span> cmath
+<span class="linenr">16:  </span>&gt;&gt;&gt; cmath.sqrt(-1)
+<span class="linenr">17:  </span>1j
 </pre>
 
 
@@ -492,13 +492,13 @@ The number you <span style="color: #7a378b;">input</span> <span style="color: #a
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"This is a test!"</span>)
-This <span style="color: #a020f0;">is</span> a test!
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'I said:"I will be there!"'</span>)
-I said:<span style="color: #8b2252;">"I will be there!"</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"Let's go!"</span>)
-Let<span style="color: #8b2252;">'s go!</span>
-
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"This is a test!"</span>)
+<span class="linenr">2:  </span>This <span style="color: #a020f0;">is</span> a test!
+<span class="linenr">3:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'I said:"I will be there!"'</span>)
+<span class="linenr">4:  </span>I said:<span style="color: #8b2252;">"I will be there!"</span>
+<span class="linenr">5:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"Let's go!"</span>)
+<span class="linenr">6:  </span>Let<span style="color: #8b2252;">'s go!</span>
+<span class="linenr">7:  </span>
 </pre>
 
 
@@ -522,11 +522,11 @@ Let<span style="color: #8b2252;">'s go!</span>
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"\""</span>)
-<span style="color: #8b2252;">"</span>
-<span style="color: #8b2252;">&gt;&gt;&gt; print ('\'')</span>
-<span style="color: #8b2252;">'</span>
-
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"\""</span>)
+<span class="linenr">2:  </span><span style="color: #8b2252;">"</span>
+<span class="linenr">3:  </span><span style="color: #8b2252;">&gt;&gt;&gt; print ('\'')</span>
+<span class="linenr">4:  </span><span style="color: #8b2252;">'</span>
+<span class="linenr">5:  </span>
 </pre>
 
 
@@ -550,9 +550,9 @@ Let<span style="color: #8b2252;">'s go!</span>
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"Let's say:\""</span> + <span style="color: #8b2252;">"Hello, world!\""</span>)
-Let<span style="color: #8b2252;">'s say:"Hello, world!"</span>
-
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"Let's say:\""</span> + <span style="color: #8b2252;">"Hello, world!\""</span>)
+<span class="linenr">2:  </span>Let<span style="color: #8b2252;">'s say:"Hello, world!"</span>
+<span class="linenr">3:  </span>
 </pre>
 
 
@@ -582,17 +582,17 @@ Let<span style="color: #8b2252;">'s say:"Hello, world!"</span>
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#str&#19982;repr&#30340;&#21306;&#21035;</span>
-&gt;&gt;&gt; c = r<span style="color: #8b2252;">"c:\nowhere"</span>
-&gt;&gt;&gt; c
-<span style="color: #8b2252;">'c:\\nowhere'</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(c)
-c:\nowhere
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #7a378b;">str</span>(c))
-c:\nowhere
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #7a378b;">repr</span>(c))
-<span style="color: #8b2252;">'c:\\nowhere'</span>
-
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#str&#19982;repr&#30340;&#21306;&#21035;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; c = r<span style="color: #8b2252;">"c:\nowhere"</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; c
+<span class="linenr"> 4:  </span><span style="color: #8b2252;">'c:\\nowhere'</span>
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(c)
+<span class="linenr"> 6:  </span>c:\nowhere
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #7a378b;">str</span>(c))
+<span class="linenr"> 8:  </span>c:\nowhere
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #7a378b;">repr</span>(c))
+<span class="linenr">10:  </span><span style="color: #8b2252;">'c:\\nowhere'</span>
+<span class="linenr">11:  </span>
 </pre>
 
 
@@ -615,10 +615,10 @@ c:\nowhere
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; name = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Your name: "</span>)
-Your name: Bill Gunn
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Hello "</span> + name)
-Hello Bill Gunn
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; name = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Your name: "</span>)
+<span class="linenr">2:  </span>Your name: Bill Gunn
+<span class="linenr">3:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Hello "</span> + name)
+<span class="linenr">4:  </span>Hello Bill Gunn
 </pre>
 
 
@@ -651,24 +651,24 @@ Hello Bill Gunn
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#&#19977;&#20010;&#24341;&#21495;&#30340;&#31034;&#20363;</span>
-
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"""</span>
-<span style="color: #8b2252;">... This is a very long string.</span>
-<span style="color: #8b2252;">... It continues here.</span>
-<span style="color: #8b2252;">... END.</span>
-<span style="color: #8b2252;">... """</span>)
-
-This <span style="color: #a020f0;">is</span> a very <span style="color: #7a378b;">long</span> string.
-It continues here.
-END.
-
-<span style="color: #b22222;">#&#21453;&#26012;&#32447;&#30340;&#31034;&#20363;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"This is a long string \</span>
-<span style="color: #8b2252;">... It continues here.\</span>
-<span style="color: #8b2252;">... This is the end!"</span>)
-This <span style="color: #a020f0;">is</span> a <span style="color: #7a378b;">long</span> string It continues here. This <span style="color: #a020f0;">is</span> the end
-
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#19977;&#20010;&#24341;&#21495;&#30340;&#31034;&#20363;</span>
+<span class="linenr"> 2:  </span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"""</span>
+<span class="linenr"> 4:  </span><span style="color: #8b2252;">... This is a very long string.</span>
+<span class="linenr"> 5:  </span><span style="color: #8b2252;">... It continues here.</span>
+<span class="linenr"> 6:  </span><span style="color: #8b2252;">... END.</span>
+<span class="linenr"> 7:  </span><span style="color: #8b2252;">... """</span>)
+<span class="linenr"> 8:  </span>
+<span class="linenr"> 9:  </span>This <span style="color: #a020f0;">is</span> a very <span style="color: #7a378b;">long</span> string.
+<span class="linenr">10:  </span>It continues here.
+<span class="linenr">11:  </span>END.
+<span class="linenr">12:  </span>
+<span class="linenr">13:  </span><span style="color: #b22222;">#&#21453;&#26012;&#32447;&#30340;&#31034;&#20363;</span>
+<span class="linenr">14:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"This is a long string \</span>
+<span class="linenr">15:  </span><span style="color: #8b2252;">... It continues here.\</span>
+<span class="linenr">16:  </span><span style="color: #8b2252;">... This is the end!"</span>)
+<span class="linenr">17:  </span>This <span style="color: #a020f0;">is</span> a <span style="color: #7a378b;">long</span> string It continues here. This <span style="color: #a020f0;">is</span> the end
+<span class="linenr">18:  </span>
 </pre>
 
 
@@ -703,23 +703,23 @@ This <span style="color: #a020f0;">is</span> a <span style="color: #7a378b;">lon
 
 
 
-<pre class="src src-python"><span style="color: #b22222;">#&#21453;&#26012;&#32447;&#34987;&#24403;&#25104;&#36716;&#20041;&#23383;&#31526;&#25171;&#21360;&#20986;&#26469;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"C:\nowhere"</span>)
-C:
-owhere
-
-<span style="color: #b22222;">#&#30452;&#25509;&#25171;&#21360;&#21453;&#26012;&#32447;</span>
-&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (r<span style="color: #8b2252;">"C:\nowhere"</span>)
-C:\nowher
-
-<span style="color: #b22222;">#&#19981;&#33021;&#22312;&#21407;&#22987;&#23383;&#31526;&#20018;&#32467;&#23614;&#20351;&#29992;&#21453;&#26012;&#32447;</span>
-&gt;&gt;&gt; c = r<span style="color: #8b2252;">"test\"</span>
-<span style="color: #8b2252;">SyntaxError: EOL while scanning string literal</span>
-
-<span style="color: #8b2252;">#&#22312;&#21407;&#22987;&#23383;&#31526;&#20018;&#32467;&#23614;&#36755;&#20986;&#21453;&#26012;&#32447;&#30340;&#26041;&#27861;</span>
-<span style="color: #8b2252;">&gt;&gt;&gt; print (r"</span>C:\windows<span style="color: #8b2252;">""</span>\\<span style="color: #8b2252;">")</span>
-<span style="color: #8b2252;">C:\windows\</span>
-
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#21453;&#26012;&#32447;&#34987;&#24403;&#25104;&#36716;&#20041;&#23383;&#31526;&#25171;&#21360;&#20986;&#26469;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"C:\nowhere"</span>)
+<span class="linenr"> 3:  </span>C:
+<span class="linenr"> 4:  </span>owhere
+<span class="linenr"> 5:  </span>
+<span class="linenr"> 6:  </span><span style="color: #b22222;">#&#30452;&#25509;&#25171;&#21360;&#21453;&#26012;&#32447;</span>
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span> (r<span style="color: #8b2252;">"C:\nowhere"</span>)
+<span class="linenr"> 8:  </span>C:\nowher
+<span class="linenr"> 9:  </span>
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#19981;&#33021;&#22312;&#21407;&#22987;&#23383;&#31526;&#20018;&#32467;&#23614;&#20351;&#29992;&#21453;&#26012;&#32447;</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; c = r<span style="color: #8b2252;">"test\"</span>
+<span class="linenr">12:  </span><span style="color: #8b2252;">SyntaxError: EOL while scanning string literal</span>
+<span class="linenr">13:  </span>
+<span class="linenr">14:  </span><span style="color: #8b2252;">#&#22312;&#21407;&#22987;&#23383;&#31526;&#20018;&#32467;&#23614;&#36755;&#20986;&#21453;&#26012;&#32447;&#30340;&#26041;&#27861;</span>
+<span class="linenr">15:  </span><span style="color: #8b2252;">&gt;&gt;&gt; print (r"</span>C:\windows<span style="color: #8b2252;">""</span>\\<span style="color: #8b2252;">")</span>
+<span class="linenr">16:  </span><span style="color: #8b2252;">C:\windows\</span>
+<span class="linenr">17:  </span>
 </pre>
 
 
@@ -744,8 +744,8 @@ C:\nowher
 
 
 
-<pre class="src src-python">&gt;&gt;&gt; u<span style="color: #8b2252;">'&#20013;&#25991;'</span>
-<span style="color: #228b22;">SyntaxError</span>: invalid syntax
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; u<span style="color: #8b2252;">'&#20013;&#25991;'</span>
+<span class="linenr">2:  </span><span style="color: #228b22;">SyntaxError</span>: invalid syntax
 </pre>
 
 
@@ -756,7 +756,7 @@ C:\nowher
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2011-11-11 15:45:58 </p>
+<p class="date">Date: 2011-11-15 23:28:47 </p>
 <p class="author">Author: </p>
 <p class="creator">Org version 7.7 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

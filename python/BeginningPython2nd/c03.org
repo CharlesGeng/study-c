@@ -284,7 +284,7 @@
 
 ** strip
    1. 说明：去除两侧的空白，也可以去除指定的字符；
-   2. 例子
+   2. 例子:
       #+begin_src python -n
         >>> mystr = "           asdfad adfasf asdf                      "
         >>> mystr
@@ -301,65 +301,13 @@
       #+end_src
 
 ** translate
-
-
-
-
-
-
-#+begin_src python -n
-
-#+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
-     #+begin_src python -n
-
-     #+end_src
-
+   1. 说明：translate是单字替换，可以同时替换多个字符
+   2. 例子：
+      #+begin_src python -n
+        >>> table = str.maketrans('cs', 'kz')
+        >>> table
+        {115: 122, 99: 107}
+        >>> "Please don't knock at my door!".translate(table)
+        "Pleaze don't knokk at my door!"
+        
+      #+end_src

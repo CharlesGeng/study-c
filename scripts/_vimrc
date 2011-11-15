@@ -19,7 +19,6 @@ let g:mapleader = ","
 nmap <leader>w :w!<cr>
 nmap <leader>x :x!<cr>
 nmap <leader>f :find<cr>
-
 map <leader>s :source $VIM/_vimrc<cr>
 map <leader>e :e! $VIM/_vimrc<cr>
 autocmd! bufwritepost _vimrc source $VIM/_vimrc
@@ -76,7 +75,7 @@ set hlsearch
 set laststatus=2
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
+    let curdir = substitute(getcwd(), '/Users/Bill/', "~/", "g")
     return curdir
 endfunction
 
@@ -368,8 +367,8 @@ autocmd FileType vim set nofen
 au FileType java inoremap <buffer> <C-t> System.out.println();<esc>hi
 
 autocmd FileType java source ~/vim_local/macros/jcommenter.vim
-autocmd FileType java let b:jcommenter_class_author='Amir Salihefendic (amix@amix.dk)'
-autocmd FileType java let b:jcommenter_file_author='Amir Salihefendic (amix@amix.dk)'
+autocmd FileType java let b:jcommenter_class_author='Bill Gunn'
+autocmd FileType java let b:jcommenter_file_author='Bill Gunn'
 autocmd FileType java map <buffer> <F2> :call JCommentWriter()<cr>
 
 autocmd FileType java inoremap <buffer> $pr private
@@ -406,7 +405,7 @@ autocmd BufNewFile,BufRead *.scm inoremap <buffer> <C-t> (pretty-print )<esc>i
 autocmd BufNewFile,BufRead *.scm vnoremap <C-t> <esc>`>a)<esc>`<i(pretty-print <esc>
 
 
-map <F8> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
+"map <F8> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
 
 imap <C-q> <C-]>
 
@@ -511,4 +510,7 @@ function! CleanupBuffer(keep)
     exec "normal " . lnum . "G"
 endfunction
 map <F5> <ESC>:e<CR>G
-colorscheme spring
+colorscheme desert
+"NERDTree shortcut
+nmap <leader>do :NERDTreeToggle<cr>
+nmap <leader>dc :NERDTreeClose<cr>

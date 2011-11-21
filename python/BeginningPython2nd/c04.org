@@ -1,0 +1,370 @@
+#+title:字典：当索引不好用时
+* 字典定义：
+  1. 说明：通过名字引用值的数据结构称为映射，字典是Python中唯一内建的
+     映射类型；
+* 字典的使用:
+  1. 说明：通过检查到特定的词语（键），查找到它的含义（值）；
+  2. 注意：比较适合电话薄，词典这类实现
+  3. 例子：
+     #+begin_src python -n
+       #用列表来实现电话薄
+       >>> phoneNumbers = ['213123','542113','543231','974723']
+       >>> names=['Ada', 'Bill', 'Candy', 'David']
+       >>> phoneNumbers[names.index('Bill')]
+       '542113'
+       >>> 
+       
+     #+end_src
+* 创建和使用字典
+  1. 说明：字典是由多个键以及其对应的值组成的键值对组成的，字典以左大
+     括号开始，并以右大括号结束，键与值之间用冒号分隔，键值对儿之间用
+     逗号分隔；
+  2. 注意：字典中的键是唯一的
+  3. 例子：
+     #+begin_src python -n
+       >>> mydict={'ada':'1111', 'Bill':'2222', 'Candy':'3333'}
+       >>> mydict['Bill']
+       '2222'
+       >>> 
+       
+     #+end_src
+
+** dict函数
+   1. 说明：用于创建字典的内建函数，参数可以是键与值的序列，可以是关键
+      字参数，也可以是其他的映射；
+   2. 注意：如果不给dict提供参数，则会返回一个空字典
+   3. 例子：
+      #+begin_src python -n
+        #将序列转换成字典
+        >>> mylst=[('name', 'Bill'),('age', 30)]
+        >>> mydict = dict(mylst)
+        >>> mydict
+        {'age': 30, 'name': 'Bill'}
+        >>> mydict['name']
+        'Bill'
+        
+        #通过向dict函数传递参数来创建字典
+        >>> mylst = dict(height=183,weight=161,hair='black')
+        >>> mylst['hair']
+        'black'
+        
+        #通过字典来创建另一个字典
+        >>> mylst = dict(mydict)
+        >>> mylst
+        {'age': 30, 'name': 'Bill'}
+        >>> 
+        
+      #+end_src
+
+** 基本字典操作
+   1. 说明：
+      1. len（d）：获取字典中键值对的数量；
+      2. d[k]：键k对应的值；
+      3. d[k]=v：将值v赋给键k；
+      4. del d[k]：删除字典d中键为k的项；
+      5. k in d：判断字典d中是否包含键为k的项；
+   2. 注意：
+      1. 键类型：键类型可以是任意不可变类型，如整数，浮点数，字符串等；
+      2. 自动添加：如果字典中不包含指定的键，可以通过赋值增加新项；
+      3. 成员资格：k in d 是查找字典中是不是有键k对应的项，而列表是查
+         找的是值，v in l， 值v是不是在列表中；
+      4. 字典中检查键的效率要比列表检查值的高效；
+   3. 例子：
+      #+begin_src python -n
+        #电话薄
+        people = {
+                'Bill Gunn':
+                {
+                    'phone': '123456',
+                    'addr': 'Tianjin'
+                    },
+                'Media Zhang':
+                {
+                    'phone': '999999',
+                    'addr': 'Beijing'
+                    }
+                }
+        #输出内容
+        lables = {
+                'phone' : 'phone number',
+                'addr'  : 'address'
+                }
+        #用户名
+        name = input('Name:')
+        key = input('Phone number(p) or address(a):')
+        if key == 'p' : key = 'phone'
+        if key == 'a' : key = 'addr'
+        if name in people:
+            print("%s %s is %s" % (name, lables[key], people[name][key]))
+        input('Press enter!')
+        
+        >>> 
+        Name:Bill Gunn
+        Phone number(p) or address(a):a
+        Bill Gunn address is Tianjin
+        Press enter!
+        
+      #+end_src
+   
+** 用字典格式化字符串
+   1. 说明：在格式化字符串中的格式化说明符后添加 *键* ，并且 *键* 需要
+      用圆括号括起来；
+   2. 例子：
+      #+begin_src python -n
+        >>> table = {
+                'Alice' : '457819',
+                'Bill'  : '929181',
+                'Candy' : '826213'}
+        >>> print("Alice's phone number is %(Alice)s." % table)
+        Alice's phone number is 457819.
+        >>> 
+        
+      #+end_src
+
+** 字典方法
+
+*** clear
+    1. 说明：用于清除字典中全部的键值对儿，调用完该方法后，原字典变成一
+       个空字典；
+    2. 注意：该方法直接操作原字典，调用后不返回值（或者说直接返回
+       *None* ）
+    3. 例子：
+       #+begin_src python -n
+         #字典清空函数的一般用法
+         >>> mydict = {'Bill':'8289213', 'Candy':'192831'}
+         >>> mydict.clear()
+         >>> mydict
+         {}
+         >>> 
+         
+         #字典清空的情况一
+         >>> x = {'Bill':'213121'}
+         #y和x指向同一个字典对象
+         >>> y = x
+         # x 指向一个空字典
+         >>> x = {}
+         # y 仍然指向原字典
+         >>> y
+         {'Bill': '213121'}
+         >>> 
+         
+         #字典清空的情况二
+         >>> x = {'Name' : 'Bill'}
+         #y也指向字典
+         >>> y = x
+         #对字典中的项操作
+         >>> x['Name'] = 'Candy'
+         # y 也跟着变化
+         >>> y
+         {'Name': 'Candy'}
+         #清空字典 x
+         >>> x.clear()
+         #y也被清空了
+         >>> y
+         {}
+         >>> 
+         
+       #+end_src
+*** copy
+    1. 说明：用于创建一个新的字典，用两种复制方法：copy和deepcopy
+    2. 注意：
+       1. copy在复制过程中，如果字典中的 *值* 对象是复杂对象，如列表，
+          字典等等，则拷贝完后，新的字典中的 *值* 指向的还是原字典中的
+          对象，所以修改新对象中的 *值* ，同时也是修改原字典中的值，但
+          是如果字典中的对象是普通类型，如是数字，字符串等，则修改新字
+          典不会影响原字典。
+    3. 例子：
+       #+begin_src python -n
+         #copy的用法和效果
+         >>> x = {'Name' : 'Bill', 'Colors': {'red', 'green', 'blue'}}
+         >>> y = x.copy()
+         >>> y
+         {'Colors': ['blue', 'green', 'red'], 'Name': 'Bill'}
+         #删除颜色列表中的 ‘red’
+         >>> x['Colors'].remove('red')
+         >>> x
+         {'Colors': ['blue', 'green'], 'Name': 'Bill'}
+         #y字典中的颜色列表也发生的改变
+         >>> y
+         {'Colors': ['blue', 'green'], 'Name': 'Bill'}
+         >>> 
+         
+         
+         #deepcopy的用法和效果
+         >>> from copy import deepcopy
+         >>> x = {'colors':['red','green','blue'],'name':'Bill'}
+         >>> x
+         {'colors': ['red', 'green', 'blue'], 'name': 'Bill'}
+         #将x深拷贝给y
+         >>> y = deepcopy(x)
+         >>> y
+         {'colors': ['red', 'green', 'blue'], 'name': 'Bill'}
+         #修改x
+         >>> x['colors'].remove('red')
+         >>> x
+         {'colors': ['green', 'blue'], 'name': 'Bill'}
+         #y没有发生改变
+         >>> y
+         {'colors': ['red', 'green', 'blue'], 'name': 'Bill'}
+         >>> 
+         
+       #+end_src
+    
+*** fromekeys
+    1. 说明：根据键创建新的字典；
+    2. 例子：
+       #+begin_src python -n
+         >>> {}.fromkeys(['name','age'])
+         {'age': None, 'name': None}
+         >>> x.fromkeys(['age'])
+         {'age': None}
+         >>> 
+         
+       #+end_src
+   
+*** get
+    1. 说明：是个更宽松的访问字典项的方法，如果键在字典中，则返回值，
+       如果不在，返回空，也可以给不存在的键指定默认值；
+    2. 例子：
+       #+begin_src python -n
+         >>> x = {'name': 'Bill'}
+         #字典中包含指定的键
+         >>> x.get('name')
+         'Bill'
+         
+         #字典中不包含指定的键，返回空
+         >>> x.get('age')
+         
+         #为不包含的键指定默认值
+         >>> x.get('age', 'N/A')
+         'N/A'
+         >>> 
+         
+       #+end_src
+
+*** has\_key
+    1. 说明：可以检查字典中是否含有给出的键，python3中已经 *不* 包含此
+       项，可以用 *k in dict* 的方式代替；
+   
+*** items和iteritems
+    1. 说明：items以列表方式返回字典中的键值对，iteritems以迭代器对象
+       返回键值对儿(Python3中不再支持）；
+    2. 例子：
+       #+begin_src python -n
+         >>> x
+         {'name': 'Bill'}
+         >>> x.items()
+         dict_items([('name', 'Bill')])
+         
+         #python3中不再包含iteritems
+         >>> x.iteritems()
+         Traceback (most recent call last):
+           File "<pyshell#66>", line 1, in <module>
+             x.iteritems()
+         AttributeError: 'dict' object has no attribute 'iteritems'
+         
+       #+end_src
+   
+*** keys
+    1. 说明：返回字典中的 *键*
+    2. 例子：
+       #+begin_src python -n
+         >>> x = {'Name':'Bill', 'Age':'30'}
+         >>> x
+         {'Age': '30', 'Name': 'Bill'}
+         >>> x.keys()
+         dict_keys(['Age', 'Name'])
+         >>> 
+         
+       #+end_src
+   
+*** pop
+    1. 说明：用于获取给定键的值，并将该键值对从字典中移除
+    2. 例子：
+       #+begin_src python -n
+         >>> x = {'a':1,'b':2}
+         >>> x
+         {'a': 1, 'b': 2}
+         >>> x.pop('a')
+         1
+         >>> x
+         {'b': 2}
+         >>> 
+         
+       #+end_src
+*** popitem
+    1. 说明：用于随机弹出字典中的键值对儿；
+    2. 例子：
+       #+begin_src python -n
+         >>> x = {'a': '1', 'c': '3', 'b': '2'}
+         >>> while len(x) > 0:
+                 x.popitem()
+         ('a', '1')
+         ('c', '3')
+         ('b', 2)
+         >>> x
+         {}
+         
+       #+end_src
+*** setdefault
+    1. 说明：可以获得给定键的值，如果字典中没有给定键，可以在字典中添
+       加给定键。如果没有指定给定键的默认值，并且给定键也不在字典中，
+       则在添加给定键后，将其值设置为 *None* 。
+    2. 例子：
+       #+begin_src python -n
+         >>> x = {'a':'1','b':'2','c':'3'}
+         >>> x
+         {'a': '1', 'c': '3', 'b': '2'}
+         #字典中包含 a，所以返回键a对应的值1
+         >>> x.setdefault('a')
+         '1'
+         #因为字典中有键a，所以setdefault方法不会改变键a对应的值
+         >>> x.setdefault('a', 'A')
+         '1'
+         >>> x
+         {'a': '1', 'c': '3', 'b': '2'}
+         #字典中没有键d，调用setdefault方法时也没有设置默认值，
+         #所以调用后，在字典中添加了键为d的键值对儿，并返回空。
+         >>> x.setdefault('d')
+         >>> x
+         {'a': '1', 'c': '3', 'b': '2', 'd': None}
+         #调用setdefault时带默认值
+         >>> x.setdefault('e', '5')
+         '5'
+         >>> x
+         {'a': '1', 'c': '3', 'b': '2', 'e': '5', 'd': None}
+         >>> x.setdefault('d', '4')
+         >>> 
+         
+       #+end_src
+*** update
+    1. 说明：将新字典中的键值对儿更新到原字典中，如果新字典中有的键值
+       对儿，原字典中没有，则会在原字典中增加新键值对儿；
+    2. 例子：
+       #+begin_src python -n
+         >>> x = {'a':'1','b':'2','c':'3'}
+         >>> x
+         {'a': '1', 'c': '3', 'b': '2'}
+         >>> y = {'a':'A', 'z':'zoo'}
+         >>> x.update(y)
+         #键‘a’被更新到字典中，‘z’被添加到字典中
+         >>> x
+         {'a': 'A', 'c': '3', 'b': '2', 'e': '5', 'd': None, 'z': 'zoo'}
+         >>> z=[('g','11'),('q','12')]
+         >>> x.update(z)
+         >>> x
+         {'a': 'A', 'q': '12', 'c': '3', 'b': '2', 'e': '5', 'd': None, 'g': '11', 'z': 'zoo'}
+         >>> 
+         
+       #+end_src
+*** values和itervalues
+    1. 说明：values返回字典中的值，itervalues已经不被python3支持。
+    2. 例子：
+       #+begin_src python -n
+         >>> x
+         {'a': 'A', 'q': '12', 'c': '3', 'b': '2', 'e': '5', 'd': None, 'g': '11', 'z': 'zoo'}
+         >>> x.values()
+         dict_values(['A', '12', '3', '2', '5', None, '11', 'zoo'])
+         >>> 
+         
+       #+end_src

@@ -1,0 +1,303 @@
+#+title:条件，循环和其他语句
+
+* print和import的更多信息
+
+** 使用逗号输出
+   1. 说明：使用print时，也可以在语句中添加多个表达式，每个表达式用逗
+      号分隔；
+   2. 注意：在用逗号分隔输出时，print语句会在每个输出项后面自动添加一
+      个空格；
+   3. 例子：
+      #+begin_src python -n
+        >>> greeting = 'Hello'
+        >>> salution = 'Mr.'
+        >>> name = 'Bill'
+        #以逗号分隔输出项
+        >>> print(greeting, salution, name)
+        Hello Mr. Bill
+        #在逗号前增加了一个空格符
+        >>> print(greeting, ',', salution, name)
+        Hello , Mr. Bill
+        #为了显示成'Hello, Mr. Bill'这个样式，可以使用连接符‘+’
+        >>> print(greeting + ',', salution, name)
+        Hello, Mr. Bill
+        >>> 
+        
+      #+end_src
+
+** 把一些东东作为另一些东东导入
+   1. 说明：
+      1. 将整个模块导入，格式为：import somemodule;
+      2. 从某个模块中导入某个函数,格式为：from somemodule import somefunction;
+      3. 从某个模块中导入多个函数,格式为：from somemodule import
+         firstfunc, secondfunc, thirdfunc
+      4. 将某个模块中的全部函数导入，格式为：from somemodule import *
+   2. 注意：如果两个模块中都有相同的函数，则可以使用第一种方法导入模块，
+      也可以使用关键字 *as* 为相同的函数取个别名,例子：
+      #+begin_src python -n
+        #第一种导入方法
+        #导入模块
+        import module1
+        import module2
+        #调用同名函数的方法
+        module1.open()
+        module2.open()
+        
+        #第二种导入方法
+        #导入函数，并给函数取相应的别名
+        from module1 import open as open1
+        from module2 import open as open2
+        
+      #+end_src
+   3. 例子：
+      #+begin_src python -n
+        #从math中导入sqrt
+        >>> from math import sqrt as msqrt
+        #从cmath中导入sqrt
+        >>> from cmath import sqrt as csqrt
+        >>> msqrt(100)
+        10.0
+        >>> csqrt(-1)
+        1j
+        >>> 
+        
+      #+end_src
+
+* 赋值魔法
+** 序列解包
+   1. 说明：多个赋值操作可以同时进行
+   2. 例子：
+      #+begin_src python -n
+	#一般的同时赋值操作
+	>>> x, y, z = (1,2,3)
+	>>> x
+	1
+	>>> y
+	2
+	>>> z
+	3
+	>>> 
+	
+	#从字典中弹出任意一对儿键值对儿，并赋值给两个变量
+	>>> people = {'first': 'Andy', 'second':'Bill'}
+	>>> key, value = people.popitem()
+	>>> key
+	'second'
+	>>> value
+	'Bill'
+	>>> 
+	
+      #+end_src
+
+** 链式赋值
+   1. 说明：同时将一个值赋给多个变量；
+   2. 例子：
+      #+begin_src python -n
+	#链式赋值
+	>>> x=y=z=1
+	>>> x
+	1
+	>>> y
+	1
+	>>> z
+	1
+	>>> 
+	
+      #+end_src
+
+** 增量赋值
+   1. 说明：包括以下增量操作：
+      1. +=:将右侧的值加到变量上的和，然后再赋值给变量；
+      2. -=:将变量减去右侧的值得到的差，再赋值给变量；
+      3. /=:用变量除以右侧值得到的商，再赋值给变量；
+      4. %=:用变量取右侧值的余数，再赋值给变量；
+   2. 注意： *+=* 和  *\*=* 还可以应用在字符串上，见下面的示例；
+   3. 例子：
+      #+begin_src python -n
+	#针对数字的各种操作
+	>>> x = 123
+	>>> x += 1
+	>>> x
+	124
+	>>> x -= 4
+	>>> x
+	120
+	>>> x *=2
+	>>> x
+	240
+	>>> x /=3
+	>>> x
+	80.0
+	>>> x %=9
+	>>> x
+	8.0
+	>>> 
+	
+	#字符串的增量赋值
+	>>> y = 'Test string'
+	>>> y += ', haha!'
+	>>> y
+	'Test string, haha!'
+	>>> y *= 2
+	>>> y
+	'Test string, haha!Test string, haha!'
+	>>> 
+	
+      #+end_src
+
+* 语句块：缩排的乐趣
+  1. 说明：语句块是一组语句，在代码前放置空格来缩进语句即可创建语句
+     块；
+
+* 条件和条件语句
+** 这就是布尔变量的作用
+   1. 说明：布尔值，
+      1. 假值：false，None，所有类型的数字0，空序列，空字典；
+      2. 真值：所有的非空值；
+      3. bool函数可以用来将其他值转换成布尔值；
+   2. 注意：尽管假值具有不同的类型，但是不同的假值之前也是 *不相等* 的
+   3. 例子：
+      #+begin_src python -n
+        >>> True
+        True
+        >>> False
+        False
+        >>> []
+        []
+        >>> bool ([])
+        False
+        >>> bool ([1,])
+        True
+        >>> bool (0)
+        False
+        >>> bool (0.0)
+        False
+        >>> bool (0.1)
+        True
+        #不同的假值之间也是不相同的
+        >>> [] == {}
+        False
+        >>> [] == None
+        False
+        >>> 
+        
+      #+end_src
+   
+** 条件执行和if语句
+   1. 说明：if 判断其后面的条件语句是否为真，如果为真，执行if后面的语句
+      块，否则不执行；
+
+** else子句
+   1. 说明：之所以称为子句是因为else必须跟在if语句后面，而不能单独使用；
+
+** elif子句
+   1. 说明：如果需要更多的判断，可以使用elif，判断更多的条件；
+   2. 例子：
+      #+begin_src python -n
+        #if, elif, else应用
+        num = input("Please enter a number:")
+        num = int(num)
+        if num > 0:
+                print ('You input a positive number!')
+        elif num < 0:
+                print ('You input a negative number!')
+        else:
+            print ('You input a zero!')
+        
+      #+end_src
+** 嵌套代码块
+   1. 说明：在if判断后，还需要进一步进行判断就可以使用嵌套代码的方式。
+   2. 例子：
+      #+begin_src python -n
+        key = input("Please select type, color(c) or number(n):")
+        if key == 'c':
+            color = input ("Please select a color, Red(r), Green(g), Blue(b):")
+            if color == 'r':
+                print('You selected red')
+            elif color == 'g':
+                print('You selected green')
+            elif color == 'b':
+                print('You selected blue')
+            else:
+                print("Illegal color type!")
+        else:
+            print ("You select number!")
+        
+      #+end_src
+
+** 更复杂的条件
+
+*** 比较运算符
+    1. 说明：
+       1. x==y:　等于；
+       2. x<y: 　小于；
+       3. x>y:   大于；
+       4. x<=y:　小于等于；
+       5. x>=y:　大于等于；
+       6. x!=y:　不等于；
+       7. x is y:x和y是同一对象；
+       8. x is not y:x和y不是同一对象；
+       9. x in y:　x在y中；
+       10. x not in y:　x不在y中；
+    2. 注意：
+       1. 比较运算符是可连接的，例如：14 < age < 26；
+       2. 比较运算符不能比较不同类型的数据；
+
+*** 相等运算符
+    1. 说明：用来判断两个数据是否相等；
+    
+*** 同一性运算符
+    1. 说明：用于判断两个变量是否指向同一对象；
+    2. 注意：避免把 is 比较运算符应用于比较常量值，如数字，字符串等。
+       即 *避免* 以下比较: 
+       #+begin_src python -n
+         if '123' is '123':
+       #+end_src
+*** 成员资格运算符
+    1. 说明：判断元素是否被包含在对象中；
+
+*** 字符串和序列比较
+    1. 说明：字符串可以按照字母顺序排列进行比较；
+
+*** 布尔运算符
+    1. 说明：包括,and, or, not
+    2. 例子：
+       #+begin_src python -n
+         #or的特殊用法,如果没有输入，则会返回or后面的值
+         >>> name = input("Please enter a name:") or '<unknown>'
+         Please enter a name:
+         >>> name
+         '<unknown>'
+         
+         >>> a = 'a'
+         >>> c = 'c'
+         #如果if后面的判断语句为真，返回a
+         >>> a if True else c
+         'a'
+         #如果if后面的判断语句为假，返回c
+         >>> a if False else c
+         'c'
+         >>> 
+         
+       #+end_src
+    
+** 断言
+   1. 说明：关键字为 *assert* , 如果断言的条件判断为假，则程序直接崩溃
+   2. 例子：
+      #+begin_src python -n
+        >>> age = 10
+        >>> assert 1<age<120, "Age must be realistic"
+        >>> age = -1
+        >>> assert 1<age<120, "Age must be realistic"
+        Traceback (most recent call last):
+          File "<pyshell#26>", line 1, in <module>
+            assert 1<age<120, "Age must be realistic"
+        AssertionError: Age must be realistic
+        >>> 
+        
+      #+end_src
+
+* 循环
+
+** while循环
+   1. 说明：关键字 *while* ，判断条件为真就一直执行

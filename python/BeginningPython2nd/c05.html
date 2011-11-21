@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>条件，循环和其他语句</title>
+<meta http-equiv="Content-Type" content="text/html;charset=gb2312"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2011-11-21 17:00:40 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">条件，循环和其他语句</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 print和import的更多信息 </a>
+<ul>
+<li><a href="#sec-1-1">1.1 使用逗号输出 </a></li>
+<li><a href="#sec-1-2">1.2 把一些东东作为另一些东东导入 </a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 赋值魔法 </a>
+<ul>
+<li><a href="#sec-2-1">2.1 序列解包 </a></li>
+<li><a href="#sec-2-2">2.2 链式赋值 </a></li>
+<li><a href="#sec-2-3">2.3 增量赋值 </a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 语句块：缩排的乐趣 </a></li>
+<li><a href="#sec-4">4 条件和条件语句 </a>
+<ul>
+<li><a href="#sec-4-1">4.1 这就是布尔变量的作用 </a></li>
+<li><a href="#sec-4-2">4.2 条件执行和if语句 </a></li>
+<li><a href="#sec-4-3">4.3 else子句 </a></li>
+<li><a href="#sec-4-4">4.4 elif子句 </a></li>
+<li><a href="#sec-4-5">4.5 嵌套代码块 </a></li>
+<li><a href="#sec-4-6">4.6 更复杂的条件 </a>
+<ul>
+<li><a href="#sec-4-6-1">4.6.1 比较运算符 </a></li>
+<li><a href="#sec-4-6-2">4.6.2 相等运算符 </a></li>
+<li><a href="#sec-4-6-3">4.6.3 同一性运算符 </a></li>
+<li><a href="#sec-4-6-4">4.6.4 成员资格运算符 </a></li>
+<li><a href="#sec-4-6-5">4.6.5 字符串和序列比较 </a></li>
+<li><a href="#sec-4-6-6">4.6.6 布尔运算符 </a></li>
+</ul>
+</li>
+<li><a href="#sec-4-7">4.7 断言 </a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> print和import的更多信息 </h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 使用逗号输出 </h3>
+<div class="outline-text-3" id="text-1-1">
+
+<ol>
+<li>说明：使用print时，也可以在语句中添加多个表达式，每个表达式用逗
+      号分隔；
+</li>
+<li>注意：在用逗号分隔输出时，print语句会在每个输出项后面自动添加一
+      个空格；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; greeting = <span style="color: #8b2252;">'Hello'</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; salution = <span style="color: #8b2252;">'Mr.'</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; name = <span style="color: #8b2252;">'Bill'</span>
+<span class="linenr"> 4:  </span><span style="color: #b22222;">#&#20197;&#36887;&#21495;&#20998;&#38548;&#36755;&#20986;&#39033;</span>
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(greeting, salution, name)
+<span class="linenr"> 6:  </span>Hello Mr. Bill
+<span class="linenr"> 7:  </span><span style="color: #b22222;">#&#22312;&#36887;&#21495;&#21069;&#22686;&#21152;&#20102;&#19968;&#20010;&#31354;&#26684;&#31526;</span>
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(greeting, <span style="color: #8b2252;">','</span>, salution, name)
+<span class="linenr"> 9:  </span>Hello , Mr. Bill
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#20026;&#20102;&#26174;&#31034;&#25104;'Hello, Mr. Bill'&#36825;&#20010;&#26679;&#24335;&#65292;&#21487;&#20197;&#20351;&#29992;&#36830;&#25509;&#31526;&#8216;+&#8217;</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(greeting + <span style="color: #8b2252;">','</span>, salution, name)
+<span class="linenr">12:  </span>Hello, Mr. Bill
+<span class="linenr">13:  </span>&gt;&gt;&gt; 
+<span class="linenr">14:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 把一些东东作为另一些东东导入 </h3>
+<div class="outline-text-3" id="text-1-2">
+
+<ol>
+<li>说明：
+<ol>
+<li>将整个模块导入，格式为：import somemodule;
+</li>
+<li>从某个模块中导入某个函数,格式为：from somemodule import somefunction;
+</li>
+<li>从某个模块中导入多个函数,格式为：from somemodule import
+         firstfunc, secondfunc, thirdfunc
+</li>
+<li>将某个模块中的全部函数导入，格式为：from somemodule import *
+</li>
+</ol>
+
+</li>
+<li>注意：如果两个模块中都有相同的函数，则可以使用第一种方法导入模块，
+      也可以使用关键字 <b>as</b> 为相同的函数取个别名,例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#31532;&#19968;&#31181;&#23548;&#20837;&#26041;&#27861;</span>
+<span class="linenr"> 2:  </span><span style="color: #b22222;">#&#23548;&#20837;&#27169;&#22359;</span>
+<span class="linenr"> 3:  </span><span style="color: #a020f0;">import</span> module1
+<span class="linenr"> 4:  </span><span style="color: #a020f0;">import</span> module2
+<span class="linenr"> 5:  </span><span style="color: #b22222;">#&#35843;&#29992;&#21516;&#21517;&#20989;&#25968;&#30340;&#26041;&#27861;</span>
+<span class="linenr"> 6:  </span>module1.open()
+<span class="linenr"> 7:  </span>module2.open()
+<span class="linenr"> 8:  </span>
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#31532;&#20108;&#31181;&#23548;&#20837;&#26041;&#27861;</span>
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#23548;&#20837;&#20989;&#25968;&#65292;&#24182;&#32473;&#20989;&#25968;&#21462;&#30456;&#24212;&#30340;&#21035;&#21517;</span>
+<span class="linenr">11:  </span><span style="color: #a020f0;">from</span> module1 <span style="color: #a020f0;">import</span> <span style="color: #7a378b;">open</span> <span style="color: #a020f0;">as</span> open1
+<span class="linenr">12:  </span><span style="color: #a020f0;">from</span> module2 <span style="color: #a020f0;">import</span> <span style="color: #7a378b;">open</span> <span style="color: #a020f0;">as</span> open2
+<span class="linenr">13:  </span>
+</pre>
+
+
+
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#20174;math&#20013;&#23548;&#20837;sqrt</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">from</span> math <span style="color: #a020f0;">import</span> sqrt <span style="color: #a020f0;">as</span> msqrt
+<span class="linenr"> 3:  </span><span style="color: #b22222;">#&#20174;cmath&#20013;&#23548;&#20837;sqrt</span>
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">from</span> cmath <span style="color: #a020f0;">import</span> sqrt <span style="color: #a020f0;">as</span> csqrt
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; msqrt(100)
+<span class="linenr"> 6:  </span>10.0
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; csqrt(-1)
+<span class="linenr"> 8:  </span>1j
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; 
+<span class="linenr">10:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 赋值魔法 </h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 序列解包 </h3>
+<div class="outline-text-3" id="text-2-1">
+
+<ol>
+<li>说明：多个赋值操作可以同时进行
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#19968;&#33324;&#30340;&#21516;&#26102;&#36171;&#20540;&#25805;&#20316;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; x, y, z = (1,2,3)
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; x
+<span class="linenr"> 4:  </span>1
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; y
+<span class="linenr"> 6:  </span>2
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; z
+<span class="linenr"> 8:  </span>3
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; 
+<span class="linenr">10:  </span>
+<span class="linenr">11:  </span><span style="color: #b22222;">#&#20174;&#23383;&#20856;&#20013;&#24377;&#20986;&#20219;&#24847;&#19968;&#23545;&#20799;&#38190;&#20540;&#23545;&#20799;&#65292;&#24182;&#36171;&#20540;&#32473;&#20004;&#20010;&#21464;&#37327;</span>
+<span class="linenr">12:  </span>&gt;&gt;&gt; people = {<span style="color: #8b2252;">'first'</span>: <span style="color: #8b2252;">'Andy'</span>, <span style="color: #8b2252;">'second'</span>:<span style="color: #8b2252;">'Bill'</span>}
+<span class="linenr">13:  </span>&gt;&gt;&gt; key, value = people.popitem()
+<span class="linenr">14:  </span>&gt;&gt;&gt; key
+<span class="linenr">15:  </span><span style="color: #8b2252;">'second'</span>
+<span class="linenr">16:  </span>&gt;&gt;&gt; value
+<span class="linenr">17:  </span><span style="color: #8b2252;">'Bill'</span>
+<span class="linenr">18:  </span>&gt;&gt;&gt; 
+<span class="linenr">19:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 链式赋值 </h3>
+<div class="outline-text-3" id="text-2-2">
+
+<ol>
+<li>说明：同时将一个值赋给多个变量；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#38142;&#24335;&#36171;&#20540;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; x=y=z=1
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; x
+<span class="linenr"> 4:  </span>1
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; y
+<span class="linenr"> 6:  </span>1
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; z
+<span class="linenr"> 8:  </span>1
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; 
+<span class="linenr">10:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 增量赋值 </h3>
+<div class="outline-text-3" id="text-2-3">
+
+<ol>
+<li>说明：包括以下增量操作：
+<ol>
+<li>+=:将右侧的值加到变量上的和，然后再赋值给变量；
+</li>
+<li>-=:将变量减去右侧的值得到的差，再赋值给变量；
+</li>
+<li>/=:用变量除以右侧值得到的商，再赋值给变量；
+</li>
+<li>%=:用变量取右侧值的余数，再赋值给变量；
+</li>
+</ol>
+
+</li>
+<li>注意： <b>+=</b> 和  <b>\*=</b> 还可以应用在字符串上，见下面的示例；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#38024;&#23545;&#25968;&#23383;&#30340;&#21508;&#31181;&#25805;&#20316;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; x = 123
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; x += 1
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; x
+<span class="linenr"> 5:  </span>124
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; x -= 4
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; x
+<span class="linenr"> 8:  </span>120
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; x *=2
+<span class="linenr">10:  </span>&gt;&gt;&gt; x
+<span class="linenr">11:  </span>240
+<span class="linenr">12:  </span>&gt;&gt;&gt; x /=3
+<span class="linenr">13:  </span>&gt;&gt;&gt; x
+<span class="linenr">14:  </span>80.0
+<span class="linenr">15:  </span>&gt;&gt;&gt; x %=9
+<span class="linenr">16:  </span>&gt;&gt;&gt; x
+<span class="linenr">17:  </span>8.0
+<span class="linenr">18:  </span>&gt;&gt;&gt; 
+<span class="linenr">19:  </span>
+<span class="linenr">20:  </span><span style="color: #b22222;">#&#23383;&#31526;&#20018;&#30340;&#22686;&#37327;&#36171;&#20540;</span>
+<span class="linenr">21:  </span>&gt;&gt;&gt; y = <span style="color: #8b2252;">'Test string'</span>
+<span class="linenr">22:  </span>&gt;&gt;&gt; y += <span style="color: #8b2252;">', haha!'</span>
+<span class="linenr">23:  </span>&gt;&gt;&gt; y
+<span class="linenr">24:  </span><span style="color: #8b2252;">'Test string, haha!'</span>
+<span class="linenr">25:  </span>&gt;&gt;&gt; y *= 2
+<span class="linenr">26:  </span>&gt;&gt;&gt; y
+<span class="linenr">27:  </span><span style="color: #8b2252;">'Test string, haha!Test string, haha!'</span>
+<span class="linenr">28:  </span>&gt;&gt;&gt; 
+<span class="linenr">29:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 语句块：缩排的乐趣 </h2>
+<div class="outline-text-2" id="text-3">
+
+<ol>
+<li>说明：语句块是一组语句，在代码前放置空格来缩进语句即可创建语句
+     块；
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 条件和条件语句 </h2>
+<div class="outline-text-2" id="text-4">
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 这就是布尔变量的作用 </h3>
+<div class="outline-text-3" id="text-4-1">
+
+<ol>
+<li>说明：布尔值，
+<ol>
+<li>假值：false，None，所有类型的数字0，空序列，空字典；
+</li>
+<li>真值：所有的非空值；
+</li>
+<li>bool函数可以用来将其他值转换成布尔值；
+</li>
+</ol>
+
+</li>
+<li>注意：尽管假值具有不同的类型，但是不同的假值之前也是 <b>不相等</b> 的
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">True</span>
+<span class="linenr"> 2:  </span><span style="color: #a020f0;">True</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">False</span>
+<span class="linenr"> 4:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; []
+<span class="linenr"> 6:  </span>[]
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> ([])
+<span class="linenr"> 8:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> ([1,])
+<span class="linenr">10:  </span><span style="color: #a020f0;">True</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> (0)
+<span class="linenr">12:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr">13:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> (0.0)
+<span class="linenr">14:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr">15:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> (0.1)
+<span class="linenr">16:  </span><span style="color: #a020f0;">True</span>
+<span class="linenr">17:  </span><span style="color: #b22222;">#&#19981;&#21516;&#30340;&#20551;&#20540;&#20043;&#38388;&#20063;&#26159;&#19981;&#30456;&#21516;&#30340;</span>
+<span class="linenr">18:  </span>&gt;&gt;&gt; [] == {}
+<span class="linenr">19:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr">20:  </span>&gt;&gt;&gt; [] == <span style="color: #008b8b;">None</span>
+<span class="linenr">21:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr">22:  </span>&gt;&gt;&gt; 
+<span class="linenr">23:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 条件执行和if语句 </h3>
+<div class="outline-text-3" id="text-4-2">
+
+<ol>
+<li>说明：if 判断其后面的条件语句是否为真，如果为真，执行if后面的语句
+      块，否则不执行；
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> else子句 </h3>
+<div class="outline-text-3" id="text-4-3">
+
+<ol>
+<li>说明：之所以称为子句是因为else必须跟在if语句后面，而不能单独使用；
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> elif子句 </h3>
+<div class="outline-text-3" id="text-4-4">
+
+<ol>
+<li>说明：如果需要更多的判断，可以使用elif，判断更多的条件；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#if, elif, else&#24212;&#29992;</span>
+<span class="linenr"> 2:  </span><span style="color: #a0522d;">num</span> = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please enter a number:"</span>)
+<span class="linenr"> 3:  </span><span style="color: #a0522d;">num</span> = <span style="color: #7a378b;">int</span>(num)
+<span class="linenr"> 4:  </span><span style="color: #a020f0;">if</span> num &gt; 0:
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'You input a positive number!'</span>)
+<span class="linenr"> 6:  </span><span style="color: #a020f0;">elif</span> num &lt; 0:
+<span class="linenr"> 7:  </span>        <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'You input a negative number!'</span>)
+<span class="linenr"> 8:  </span><span style="color: #a020f0;">else</span>:
+<span class="linenr"> 9:  </span>    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'You input a zero!'</span>)
+<span class="linenr">10:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> 嵌套代码块 </h3>
+<div class="outline-text-3" id="text-4-5">
+
+<ol>
+<li>说明：在if判断后，还需要进一步进行判断就可以使用嵌套代码的方式。
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #a0522d;">key</span> = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please select type, color(c) or number(n):"</span>)
+<span class="linenr"> 2:  </span><span style="color: #a020f0;">if</span> key == <span style="color: #8b2252;">'c'</span>:
+<span class="linenr"> 3:  </span>    color = <span style="color: #7a378b;">input</span> (<span style="color: #8b2252;">"Please select a color, Red(r), Green(g), Blue(b):"</span>)
+<span class="linenr"> 4:  </span>    <span style="color: #a020f0;">if</span> color == <span style="color: #8b2252;">'r'</span>:
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">'You selected red'</span>)
+<span class="linenr"> 6:  </span>    <span style="color: #a020f0;">elif</span> color == <span style="color: #8b2252;">'g'</span>:
+<span class="linenr"> 7:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">'You selected green'</span>)
+<span class="linenr"> 8:  </span>    <span style="color: #a020f0;">elif</span> color == <span style="color: #8b2252;">'b'</span>:
+<span class="linenr"> 9:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">'You selected blue'</span>)
+<span class="linenr">10:  </span>    <span style="color: #a020f0;">else</span>:
+<span class="linenr">11:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Illegal color type!"</span>)
+<span class="linenr">12:  </span><span style="color: #a020f0;">else</span>:
+<span class="linenr">13:  </span>    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"You select number!"</span>)
+<span class="linenr">14:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-6" class="outline-3">
+<h3 id="sec-4-6"><span class="section-number-3">4.6</span> 更复杂的条件 </h3>
+<div class="outline-text-3" id="text-4-6">
+
+
+
+</div>
+
+<div id="outline-container-4-6-1" class="outline-4">
+<h4 id="sec-4-6-1"><span class="section-number-4">4.6.1</span> 比较运算符 </h4>
+<div class="outline-text-4" id="text-4-6-1">
+
+<ol>
+<li>说明：
+<ol>
+<li>x==y:　等于；
+</li>
+<li>x&lt;y: 　小于；
+</li>
+<li>x&gt;y:   大于；
+</li>
+<li>x&lt;=y:　小于等于；
+</li>
+<li>x&gt;=y:　大于等于；
+</li>
+<li>x!=y:　不等于；
+</li>
+<li>x is y:x和y是同一对象；
+</li>
+<li>x is not y:x和y不是同一对象；
+</li>
+<li>x in y:　x在y中；
+</li>
+<li>x not in y:　x不在y中；
+</li>
+</ol>
+
+</li>
+<li>注意：
+<ol>
+<li>比较运算符是可连接的，例如：14 &lt; age &lt; 26；
+</li>
+<li>比较运算符不能比较不同类型的数据；
+</li>
+</ol>
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-6-2" class="outline-4">
+<h4 id="sec-4-6-2"><span class="section-number-4">4.6.2</span> 相等运算符 </h4>
+<div class="outline-text-4" id="text-4-6-2">
+
+<ol>
+<li>说明：用来判断两个数据是否相等；
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-6-3" class="outline-4">
+<h4 id="sec-4-6-3"><span class="section-number-4">4.6.3</span> 同一性运算符 </h4>
+<div class="outline-text-4" id="text-4-6-3">
+
+<ol>
+<li>说明：用于判断两个变量是否指向同一对象；
+</li>
+<li>注意：避免把 is 比较运算符应用于比较常量值，如数字，字符串等。
+       即 <b>避免</b> 以下比较: 
+
+
+
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #a020f0;">if</span> <span style="color: #8b2252;">'123'</span> <span style="color: #a020f0;">is</span> <span style="color: #8b2252;">'123'</span>:
+</pre>
+
+
+
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-4-6-4" class="outline-4">
+<h4 id="sec-4-6-4"><span class="section-number-4">4.6.4</span> 成员资格运算符 </h4>
+<div class="outline-text-4" id="text-4-6-4">
+
+<ol>
+<li>说明：判断元素是否被包含在对象中；
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-6-5" class="outline-4">
+<h4 id="sec-4-6-5"><span class="section-number-4">4.6.5</span> 字符串和序列比较 </h4>
+<div class="outline-text-4" id="text-4-6-5">
+
+<ol>
+<li>说明：字符串可以按照字母顺序排列进行比较；
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-6-6" class="outline-4">
+<h4 id="sec-4-6-6"><span class="section-number-4">4.6.6</span> 布尔运算符 </h4>
+<div class="outline-text-4" id="text-4-6-6">
+
+<ol>
+<li>说明：包括,and, or, not
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#or&#30340;&#29305;&#27530;&#29992;&#27861;,&#22914;&#26524;&#27809;&#26377;&#36755;&#20837;&#65292;&#21017;&#20250;&#36820;&#22238;or&#21518;&#38754;&#30340;&#20540;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; name = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please enter a name:"</span>) <span style="color: #a020f0;">or</span> <span style="color: #8b2252;">'&lt;unknown&gt;'</span>
+<span class="linenr"> 3:  </span>Please enter a name:
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; name
+<span class="linenr"> 5:  </span><span style="color: #8b2252;">'&lt;unknown&gt;'</span>
+<span class="linenr"> 6:  </span>
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; a = <span style="color: #8b2252;">'a'</span>
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; c = <span style="color: #8b2252;">'c'</span>
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#22914;&#26524;if&#21518;&#38754;&#30340;&#21028;&#26029;&#35821;&#21477;&#20026;&#30495;&#65292;&#36820;&#22238;a</span>
+<span class="linenr">10:  </span>&gt;&gt;&gt; a <span style="color: #a020f0;">if</span> <span style="color: #a020f0;">True</span> <span style="color: #a020f0;">else</span> c
+<span class="linenr">11:  </span><span style="color: #8b2252;">'a'</span>
+<span class="linenr">12:  </span><span style="color: #b22222;">#&#22914;&#26524;if&#21518;&#38754;&#30340;&#21028;&#26029;&#35821;&#21477;&#20026;&#20551;&#65292;&#36820;&#22238;c</span>
+<span class="linenr">13:  </span>&gt;&gt;&gt; a <span style="color: #a020f0;">if</span> <span style="color: #a020f0;">False</span> <span style="color: #a020f0;">else</span> c
+<span class="linenr">14:  </span><span style="color: #8b2252;">'c'</span>
+<span class="linenr">15:  </span>&gt;&gt;&gt; 
+<span class="linenr">16:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-7" class="outline-3">
+<h3 id="sec-4-7"><span class="section-number-3">4.7</span> 断言 </h3>
+<div class="outline-text-3" id="text-4-7">
+
+<ol>
+<li>说明：关键字为 <b>assert</b> , 如果断言的条件判断为假，则程序直接崩溃
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; age = 10
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">assert</span> 1&lt;age&lt;120, <span style="color: #8b2252;">"Age must be realistic"</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; age = -1
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">assert</span> 1&lt;age&lt;120, <span style="color: #8b2252;">"Age must be realistic"</span>
+<span class="linenr"> 5:  </span>Traceback (most recent call last):
+<span class="linenr"> 6:  </span>  File <span style="color: #8b2252;">"&lt;pyshell#26&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
+<span class="linenr"> 7:  </span>    <span style="color: #a020f0;">assert</span> 1&lt;age&lt;120, <span style="color: #8b2252;">"Age must be realistic"</span>
+<span class="linenr"> 8:  </span><span style="color: #228b22;">AssertionError</span>: Age must be realistic
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; 
+<span class="linenr">10:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2011-11-21 17:00:40 </p>
+<p class="author">Author: </p>
+<p class="creator">Org version 7.7 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

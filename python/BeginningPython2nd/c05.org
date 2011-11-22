@@ -21,8 +21,8 @@
         #为了显示成'Hello, Mr. Bill'这个样式，可以使用连接符‘+’
         >>> print(greeting + ',', salution, name)
         Hello, Mr. Bill
-        >>> 
-        
+        >>>
+
       #+end_src
 
 ** 把一些东东作为另一些东东导入
@@ -42,12 +42,12 @@
         #调用同名函数的方法
         module1.open()
         module2.open()
-        
+
         #第二种导入方法
         #导入函数，并给函数取相应的别名
         from module1 import open as open1
         from module2 import open as open2
-        
+
       #+end_src
    3. 例子：
       #+begin_src python -n
@@ -59,8 +59,8 @@
         10.0
         >>> csqrt(-1)
         1j
-        >>> 
-        
+        >>>
+
       #+end_src
 
 * 赋值魔法
@@ -76,8 +76,8 @@
 	2
 	>>> z
 	3
-	>>> 
-	
+	>>>
+
 	#从字典中弹出任意一对儿键值对儿，并赋值给两个变量
 	>>> people = {'first': 'Andy', 'second':'Bill'}
 	>>> key, value = people.popitem()
@@ -85,8 +85,8 @@
 	'second'
 	>>> value
 	'Bill'
-	>>> 
-	
+	>>>
+
       #+end_src
 
 ** 链式赋值
@@ -101,8 +101,8 @@
 	1
 	>>> z
 	1
-	>>> 
-	
+	>>>
+
       #+end_src
 
 ** 增量赋值
@@ -131,8 +131,8 @@
 	>>> x %=9
 	>>> x
 	8.0
-	>>> 
-	
+	>>>
+
 	#字符串的增量赋值
 	>>> y = 'Test string'
 	>>> y += ', haha!'
@@ -141,8 +141,8 @@
 	>>> y *= 2
 	>>> y
 	'Test string, haha!Test string, haha!'
-	>>> 
-	
+	>>>
+
       #+end_src
 
 * 语句块：缩排的乐趣
@@ -179,10 +179,10 @@
         False
         >>> [] == None
         False
-        >>> 
-        
+        >>>
+
       #+end_src
-   
+
 ** 条件执行和if语句
    1. 说明：if 判断其后面的条件语句是否为真，如果为真，执行if后面的语句
       块，否则不执行；
@@ -203,7 +203,7 @@
                 print ('You input a negative number!')
         else:
             print ('You input a zero!')
-        
+
       #+end_src
 ** 嵌套代码块
    1. 说明：在if判断后，还需要进一步进行判断就可以使用嵌套代码的方式。
@@ -222,7 +222,7 @@
                 print("Illegal color type!")
         else:
             print ("You select number!")
-        
+
       #+end_src
 
 ** 更复杂的条件
@@ -245,11 +245,11 @@
 
 *** 相等运算符
     1. 说明：用来判断两个数据是否相等；
-    
+
 *** 同一性运算符
     1. 说明：用于判断两个变量是否指向同一对象；
     2. 注意：避免把 is 比较运算符应用于比较常量值，如数字，字符串等。
-       即 *避免* 以下比较: 
+       即 *避免* 以下比较:
        #+begin_src python -n
          if '123' is '123':
        #+end_src
@@ -268,7 +268,7 @@
          Please enter a name:
          >>> name
          '<unknown>'
-         
+
          >>> a = 'a'
          >>> c = 'c'
          #如果if后面的判断语句为真，返回a
@@ -277,10 +277,10 @@
          #如果if后面的判断语句为假，返回c
          >>> a if False else c
          'c'
-         >>> 
-         
+         >>>
+
        #+end_src
-    
+
 ** 断言
    1. 说明：关键字为 *assert* , 如果断言的条件判断为假，则程序直接崩溃
    2. 例子：
@@ -293,11 +293,20 @@
           File "<pyshell#26>", line 1, in <module>
             assert 1<age<120, "Age must be realistic"
         AssertionError: Age must be realistic
-        >>> 
-        
+        >>>
+
       #+end_src
 
 * 循环
 
 ** while循环
    1. 说明：关键字 *while* ，判断条件为真就一直执行
+   2. 例子：
+      #+begin_src python -n
+        name = ''
+        while not name.strip():
+            name = input("Please input your name:")
+        print("Hello,", name)
+      #+end_src
+** for循环
+   1. 说明：

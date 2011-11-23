@@ -498,6 +498,82 @@
      #+end_src
 
 * 三人行
-  
+** pass
+   1. 说明：pass关键字用于占位，当函数或者代码块还没有添加时，可以用
+      pass来占位，以免语法错误
+   2. 例子
+      #+begin_src python -n
+        >>> a = 10
+        #if的语句块中并没有其他语句需要执行，先用pass占位，执行的时候，如果if判断为真直接跳过。
+        >>> if a>0:
+                pass
+        >>> 
+      #+end_src
+** del
+   1. 说明：用于删除对象；
+   2. 注意：del仅能删除变量或者对象中的项，不能直接删除变量指向的对象，
+      当对象没有被任何变量引用时，python会将变量回收；
+   3. 例子：
+      #+begin_src python -n
+        >>> x = {'a':'1', 'b':'2', 'c':'3'}
+        >>> y = x
+        >>> y
+        {'a': '1', 'c': '3', 'b': '2'}
+        #删除变量x，再调用会报“未定义”的错误
+        >>> del x
+        >>> x
+        Traceback (most recent call last):
+          File "<pyshell#15>", line 1, in <module>
+            x
+        NameError: name 'x' is not defined
+        >>> y
+        {'a': '1', 'c': '3', 'b': '2'}
+        #删除字典中的项
+        >>> del y['a']
+        >>> y
+        {'c': '3', 'b': '2'}
+        >>> 
+        
+      #+end_src
 
-** 
+** exec和eval
+   1. 说明：
+      1. exec用于执行一个字符串的语句；
+      2. eval用于执行字符串语句，并返回语句执行的结果；
+   2. 注意：通过增加字典，起到命名空间的作用，以防止由字符串的语句导致
+      的安全问题；
+   3. 例子
+      #+begin_src python -n
+        #exec直接执行语句
+        >>> exec('print("Hello, world!")')
+        Hello, world!
+        #exec执行后不返回执行结果
+        >>> exec("2*2")
+        >>>
+        #exec在命名空间中执行语句
+        >>> exec("""
+        x=2
+        y=3
+        z=4
+        """, scope)
+        >>> scope.keys()
+        dict_keys(['__builtins__', 'x', 'z', 'y'])
+        >>> scope['x']
+        2
+        >>> 
+        
+        #eval直接执行语句
+        >>> eval('print("Hello, world!")')
+        Hello, world!
+        #eval在执行后将执行结果返回
+        >>> eval('2*2')
+        4
+        >>> 
+        #eval操作字典中的数据
+        >>> scope.keys()
+        dict_keys(['__builtins__', 'x', 'z', 'y'])
+        >>> eval('x+y+z', scope)
+        9
+        >>> 
+        
+      #+end_src

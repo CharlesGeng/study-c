@@ -7,8 +7,8 @@ lang="en" xml:lang="en">
 <title>条件，循环和其他语句</title>
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-11-22 16:43:28 CST"/>
-<meta name="author" content="Bill Gunn"/>
+<meta name="generated" content="2011-11-23 20:40:47 "/>
+<meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <style type="text/css">
@@ -79,9 +79,14 @@ lang="en" xml:lang="en">
 
 </head>
 <body>
-<div id="content">
 
+<div id="preamble">
+
+</div>
+
+<div id="content">
 <h1 class="title">条件，循环和其他语句</h1>
+
 
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
@@ -143,6 +148,13 @@ lang="en" xml:lang="en">
 </ul>
 </li>
 <li><a href="#sec-6">6 列表推导式 </a></li>
+<li><a href="#sec-7">7 三人行 </a>
+<ul>
+<li><a href="#sec-7-1">7.1 pass </a></li>
+<li><a href="#sec-7-2">7.2 del </a></li>
+<li><a href="#sec-7-3">7.3 exec和eval </a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -170,21 +182,20 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>&gt;&gt;&gt; greeting = 'Hello'
-<span class="linenr"> 2:  </span>&gt;&gt;&gt; salution = 'Mr.'
-<span class="linenr"> 3:  </span>&gt;&gt;&gt; name = 'Bill'
-<span class="linenr"> 4:  </span>#以逗号分隔输出项
-<span class="linenr"> 5:  </span>&gt;&gt;&gt; print(greeting, salution, name)
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; greeting = <span style="color: #8b2252;">'Hello'</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; salution = <span style="color: #8b2252;">'Mr.'</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; name = <span style="color: #8b2252;">'Bill'</span>
+<span class="linenr"> 4:  </span><span style="color: #b22222;">#&#20197;&#36887;&#21495;&#20998;&#38548;&#36755;&#20986;&#39033;</span>
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(greeting, salution, name)
 <span class="linenr"> 6:  </span>Hello Mr. Bill
-<span class="linenr"> 7:  </span>#在逗号前增加了一个空格符
-<span class="linenr"> 8:  </span>&gt;&gt;&gt; print(greeting, ',', salution, name)
+<span class="linenr"> 7:  </span><span style="color: #b22222;">#&#22312;&#36887;&#21495;&#21069;&#22686;&#21152;&#20102;&#19968;&#20010;&#31354;&#26684;&#31526;</span>
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(greeting, <span style="color: #8b2252;">','</span>, salution, name)
 <span class="linenr"> 9:  </span>Hello , Mr. Bill
-<span class="linenr">10:  </span>#为了显示成'Hello, Mr. Bill'这个样式，可以使用连接符‘+’
-<span class="linenr">11:  </span>&gt;&gt;&gt; print(greeting + ',', salution, name)
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#20026;&#20102;&#26174;&#31034;&#25104;'Hello, Mr. Bill'&#36825;&#20010;&#26679;&#24335;&#65292;&#21487;&#20197;&#20351;&#29992;&#36830;&#25509;&#31526;&#8216;+&#8217;</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(greeting + <span style="color: #8b2252;">','</span>, salution, name)
 <span class="linenr">12:  </span>Hello, Mr. Bill
 <span class="linenr">13:  </span>&gt;&gt;&gt;
 <span class="linenr">14:  </span>
-<span class="linenr">15:  </span>
 </pre>
 
 
@@ -221,20 +232,19 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>#第一种导入方法
-<span class="linenr"> 2:  </span>#导入模块
-<span class="linenr"> 3:  </span>import module1
-<span class="linenr"> 4:  </span>import module2
-<span class="linenr"> 5:  </span>#调用同名函数的方法
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#31532;&#19968;&#31181;&#23548;&#20837;&#26041;&#27861;</span>
+<span class="linenr"> 2:  </span><span style="color: #b22222;">#&#23548;&#20837;&#27169;&#22359;</span>
+<span class="linenr"> 3:  </span><span style="color: #a020f0;">import</span> module1
+<span class="linenr"> 4:  </span><span style="color: #a020f0;">import</span> module2
+<span class="linenr"> 5:  </span><span style="color: #b22222;">#&#35843;&#29992;&#21516;&#21517;&#20989;&#25968;&#30340;&#26041;&#27861;</span>
 <span class="linenr"> 6:  </span>module1.open()
 <span class="linenr"> 7:  </span>module2.open()
 <span class="linenr"> 8:  </span>
-<span class="linenr"> 9:  </span>#第二种导入方法
-<span class="linenr">10:  </span>#导入函数，并给函数取相应的别名
-<span class="linenr">11:  </span>from module1 import open as open1
-<span class="linenr">12:  </span>from module2 import open as open2
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#31532;&#20108;&#31181;&#23548;&#20837;&#26041;&#27861;</span>
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#23548;&#20837;&#20989;&#25968;&#65292;&#24182;&#32473;&#20989;&#25968;&#21462;&#30456;&#24212;&#30340;&#21035;&#21517;</span>
+<span class="linenr">11:  </span><span style="color: #a020f0;">from</span> module1 <span style="color: #a020f0;">import</span> <span style="color: #7a378b;">open</span> <span style="color: #a020f0;">as</span> open1
+<span class="linenr">12:  </span><span style="color: #a020f0;">from</span> module2 <span style="color: #a020f0;">import</span> <span style="color: #7a378b;">open</span> <span style="color: #a020f0;">as</span> open2
 <span class="linenr">13:  </span>
-<span class="linenr">14:  </span>
 </pre>
 
 
@@ -244,17 +254,16 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>#从math中导入sqrt
-<span class="linenr"> 2:  </span>&gt;&gt;&gt; from math import sqrt as msqrt
-<span class="linenr"> 3:  </span>#从cmath中导入sqrt
-<span class="linenr"> 4:  </span>&gt;&gt;&gt; from cmath import sqrt as csqrt
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#20174;math&#20013;&#23548;&#20837;sqrt</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">from</span> math <span style="color: #a020f0;">import</span> sqrt <span style="color: #a020f0;">as</span> msqrt
+<span class="linenr"> 3:  </span><span style="color: #b22222;">#&#20174;cmath&#20013;&#23548;&#20837;sqrt</span>
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">from</span> cmath <span style="color: #a020f0;">import</span> sqrt <span style="color: #a020f0;">as</span> csqrt
 <span class="linenr"> 5:  </span>&gt;&gt;&gt; msqrt(100)
 <span class="linenr"> 6:  </span>10.0
 <span class="linenr"> 7:  </span>&gt;&gt;&gt; csqrt(-1)
 <span class="linenr"> 8:  </span>1j
 <span class="linenr"> 9:  </span>&gt;&gt;&gt;
 <span class="linenr">10:  </span>
-<span class="linenr">11:  </span>
 </pre>
 
 
@@ -286,7 +295,7 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>#一般的同时赋值操作
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#19968;&#33324;&#30340;&#21516;&#26102;&#36171;&#20540;&#25805;&#20316;</span>
 <span class="linenr"> 2:  </span>&gt;&gt;&gt; x, y, z = (1,2,3)
 <span class="linenr"> 3:  </span>&gt;&gt;&gt; x
 <span class="linenr"> 4:  </span>1
@@ -296,16 +305,15 @@ lang="en" xml:lang="en">
 <span class="linenr"> 8:  </span>3
 <span class="linenr"> 9:  </span>&gt;&gt;&gt;
 <span class="linenr">10:  </span>
-<span class="linenr">11:  </span>#从字典中弹出任意一对儿键值对儿，并赋值给两个变量
-<span class="linenr">12:  </span>&gt;&gt;&gt; people = {'first': 'Andy', 'second':'Bill'}
+<span class="linenr">11:  </span><span style="color: #b22222;">#&#20174;&#23383;&#20856;&#20013;&#24377;&#20986;&#20219;&#24847;&#19968;&#23545;&#20799;&#38190;&#20540;&#23545;&#20799;&#65292;&#24182;&#36171;&#20540;&#32473;&#20004;&#20010;&#21464;&#37327;</span>
+<span class="linenr">12:  </span>&gt;&gt;&gt; people = {<span style="color: #8b2252;">'first'</span>: <span style="color: #8b2252;">'Andy'</span>, <span style="color: #8b2252;">'second'</span>:<span style="color: #8b2252;">'Bill'</span>}
 <span class="linenr">13:  </span>&gt;&gt;&gt; key, value = people.popitem()
 <span class="linenr">14:  </span>&gt;&gt;&gt; key
-<span class="linenr">15:  </span>'second'
+<span class="linenr">15:  </span><span style="color: #8b2252;">'second'</span>
 <span class="linenr">16:  </span>&gt;&gt;&gt; value
-<span class="linenr">17:  </span>'Bill'
+<span class="linenr">17:  </span><span style="color: #8b2252;">'Bill'</span>
 <span class="linenr">18:  </span>&gt;&gt;&gt;
 <span class="linenr">19:  </span>
-<span class="linenr">20:  </span>
 </pre>
 
 
@@ -329,7 +337,7 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>#链式赋值
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#38142;&#24335;&#36171;&#20540;</span>
 <span class="linenr"> 2:  </span>&gt;&gt;&gt; x=y=z=1
 <span class="linenr"> 3:  </span>&gt;&gt;&gt; x
 <span class="linenr"> 4:  </span>1
@@ -339,7 +347,6 @@ lang="en" xml:lang="en">
 <span class="linenr"> 8:  </span>1
 <span class="linenr"> 9:  </span>&gt;&gt;&gt;
 <span class="linenr">10:  </span>
-<span class="linenr">11:  </span>
 </pre>
 
 
@@ -376,7 +383,7 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>#针对数字的各种操作
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#38024;&#23545;&#25968;&#23383;&#30340;&#21508;&#31181;&#25805;&#20316;</span>
 <span class="linenr"> 2:  </span>&gt;&gt;&gt; x = 123
 <span class="linenr"> 3:  </span>&gt;&gt;&gt; x += 1
 <span class="linenr"> 4:  </span>&gt;&gt;&gt; x
@@ -395,17 +402,16 @@ lang="en" xml:lang="en">
 <span class="linenr">17:  </span>8.0
 <span class="linenr">18:  </span>&gt;&gt;&gt;
 <span class="linenr">19:  </span>
-<span class="linenr">20:  </span>#字符串的增量赋值
-<span class="linenr">21:  </span>&gt;&gt;&gt; y = 'Test string'
-<span class="linenr">22:  </span>&gt;&gt;&gt; y += ', haha!'
+<span class="linenr">20:  </span><span style="color: #b22222;">#&#23383;&#31526;&#20018;&#30340;&#22686;&#37327;&#36171;&#20540;</span>
+<span class="linenr">21:  </span>&gt;&gt;&gt; y = <span style="color: #8b2252;">'Test string'</span>
+<span class="linenr">22:  </span>&gt;&gt;&gt; y += <span style="color: #8b2252;">', haha!'</span>
 <span class="linenr">23:  </span>&gt;&gt;&gt; y
-<span class="linenr">24:  </span>'Test string, haha!'
+<span class="linenr">24:  </span><span style="color: #8b2252;">'Test string, haha!'</span>
 <span class="linenr">25:  </span>&gt;&gt;&gt; y *= 2
 <span class="linenr">26:  </span>&gt;&gt;&gt; y
-<span class="linenr">27:  </span>'Test string, haha!Test string, haha!'
+<span class="linenr">27:  </span><span style="color: #8b2252;">'Test string, haha!Test string, haha!'</span>
 <span class="linenr">28:  </span>&gt;&gt;&gt;
 <span class="linenr">29:  </span>
-<span class="linenr">30:  </span>
 </pre>
 
 
@@ -463,30 +469,29 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>&gt;&gt;&gt; True
-<span class="linenr"> 2:  </span>True
-<span class="linenr"> 3:  </span>&gt;&gt;&gt; False
-<span class="linenr"> 4:  </span>False
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">True</span>
+<span class="linenr"> 2:  </span><span style="color: #a020f0;">True</span>
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">False</span>
+<span class="linenr"> 4:  </span><span style="color: #a020f0;">False</span>
 <span class="linenr"> 5:  </span>&gt;&gt;&gt; []
 <span class="linenr"> 6:  </span>[]
-<span class="linenr"> 7:  </span>&gt;&gt;&gt; bool ([])
-<span class="linenr"> 8:  </span>False
-<span class="linenr"> 9:  </span>&gt;&gt;&gt; bool ([1,])
-<span class="linenr">10:  </span>True
-<span class="linenr">11:  </span>&gt;&gt;&gt; bool (0)
-<span class="linenr">12:  </span>False
-<span class="linenr">13:  </span>&gt;&gt;&gt; bool (0.0)
-<span class="linenr">14:  </span>False
-<span class="linenr">15:  </span>&gt;&gt;&gt; bool (0.1)
-<span class="linenr">16:  </span>True
-<span class="linenr">17:  </span>#不同的假值之间也是不相同的
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> ([])
+<span class="linenr"> 8:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> ([1,])
+<span class="linenr">10:  </span><span style="color: #a020f0;">True</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> (0)
+<span class="linenr">12:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr">13:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> (0.0)
+<span class="linenr">14:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr">15:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">bool</span> (0.1)
+<span class="linenr">16:  </span><span style="color: #a020f0;">True</span>
+<span class="linenr">17:  </span><span style="color: #b22222;">#&#19981;&#21516;&#30340;&#20551;&#20540;&#20043;&#38388;&#20063;&#26159;&#19981;&#30456;&#21516;&#30340;</span>
 <span class="linenr">18:  </span>&gt;&gt;&gt; [] == {}
-<span class="linenr">19:  </span>False
-<span class="linenr">20:  </span>&gt;&gt;&gt; [] == None
-<span class="linenr">21:  </span>False
+<span class="linenr">19:  </span><span style="color: #a020f0;">False</span>
+<span class="linenr">20:  </span>&gt;&gt;&gt; [] == <span style="color: #008b8b;">None</span>
+<span class="linenr">21:  </span><span style="color: #a020f0;">False</span>
 <span class="linenr">22:  </span>&gt;&gt;&gt;
 <span class="linenr">23:  </span>
-<span class="linenr">24:  </span>
 </pre>
 
 
@@ -539,17 +544,16 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>#if, elif, else应用
-<span class="linenr"> 2:  </span>num = input("Please enter a number:")
-<span class="linenr"> 3:  </span>num = int(num)
-<span class="linenr"> 4:  </span>if num &gt; 0:
-<span class="linenr"> 5:  </span>        print ('You input a positive number!')
-<span class="linenr"> 6:  </span>elif num &lt; 0:
-<span class="linenr"> 7:  </span>        print ('You input a negative number!')
-<span class="linenr"> 8:  </span>else:
-<span class="linenr"> 9:  </span>    print ('You input a zero!')
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#if, elif, else&#24212;&#29992;</span>
+<span class="linenr"> 2:  </span><span style="color: #a0522d;">num</span> = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please enter a number:"</span>)
+<span class="linenr"> 3:  </span><span style="color: #a0522d;">num</span> = <span style="color: #7a378b;">int</span>(num)
+<span class="linenr"> 4:  </span><span style="color: #a020f0;">if</span> num &gt; 0:
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'You input a positive number!'</span>)
+<span class="linenr"> 6:  </span><span style="color: #a020f0;">elif</span> num &lt; 0:
+<span class="linenr"> 7:  </span>        <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'You input a negative number!'</span>)
+<span class="linenr"> 8:  </span><span style="color: #a020f0;">else</span>:
+<span class="linenr"> 9:  </span>    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'You input a zero!'</span>)
 <span class="linenr">10:  </span>
-<span class="linenr">11:  </span>
 </pre>
 
 
@@ -572,21 +576,20 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>key = input("Please select type, color(c) or number(n):")
-<span class="linenr"> 2:  </span>if key == 'c':
-<span class="linenr"> 3:  </span>    color = input ("Please select a color, Red(r), Green(g), Blue(b):")
-<span class="linenr"> 4:  </span>    if color == 'r':
-<span class="linenr"> 5:  </span>        print('You selected red')
-<span class="linenr"> 6:  </span>    elif color == 'g':
-<span class="linenr"> 7:  </span>        print('You selected green')
-<span class="linenr"> 8:  </span>    elif color == 'b':
-<span class="linenr"> 9:  </span>        print('You selected blue')
-<span class="linenr">10:  </span>    else:
-<span class="linenr">11:  </span>        print("Illegal color type!")
-<span class="linenr">12:  </span>else:
-<span class="linenr">13:  </span>    print ("You select number!")
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #a0522d;">key</span> = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please select type, color(c) or number(n):"</span>)
+<span class="linenr"> 2:  </span><span style="color: #a020f0;">if</span> key == <span style="color: #8b2252;">'c'</span>:
+<span class="linenr"> 3:  </span>    color = <span style="color: #7a378b;">input</span> (<span style="color: #8b2252;">"Please select a color, Red(r), Green(g), Blue(b):"</span>)
+<span class="linenr"> 4:  </span>    <span style="color: #a020f0;">if</span> color == <span style="color: #8b2252;">'r'</span>:
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">'You selected red'</span>)
+<span class="linenr"> 6:  </span>    <span style="color: #a020f0;">elif</span> color == <span style="color: #8b2252;">'g'</span>:
+<span class="linenr"> 7:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">'You selected green'</span>)
+<span class="linenr"> 8:  </span>    <span style="color: #a020f0;">elif</span> color == <span style="color: #8b2252;">'b'</span>:
+<span class="linenr"> 9:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">'You selected blue'</span>)
+<span class="linenr">10:  </span>    <span style="color: #a020f0;">else</span>:
+<span class="linenr">11:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Illegal color type!"</span>)
+<span class="linenr">12:  </span><span style="color: #a020f0;">else</span>:
+<span class="linenr">13:  </span>    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"You select number!"</span>)
 <span class="linenr">14:  </span>
-<span class="linenr">15:  </span>
 </pre>
 
 
@@ -679,8 +682,7 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr">1:  </span>if '123' is '123':
-<span class="linenr">2:  </span>
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #a020f0;">if</span> <span style="color: #8b2252;">'123'</span> <span style="color: #a020f0;">is</span> <span style="color: #8b2252;">'123'</span>:
 </pre>
 
 
@@ -731,23 +733,22 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>#or的特殊用法,如果没有输入，则会返回or后面的值
-<span class="linenr"> 2:  </span>&gt;&gt;&gt; name = input("Please enter a name:") or '&lt;unknown&gt;'
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#or&#30340;&#29305;&#27530;&#29992;&#27861;,&#22914;&#26524;&#27809;&#26377;&#36755;&#20837;&#65292;&#21017;&#20250;&#36820;&#22238;or&#21518;&#38754;&#30340;&#20540;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; name = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please enter a name:"</span>) <span style="color: #a020f0;">or</span> <span style="color: #8b2252;">'&lt;unknown&gt;'</span>
 <span class="linenr"> 3:  </span>Please enter a name:
 <span class="linenr"> 4:  </span>&gt;&gt;&gt; name
-<span class="linenr"> 5:  </span>'&lt;unknown&gt;'
+<span class="linenr"> 5:  </span><span style="color: #8b2252;">'&lt;unknown&gt;'</span>
 <span class="linenr"> 6:  </span>
-<span class="linenr"> 7:  </span>&gt;&gt;&gt; a = 'a'
-<span class="linenr"> 8:  </span>&gt;&gt;&gt; c = 'c'
-<span class="linenr"> 9:  </span>#如果if后面的判断语句为真，返回a
-<span class="linenr">10:  </span>&gt;&gt;&gt; a if True else c
-<span class="linenr">11:  </span>'a'
-<span class="linenr">12:  </span>#如果if后面的判断语句为假，返回c
-<span class="linenr">13:  </span>&gt;&gt;&gt; a if False else c
-<span class="linenr">14:  </span>'c'
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; a = <span style="color: #8b2252;">'a'</span>
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; c = <span style="color: #8b2252;">'c'</span>
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#22914;&#26524;if&#21518;&#38754;&#30340;&#21028;&#26029;&#35821;&#21477;&#20026;&#30495;&#65292;&#36820;&#22238;a</span>
+<span class="linenr">10:  </span>&gt;&gt;&gt; a <span style="color: #a020f0;">if</span> <span style="color: #a020f0;">True</span> <span style="color: #a020f0;">else</span> c
+<span class="linenr">11:  </span><span style="color: #8b2252;">'a'</span>
+<span class="linenr">12:  </span><span style="color: #b22222;">#&#22914;&#26524;if&#21518;&#38754;&#30340;&#21028;&#26029;&#35821;&#21477;&#20026;&#20551;&#65292;&#36820;&#22238;c</span>
+<span class="linenr">13:  </span>&gt;&gt;&gt; a <span style="color: #a020f0;">if</span> <span style="color: #a020f0;">False</span> <span style="color: #a020f0;">else</span> c
+<span class="linenr">14:  </span><span style="color: #8b2252;">'c'</span>
 <span class="linenr">15:  </span>&gt;&gt;&gt;
 <span class="linenr">16:  </span>
-<span class="linenr">17:  </span>
 </pre>
 
 
@@ -772,17 +773,16 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>&gt;&gt;&gt; age = 10
-<span class="linenr"> 2:  </span>&gt;&gt;&gt; assert 1&lt;age&lt;120, "Age must be realistic"
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; age = 10
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">assert</span> 1&lt;age&lt;120, <span style="color: #8b2252;">"Age must be realistic"</span>
 <span class="linenr"> 3:  </span>&gt;&gt;&gt; age = -1
-<span class="linenr"> 4:  </span>&gt;&gt;&gt; assert 1&lt;age&lt;120, "Age must be realistic"
+<span class="linenr"> 4:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">assert</span> 1&lt;age&lt;120, <span style="color: #8b2252;">"Age must be realistic"</span>
 <span class="linenr"> 5:  </span>Traceback (most recent call last):
-<span class="linenr"> 6:  </span>  File "&lt;pyshell#26&gt;", line 1, in &lt;module&gt;
-<span class="linenr"> 7:  </span>    assert 1&lt;age&lt;120, "Age must be realistic"
-<span class="linenr"> 8:  </span>AssertionError: Age must be realistic
+<span class="linenr"> 6:  </span>  File <span style="color: #8b2252;">"&lt;pyshell#26&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
+<span class="linenr"> 7:  </span>    <span style="color: #a020f0;">assert</span> 1&lt;age&lt;120, <span style="color: #8b2252;">"Age must be realistic"</span>
+<span class="linenr"> 8:  </span><span style="color: #228b22;">AssertionError</span>: Age must be realistic
 <span class="linenr"> 9:  </span>&gt;&gt;&gt;
 <span class="linenr">10:  </span>
-<span class="linenr">11:  </span>
 </pre>
 
 
@@ -815,11 +815,10 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr">1:  </span>name = ''
-<span class="linenr">2:  </span>while not name.strip():
-<span class="linenr">3:  </span>    name = input("Please input your name:")
-<span class="linenr">4:  </span>print("Hello,", name)
-<span class="linenr">5:  </span>
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">''</span>
+<span class="linenr">2:  </span><span style="color: #a020f0;">while</span> <span style="color: #a020f0;">not</span> name.strip():
+<span class="linenr">3:  </span>    name = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please input your name:"</span>)
+<span class="linenr">4:  </span><span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Hello,"</span>, name)
 </pre>
 
 
@@ -842,10 +841,10 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>#遍历列表中的各个元素
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#36941;&#21382;&#21015;&#34920;&#20013;&#30340;&#21508;&#20010;&#20803;&#32032;</span>
 <span class="linenr"> 2:  </span>&gt;&gt;&gt; x = [1,2,3,4,5]
-<span class="linenr"> 3:  </span>&gt;&gt;&gt; for number in x:
-<span class="linenr"> 4:  </span>        print (number)
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">for</span> number <span style="color: #a020f0;">in</span> x:
+<span class="linenr"> 4:  </span>        <span style="color: #a020f0;">print</span> (number)
 <span class="linenr"> 5:  </span>1
 <span class="linenr"> 6:  </span>2
 <span class="linenr"> 7:  </span>3
@@ -853,12 +852,12 @@ lang="en" xml:lang="en">
 <span class="linenr"> 9:  </span>5
 <span class="linenr">10:  </span>&gt;&gt;&gt; 
 <span class="linenr">11:  </span>
-<span class="linenr">12:  </span>#使用内建函数range
-<span class="linenr">13:  </span>&gt;&gt;&gt; x = range(10)
+<span class="linenr">12:  </span><span style="color: #b22222;">#&#20351;&#29992;&#20869;&#24314;&#20989;&#25968;range</span>
+<span class="linenr">13:  </span>&gt;&gt;&gt; x = <span style="color: #7a378b;">range</span>(10)
 <span class="linenr">14:  </span>&gt;&gt;&gt; x
-<span class="linenr">15:  </span>range(0, 10)
-<span class="linenr">16:  </span>&gt;&gt;&gt; for number in x:
-<span class="linenr">17:  </span>        print(number)
+<span class="linenr">15:  </span><span style="color: #7a378b;">range</span>(0, 10)
+<span class="linenr">16:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">for</span> number <span style="color: #a020f0;">in</span> x:
+<span class="linenr">17:  </span>        <span style="color: #a020f0;">print</span>(number)
 <span class="linenr">18:  </span>0
 <span class="linenr">19:  </span>1
 <span class="linenr">20:  </span>2
@@ -871,7 +870,6 @@ lang="en" xml:lang="en">
 <span class="linenr">27:  </span>9
 <span class="linenr">28:  </span>&gt;&gt;&gt; 
 <span class="linenr">29:  </span>
-<span class="linenr">30:  </span>
 </pre>
 
 
@@ -895,14 +893,13 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr">1:  </span>x = {'a':'1', 'b':'2', 'c':'3'}
-<span class="linenr">2:  </span>for key in x.keys():
-<span class="linenr">3:  </span>    print (key, x[key])
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #a0522d;">x</span> = {<span style="color: #8b2252;">'a'</span>:<span style="color: #8b2252;">'1'</span>, <span style="color: #8b2252;">'b'</span>:<span style="color: #8b2252;">'2'</span>, <span style="color: #8b2252;">'c'</span>:<span style="color: #8b2252;">'3'</span>}
+<span class="linenr">2:  </span><span style="color: #a020f0;">for</span> key <span style="color: #a020f0;">in</span> x.keys():
+<span class="linenr">3:  </span>    <span style="color: #a020f0;">print</span> (key, x[key])
 <span class="linenr">4:  </span>
-<span class="linenr">5:  </span>for val in x.values():
-<span class="linenr">6:  </span>    print(val)
+<span class="linenr">5:  </span><span style="color: #a020f0;">for</span> val <span style="color: #a020f0;">in</span> x.values():
+<span class="linenr">6:  </span>    <span style="color: #a020f0;">print</span>(val)
 <span class="linenr">7:  </span>
-<span class="linenr">8:  </span>
 </pre>
 
 
@@ -933,9 +930,9 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>&gt;&gt;&gt; x = list(range(0,5))
-<span class="linenr"> 2:  </span>&gt;&gt;&gt; y = list(range(5,10))
-<span class="linenr"> 3:  </span>&gt;&gt;&gt; z = list(range(10, 15))
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; x = <span style="color: #7a378b;">list</span>(<span style="color: #7a378b;">range</span>(0,5))
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; y = <span style="color: #7a378b;">list</span>(<span style="color: #7a378b;">range</span>(5,10))
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; z = <span style="color: #7a378b;">list</span>(<span style="color: #7a378b;">range</span>(10, 15))
 <span class="linenr"> 4:  </span>&gt;&gt;&gt; z
 <span class="linenr"> 5:  </span>[10, 11, 12, 13, 14]
 <span class="linenr"> 6:  </span>&gt;&gt;&gt; y
@@ -943,12 +940,11 @@ lang="en" xml:lang="en">
 <span class="linenr"> 8:  </span>&gt;&gt;&gt; x
 <span class="linenr"> 9:  </span>[0, 1, 2, 3, 4]
 <span class="linenr">10:  </span>
-<span class="linenr">11:  </span>&gt;&gt;&gt; zipped = zip(x, y, z)
-<span class="linenr">12:  </span>&gt;&gt;&gt; list(zipped)
+<span class="linenr">11:  </span>&gt;&gt;&gt; zipped = <span style="color: #7a378b;">zip</span>(x, y, z)
+<span class="linenr">12:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">list</span>(zipped)
 <span class="linenr">13:  </span>[(0, 5, 10), (1, 6, 11), (2, 7, 12), (3, 8, 13), (4, 9, 14)]
 <span class="linenr">14:  </span>&gt;&gt;&gt; 
 <span class="linenr">15:  </span>
-<span class="linenr">16:  </span>
 </pre>
 
 
@@ -971,9 +967,9 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>&gt;&gt;&gt; mylist = ['12312', '12ab', '123sa', '1231s']
-<span class="linenr"> 2:  </span>&gt;&gt;&gt; for index, string in enumerate(mylist):
-<span class="linenr"> 3:  </span>        print(index, string)
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; mylist = [<span style="color: #8b2252;">'12312'</span>, <span style="color: #8b2252;">'12ab'</span>, <span style="color: #8b2252;">'123sa'</span>, <span style="color: #8b2252;">'1231s'</span>]
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">for</span> index, string <span style="color: #a020f0;">in</span> <span style="color: #7a378b;">enumerate</span>(mylist):
+<span class="linenr"> 3:  </span>        <span style="color: #a020f0;">print</span>(index, string)
 <span class="linenr"> 4:  </span>
 <span class="linenr"> 5:  </span>
 <span class="linenr"> 6:  </span>0 12312
@@ -982,7 +978,6 @@ lang="en" xml:lang="en">
 <span class="linenr"> 9:  </span>3 1231s
 <span class="linenr">10:  </span>&gt;&gt;&gt; 
 <span class="linenr">11:  </span>
-<span class="linenr">12:  </span>
 </pre>
 
 
@@ -1007,14 +1002,13 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr">1:  </span>&gt;&gt;&gt; data = [1,67,1,13,14,61,2]
-<span class="linenr">2:  </span>&gt;&gt;&gt; sorted(data)
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; data = [1,67,1,13,14,61,2]
+<span class="linenr">2:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">sorted</span>(data)
 <span class="linenr">3:  </span>[1, 1, 2, 13, 14, 61, 67]
-<span class="linenr">4:  </span>&gt;&gt;&gt; list(reversed(data))
+<span class="linenr">4:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">list</span>(<span style="color: #7a378b;">reversed</span>(data))
 <span class="linenr">5:  </span>[2, 61, 14, 13, 1, 67, 1]
 <span class="linenr">6:  </span>&gt;&gt;&gt; 
 <span class="linenr">7:  </span>
-<span class="linenr">8:  </span>
 </pre>
 
 
@@ -1046,16 +1040,15 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>&gt;&gt;&gt; import math
-<span class="linenr"> 2:  </span>&gt;&gt;&gt;for x in range(99, 0, -1):
-<span class="linenr"> 3:  </span>&gt;&gt;&gt;    root = math.sqrt(x)
-<span class="linenr"> 4:  </span>&gt;&gt;&gt;    if root == int(root):
-<span class="linenr"> 5:  </span>&gt;&gt;&gt;        print ('Max number is:', x)
-<span class="linenr"> 6:  </span>&gt;&gt;&gt;        break
-<span class="linenr"> 7:  </span>
-<span class="linenr"> 8:  </span>Max number is 81
-<span class="linenr"> 9:  </span>
-<span class="linenr">10:  </span>
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">import</span> math
+<span class="linenr">2:  </span>&gt;&gt;&gt;<span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> <span style="color: #7a378b;">range</span>(99, 0, -1):
+<span class="linenr">3:  </span>&gt;&gt;&gt;    root = math.sqrt(x)
+<span class="linenr">4:  </span>&gt;&gt;&gt;    <span style="color: #a020f0;">if</span> root == <span style="color: #7a378b;">int</span>(root):
+<span class="linenr">5:  </span>&gt;&gt;&gt;        <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">'Max number is:'</span>, x)
+<span class="linenr">6:  </span>&gt;&gt;&gt;        <span style="color: #a020f0;">break</span>
+<span class="linenr">7:  </span>
+<span class="linenr">8:  </span>Max number <span style="color: #a020f0;">is</span> 81
+<span class="linenr">9:  </span>
 </pre>
 
 
@@ -1078,12 +1071,12 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>#一个打印偶数的例子，不加else 语句，程序也能正确执行
-<span class="linenr"> 2:  </span>&gt;&gt;&gt; for x in range(10):
-<span class="linenr"> 3:  </span>        if x%2 == 0:
-<span class="linenr"> 4:  </span>                print(x)
-<span class="linenr"> 5:  </span>        else:
-<span class="linenr"> 6:  </span>                continue
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#19968;&#20010;&#25171;&#21360;&#20598;&#25968;&#30340;&#20363;&#23376;&#65292;&#19981;&#21152;else &#35821;&#21477;&#65292;&#31243;&#24207;&#20063;&#33021;&#27491;&#30830;&#25191;&#34892;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> <span style="color: #7a378b;">range</span>(10):
+<span class="linenr"> 3:  </span>        <span style="color: #a020f0;">if</span> x%2 == 0:
+<span class="linenr"> 4:  </span>                <span style="color: #a020f0;">print</span>(x)
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">else</span>:
+<span class="linenr"> 6:  </span>                <span style="color: #a020f0;">continue</span>
 <span class="linenr"> 7:  </span>
 <span class="linenr"> 8:  </span>
 <span class="linenr"> 9:  </span>0
@@ -1093,7 +1086,6 @@ lang="en" xml:lang="en">
 <span class="linenr">13:  </span>8
 <span class="linenr">14:  </span>&gt;&gt;&gt; 
 <span class="linenr">15:  </span>
-<span class="linenr">16:  </span>
 </pre>
 
 
@@ -1118,20 +1110,19 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span>while True:
-<span class="linenr"> 2:  </span>        word = input("Please enter a word:")
-<span class="linenr"> 3:  </span>        if not word:
-<span class="linenr"> 4:  </span>                break
-<span class="linenr"> 5:  </span>        print("You input:" , word)
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #a020f0;">while</span> <span style="color: #a020f0;">True</span>:
+<span class="linenr"> 2:  </span>        word = <span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Please enter a word:"</span>)
+<span class="linenr"> 3:  </span>        <span style="color: #a020f0;">if</span> <span style="color: #a020f0;">not</span> word:
+<span class="linenr"> 4:  </span>                <span style="color: #a020f0;">break</span>
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"You input:"</span> , word)
 <span class="linenr"> 6:  </span>
 <span class="linenr"> 7:  </span>Please enter a word:TEst
-<span class="linenr"> 8:  </span>You input: TEst
+<span class="linenr"> 8:  </span>You <span style="color: #7a378b;">input</span>: TEst
 <span class="linenr"> 9:  </span>Please enter a word:ls
-<span class="linenr">10:  </span>You input: ls
+<span class="linenr">10:  </span>You <span style="color: #7a378b;">input</span>: ls
 <span class="linenr">11:  </span>Please enter a word:
 <span class="linenr">12:  </span>&gt;&gt;&gt; 
 <span class="linenr">13:  </span>
-<span class="linenr">14:  </span>
 </pre>
 
 
@@ -1155,18 +1146,17 @@ lang="en" xml:lang="en">
 
 
 
-<pre class="example"><span class="linenr"> 1:  </span> #设置一个奇数序列，判断里面是不是有偶数（一个蛋疼的程序，哈哈）
-<span class="linenr"> 2:  </span>x = list(range(1,100,2))
-<span class="linenr"> 3:  </span>for val in x:
-<span class="linenr"> 4:  </span>    if val%2 == 0:
-<span class="linenr"> 5:  </span>        print (x)
-<span class="linenr"> 6:  </span>        break;
-<span class="linenr"> 7:  </span>else:
-<span class="linenr"> 8:  </span>    print("Did not break!")
-<span class="linenr"> 9:  </span>#执行结果
-<span class="linenr">10:  </span>Did not break!
+<pre class="src src-python"><span class="linenr"> 1:  </span> <span style="color: #b22222;">#&#35774;&#32622;&#19968;&#20010;&#22855;&#25968;&#24207;&#21015;&#65292;&#21028;&#26029;&#37324;&#38754;&#26159;&#19981;&#26159;&#26377;&#20598;&#25968;&#65288;&#19968;&#20010;&#34507;&#30140;&#30340;&#31243;&#24207;&#65292;&#21704;&#21704;&#65289;</span>
+<span class="linenr"> 2:  </span><span style="color: #a0522d;">x</span> = <span style="color: #7a378b;">list</span>(<span style="color: #7a378b;">range</span>(1,100,2))
+<span class="linenr"> 3:  </span><span style="color: #a020f0;">for</span> val <span style="color: #a020f0;">in</span> x:
+<span class="linenr"> 4:  </span>    <span style="color: #a020f0;">if</span> val%2 == 0:
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">print</span> (x)
+<span class="linenr"> 6:  </span>        <span style="color: #a020f0;">break</span>;
+<span class="linenr"> 7:  </span><span style="color: #a020f0;">else</span>:
+<span class="linenr"> 8:  </span>    <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Did not break!"</span>)
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#25191;&#34892;&#32467;&#26524;</span>
+<span class="linenr">10:  </span>Did <span style="color: #a020f0;">not</span> <span style="color: #a020f0;">break</span>!
 <span class="linenr">11:  </span>
-<span class="linenr">12:  </span>
 </pre>
 
 
@@ -1185,14 +1175,186 @@ lang="en" xml:lang="en">
 <h2 id="sec-6"><span class="section-number-2">6</span> 列表推导式 </h2>
 <div class="outline-text-2" id="text-6">
 
+<ol>
+<li>说明：利用其他列表创建列表，利用for循环遍历序列，将元素执行相应的
+     操作；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr">1:  </span><span style="color: #b22222;">#&#24471;&#21040;10&#20197;&#20869;&#25968;&#23383;&#30340;&#24179;&#26041;&#30340;&#21015;&#34920;</span>
+<span class="linenr">2:  </span><span style="color: #a020f0;">import</span> math
+<span class="linenr">3:  </span><span style="color: #a0522d;">mylist</span> = [math.pow(x, 2) <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> <span style="color: #7a378b;">list</span>(<span style="color: #7a378b;">range</span>(0,10))]
+<span class="linenr">4:  </span><span style="color: #a020f0;">print</span> (mylist)
+<span class="linenr">5:  </span>
+<span class="linenr">6:  </span><span style="color: #b22222;">#&#24471;&#21040;10&#20197;&#20869;&#20598;&#25968;&#30340;&#24179;&#26041;&#30340;&#21015;&#34920;</span>
+<span class="linenr">7:  </span><span style="color: #a0522d;">mylist</span> = [math.pow(x, 2) <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> <span style="color: #7a378b;">list</span>(<span style="color: #7a378b;">range</span>(0,10)) <span style="color: #a020f0;">if</span> x % 2 == 0]
+<span class="linenr">8:  </span><span style="color: #a020f0;">print</span> (mylist)
+<span class="linenr">9:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 三人行 </h2>
+<div class="outline-text-2" id="text-7">
+
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> pass </h3>
+<div class="outline-text-3" id="text-7-1">
+
+<ol>
+<li>说明：pass关键字用于占位，当函数或者代码块还没有添加时，可以用
+      pass来占位，以免语法错误
+</li>
+<li>例子
+
+
+
+<pre class="src src-python"><span class="linenr">1:  </span>&gt;&gt;&gt; a = 10
+<span class="linenr">2:  </span><span style="color: #b22222;">#if&#30340;&#35821;&#21477;&#22359;&#20013;&#24182;&#27809;&#26377;&#20854;&#20182;&#35821;&#21477;&#38656;&#35201;&#25191;&#34892;&#65292;&#20808;&#29992;pass&#21344;&#20301;&#65292;&#25191;&#34892;&#30340;&#26102;&#20505;&#65292;&#22914;&#26524;if&#21028;&#26029;&#20026;&#30495;&#30452;&#25509;&#36339;&#36807;&#12290;</span>
+<span class="linenr">3:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">if</span> a&gt;0:
+<span class="linenr">4:  </span>        <span style="color: #a020f0;">pass</span>
+<span class="linenr">5:  </span>&gt;&gt;&gt; 
+</pre>
+
+
+
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> del </h3>
+<div class="outline-text-3" id="text-7-2">
+
+<ol>
+<li>说明：用于删除对象；
+</li>
+<li>注意：del仅能删除变量或者对象中的项，不能直接删除变量指向的对象，
+      当对象没有被任何变量引用时，python会将变量回收；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; x = {<span style="color: #8b2252;">'a'</span>:<span style="color: #8b2252;">'1'</span>, <span style="color: #8b2252;">'b'</span>:<span style="color: #8b2252;">'2'</span>, <span style="color: #8b2252;">'c'</span>:<span style="color: #8b2252;">'3'</span>}
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; y = x
+<span class="linenr"> 3:  </span>&gt;&gt;&gt; y
+<span class="linenr"> 4:  </span>{<span style="color: #8b2252;">'a'</span>: <span style="color: #8b2252;">'1'</span>, <span style="color: #8b2252;">'c'</span>: <span style="color: #8b2252;">'3'</span>, <span style="color: #8b2252;">'b'</span>: <span style="color: #8b2252;">'2'</span>}
+<span class="linenr"> 5:  </span><span style="color: #b22222;">#&#21024;&#38500;&#21464;&#37327;x&#65292;&#20877;&#35843;&#29992;&#20250;&#25253;&#8220;&#26410;&#23450;&#20041;&#8221;&#30340;&#38169;&#35823;</span>
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">del</span> x
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; x
+<span class="linenr"> 8:  </span>Traceback (most recent call last):
+<span class="linenr"> 9:  </span>  File <span style="color: #8b2252;">"&lt;pyshell#15&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
+<span class="linenr">10:  </span>    x
+<span class="linenr">11:  </span><span style="color: #228b22;">NameError</span>: name <span style="color: #8b2252;">'x'</span> <span style="color: #a020f0;">is</span> <span style="color: #a020f0;">not</span> defined
+<span class="linenr">12:  </span>&gt;&gt;&gt; y
+<span class="linenr">13:  </span>{<span style="color: #8b2252;">'a'</span>: <span style="color: #8b2252;">'1'</span>, <span style="color: #8b2252;">'c'</span>: <span style="color: #8b2252;">'3'</span>, <span style="color: #8b2252;">'b'</span>: <span style="color: #8b2252;">'2'</span>}
+<span class="linenr">14:  </span><span style="color: #b22222;">#&#21024;&#38500;&#23383;&#20856;&#20013;&#30340;&#39033;</span>
+<span class="linenr">15:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">del</span> y[<span style="color: #8b2252;">'a'</span>]
+<span class="linenr">16:  </span>&gt;&gt;&gt; y
+<span class="linenr">17:  </span>{<span style="color: #8b2252;">'c'</span>: <span style="color: #8b2252;">'3'</span>, <span style="color: #8b2252;">'b'</span>: <span style="color: #8b2252;">'2'</span>}
+<span class="linenr">18:  </span>&gt;&gt;&gt; 
+<span class="linenr">19:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> exec和eval </h3>
+<div class="outline-text-3" id="text-7-3">
+
+<ol>
+<li>说明：
+<ol>
+<li>exec用于执行一个字符串的语句；
+</li>
+<li>eval用于执行字符串语句，并返回语句执行的结果；
+</li>
+</ol>
+
+</li>
+<li>注意：通过增加字典，起到命名空间的作用，以防止由字符串的语句导致
+      的安全问题；
+</li>
+<li>例子
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#exec&#30452;&#25509;&#25191;&#34892;&#35821;&#21477;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">exec</span>(<span style="color: #8b2252;">'print("Hello, world!")'</span>)
+<span class="linenr"> 3:  </span>Hello, world!
+<span class="linenr"> 4:  </span><span style="color: #b22222;">#exec&#25191;&#34892;&#21518;&#19981;&#36820;&#22238;&#25191;&#34892;&#32467;&#26524;</span>
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">exec</span>(<span style="color: #8b2252;">"2*2"</span>)
+<span class="linenr"> 6:  </span>&gt;&gt;&gt;
+<span class="linenr"> 7:  </span><span style="color: #b22222;">#exec&#22312;&#21629;&#21517;&#31354;&#38388;&#20013;&#25191;&#34892;&#35821;&#21477;</span>
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">exec</span>(<span style="color: #8b2252;">"""</span>
+<span class="linenr"> 9:  </span><span style="color: #8b2252;">x=2</span>
+<span class="linenr">10:  </span><span style="color: #8b2252;">y=3</span>
+<span class="linenr">11:  </span><span style="color: #8b2252;">z=4</span>
+<span class="linenr">12:  </span><span style="color: #8b2252;">"""</span>, scope)
+<span class="linenr">13:  </span>&gt;&gt;&gt; scope.keys()
+<span class="linenr">14:  </span>dict_keys([<span style="color: #8b2252;">'__builtins__'</span>, <span style="color: #8b2252;">'x'</span>, <span style="color: #8b2252;">'z'</span>, <span style="color: #8b2252;">'y'</span>])
+<span class="linenr">15:  </span>&gt;&gt;&gt; scope[<span style="color: #8b2252;">'x'</span>]
+<span class="linenr">16:  </span>2
+<span class="linenr">17:  </span>&gt;&gt;&gt; 
+<span class="linenr">18:  </span>
+<span class="linenr">19:  </span><span style="color: #b22222;">#eval&#30452;&#25509;&#25191;&#34892;&#35821;&#21477;</span>
+<span class="linenr">20:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">eval</span>(<span style="color: #8b2252;">'print("Hello, world!")'</span>)
+<span class="linenr">21:  </span>Hello, world!
+<span class="linenr">22:  </span><span style="color: #b22222;">#eval&#22312;&#25191;&#34892;&#21518;&#23558;&#25191;&#34892;&#32467;&#26524;&#36820;&#22238;</span>
+<span class="linenr">23:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">eval</span>(<span style="color: #8b2252;">'2*2'</span>)
+<span class="linenr">24:  </span>4
+<span class="linenr">25:  </span>&gt;&gt;&gt; 
+<span class="linenr">26:  </span><span style="color: #b22222;">#eval&#25805;&#20316;&#23383;&#20856;&#20013;&#30340;&#25968;&#25454;</span>
+<span class="linenr">27:  </span>&gt;&gt;&gt; scope.keys()
+<span class="linenr">28:  </span>dict_keys([<span style="color: #8b2252;">'__builtins__'</span>, <span style="color: #8b2252;">'x'</span>, <span style="color: #8b2252;">'z'</span>, <span style="color: #8b2252;">'y'</span>])
+<span class="linenr">29:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">eval</span>(<span style="color: #8b2252;">'x+y+z'</span>, scope)
+<span class="linenr">30:  </span>9
+<span class="linenr">31:  </span>&gt;&gt;&gt; 
+<span class="linenr">32:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
 </div>
 </div>
+</div>
+</div>
+
 <div id="postamble">
-<p class="date">Date: 2011-11-22 16:43:28 CST</p>
-<p class="author">Author: Bill Gunn</p>
-<p class="creator">Org version 7.6 with Emacs version 23</p>
+<p class="date">Date: 2011-11-23 20:40:47 </p>
+<p class="author">Author: </p>
+<p class="creator">Org version 7.7 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
-</div>
+
 </div>
 </body>
 </html>

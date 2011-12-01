@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>抽象</title>
+<meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2011-12-01 15:51:26 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">抽象</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 懒惰即美德 </a></li>
+<li><a href="#sec-2">2 抽象和结构 </a></li>
+<li><a href="#sec-3">3 创建函数 </a>
+<ul>
+<li><a href="#sec-3-1">3.1 给函数创建文档（Documenting Function） </a></li>
+<li><a href="#sec-3-2">3.2 并非真正函数的函数 </a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4 参数魔法 </a>
+<ul>
+<li><a href="#sec-4-1">4.1 值从哪里来 </a></li>
+<li><a href="#sec-4-2">4.2 能够改变参数吗 </a></li>
+<li><a href="#sec-4-3">4.3 关键字参数和默认值 </a></li>
+<li><a href="#sec-4-4">4.4 收集参数 </a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 懒惰即美德 </h2>
+<div class="outline-text-2" id="text-1">
+
+<ol>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#Fibonacci&#25968;&#21015;&#20989;&#25968;</span>
+<span class="linenr"> 2:  </span><span style="color: #a020f0;">def</span> <span style="color: #0000ff;">fibo</span>(x):
+<span class="linenr"> 3:  </span>    <span style="color: #a020f0;">if</span> x &lt; 2:
+<span class="linenr"> 4:  </span>        <span style="color: #a020f0;">return</span>;
+<span class="linenr"> 5:  </span>    result = [0, 1]
+<span class="linenr"> 6:  </span>    <span style="color: #a020f0;">for</span> i <span style="color: #a020f0;">in</span> <span style="color: #7a378b;">range</span>(x - 2):
+<span class="linenr"> 7:  </span>        result.append(result[-1] + result[-2])
+<span class="linenr"> 8:  </span>    <span style="color: #a020f0;">return</span> result;
+<span class="linenr"> 9:  </span>
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#27979;&#35797;</span>
+<span class="linenr">11:  </span><span style="color: #a0522d;">myarray</span> = fibo(10)
+<span class="linenr">12:  </span><span style="color: #a020f0;">print</span>(myarray)
+<span class="linenr">13:  </span><span style="color: #7a378b;">input</span>(<span style="color: #8b2252;">"Press enter!"</span>)       
+<span class="linenr">14:  </span>
+<span class="linenr">15:  </span><span style="color: #b22222;">#&#32467;&#26524;</span>
+<span class="linenr">16:  </span>&gt;&gt;&gt; 
+<span class="linenr">17:  </span>[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+<span class="linenr">18:  </span>Press enter!
+<span class="linenr">19:  </span>&gt;&gt;&gt; 
+<span class="linenr">20:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 抽象和结构 </h2>
+<div class="outline-text-2" id="text-2">
+
+<ol>
+<li>说明：抽象可以节省很多工作，是计算机程序让人读懂的关键；
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 创建函数 </h2>
+<div class="outline-text-2" id="text-3">
+
+<ol>
+<li>说明：
+<ol>
+<li>函数是可以被调用的，它执行一些操作并返回一个值，可以使用内
+        建函数 <b>callable</b> 判断函数是否可以被调用；
+</li>
+<li>使用 <b>def</b> 语句定义函数；
+</li>
+<li><b>return</b> 语句用来返回值；
+</li>
+</ol>
+
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#27809;&#26377;&#23548;&#20837;math&#27169;&#22359;&#65292;&#29992;callable&#21028;&#26029;&#20989;&#25968;&#26159;&#21542;&#21487;&#29992;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">callable</span>(math.sqrt)
+<span class="linenr"> 3:  </span>Traceback (most recent call last):
+<span class="linenr"> 4:  </span>  File <span style="color: #8b2252;">"&lt;pyshell#9&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
+<span class="linenr"> 5:  </span>    <span style="color: #7a378b;">callable</span>(math.sqrt)
+<span class="linenr"> 6:  </span><span style="color: #228b22;">NameError</span>: name <span style="color: #8b2252;">'math'</span> <span style="color: #a020f0;">is</span> <span style="color: #a020f0;">not</span> defined
+<span class="linenr"> 7:  </span><span style="color: #b22222;">#&#23548;&#20837;math&#27169;&#22359;</span>
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">import</span> math
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">callable</span>(math.sqrt)
+<span class="linenr">10:  </span><span style="color: #a020f0;">True</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; 
+<span class="linenr">12:  </span>
+<span class="linenr">13:  </span><span style="color: #b22222;">#&#21019;&#24314;&#20989;&#25968;</span>
+<span class="linenr">14:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">myfunc</span>(myparam):
+<span class="linenr">15:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"This is my func!"</span>)
+<span class="linenr">16:  </span>        <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">'Finish'</span>
+<span class="linenr">17:  </span>
+<span class="linenr">18:  </span><span style="color: #b22222;">#&#35843;&#29992;&#20989;&#25968;</span>
+<span class="linenr">19:  </span>&gt;&gt;&gt; myfunc(<span style="color: #8b2252;">'Test'</span>)
+<span class="linenr">20:  </span>This <span style="color: #a020f0;">is</span> my func!
+<span class="linenr">21:  </span><span style="color: #8b2252;">'Finish'</span>
+<span class="linenr">22:  </span>&gt;&gt;&gt; 
+<span class="linenr">23:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 给函数创建文档（Documenting Function） </h3>
+<div class="outline-text-3" id="text-3-1">
+
+<ol>
+<li>说明：在函数开头添加一个字符串，它会随函数一同保存，这个字符串被
+      称为文档字符串；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#23450;&#20041;&#20989;&#25968;&#65292;&#24182;&#22312;&#37324;&#38754;&#28155;&#21152;&#25991;&#26723;&#23383;&#31526;&#20018;&#65288;docstring&#65289;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">TestDocstring</span>():
+<span class="linenr"> 3:  </span>        <span style="color: #8b2252;">'&#36825;&#26159;&#19968;&#20010;&#25991;&#26723;&#23383;&#31526;&#20018;&#65292;&#23427;&#20250;&#38543;&#20989;&#25968;&#19968;&#21516;&#20445;&#23384;'</span>
+<span class="linenr"> 4:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">'Hello, world!'</span>)
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">return</span> 0
+<span class="linenr"> 6:  </span><span style="color: #b22222;">#&#35843;&#29992;&#20989;&#25968;</span>
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; TestDocstring()
+<span class="linenr"> 8:  </span>Hello, world!
+<span class="linenr"> 9:  </span>0
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#20351;&#29992;&#20869;&#32622;&#30340;help&#20989;&#25968;&#21487;&#20197;&#26174;&#31034;&#20989;&#25968;&#20013;&#30340;&#25991;&#26723;&#23383;&#31526;&#20018;</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; <span style="color: #7a378b;">help</span>(TestDocstring)
+<span class="linenr">12:  </span>Help on function TestDocstring <span style="color: #a020f0;">in</span> module __main__:
+<span class="linenr">13:  </span>
+<span class="linenr">14:  </span>TestDocstring()
+<span class="linenr">15:  </span>    &#36825;&#26159;&#19968;&#20010;&#25991;&#26723;&#23383;&#31526;&#20018;&#65292;&#23427;&#20250;&#38543;&#20989;&#25968;&#19968;&#21516;&#20445;&#23384;
+<span class="linenr">16:  </span>
+<span class="linenr">17:  </span>&gt;&gt;&gt; 
+<span class="linenr">18:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 并非真正函数的函数 </h3>
+<div class="outline-text-3" id="text-3-2">
+
+<ol>
+<li>说明：有些函数只执行一些操作，不用向调用方返回值，这时函数定义时，
+      可以省略return语句；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#19981;&#21547;return&#35821;&#21477;&#30340;&#20989;&#25968;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">myfunc</span>():
+<span class="linenr"> 3:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Hello"</span>)
+<span class="linenr"> 4:  </span>
+<span class="linenr"> 5:  </span>
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; myfunc()
+<span class="linenr"> 7:  </span>Hello
+<span class="linenr"> 8:  </span>
+<span class="linenr"> 9:  </span><span style="color: #b22222;">#&#21547;return&#35821;&#21477;&#30340;&#20989;&#25968;</span>
+<span class="linenr">10:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">myfunc1</span>():
+<span class="linenr">11:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Hello"</span>)
+<span class="linenr">12:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr">13:  </span>
+<span class="linenr">14:  </span>&gt;&gt;&gt; myfunc1()
+<span class="linenr">15:  </span>Hello
+<span class="linenr">16:  </span>
+<span class="linenr">17:  </span>&gt;&gt;&gt; result = myfunc()
+<span class="linenr">18:  </span>Hello
+<span class="linenr">19:  </span><span style="color: #b22222;">#result&#32467;&#26524;&#20026;&#31354;&#23545;&#35937;</span>
+<span class="linenr">20:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(result)
+<span class="linenr">21:  </span><span style="color: #008b8b;">None</span>
+<span class="linenr">22:  </span>&gt;&gt;&gt; result = myfunc1()
+<span class="linenr">23:  </span>Hello
+<span class="linenr">24:  </span><span style="color: #b22222;">#result&#32467;&#26524;&#20026;&#31354;&#23545;&#35937;</span>
+<span class="linenr">25:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">print</span>(result)
+<span class="linenr">26:  </span><span style="color: #008b8b;">None</span>
+<span class="linenr">27:  </span>&gt;&gt;&gt; 
+<span class="linenr">28:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 参数魔法 </h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 值从哪里来 </h3>
+<div class="outline-text-3" id="text-4-1">
+
+<ol>
+<li>说明：
+<ol>
+<li>创建函数时应该保证在收到合法参数时，执行正确的操作，收到非
+         法参数时，执行明显的异常（一般通过断言（assert)或者异常
+         （exception）来实现）；
+</li>
+<li>形式参数（formal parameters）：在函数定义中的参数；
+</li>
+<li>实际参数（actual parameters）：在调用时的参数；
+</li>
+</ol>
+
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#name&#20026;&#24418;&#24335;&#21442;&#25968;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">hello</span>(name):
+<span class="linenr"> 3:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Hello, %s!"</span> % name )
+<span class="linenr"> 4:  </span>
+<span class="linenr"> 5:  </span>
+<span class="linenr"> 6:  </span><span style="color: #b22222;">#'Bill'&#20026;&#23454;&#38469;&#21442;&#25968;</span>
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; hello(<span style="color: #8b2252;">'Bill'</span>)
+<span class="linenr"> 8:  </span>Hello, Bill!
+<span class="linenr"> 9:  </span>&gt;&gt;&gt; 
+<span class="linenr">10:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 能够改变参数吗 </h3>
+<div class="outline-text-3" id="text-4-2">
+
+<ol>
+<li>说明：在函数内为参数赋与新值不会改变外面任何变量的值；
+</li>
+<li>注意：如果参数是列表，那么如果函数中修改了参数，也将修改原列表,
+      为了避免这种情况，可以使用分片来传递参数；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#20989;&#25968;&#19981;&#20462;&#25913;&#21442;&#25968;&#20540;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">myfunc</span>(x):
+<span class="linenr"> 3:  </span>        x=10
+<span class="linenr"> 4:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr"> 5:  </span>
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; x = 5
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; myfunc(x)
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; x
+<span class="linenr"> 9:  </span>5
+<span class="linenr">10:  </span>&gt;&gt;&gt; 
+<span class="linenr">11:  </span>
+<span class="linenr">12:  </span><span style="color: #b22222;">#&#22914;&#26524;&#21442;&#25968;&#26159;&#21015;&#34920;&#65292;&#37027;&#20040;&#22312;&#20989;&#25968;&#20013;&#22914;&#26524;&#20462;&#25913;&#20102;&#21442;&#25968;&#65292;&#20063;&#20250;&#24433;&#21709;&#21040;&#35843;&#29992;&#30340;&#21015;&#34920;</span>
+<span class="linenr">13:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">editList</span>(l):
+<span class="linenr">14:  </span>        l[0] = <span style="color: #8b2252;">'Test'</span>
+<span class="linenr">15:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr">16:  </span>
+<span class="linenr">17:  </span>&gt;&gt;&gt; l = [<span style="color: #8b2252;">'a'</span>, <span style="color: #8b2252;">'b'</span>, <span style="color: #8b2252;">'c'</span>]
+<span class="linenr">18:  </span>&gt;&gt;&gt; l
+<span class="linenr">19:  </span>[<span style="color: #8b2252;">'a'</span>, <span style="color: #8b2252;">'b'</span>, <span style="color: #8b2252;">'c'</span>]
+<span class="linenr">20:  </span>&gt;&gt;&gt; editList(l)
+<span class="linenr">21:  </span>&gt;&gt;&gt; l
+<span class="linenr">22:  </span>[<span style="color: #8b2252;">'Test'</span>, <span style="color: #8b2252;">'b'</span>, <span style="color: #8b2252;">'c'</span>]
+<span class="linenr">23:  </span>&gt;&gt;&gt; 
+<span class="linenr">24:  </span>
+<span class="linenr">25:  </span><span style="color: #b22222;">#&#20197;&#20998;&#29255;&#30340;&#26041;&#24335;&#20462;&#25913;&#21015;&#34920;</span>
+<span class="linenr">26:  </span>&gt;&gt;&gt; l
+<span class="linenr">27:  </span>[<span style="color: #8b2252;">'a'</span>, <span style="color: #8b2252;">'b'</span>, <span style="color: #8b2252;">'c'</span>]
+<span class="linenr">28:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">editList</span>(l):
+<span class="linenr">29:  </span>        l[0] = <span style="color: #8b2252;">'Test'</span>
+<span class="linenr">30:  </span>        <span style="color: #a020f0;">print</span> (l)
+<span class="linenr">31:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr">32:  </span>
+<span class="linenr">33:  </span>&gt;&gt;&gt; editList(l[:])
+<span class="linenr">34:  </span>[<span style="color: #8b2252;">'Test'</span>, <span style="color: #8b2252;">'b'</span>, <span style="color: #8b2252;">'c'</span>]
+<span class="linenr">35:  </span>&gt;&gt;&gt; l
+<span class="linenr">36:  </span>[<span style="color: #8b2252;">'a'</span>, <span style="color: #8b2252;">'b'</span>, <span style="color: #8b2252;">'c'</span>]
+<span class="linenr">37:  </span>&gt;&gt;&gt; 
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> 关键字参数和默认值 </h3>
+<div class="outline-text-3" id="text-4-3">
+
+<ol>
+<li>说明：
+<ol>
+<li>关键字参数：在调用函数时，在实参中指定实参对应的形参，这种调用
+         中的实参称为关键字参数；
+</li>
+<li>位置参数：在调用函数时，通过位置匹配实参和形参，这种调用中的
+         实参称为位置参数；
+</li>
+</ol>
+
+</li>
+<li>注意：
+<ol>
+<li>关键字参数可以在函数中给参数提供默认值；
+</li>
+<li>位置参数和关键字参数可以联合使用，但是应该 <b>避免</b> 使用这种方
+         式；
+</li>
+</ol>
+
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#20851;&#38190;&#23383;&#21442;&#25968;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">hello</span>(greeting=<span style="color: #8b2252;">'Hello'</span>, name=<span style="color: #8b2252;">'world'</span>):
+<span class="linenr"> 3:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"%s, %s"</span> % (greeting, name))
+<span class="linenr"> 4:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr"> 5:  </span>
+<span class="linenr"> 6:  </span><span style="color: #b22222;">#&#35843;&#29992;&#26102;&#19981;&#25552;&#20379;&#40664;&#35748;&#20540;&#65292;&#21017;&#35843;&#29992;&#21518;&#65292;&#30452;&#25509;&#20351;&#29992;&#20989;&#25968;&#23450;&#20041;&#20013;&#30340;&#40664;&#35748;&#20540;</span>
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; hello()
+<span class="linenr"> 8:  </span>Hello, world
+<span class="linenr"> 9:  </span>
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#27809;&#26377;&#25351;&#26126;&#24418;&#21442;&#21517;&#65292;&#21017;&#25171;&#21360;&#26102;&#25353;&#20301;&#32622;&#21442;&#25968;&#26041;&#24335;&#35843;&#29992;</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; hello(<span style="color: #8b2252;">'Nice to meet you'</span>, <span style="color: #8b2252;">'Bill'</span>)
+<span class="linenr">12:  </span>Nice to meet you, Bill
+<span class="linenr">13:  </span>&gt;&gt;&gt; hello(<span style="color: #8b2252;">'Bill'</span>, <span style="color: #8b2252;">'Hello'</span>)
+<span class="linenr">14:  </span>Bill, Hello
+<span class="linenr">15:  </span>
+<span class="linenr">16:  </span><span style="color: #b22222;">#&#20351;&#29992;&#20851;&#38190;&#23383;&#21442;&#25968;&#65292;&#35843;&#29992;&#26102;&#29992;&#20851;&#38190;&#23383;&#21305;&#37197;&#65292;&#19982;&#20301;&#32622;&#26080;&#20851;</span>
+<span class="linenr">17:  </span>&gt;&gt;&gt; hello(name=<span style="color: #8b2252;">'Bill'</span>, greeting=<span style="color: #8b2252;">'Nice to meet you'</span>)
+<span class="linenr">18:  </span>Nice to meet you, Bill
+<span class="linenr">19:  </span>&gt;&gt;&gt; 
+<span class="linenr">20:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> 收集参数 </h3>
+<div class="outline-text-3" id="text-4-4">
+
+<ol>
+<li>说明：
+<ol>
+<li>星号+参数名：参数前的星号将所有值放在同一个 <b>元组</b> 中，可以说
+         是将这些值收集起来，然后使用；
+</li>
+<li>两个星号：用于处理关键字参数，可以将关键字参数收集到同一个字
+         典；
+</li>
+</ol>
+
+</li>
+<li>注意：调用时如果不提供任何元素，则收集参数就是一个空元组或空字典；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#26143;&#21495;+&#21442;&#25968;&#65292;&#23558;&#21442;&#25968;&#25910;&#38598;&#21040;&#20803;&#32452;&#20013;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">TestStar</span>(x, *params):
+<span class="linenr"> 3:  </span>        <span style="color: #a020f0;">print</span>(x)
+<span class="linenr"> 4:  </span>        <span style="color: #a020f0;">print</span>(params)
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr"> 6:  </span>
+<span class="linenr"> 7:  </span>&gt;&gt;&gt; TestStar(1, 2,3,4,5)
+<span class="linenr"> 8:  </span>1
+<span class="linenr"> 9:  </span>(2, 3, 4, 5)
+<span class="linenr">10:  </span>
+<span class="linenr">11:  </span><span style="color: #b22222;">#&#20004;&#20010;&#26143;&#21495;,&#23558;&#21442;&#25968;&#25910;&#38598;&#21040;&#23383;&#20856;&#20013;</span>
+<span class="linenr">12:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">TestDoubleStar</span>(x, **params):
+<span class="linenr">13:  </span>        <span style="color: #a020f0;">print</span>(x)
+<span class="linenr">14:  </span>        <span style="color: #a020f0;">print</span>(params)
+<span class="linenr">15:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr">16:  </span>
+<span class="linenr">17:  </span>&gt;&gt;&gt; TestDoubleStar(x=1,y=2,z=3)
+<span class="linenr">18:  </span>1
+<span class="linenr">19:  </span>{<span style="color: #8b2252;">'y'</span>: 2, <span style="color: #8b2252;">'z'</span>: 3}
+<span class="linenr">20:  </span>&gt;&gt;&gt; 
+<span class="linenr">21:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2011-12-01 15:51:26 </p>
+<p class="author">Author: </p>
+<p class="creator">Org version 7.7 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

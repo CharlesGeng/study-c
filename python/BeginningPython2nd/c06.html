@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>抽象</title>
 <meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-12-01 15:51:26 "/>
+<meta name="generated" content="2011-12-02 14:37:46 "/>
 <meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -106,6 +106,15 @@ lang="en" xml:lang="en">
 <li><a href="#sec-4-2">4.2 能够改变参数吗 </a></li>
 <li><a href="#sec-4-3">4.3 关键字参数和默认值 </a></li>
 <li><a href="#sec-4-4">4.4 收集参数 </a></li>
+<li><a href="#sec-4-5">4.5 函数收集逆过程 </a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5 作用域 </a></li>
+<li><a href="#sec-6">6 递归 </a>
+<ul>
+<li><a href="#sec-6-1">6.1 阶乘 </a></li>
+<li><a href="#sec-6-2">6.2 幂 </a></li>
+<li><a href="#sec-6-3">6.3 二元查找 </a></li>
 </ul>
 </li>
 </ul>
@@ -545,13 +554,248 @@ lang="en" xml:lang="en">
 </li>
 </ol>
 
+
+</div>
+
+</div>
+
+<div id="outline-container-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> 函数收集逆过程 </h3>
+<div class="outline-text-3" id="text-4-5">
+
+<ol>
+<li>说明：将实际参数放入元组或者列表，再调用函数的过程；
+</li>
+<li>注意：使用一个星号来传递元组，使用两个星号来传递字典；
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#20256;&#36882;&#20803;&#32452;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">myAdd</span>(x, y):
+<span class="linenr"> 3:  </span>        <span style="color: #a020f0;">return</span> x+y
+<span class="linenr"> 4:  </span>
+<span class="linenr"> 5:  </span>&gt;&gt;&gt; data=(1231, 2131)
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; myAdd(*data)
+<span class="linenr"> 7:  </span>3362
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; 
+<span class="linenr"> 9:  </span>
+<span class="linenr">10:  </span><span style="color: #b22222;">#&#20256;&#36882;&#23383;&#20856;</span>
+<span class="linenr">11:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">myHello</span>(greeting, name):
+<span class="linenr">12:  </span>        <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">'%s, %s'</span> % (greeting, name))
+<span class="linenr">13:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr">14:  </span>
+<span class="linenr">15:  </span>&gt;&gt;&gt; data={<span style="color: #8b2252;">'name'</span>:<span style="color: #8b2252;">'Bill Gunn'</span>, <span style="color: #8b2252;">'greeting'</span>:<span style="color: #8b2252;">'Hello'</span>}
+<span class="linenr">16:  </span>&gt;&gt;&gt; myHello(**data)
+<span class="linenr">17:  </span>Hello, Bill Gunn
+<span class="linenr">18:  </span>&gt;&gt;&gt; 
+<span class="linenr">19:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 作用域 </h2>
+<div class="outline-text-2" id="text-5">
+
+<ol>
+<li>说明；在函数内声明的变量，都是局部变量，如果需要在函数内声明全局
+     变量，需要在声明前添加关键字 <b>global</b>
+</li>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span><span style="color: #b22222;">#&#23616;&#37096;&#21464;&#37327;</span>
+<span class="linenr"> 2:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">TestLocalParam</span>():
+<span class="linenr"> 3:  </span>        x = 10
+<span class="linenr"> 4:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr"> 5:  </span>
+<span class="linenr"> 6:  </span>&gt;&gt;&gt; x
+<span class="linenr"> 7:  </span>Traceback (most recent call last):
+<span class="linenr"> 8:  </span>  File <span style="color: #8b2252;">"&lt;pyshell#4&gt;"</span>, line 1, <span style="color: #a020f0;">in</span> &lt;module&gt;
+<span class="linenr"> 9:  </span>    x
+<span class="linenr">10:  </span><span style="color: #228b22;">NameError</span>: name <span style="color: #8b2252;">'x'</span> <span style="color: #a020f0;">is</span> <span style="color: #a020f0;">not</span> defined
+<span class="linenr">11:  </span>
+<span class="linenr">12:  </span><span style="color: #b22222;">#&#20840;&#23616;&#21464;&#37327;</span>
+<span class="linenr">13:  </span>&gt;&gt;&gt; y = 10
+<span class="linenr">14:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">TestGlobalParam</span>():
+<span class="linenr">15:  </span>        <span style="color: #a020f0;">global</span> y
+<span class="linenr">16:  </span>        y = 100
+<span class="linenr">17:  </span>        <span style="color: #a020f0;">return</span>
+<span class="linenr">18:  </span>&gt;&gt;&gt; y
+<span class="linenr">19:  </span>10
+<span class="linenr">20:  </span><span style="color: #b22222;">#&#20351;&#29992;&#20989;&#25968;&#20462;&#25913;&#20840;&#23616;&#21464;&#37327;</span>
+<span class="linenr">21:  </span>&gt;&gt;&gt; TestGlobalParam()
+<span class="linenr">22:  </span>&gt;&gt;&gt; y
+<span class="linenr">23:  </span>100
+<span class="linenr">24:  </span>&gt;&gt;&gt;        
+<span class="linenr">25:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 递归 </h2>
+<div class="outline-text-2" id="text-6">
+
+
+</div>
+
+<div id="outline-container-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> 阶乘 </h3>
+<div class="outline-text-3" id="text-6-1">
+
+<ol>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">factorial</span>(n):
+<span class="linenr"> 2:  </span>        <span style="color: #a020f0;">if</span> n &lt; 1:
+<span class="linenr"> 3:  </span>                <span style="color: #a020f0;">return</span> 0
+<span class="linenr"> 4:  </span>        <span style="color: #a020f0;">elif</span> n == 1:
+<span class="linenr"> 5:  </span>                <span style="color: #a020f0;">return</span> 1
+<span class="linenr"> 6:  </span>        <span style="color: #a020f0;">else</span>:
+<span class="linenr"> 7:  </span>                <span style="color: #a020f0;">return</span> factorial(n-1) * n
+<span class="linenr"> 8:  </span>
+<span class="linenr"> 9:  </span>
+<span class="linenr">10:  </span>&gt;&gt;&gt; x = factorial(2)
+<span class="linenr">11:  </span>&gt;&gt;&gt; x
+<span class="linenr">12:  </span>2
+<span class="linenr">13:  </span>&gt;&gt;&gt; factorial(3)
+<span class="linenr">14:  </span>6
+<span class="linenr">15:  </span>&gt;&gt;&gt; factorial(4)
+<span class="linenr">16:  </span>24
+<span class="linenr">17:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">for</span> i <span style="color: #a020f0;">in</span> <span style="color: #7a378b;">range</span>(10):
+<span class="linenr">18:  </span>        <span style="color: #a020f0;">print</span>(factorial(i))
+<span class="linenr">19:  </span>
+<span class="linenr">20:  </span>
+<span class="linenr">21:  </span>0
+<span class="linenr">22:  </span>1
+<span class="linenr">23:  </span>2
+<span class="linenr">24:  </span>6
+<span class="linenr">25:  </span>24
+<span class="linenr">26:  </span>120
+<span class="linenr">27:  </span>720
+<span class="linenr">28:  </span>5040
+<span class="linenr">29:  </span>40320
+<span class="linenr">30:  </span>362880
+<span class="linenr">31:  </span>&gt;&gt;&gt; 
+<span class="linenr">32:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> 幂 </h3>
+<div class="outline-text-3" id="text-6-2">
+
+<ol>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">mypow</span>(x, y):
+<span class="linenr"> 2:  </span>        <span style="color: #8b2252;">'y must be positive integer'</span>
+<span class="linenr"> 3:  </span>        <span style="color: #a020f0;">if</span> y == 0:
+<span class="linenr"> 4:  </span>                <span style="color: #a020f0;">return</span> 1
+<span class="linenr"> 5:  </span>        <span style="color: #a020f0;">else</span>:
+<span class="linenr"> 6:  </span>                <span style="color: #a020f0;">return</span> x * mypow(x, y-1)
+<span class="linenr"> 7:  </span>
+<span class="linenr"> 8:  </span>&gt;&gt;&gt; mypow(0, 10)
+<span class="linenr"> 9:  </span>0
+<span class="linenr">10:  </span>&gt;&gt;&gt; mypow(1, 10)
+<span class="linenr">11:  </span>1
+<span class="linenr">12:  </span>&gt;&gt;&gt; mypow(2, 10)
+<span class="linenr">13:  </span>1024
+<span class="linenr">14:  </span>&gt;&gt;&gt; mypow(2, 128) * 0.0002
+<span class="linenr">15:  </span>6.80564733841877e+34
+<span class="linenr">16:  </span>&gt;&gt;&gt;       
+<span class="linenr">17:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> 二元查找 </h3>
+<div class="outline-text-3" id="text-6-3">
+
+<ol>
+<li>例子：
+
+
+
+<pre class="src src-python"><span class="linenr"> 1:  </span>&gt;&gt;&gt; <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">binSearch</span>(sequnce, number, lower, upper):
+<span class="linenr"> 2:  </span>        <span style="color: #a020f0;">if</span> lower == upper:
+<span class="linenr"> 3:  </span>                <span style="color: #a020f0;">assert</span> number == sequnce[upper]
+<span class="linenr"> 4:  </span>                <span style="color: #a020f0;">return</span> upper
+<span class="linenr"> 5:  </span>        middle = (lower + upper) // 2
+<span class="linenr"> 6:  </span>        <span style="color: #a020f0;">if</span> number &gt; sequnce[middle]:
+<span class="linenr"> 7:  </span>                <span style="color: #a020f0;">return</span> binSearch(sequnce, number, middle+1, upper)
+<span class="linenr"> 8:  </span>        <span style="color: #a020f0;">else</span>:
+<span class="linenr"> 9:  </span>                <span style="color: #a020f0;">return</span> binSearch(sequnce, number, lower, middle)
+<span class="linenr">10:  </span>
+<span class="linenr">11:  </span>
+<span class="linenr">12:  </span>&gt;&gt;&gt; x
+<span class="linenr">13:  </span>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+<span class="linenr">14:  </span>22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+<span class="linenr">15:  </span>41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 
+<span class="linenr">16:  </span>60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 
+<span class="linenr">17:  </span>79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+<span class="linenr">18:  </span>&gt;&gt;&gt; binSearch(x, 10, 0, 99)
+<span class="linenr">19:  </span>10
+<span class="linenr">20:  </span>&gt;&gt;&gt; binSearch(x, 11, 0, 99)
+<span class="linenr">21:  </span>11
+<span class="linenr">22:  </span>&gt;&gt;&gt; 
+<span class="linenr">23:  </span>
+</pre>
+
+
+
+</li>
+</ol>
+
 </div>
 </div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2011-12-01 15:51:26 </p>
+<p class="date">Date: 2011-12-02 14:37:46 </p>
 <p class="author">Author: </p>
 <p class="creator">Org version 7.7 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

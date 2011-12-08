@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloMsg", "HelloMsg\HelloMsg.vcxproj", "{E3FD729B-B41D-43D6-A994-68E9FC951BFC}"
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloMsg", "HelloMsg\HelloMsg.vcproj", "{2E74DF1A-84EA-484C-9299-A0A7185624B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E3FD729B-B41D-43D6-A994-68E9FC951BFC}.Debug|Win32.ActiveCfg = Debug|Win32
-		{E3FD729B-B41D-43D6-A994-68E9FC951BFC}.Debug|Win32.Build.0 = Debug|Win32
-		{E3FD729B-B41D-43D6-A994-68E9FC951BFC}.Release|Win32.ActiveCfg = Release|Win32
-		{E3FD729B-B41D-43D6-A994-68E9FC951BFC}.Release|Win32.Build.0 = Release|Win32
+		{2E74DF1A-84EA-484C-9299-A0A7185624B4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2E74DF1A-84EA-484C-9299-A0A7185624B4}.Debug|Win32.Build.0 = Debug|Win32
+		{2E74DF1A-84EA-484C-9299-A0A7185624B4}.Release|Win32.ActiveCfg = Release|Win32
+		{2E74DF1A-84EA-484C-9299-A0A7185624B4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

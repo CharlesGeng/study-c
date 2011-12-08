@@ -1,11 +1,14 @@
 *~
-*.exe
 *.o
 *.pyc
 __pycache__*
 *#
-Debug
+
+*.exe
 ipch
 *.user
 *.sdf
 *.suo
+Debug
+Release
+*.ncb

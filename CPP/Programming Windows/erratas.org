@@ -1,0 +1,8 @@
+#+title: <Windows程序设计>勘误表
+
+* 第三章
+** P40 
+   #+begin_src c -n
+    case MWM_PAINT: --> case WM_PAINT:
+    case MWM_DESTROY: --> case WM_DESTROY:
+   #+end_src

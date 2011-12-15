@@ -2,18 +2,19 @@
 #include <TCHAR.h>
 #include <stdio.h>
 
+//window回调函数(window message)
 LRESULT CALLBACK WndProc( HWND , UINT , WPARAM , LPARAM );
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
 	static TCHAR szAppName[] = TEXT("你好Win98");
-	HWND hwndMain; 
+	HWND hwndMain;
 	HWND hwndsub;
 	WNDCLASS wc;
 	MSG msg ;
 
-	wc.style			= CS_HREDRAW | CS_VREDRAW;
-	wc.lpfnWndProc		= WndProc;
+	wc.style			= CS_HREDRAW | CS_VREDRAW;              //类风格，该组合表示如果窗口位置发生改变或者宽高发生变化时，重画整个窗口
+	wc.lpfnWndProc		= WndProc;                              //窗口类的回调函数
 	wc.cbClsExtra		= 0;
 	wc.cbWndExtra		= 0;
 	wc.hInstance		= hInstance;
@@ -31,15 +32,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//创建基于窗口类的窗口
 	hwndMain = CreateWindow(szAppName,
-						TEXT("The Hello Program"), 
-						WS_OVERLAPPEDWINDOW, 
-						CW_USEDEFAULT, 
+						TEXT("The Hello Program"),
+						WS_OVERLAPPEDWINDOW,
 						CW_USEDEFAULT,
-						CW_USEDEFAULT, 
 						CW_USEDEFAULT,
-						NULL, 
-						NULL, 
-						hInstance, 
+						CW_USEDEFAULT,
+						CW_USEDEFAULT,
+						NULL,
+						NULL,
+						hInstance,
 						NULL);
 	ShowWindow(hwndMain, nShowCmd);
 	UpdateWindow(hwndMain);

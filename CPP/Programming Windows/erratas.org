@@ -1,4 +1,4 @@
-#+title: <Windows程序设计>勘误表
+#+title: 《Windows程序设计》勘误表
 
 * 第三章
 ** P40 
@@ -6,3 +6,16 @@
     case MWM_PAINT: --> case WM_PAINT:
     case MWM_DESTROY: --> case WM_DESTROY:
    #+end_src
+
+** P60
+   1. 第6行：WM\_PESTROY --> WM\_DESTROY
+
+* 第五章
+** P121
+   倒数第10行
+
+   #+begin_src c -n
+     End PaTnt(-) 应该改为：EndPaint(hwnd, &ps);
+     
+   #+end_src
+

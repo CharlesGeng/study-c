@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<opml version="1.0">
+ <head>
+  <title>OPML exported from Outlook</title>
+  <dateCreated>Thu, 29 Dec 2011 08:59:37 +0800</dateCreated>
+  <dateModified>Thu, 29 Dec 2011 08:59:37 +0800</dateModified>
+ </head>
+ <body>
+  <outline text="战隼的学习探索" type="rss" xmlUrl="http://feed.read.org.cn/"/>
+  <outline text="酷壳 - CoolShell.cn" type="rss" xmlUrl="http://coolshell.cn/feed"/>
+  <outline text="老古茶画" type="rss"
+  xmlUrl="http://blog.sina.com.cn/rss/1417045015.xml"/>
+  <outline text="阳志平的随笔" type="rss" xmlUrl="http://www.yangzhiping.com/feed"/>
+  <outline text="皮皮书屋" type="rss" xmlUrl="http://www.ppurl.com/feed"/>
+  <outline text="科学松鼠会" type="rss" xmlUrl="http://songshuhui.net/feed"/>
+  <outline text="茶艺" type="rss"
+  xmlUrl="http://www.newsmth.net/nForum/rss/board-TeaArt"/>
+  <outline text="译言-电脑/网络/数码科技" type="rss"
+  xmlUrl="http://feed.feedsky.com/yeeyan-tech"/>
+  <outline text="程序员面试" type="rss"
+  xmlUrl="http://www.newsmth.net/nForum/rss/board-CoderInterview"/>
+ </body>
+</opml>

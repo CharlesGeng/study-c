@@ -18,4 +18,13 @@
      End PaTnt(-) 应该改为：EndPaint(hwnd, &ps);
      
    #+end_src
-
+** P143
+   第六行
+   “条型图”改为“柱状图”，比较习惯。
+** P156
+   第六行
+   SetWindowOrgEx(hdc, cxClient/2,cyClient/2, NULL) -->
+   SetViewportOrgEx(hdc, cxClient/2, cyClient/2, NULL)
+** P158
+   第十一行
+   Size --> SIZE

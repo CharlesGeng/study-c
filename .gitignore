@@ -12,3 +12,6 @@ ipch
 Debug
 Release
 *.ncb
+
+bin
+obj

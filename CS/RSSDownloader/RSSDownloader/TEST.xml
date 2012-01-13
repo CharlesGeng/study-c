@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2enclosuresfull.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://rss.cnn.com/~d/styles/itemcontent.css"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0" xml:lang="en-US">
+    <channel>
+        <ttl>240</ttl>
+        <title>CNN Student News (video)</title>
+        <link>http://www.cnn.com/EDUCATION?eref=studentnews</link>
+        <language>en-us</language>
+        <copyright>2012 Cable News Network LP, LLLP. A Time Warner Company. All Rights Reserved.</copyright>
+        <itunes:author>CNN</itunes:author>
+        <itunes:summary>CNN Student News utilizes CNN's worldwide resources to bring each day's top news stories to middle and high school classrooms. The 10-minute, commercial-free program encourages student participation and provides classes with context for understanding current events.</itunes:summary>
+        <description>CNN Student News utilizes CNN's worldwide resources to bring each day's top news stories to middle and high school classrooms. The 10-minute, commercial-free program encourages student participation and provides classes with context for understanding current events.</description>
+        <itunes:owner>
+            <itunes:name>CNN</itunes:name>
+            <itunes:email>podcast@cnn.com</itunes:email>
+        </itunes:owner>
+        <itunes:explicit>no</itunes:explicit>
+        <itunes:image href="http://i.cdn.turner.com/cnn/services/podcasting/studentnews/images/studentnews1.jpg" />
+        <itunes:category text="Education" />
+        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://rss.cnn.com/services/podcasting/studentnews/rss" /><feedburner:info uri="services/podcasting/studentnews/rss" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><media:copyright>2012 Cable News Network LP, LLLP. A Time Warner Company. All Rights Reserved.</media:copyright><media:thumbnail url="http://i.cdn.turner.com/cnn/services/podcasting/studentnews/images/studentnews1.jpg" /><media:category scheme="http://www.itunes.com/dtds/podcast-1.0.dtd">Education</media:category><itunes:subtitle>CNN Student News utilizes CNN's worldwide resources to bring each day's top news stories to middle and high school classrooms. The 10-minute, commercial-free program encourages student participation and provides classes with context for understanding curr</itunes:subtitle>
+        <item>
+            <title>CNN Student News - January 13, 2012</title>
+            <link>http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~3/R86_g5mmtu8/sn-011312.cnn.m4v</link>
+            <description>Pardons raise controversy in Mississippi, Haiti struggles to recover from a 2010 earthquake, and many computer science majors see greater job opportunities.&lt;div class="feedflare"&gt;
+                &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=R86_g5mmtu8:4IsIpFXV-xw:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=R86_g5mmtu8:4IsIpFXV-xw:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=R86_g5mmtu8:4IsIpFXV-xw:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=R86_g5mmtu8:4IsIpFXV-xw:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=R86_g5mmtu8:4IsIpFXV-xw:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=R86_g5mmtu8:4IsIpFXV-xw:gIN9vFwOqvQ"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=R86_g5mmtu8:4IsIpFXV-xw:gIN9vFwOqvQ" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/services/podcasting/studentnews/rss/~4/R86_g5mmtu8" height="1" width="1"/&gt;</description>
+            <dc:creator>CNN</dc:creator>
+            <category>Education</category>
+
+            <pubDate>Thu, 12 Jan 2012 18:00:00 EST</pubDate>
+            <guid isPermaLink="false">http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/12/sn-011312.cnn.m4v</guid>
+            <itunes:author>CNN</itunes:author>
+            <itunes:summary>Pardons raise controversy in Mississippi, Haiti struggles to recover from a 2010 earthquake, and many computer science majors see greater job opportunities.</itunes:summary>
+            <itunes:duration>10:29</itunes:duration>
+            <source url="">CNN Student News - January 13, 2012</source>
+            <media:content url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/R86_g5mmtu8/sn-011312.cnn.m4v" type="video/x-m4v" /><itunes:explicit>no</itunes:explicit><itunes:subtitle>Pardons raise controversy in Mississippi, Haiti struggles to recover from a 2010 earthquake, and many computer science majors see greater job opportunities.</itunes:subtitle><itunes:keywords>Education</itunes:keywords><feedburner:origLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/12/sn-011312.cnn.m4v</feedburner:origLink><enclosure url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/R86_g5mmtu8/sn-011312.cnn.m4v" length="0" type="video/x-m4v" /><feedburner:origEnclosureLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/12/sn-011312.cnn.m4v</feedburner:origEnclosureLink></item>
+        <item>
+            <title>CNN Student News - January 12, 2012</title>
+            <link>http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~3/T8YxaA5bz-g/sn-011212.cnn.m4v</link>
+            <description>Get a rare look at the tension dividing Syria, explore what it takes to run for U.S. president, and mark the two-year anniversary of a devastating earthquake.&lt;div class="feedflare"&gt;
+                &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=T8YxaA5bz-g:hxVWB--KcJs:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=T8YxaA5bz-g:hxVWB--KcJs:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=T8YxaA5bz-g:hxVWB--KcJs:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=T8YxaA5bz-g:hxVWB--KcJs:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=T8YxaA5bz-g:hxVWB--KcJs:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=T8YxaA5bz-g:hxVWB--KcJs:gIN9vFwOqvQ"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=T8YxaA5bz-g:hxVWB--KcJs:gIN9vFwOqvQ" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/services/podcasting/studentnews/rss/~4/T8YxaA5bz-g" height="1" width="1"/&gt;</description>
+            <dc:creator>CNN</dc:creator>
+            <category>Education</category>
+
+            <pubDate>Wed, 11 Jan 2012 17:50:19 EST</pubDate>
+            <guid isPermaLink="false">http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/11/sn-011212.cnn.m4v</guid>
+            <itunes:author>CNN</itunes:author>
+            <itunes:summary>Get a rare look at the tension dividing Syria, explore what it takes to run for U.S. president, and mark the two-year anniversary of a devastating earthquake.</itunes:summary>
+            <itunes:duration>10:29</itunes:duration>
+            <source url="">CNN Student News - January 12, 2012</source>
+            <media:content url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/T8YxaA5bz-g/sn-011212.cnn.m4v" type="video/x-m4v" /><itunes:explicit>no</itunes:explicit><itunes:subtitle>Get a rare look at the tension dividing Syria, explore what it takes to run for U.S. president, and mark the two-year anniversary of a devastating earthquake.</itunes:subtitle><itunes:keywords>Education</itunes:keywords><feedburner:origLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/11/sn-011212.cnn.m4v</feedburner:origLink><enclosure url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/T8YxaA5bz-g/sn-011212.cnn.m4v" length="0" type="video/x-m4v" /><feedburner:origEnclosureLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/11/sn-011212.cnn.m4v</feedburner:origEnclosureLink></item>
+        <item>
+            <title>CNN Student News - January 11, 2012</title>
+            <link>http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~3/lMPClI4Eclc/sn-011112.cnn.m4v</link>
+            <description>Today, we report on the New Hampshire primary, we examine anger over rising fuel prices in Nigeria, and we preview some of the latest tech trends.&lt;div class="feedflare"&gt;
+                &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lMPClI4Eclc:5582rr1XYek:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lMPClI4Eclc:5582rr1XYek:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lMPClI4Eclc:5582rr1XYek:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=lMPClI4Eclc:5582rr1XYek:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lMPClI4Eclc:5582rr1XYek:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lMPClI4Eclc:5582rr1XYek:gIN9vFwOqvQ"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=lMPClI4Eclc:5582rr1XYek:gIN9vFwOqvQ" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/services/podcasting/studentnews/rss/~4/lMPClI4Eclc" height="1" width="1"/&gt;</description>
+            <dc:creator>CNN</dc:creator>
+            <category>Education</category>
+
+            <pubDate>Tue, 10 Jan 2012 20:51:45 EST</pubDate>
+            <guid isPermaLink="false">http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/10/sn-011112.cnn.m4v</guid>
+            <itunes:author>CNN</itunes:author>
+            <itunes:summary>Today, we report on the New Hampshire primary, we examine anger over rising fuel prices in Nigeria, and we preview some of the latest tech trends.</itunes:summary>
+            <itunes:duration>10:00</itunes:duration>
+            <source url="">CNN Student News - January 11, 2012</source>
+            <media:content url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/lMPClI4Eclc/sn-011112.cnn.m4v" type="video/x-m4v" /><itunes:explicit>no</itunes:explicit><itunes:subtitle>Today, we report on the New Hampshire primary, we examine anger over rising fuel prices in Nigeria, and we preview some of the latest tech trends.</itunes:subtitle><itunes:keywords>Education</itunes:keywords><feedburner:origLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/10/sn-011112.cnn.m4v</feedburner:origLink><enclosure url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/lMPClI4Eclc/sn-011112.cnn.m4v" length="0" type="video/x-m4v" /><feedburner:origEnclosureLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/10/sn-011112.cnn.m4v</feedburner:origEnclosureLink></item>
+        <item>
+            <title>CNN Student News - January 10, 2012</title>
+            <link>http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~3/YRRrQi9WwiE/sn-011012.cnn.m4v</link>
+            <description>Today, we offer a view inside Syria, we track the travel of Iran's president, and we consider some worldwide elections taking place in 2012.&lt;div class="feedflare"&gt;
+                &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=YRRrQi9WwiE:Ku3O1hW6k74:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=YRRrQi9WwiE:Ku3O1hW6k74:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=YRRrQi9WwiE:Ku3O1hW6k74:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=YRRrQi9WwiE:Ku3O1hW6k74:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=YRRrQi9WwiE:Ku3O1hW6k74:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=YRRrQi9WwiE:Ku3O1hW6k74:gIN9vFwOqvQ"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=YRRrQi9WwiE:Ku3O1hW6k74:gIN9vFwOqvQ" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/services/podcasting/studentnews/rss/~4/YRRrQi9WwiE" height="1" width="1"/&gt;</description>
+            <dc:creator>CNN</dc:creator>
+            <category>Education</category>
+
+            <pubDate>Mon, 09 Jan 2012 18:11:31 EST</pubDate>
+            <guid isPermaLink="false">http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/09/sn-011012.cnn.m4v</guid>
+            <itunes:author>CNN</itunes:author>
+            <itunes:summary>Today, we offer a view inside Syria, we track the travel of Iran's president, and we consider some worldwide elections taking place in 2012.</itunes:summary>
+            <itunes:duration>10:29</itunes:duration>
+            <source url="">CNN Student News - January 10, 2012</source>
+            <media:content url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/YRRrQi9WwiE/sn-011012.cnn.m4v" type="video/x-m4v" /><itunes:explicit>no</itunes:explicit><itunes:subtitle>Today, we offer a view inside Syria, we track the travel of Iran's president, and we consider some worldwide elections taking place in 2012.</itunes:subtitle><itunes:keywords>Education</itunes:keywords><feedburner:origLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/09/sn-011012.cnn.m4v</feedburner:origLink><enclosure url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/YRRrQi9WwiE/sn-011012.cnn.m4v" length="0" type="video/x-m4v" /><feedburner:origEnclosureLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/09/sn-011012.cnn.m4v</feedburner:origEnclosureLink></item>
+        <item>
+            <title>CNN Student News - January 9, 2012</title>
+            <link>http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~3/lCfoeGNZP5Y/sn-010912.cnn.m4v</link>
+            <description>The U.S. unemployment rate, a tragic anniversary in Arizona, virtual archaeology, and a pair of maritime stories all headline today's program.&lt;div class="feedflare"&gt;
+                &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lCfoeGNZP5Y:arW2N1J8jAU:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lCfoeGNZP5Y:arW2N1J8jAU:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lCfoeGNZP5Y:arW2N1J8jAU:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=lCfoeGNZP5Y:arW2N1J8jAU:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lCfoeGNZP5Y:arW2N1J8jAU:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=lCfoeGNZP5Y:arW2N1J8jAU:gIN9vFwOqvQ"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=lCfoeGNZP5Y:arW2N1J8jAU:gIN9vFwOqvQ" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/services/podcasting/studentnews/rss/~4/lCfoeGNZP5Y" height="1" width="1"/&gt;</description>
+            <dc:creator>CNN</dc:creator>
+            <category>Education</category>
+
+            <pubDate>Sun, 08 Jan 2012 18:16:21 EST</pubDate>
+            <guid isPermaLink="false">http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/08/sn-010912.cnn.m4v</guid>
+            <itunes:author>CNN</itunes:author>
+            <itunes:summary>The U.S. unemployment rate, a tragic anniversary in Arizona, virtual archaeology, and a pair of maritime stories all headline today's program.</itunes:summary>
+            <itunes:duration>10:19</itunes:duration>
+            <source url="">CNN Student News - January 9, 2012</source>
+            <media:content url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/lCfoeGNZP5Y/sn-010912.cnn.m4v" type="video/x-m4v" /><itunes:explicit>no</itunes:explicit><itunes:subtitle>The U.S. unemployment rate, a tragic anniversary in Arizona, virtual archaeology, and a pair of maritime stories all headline today's program.</itunes:subtitle><itunes:keywords>Education</itunes:keywords><feedburner:origLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/08/sn-010912.cnn.m4v</feedburner:origLink><enclosure url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/lCfoeGNZP5Y/sn-010912.cnn.m4v" length="0" type="video/x-m4v" /><feedburner:origEnclosureLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/08/sn-010912.cnn.m4v</feedburner:origEnclosureLink></item>
+        <item>
+            <title>CNN Student News - January 6, 2012</title>
+            <link>http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~3/W-CZLQYgyQc/sn-010612.cnn.m4v</link>
+            <description>President Obama releases a new U.S. defense strategy, American auto companies report profits, and a religious conference aims to end modern-day slavery.&lt;div class="feedflare"&gt;
+                &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=W-CZLQYgyQc:q7sdkzUBs10:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=W-CZLQYgyQc:q7sdkzUBs10:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=W-CZLQYgyQc:q7sdkzUBs10:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=W-CZLQYgyQc:q7sdkzUBs10:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=W-CZLQYgyQc:q7sdkzUBs10:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://rss.cnn.com/~ff/services/podcasting/studentnews/rss?a=W-CZLQYgyQc:q7sdkzUBs10:gIN9vFwOqvQ"&gt;&lt;img src="http://feeds.feedburner.com/~ff/services/podcasting/studentnews/rss?i=W-CZLQYgyQc:q7sdkzUBs10:gIN9vFwOqvQ" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/services/podcasting/studentnews/rss/~4/W-CZLQYgyQc" height="1" width="1"/&gt;</description>
+            <dc:creator>CNN</dc:creator>
+            <category>Education</category>
+
+            <pubDate>Thu, 05 Jan 2012 17:33:45 EST</pubDate>
+            <guid isPermaLink="false">http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/05/sn-010612.cnn.m4v</guid>
+            <itunes:author>CNN</itunes:author>
+            <itunes:summary>President Obama releases a new U.S. defense strategy, American auto companies report profits, and a religious conference aims to end modern-day slavery.</itunes:summary>
+            <itunes:duration>10:16</itunes:duration>
+            <source url="">CNN Student News - January 6, 2012</source>
+            <media:content url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/W-CZLQYgyQc/sn-010612.cnn.m4v" type="video/x-m4v" /><itunes:explicit>no</itunes:explicit><itunes:subtitle>President Obama releases a new U.S. defense strategy, American auto companies report profits, and a religious conference aims to end modern-day slavery.</itunes:subtitle><itunes:keywords>Education</itunes:keywords><feedburner:origLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/05/sn-010612.cnn.m4v</feedburner:origLink><enclosure url="http://rss.cnn.com/~r/services/podcasting/studentnews/rss/~5/W-CZLQYgyQc/sn-010612.cnn.m4v" length="0" type="video/x-m4v" /><feedburner:origEnclosureLink>http://podcasts.cnn.net/cnn/big/podcasts/studentnews/video/2012/01/05/sn-010612.cnn.m4v</feedburner:origEnclosureLink></item>
+        <media:credit role="author">CNN</media:credit><media:rating>nonadult</media:rating>
+    </channel>
+</rss>
+

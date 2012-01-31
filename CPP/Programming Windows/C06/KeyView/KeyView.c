@@ -68,8 +68,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     int         i, iType;
     TCHAR       szBuffer[128], szKeyName[32];
 
-    static TCHAR *szTitle       = TEXT("Message        Key      Char    Repeat Scan Ext ALT Prev Tran");
-    static TCHAR *szUndLine     = TEXT("_______        ___      ____    ______ ____ ___ ___ ____ ____");
+    static TCHAR *szTitle       = TEXT("Message        Key      Char      Repeat Scan Ext ALT Prev Tran");
+    static TCHAR *szUndLine     = TEXT("_______        ___      ____      ______ ____ ___ ___ ____ ____");
     static TCHAR *szMessage[]   = {TEXT("WM_KEYDOWN"), TEXT("WM_KEYUP"), TEXT("WM_CHAR"),
         TEXT("WM_DEADCHAR"), TEXT("WM_SYSKEYDOWN"), TEXT("WM_SYSKEYUP"),
         TEXT("WM_SYSCHAR"), TEXT("WM_SYSDEADCHAR")};

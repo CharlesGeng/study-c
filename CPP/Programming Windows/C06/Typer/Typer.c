@@ -136,7 +136,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             switch(wParam)
             {
             case VK_DELETE:
-                for (x = xCaret; x < cxBuffer -2; ++x)
+                for (x = xCaret; x < cxBuffer -1; ++x)
                 {
                     BUFFER(x, yCaret) = BUFFER(x+1, yCaret);
                 }
@@ -144,7 +144,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
                 hdc = GetDC(hwnd);
                 HideCaret(hwnd);
+                SelectObject(hdc, CreateFont(0, 0, 0, 0, 0, 0, 0, 0, dwCharSet, 0, 0, 0, FIXED_PITCH, NULL));  
                 TextOut(hdc, xCaret * cxChar, yCaret * cyChar, &BUFFER(xCaret, yCaret), cxBuffer - xCaret);
+                DeleteObject(SelectObject(hdc, GetStockObject(SYSTEM_FONT)));
                 ShowCaret(hwnd);
                 ReleaseDC(hwnd, hdc);
                 break;

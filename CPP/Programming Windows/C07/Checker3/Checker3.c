@@ -106,6 +106,11 @@ LRESULT CALLBACK WndProcChild(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 
     switch(uMsg)
     {
+    case WM_CREATE:
+        {
+            SetWindowLong(hwnd, 0, 0);
+            break;
+        }
     case WM_PAINT:
         {
             hdc = BeginPaint(hwnd, &ps);

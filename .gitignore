@@ -12,6 +12,7 @@ ipch
 Debug
 Release
 *.ncb
+*.filters
 
 bin
 obj

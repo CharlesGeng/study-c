@@ -82,7 +82,6 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     long        data;
     TCHAR       szBuffer[50];
 
-
     switch (message)
     {
     case WM_CREATE:

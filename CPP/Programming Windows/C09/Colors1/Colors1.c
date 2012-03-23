@@ -4,16 +4,19 @@
 #define     GREEN   0
 #define     BLUE    0
 
-TCHAR   *COLORTITLE[3] = {TEXT("RED"), TEXT("GREEN"), TEXT("BLUE")};
+TCHAR       *COLORTITLE[3] = {TEXT("RED"), TEXT("GREEN"), TEXT("BLUE")};
+int         nFocus;
+LONG        OldScrollProc[3];
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK ScrollProc(HWND, UINT, WPARAM, LPARAM);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine, int nShowCmd)
 {
 	TCHAR       *szAppName  = TEXT("Colors1");
 	TCHAR       *szTitle    = TEXT("Colors1");
 	WNDCLASS    wc;
-	HWND        hWnd;
+    HWND        hWnd;
 	MSG         msg;
 
 	wc.cbClsExtra       = 0;
@@ -49,19 +52,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	return msg.wParam;
 }
 
-void PaintRectangle(HWND hwnd, RECT rectColor, int r, int g, int b)
-{
-    HDC     hdc;
-    HBRUSH  brush;
-
-    hdc = GetDC(hwnd);
-    brush = CreateSolidBrush(RGB(r, g, b));
-    FillRect(hdc, &rectColor, brush);
-    DeleteObject(brush);
-    ReleaseDC(hwnd, hdc);
-}
-
-
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     static HWND     hwndScrollBar[3], hwndColorTitle[3], hwndColorValue[3]; 
@@ -86,11 +76,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         //Create controls
     case WM_CREATE:
         {
+            nFocus = 0;
             hwndLeft    = CreateWindow(TEXT("static"), TEXT(""), WS_CHILD | WS_VISIBLE | SS_WHITERECT, 0, 0, 0, 0, hwnd, (HMENU)9, ((LPCREATESTRUCT)lParam)->hInstance, NULL);
             //Create Scrollbar
             for (i = 0; i < 3; ++i )
             {
                 hwndScrollBar[i]    = CreateWindow(TEXT("scrollbar"), TEXT(""), WS_CHILD | WS_VISIBLE | SBS_VERT | WS_TABSTOP, 20 * i, 0, 20, 200, hwnd, (HMENU)i, ((LPCREATESTRUCT)lParam)->hInstance, NULL);
+                OldScrollProc[i]    = SetWindowLong(hwndScrollBar[i], GWL_WNDPROC, (LONG)ScrollProc);
                 hwndColorTitle[i]   = CreateWindow(TEXT("static"), COLORTITLE[i], WS_CHILD | WS_VISIBLE | SS_CENTER, 20 * i, 0, 20, 200, hwnd, (HMENU)(i + 3), ((LPCREATESTRUCT)lParam)->hInstance, NULL);
                 hwndColorValue[i]   = CreateWindow(TEXT("static"), TEXT("0"), WS_CHILD | WS_VISIBLE | SS_CENTER, 20 * i, 0, 20, 200, hwnd, (HMENU)(i + 6), ((LPCREATESTRUCT)lParam)->hInstance, NULL);
             }
@@ -150,6 +142,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 si.fMask = SIF_POS;
                 si.nPos = nNewPos;
                 SetScrollInfo((HWND)lParam, SB_CTL, &si, TRUE);
+                i = GetWindowLong((HWND)lParam, GWL_ID);
 
                 if ((HWND)lParam == hwndScrollBar[0])
                 {
@@ -163,6 +156,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 {
                     b = nNewPos;
                 }
+                //Show Color value 
+                wsprintf(szBuffer, TEXT("%X"), nNewPos);
+                SetWindowText(hwndColorValue[i], szBuffer);
+
                 DeleteObject((HGDIOBJ)SetClassLong(hwnd, GCL_HBRBACKGROUND, (LONG)CreateSolidBrush(RGB(r, g, b))));
                 InvalidateRect(hwnd, &rcColor,TRUE);
             }
@@ -199,9 +196,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             }
             break;
         }
-    //case WM_SETFOCUS:
-    //    SetFocus(hwndScrollBar[0]);
-    //    break;
+    case WM_SETFOCUS:
+        SetFocus(hwndScrollBar[nFocus]);
+        break;
 	case WM_PAINT:
 		hdc = BeginPaint(hwnd, &ps);
 		EndPaint(hwnd, &ps);
@@ -211,4 +208,34 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
+
+
+LRESULT CALLBACK ScrollProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    int     i;
+
+    i = GetWindowLong(hwnd, GWL_ID);
+    switch (msg)
+    {
+    case WM_KEYDOWN:
+        if (VK_TAB == LOWORD(wParam))
+        {
+            if (GetKeyState(VK_SHIFT) < 0)
+            {
+                i--;
+                if (i < 0 )
+                {
+                    i = 2;
+                }
+            }
+            else
+            {
+                i = (i+ 1) % 3;
+            }
+            SetFocus(GetDlgItem(GetParent(hwnd), i));
+        }
+        break;
+    }
+    return CallWindowProc((WNDPROC)OldScrollProc[i], hwnd, msg, wParam, lParam);
 }

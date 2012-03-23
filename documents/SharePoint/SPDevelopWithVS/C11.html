@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>打包和部署</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="打包和部署"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-03-23 16:32:50 "/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">打包和部署</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 基础和超越</a></li>
+<li><a href="#sec-2">2 SharePoint的特性（Features）</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 基础和超越</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>  在本书中，你已经看了很多例子，创建不同类型的SharePoint部件并将他们部
+  署到SharePoint中。在大部分情况下，我们可以在项目中添加部件（列表，网
+  络部件，事件接收器等）然后按 F5 进行打包，并部署到SharePoint中。
+</p>
+<p>
+  在本章，我们要讨论的是：在按F5键后，打包和部署SharePoint部件这些操作
+  背后到底发生了什么。此外，还会讨论什么时候，怎么样以及为什么修改默认
+  的打包和部署设置。还会展示如何使用Visual Studio来创建自定义的部署步
+  骤和部署配置。
+</p></div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> SharePoint的特性（Features）</h2>
+<div class="outline-text-2" id="text-2">
+
+<p>  为了全面了解VisualStudio2010提供的打包和部署特性，我们需要从
+  SharePoint的基础模块：SharePoint特性（Features）开始。当理解了如何手
+  工处理创建，部署和激活SharePoint特性后，VisualStudio2010做了如此多的
+  工作来让开发人员可以轻易的部署SharePoint特性（Features）。
+</p>
+<p>
+  当讨论SharePoint特性时，很可能马上会想到SharePoint特性是如何将额外的
+  功能添加到SharePoint中的。当特性被部署到SharePoint服务器并并被激活，
+  特性中的功能就可以被用到SharePoint的网站上了。从技术角度讲，
+  SharePoint的特性就是一个被简单命名为Feature.xml的XML文件。
+  Features.xml文件被称为特性列表文件（feature manifest file）.这个文件
+  包含特性的一般信息，例如：ID，名称和范围。
+</p>
+<p>
+  特性的ID和名称不用多说，这两个特性就是用来定义特性的唯一性的。名称就
+  是一个任意的字符串，ID即GUID&ndash;全球唯一标识符&ndash;格式
+  为:"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx". 其中 "x" 是十六进制中的任
+  意数&ndash;从0到9以及a,b,c,d,e和f。大部分时候，VisualStudio会在需要时自动
+  创建GUID，例如：在VisualStudio中新创建一个SharePoint特性，GUID会自己
+  被创建。有时，即使需要创建自己的GUID，也不用手工创建。需要GUID时，可
+  以在VisualStudio的工具栏中运行创建GUID指令，来生成GUID，并将新生成的
+  GUID拷贝到剪切板，然后粘贴到需要的文件中。
+</p>
+<p>
+  所有的SharePoint功能都是在特定范围内有效的，这些范围包括：Farm，Web
+  Application，Site 或者 Web。如果一个特性的范围被设定为Farm，那么这个
+  特性就会在服务器上的所有网站和网站集上有效。如果特性的范围被设定为
+  Web，那么该特性仅在其安装的网站有效，并且该特性在该网站上已被激活。
+  表格11-1显示了特性可以被部署和激活的四个范围。值得注意的是，对于
+  SharePoint中自定义部件不能随意指定范围，一些SharePoint部件必须被安装
+  在特定的范围内，例如，Content types和工作流只能被安装在Site范围内，
+  而custom actions可以安装在任意范围。将会在SharePoint元素这节，会详细介绍
+  各类型的SharePoint自定义部件可以安装在哪些范围内。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>表11-1：SharePoint特性的范围</caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><col class="left" />
+<thead>
+</thead>
+<tbody>
+<tr><td class="left">Scope</td><td class="left">Description</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Farm</td><td class="left">特性如果被安装在Farm并激活，则在Farm中的所有网站可以使用该特性</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Web Application</td><td class="left">特性如果被安装在Web Application并激活，则在Web Application中的所有网站可以使用该特性</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Site</td><td class="left">特性如果被安装在Site并激活，则在网站集中的所有网站可以使用该特性</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Web</td><td class="left">特性如果被安装在Web并激活，则在该网站中可以使用该特性</td><td class="left"></td></tr>
+</tbody>
+</table>
+
+
+<p>
+  正如清单11-1所示，定义一个空的特性文件，至少需要名称、ID和范围，但是在
+  大多数情况下，需要额外的属性来指定特性中关联的功能和自定义部件。
+</p>
+
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #0000ff;">Feature</span> <span style="color: #a0522d;">Title</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">SharePoint Feature</span><span style="color: #8b2252;">"</span>
+         <span style="color: #a0522d;">ID</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">2ED8F169-EA82-43A5-B4E5-641D8C03B811</span><span style="color: #8b2252;">"</span> <span style="color: #a0522d;">Scope</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">Site</span><span style="color: #8b2252;">"</span>&gt;
+&lt;/<span style="color: #0000ff;">Feature</span>&gt;
+</pre>
+
+
+<p>
+  可以将清单中的Feature.xml部署到SharePoint服务器上，但是这样做是没有
+  意义的，因为特性文件是 <b>空</b> 的&ndash;它仅包含特性文件最小定义而不包含任何
+  其他功能。
+</p>
+<p> 
+  特性清单文件一般会包含一个XML元素&ndash;ElementManifests, 它可以包含多个指
+  向Elements.xml的名为ElementManifest的XML元素，Elements.xml文件中包含
+  着特性中的功能的实际信息。之前的章节中，每个创建的SharePoint项目都包
+  含一个Elements.xml文件。Elements.xml文件就是Feature.xml文件中
+  ElementManifest元素所指向的文件。例如，如果想通过清单11-1中的特性文件
+  部署一个名为MyElement1的SharePoint项目部件，需要添加ElementManifests
+  元素，然后添加包含Location属性的ElementManifest子元素，Location属性
+  被设置为描述MyElement1的Elements.xml的位置，见清单11-2
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #0000ff;">Feature</span> <span style="color: #a0522d;">Title</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">SharePoint Feature</span><span style="color: #8b2252;">"</span>
+         <span style="color: #a0522d;">ID</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">2ED8F169-EA82-43A5-B4E5-641D8C03B811</span><span style="color: #8b2252;">"</span> <span style="color: #a0522d;">Scope</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">Site</span><span style="color: #8b2252;">"</span>&gt;
+  &lt;<span style="color: #0000ff;">ElementManifests</span>&gt;
+    &lt;<span style="color: #0000ff;">ElementManifest</span> <span style="color: #a0522d;">Location</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">MyElement1\Elements.xml</span><span style="color: #8b2252;">"</span> /&gt;
+  &lt;/<span style="color: #0000ff;">ElementManifests</span>&gt;
+&lt;/<span style="color: #0000ff;">Feature</span>&gt;
+</pre>
+
+
+<p>
+  如果想用同一个特性文件部署更多的SharePoint项目文件，只需要在
+  ElementManifests元素中添加更多的ElementManifest元素，并在
+  ElementManifest元素中添加Location属性，该属性指向关于SharePoint项目文
+  件的Elements.xml.
+</p>
+<p>
+  除了ElementManifests和ElementManifest，还有其他一些XML元素可以应用到
+  特性文件中。清单11-3中显示了包含所有可用元素的特性文件的结构。
+</p>
+
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #0000ff;">Feature</span>&gt;
+  &lt;<span style="color: #0000ff;">ActivationDependencies</span>&gt;
+    &lt;<span style="color: #0000ff;">ActivationDependency</span>/&gt;
+    &lt;<span style="color: #0000ff;">ActivationDependency</span>/&gt;
+  &lt;/<span style="color: #0000ff;">ActivationDependencies</span>&gt;
+  &lt;<span style="color: #0000ff;">ElementManifests</span>&gt;
+    &lt;<span style="color: #0000ff;">ElementFile</span>/&gt;
+    &lt;<span style="color: #0000ff;">ElementManifest</span>/&gt;
+  &lt;/<span style="color: #0000ff;">ElementManifests</span>&gt;
+  &lt;<span style="color: #0000ff;">Properties</span>&gt;
+    &lt;<span style="color: #0000ff;">Property</span>/&gt;
+    &lt;<span style="color: #0000ff;">Property</span>/&gt;
+  &lt;/<span style="color: #0000ff;">Properties</span>&gt;
+  &lt;<span style="color: #0000ff;">UpgradeActions</span>&gt;
+    &lt;<span style="color: #0000ff;">AddContentTypeField</span>/&gt;
+    &lt;<span style="color: #0000ff;">ApplyElementManifests</span>&gt;
+      &lt;<span style="color: #0000ff;">ElementFile</span>/&gt;
+      &lt;<span style="color: #0000ff;">ElementManifest</span>/&gt;
+    &lt;/<span style="color: #0000ff;">ApplyElementManifests</span>&gt;
+    &lt;<span style="color: #0000ff;">CustomUpgradeAction</span>&gt;
+      &lt;<span style="color: #0000ff;">Parameters</span>&gt;
+        &lt;<span style="color: #0000ff;">Parameter</span>/&gt;
+      &lt;/<span style="color: #0000ff;">Parameters</span>&gt;
+    &lt;/<span style="color: #0000ff;">CustomUpgradeAction</span>&gt;
+    &lt;<span style="color: #0000ff;">MapFile</span>/&gt;
+    &lt;<span style="color: #0000ff;">VersionRange</span>&gt;
+      &lt;<span style="color: #0000ff;">AddContentTypeField</span>/&gt;
+      &lt;<span style="color: #0000ff;">ApplyElementManifests</span>/&gt;
+      &lt;<span style="color: #0000ff;">CustomUpgradeAction</span>/&gt;
+      &lt;<span style="color: #0000ff;">MapFile</span>/&gt;
+    &lt;/<span style="color: #0000ff;">VersionRange</span>&gt;
+  &lt;/<span style="color: #0000ff;">UpgradeActions</span>&gt;
+&lt;/<span style="color: #0000ff;">Feature</span>&gt;
+</pre>
+
+
+<p>
+  表11-2描述了各个属性并举例说明。注意，表中不包含 <b>UpgradeActions</b> 元
+  素，该元素会在本章后面介绍。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>Feature.xml文件中可以包含的所有可用的XML元素</caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+</thead>
+<tbody>
+<tr><td class="left"><b>元素</b></td><td class="left"><b>描述</b></td><td class="left"><b>示例</b></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">ActivationDependency</td><td class="left">ActivationDependency元素通过特性ID指明当前特性依赖的另一特性，例如：这个功能可以用在以下情况，要部署一个List以及依赖于这个List的工作流，这个元素可以确保在激活工作流前先激活List。</td><td class="left">&lt;ActivationDependency FeatureID="C0BE46EA-0209-4285-B586-EC27EFA9B758"/&gt;</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">ElementFile</td><td class="left">ElementFile元素指明当前特性依赖的文件，例如：可以使用ElementFile元素来部署特性需要的文件（资源文件，文本文件，图片，ASPX文件，XML文件等）</td><td class="left">&lt;ElementFile Location="Resources\Resources.resx" /&gt;</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">ElementManifest</td><td class="left">ElementManifest元素用来指向Element.xml文件，Element.xml文件中包含了需要特性来部署的SharePoint项目对象的信息</td><td class="left">&lt;ElementManifest Location="ListInstance1\Elements.xml" /&gt;</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Property</td><td class="left">Property元素是用来定义特性的属性的。特性的属性可能通过指定属性名和默认值来定义。可以在事件特性接收器的的代码中使用传给事件委托方法的 <b>属性</b> 参数（SPFeatureReceiverProperties类型）来访问属性，如：properties.Feature.Properties["Color"].Value.</td><td class="left">&lt;Properties&gt;    &lt;Property      Key="Color"      Value="Blue"/&gt;    &lt;Property      Key="Shape"      Value="Triangle"/&gt;  &lt;/Properties&gt;</td></tr>
+</tbody>
+</table>
+
+
+<p>
+  SharePoint 2010中添加了一个新的名为UpgradeActions的元素。这个元素是针
+  对指定的特性执行指定升级操作。这个元素的目的是指定如何升级现有的特性
+  实例。例如，已经在SharePoint服务器上部署了特性（内容类型
+  （ContentType）和网站列（site columns）),现在需要相应的删除网站列并更
+  新内容类型，可以使用UpgradeAction元素来指定CustomUpgradeAction和一个
+  参数，参数中包含需要删除的网站列名称。然后需要实现FeatureUpgrading事
+  件接收方法并根据传入该方法的参数来决定更新操作名称和参数。表11-3列出
+  了有哪些更新操作元素可以添加到特性列表文件中。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><col class="left" />
+<thead>
+</thead>
+<tbody>
+<tr><td class="left">元素</td><td class="left">描述</td><td class="left">举例</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">AddContentTypeField</td><td class="left">将一个新列添加到已经存在的内容类型中，例如：已经在一个特性中部署了内容类型，现在想在内容类型中添加添加一个新列</td><td class="left">&lt;AddContentTypeField   ContentTypeId = string  FieldId = string  PushDown = TRUE or FALSE /&gt;</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">CustomUpgradeAction</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">ApplyElementManifests</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Parameter</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">MapFile</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">VersionRange</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+</table>
+
+
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-03-23 16:32:50 </p>
+<p class="author">Author: </p>
+<p class="creator">Org version 7.8.06 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
 <head>
 <title>打包和部署</title>
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="打包和部署"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-03-23 16:32:50 "/>
+<meta name="generated" content="2012-03-25 14:39:39 "/>
 <meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -44,12 +44,6 @@
   dt { font-weight: bold; }
   div.figure { padding: 0.5em; }
   div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
-    background: #ffffcc;
-  }
   textarea { overflow-x: auto; }
   .linenr { font-size:smaller }
   .code-highlighted {background-color:#ffff00;}
@@ -98,14 +92,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 基础和超越</a></li>
-<li><a href="#sec-2">2 SharePoint的特性（Features）</a></li>
+<li><a href="#sec-1">1 基础和超越 </a></li>
+<li><a href="#sec-2">2 SharePoint的特性（Features） </a></li>
+<li><a href="#sec-3">3 SharePoint元素 </a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 基础和超越</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 基础和超越 </h2>
 <div class="outline-text-2" id="text-1">
 
 <p>  在本书中，你已经看了很多例子，创建不同类型的SharePoint部件并将他们部
@@ -122,7 +117,7 @@
 </div>
 
 <div id="outline-container-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> SharePoint的特性（Features）</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> SharePoint的特性（Features） </h2>
 <div class="outline-text-2" id="text-2">
 
 <p>  为了全面了解VisualStudio2010提供的打包和部署特性，我们需要从
@@ -197,6 +192,8 @@
 </pre>
 
 
+
+
 <p>
   可以将清单中的Feature.xml部署到SharePoint服务器上，但是这样做是没有
   意义的，因为特性文件是 <b>空</b> 的&ndash;它仅包含特性文件最小定义而不包含任何
@@ -221,6 +218,8 @@
   &lt;/<span style="color: #0000ff;">ElementManifests</span>&gt;
 &lt;/<span style="color: #0000ff;">Feature</span>&gt;
 </pre>
+
+
 
 
 <p>
@@ -273,6 +272,8 @@
 </pre>
 
 
+
+
 <p>
   表11-2描述了各个属性并举例说明。注意，表中不包含 <b>UpgradeActions</b> 元
   素，该元素会在本章后面介绍。
@@ -323,19 +324,155 @@
 <tr><td class="left">AddContentTypeField</td><td class="left">将一个新列添加到已经存在的内容类型中，例如：已经在一个特性中部署了内容类型，现在想在内容类型中添加添加一个新列</td><td class="left">&lt;AddContentTypeField   ContentTypeId = string  FieldId = string  PushDown = TRUE or FALSE /&gt;</td><td class="left"></td></tr>
 </tbody>
 <tbody>
-<tr><td class="left">CustomUpgradeAction</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+<tr><td class="left">CustomUpgradeAction</td><td class="left">在自定义更新操作中可以指定参数列表，这些参数会被传递给特性事件接收器中的FeatureUpgrading方法。见第五章的“SharePoint事件接收器”了解更多的信息</td><td class="left">&lt;CustomUpgradeAction   Name = string&gt;  &lt;Parameters&gt;    &lt;Parameter /&gt;  &lt;/Parameters&gt;&lt;/CustomUpgradeAction&gt;</td><td class="left"></td></tr>
 </tbody>
 <tbody>
-<tr><td class="left">ApplyElementManifests</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+<tr><td class="left">ApplyElementManifests</td><td class="left">用来提供更新操作引用的元素清单。这个元素可以包含ElementManifest和ElementFile。例如：需要包含一个用于部署额外部件到SharePoin功能的部件清单文件。</td><td class="left">&lt;ApplyElementManifests&gt;  &lt;ElementFile /&gt;  &lt;ElementManifest /&gt;&lt;/ApplyElementManifests&gt;</td><td class="left"></td></tr>
 </tbody>
 <tbody>
-<tr><td class="left">Parameter</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+<tr><td class="left">Parameter</td><td class="left">用来指定传给特性事件接收器的FeatureUpgrading方法中的参数</td><td class="left">&lt;Parameter Name="ParameterName"&gt;ParameterValue&lt;/Parameter&gt;</td><td class="left"></td></tr>
 </tbody>
 <tbody>
-<tr><td class="left">MapFile</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+<tr><td class="left">MapFile</td><td class="left">这个元素可以用来重命名或者移动文件。它有两个属性：FromPath和ToPath，可以用来指定源文件和目标文件。例如：可以将使用“特性”功能部署的图片文件移动到一个新的位置</td><td class="left">&lt;MapFile FromPath="OldImg.png" ToPath="NewImg.png"/&gt;</td><td class="left"></td></tr>
 </tbody>
 <tbody>
-<tr><td class="left">VersionRange</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+<tr><td class="left">VersionRange</td><td class="left">用于版本控制。可以指定版本范围以及应用哪些更新操作。例如：可以用VersionRange元素来更新指定版本的已经部署的“特性”</td><td class="left">&lt;VersionRange BeginVersion="3.0.0.0" EndVersion="5.0.0.0" /&gt;</td><td class="left"></td></tr>
+</tbody>
+</table>
+
+
+<p>
+  现在已经介绍了SharePoint特性提供一种部署一个或多个SharePoint项目项的
+  机制，这个机制就是在Feature.xml的ElementManifest元素中指定项目项的对
+  应的Element.xml。也介绍了在特性列表中指定额外的元素和属性，如更新操作
+  和自定义属性。但是仅指向需要的Element.xml是不够的。针对包含在特性文
+  件中不同的SharePoint项目项，我们还需要准确的范围。此外，还需要注意的
+  是SharePoint项目项不是都可以部署在相同的范围中的。在介绍SharePoint项
+  目项的正确范围之前，先介绍一下SharePoint元素。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> SharePoint元素 </h2>
+<div class="outline-text-2" id="text-3">
+
+<p>  目前为止，在本章中很多次提到了“元素”这个词。不幸的是，我们还会更多
+  提到这个词。在本章中有时提到元素，指的是XML元素，如Feature.xml中的
+  &lt;Feature&gt; XML元素。还讨论了XML元素ElementManifests和ElementManifest，
+  他们在Feature.xml文件中用来将SharePoint项目项的Element.xml和特性关联
+  起来。Elements.xml文件是另一个经常提到的“元素” &ndash; Element.xml文件
+  与SharePoint项目项相关联，它还包含SharePoint部署SharePoint项目项中的
+  功能时需要的信息。
+</p>
+<p>
+  还有一个必须介绍的“元素”就是SharePoint“元素”。本书中的大部分章节
+  都是将重点放在一个或多个SharePoint元素，如内容类型，工作流，列表定义
+  和列表实例。大部分情况下，Visual Studio提供为这些SharePoint元素提供
+  一个项目项，因此，目前为止可以侥幸不用称呼“SharePoint元素”，而是用
+  “SharePoint项目项”来代替。不过，还有更多SharePoint元素可以被创建和
+  部署，而他们没有对应的SharePoint项目项。表11-4列出了SharePoint元素及
+  他们的描述。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>表11-4:SharePoint元素的描述及他们对应的SharePoint项目项</caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
+<thead>
+</thead>
+<tbody>
+<tr><td class="left">元素</td><td class="left">对应的SharePoint项目项</td><td class="left">描述</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">内容类型</td><td class="left">ContentType</td><td class="left">见第7章描述的内容类型，“SharePoint内容类型”</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">内容类型绑定</td><td class="left">N/A</td><td class="left">用来定义为list定义内容类型，其中list是那种不可以直接被修改（list按照onet.xml结构定义）</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">自定义操作</td><td class="left">N/A</td><td class="left">允许自定义操作到链接或工具栏项上</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">自定义操作组</td><td class="left">N/A</td><td class="left">用来分组自定义操作</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">委托控件</td><td class="left">N/A</td><td class="left">用来为某一功能指定控件，并为这些控件选择功能提供器。例如，可以指定一个控件，然后向该控件添加提示信息</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">文档转换器</td><td class="left">N/A</td><td class="left">用来定义文档转换器</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">事件接收器</td><td class="left">Event Receiver</td><td class="left">见第5章，“SharePoint事件接收器”</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">特性/网站模板关联</td><td class="left">N/A</td><td class="left">包含指定特性，使其作为网站定义配置的一部分</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">字段元素</td><td class="left">N/A</td><td class="left">用来创建网站列</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">隐藏自定义行为</td><td class="left">N/A</td><td class="left">允许隐藏自定义行为</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">列表实例</td><td class="left">List Instance</td><td class="left">用来定义列表实例</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">模块</td><td class="left">Module</td><td class="left">模块用来部署那些支持特性的文件</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">工作流</td><td class="left">Workflow</td><td class="left">SharePoint工作流在第八章介绍，“SharePoint工作流”</td></tr>
+</tbody>
+</table>
+
+
+
+
+
+<pre class="src src-html">&#36825;&#20123;&#20803;&#32032;&#22312;Visual Studio 2010&#20013;&#30340;&#20160;&#20040;&#22320;&#26041;
+&#24050;&#32463;&#27880;&#24847;&#21040;&#65292;&#19978;&#34920;&#20013;&#19968;&#20123;&#20803;&#32032;&#27809;&#26377;&#23545;&#24212;&#30340;Visual Studio 2010&#30340;&#39033;&#30446;&#39033;&#12290;&#34429;&#28982;
+&#25152;&#26377;&#30340;&#20803;&#32032;&#21487;&#20197;&#28155;&#21152;&#21040;Visual Studio&#21457;&#24067;&#30340;&#29305;&#24615;&#20013;&#65292;&#28982;&#32780;&#19981;&#26159;&#25152;&#26377;&#30340;&#20803;&#32032;&#37117;
+&#26377;&#23545;&#24212;&#30340;&#39033;&#30446;&#39033;&#12290;&#19981;&#36807;&#65292;&#36825;&#19981;&#24847;&#21619;&#30528;SharePoint&#20803;&#32032;&#27809;&#26377;&#23545;&#24212;&#30340;&#39033;&#30446;&#39033;&#65292;&#23601;&#19981;
+&#33021;&#22312;Visual Studio 2010&#20013;&#21019;&#24314;&#21644;&#37096;&#32626;&#36825;&#20123;SharePoint&#20803;&#32032;&#12290;&#20363;&#22914;&#65292;&#38656;&#35201;&#37096;&#32626;
+&#19968;&#20010;&#33258;&#23450;&#20041;&#34892;&#20026;&#65292;&#21487;&#20197;&#20351;&#29992;&#31354;&#20803;&#32032;&#39033;&#30446;&#39033;&#27169;&#26495;&#12290;&#36825;&#23601;&#26159;&#31354;&#20803;&#32032;&#39033;&#30446;&#39033;&#23384;&#22312;&#30340;&#21407;
+&#22240;&#65292;&#20182;&#24357;&#34917;&#20102;Visual Studio&#39033;&#30446;&#39033;&#27809;&#26377;&#23545;&#24212;&#30340;SharePoint&#20803;&#32032;&#30340;&#32570;&#38519;&#12290;&#31354;&#20803;
+&#32032;&#39033;&#30446;&#39033;&#26159;&#19968;&#20010;&#31354;&#39033;&#30446;&#65292;&#20854;&#20013;&#21253;&#21547;&#19968;&#20010;Element.xml&#25991;&#20214;&#65292;&#21487;&#20197;&#23558;&#24819;&#28155;&#21152;&#21040;&#39033;
+&#30446;&#20013;&#30340;SharePoint&#20803;&#32032;&#30340;XML&#25551;&#36848;&#31526;&#28155;&#21152;&#21040;Element.xml&#20013;&#12290;
+</pre>
+
+
+
+
+
+<pre class="src src-html">&#34920;11-4&#20013;&#22909;&#20687;&#23569;&#20102;&#28857;&#20160;&#20040;--&#20363;&#22914;&#65292;Web&#37096;&#20214;&#21644;&#24212;&#29992;&#39029;&#22312;&#21738;&#20799;
+Web&#37096;&#20214;&#65292;&#21487;&#35270;Web&#37096;&#20214;&#21644;&#24212;&#29992;&#39029;&#27809;&#26377;&#20986;&#29616;&#22312;&#34920;11-4&#20013;&#65292;&#22240;&#20026;&#20182;&#20204;&#27809;&#26377;&#23545;&#24212;&#30340;
+SharePoint&#20803;&#32032;&#12290;&#22914;&#26524;&#25171;&#24320;Web&#37096;&#20214;&#39033;&#30446;&#30340;Elements.xml&#65292;&#20250;&#21457;&#29616;&#23427;&#26159;&#20197;&#27169;&#22359;
+&#26041;&#24335;&#37096;&#32626;&#30340;&#12290;web&#37096;&#20214;&#30340;&#23450;&#20041;&#20445;&#23384;&#22312;.webpar&#25991;&#20214;&#20013;&#65292;&#36825;&#20010;&#25991;&#20214;&#26159;&#36890;&#36807;&#27169;&#22359;&#20803;
+&#32032;&#37096;&#32626;&#21040;SharePoint&#20013;&#30340;&#12290;&#22240;&#20026;&#24212;&#29992;&#39029;&#23601;&#26159;&#19968;&#20010;.aspx&#25991;&#20214;&#65292;&#25152;&#20197;&#19981;&#38656;&#35201;&#23545;&#24212;
+&#30340;SharePoint&#20803;&#32032;&#26469;&#37096;&#32626;&#23427;--&#24212;&#29992;&#39029;&#20316;&#20026;SharePoint&#21253;&#20013;&#30340;&#27169;&#26495;&#25991;&#20214;&#34987;&#37096;&#32626;
+&#21040;SharePoint&#20013;&#12290;
+</pre>
+
+
+
+
+<p>
+   每个在表11-4中描述的元素可以部署的范围是不同的。表11-5给出了各个元
+   素可以部署和激活的范围。
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="right" /></colgroup>
+<colgroup><col class="right" /><col class="right" /><col class="right" /></colgroup><colgroup><col class="right" /><col class="right" /></colgroup>
+<thead>
+<tr><th scope="col" class="right">N</th><th scope="col" class="right">N<sup>2</sup></th><th scope="col" class="right">N<sup>3</sup></th><th scope="col" class="right">N<sup>4</sup></th><th scope="col" class="right">sqrt(n)</th><th scope="col" class="right">sqrt4(N)</th></tr>
+</thead>
+<tbody>
+<tr><td class="right">1</td><td class="right">1</td><td class="right">1</td><td class="right">1</td><td class="right">1</td><td class="right">1</td></tr>
+<tr><td class="right">2</td><td class="right">4</td><td class="right">8</td><td class="right">16</td><td class="right">1.4142</td><td class="right">1.1892</td></tr>
+<tr><td class="right">3</td><td class="right">9</td><td class="right">27</td><td class="right">81</td><td class="right">1.7321</td><td class="right">1.3161</td></tr>
 </tbody>
 </table>
 
@@ -346,9 +483,9 @@
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-03-23 16:32:50 </p>
+<p class="date">Date: 2012-03-25 14:39:39 </p>
 <p class="author">Author: </p>
-<p class="creator">Org version 7.8.06 with Emacs version 23</p>
+<p class="creator">Org version 7.7 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
 
 </div>

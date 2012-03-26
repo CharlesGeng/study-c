@@ -298,3 +298,8 @@
 | 工作流            |      |                 | y    |     | 
   
 
+* 部署SharePoint特性
+  已经介绍了什么是SharePoint元素，以及如何限定范围，现在介绍如何部署
+  SharePoint特性到服务器。
+  当部署特性时，会将Feature.xml文件和Elements.xml文件拷贝到服务器文件
+  系统中。

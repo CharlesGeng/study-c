@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>打包和部署</title>
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="打包和部署"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-03-25 14:39:39 "/>
+<meta name="generated" content="2012-03-27 15:44:26 "/>
 <meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -44,6 +44,12 @@ lang="en" xml:lang="en">
   dt { font-weight: bold; }
   div.figure { padding: 0.5em; }
   div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
   textarea { overflow-x: auto; }
   .linenr { font-size:smaller }
   .code-highlighted {background-color:#ffff00;}
@@ -92,15 +98,17 @@ lang="en" xml:lang="en">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 基础和超越 </a></li>
-<li><a href="#sec-2">2 SharePoint的特性（Features） </a></li>
-<li><a href="#sec-3">3 SharePoint元素 </a></li>
+<li><a href="#sec-1">1 基础和超越</a></li>
+<li><a href="#sec-2">2 SharePoint的特性（Features）</a></li>
+<li><a href="#sec-3">3 SharePoint元素</a></li>
+<li><a href="#sec-4">4 部署SharePoint特性</a></li>
+<li><a href="#sec-5">5 SharePoint解决方案打包</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 基础和超越 </h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 基础和超越</h2>
 <div class="outline-text-2" id="text-1">
 
 <p>  在本书中，你已经看了很多例子，创建不同类型的SharePoint部件并将他们部
@@ -117,7 +125,7 @@ lang="en" xml:lang="en">
 </div>
 
 <div id="outline-container-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> SharePoint的特性（Features） </h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> SharePoint的特性（Features）</h2>
 <div class="outline-text-2" id="text-2">
 
 <p>  为了全面了解VisualStudio2010提供的打包和部署特性，我们需要从
@@ -192,8 +200,6 @@ lang="en" xml:lang="en">
 </pre>
 
 
-
-
 <p>
   可以将清单中的Feature.xml部署到SharePoint服务器上，但是这样做是没有
   意义的，因为特性文件是 <b>空</b> 的&ndash;它仅包含特性文件最小定义而不包含任何
@@ -218,8 +224,6 @@ lang="en" xml:lang="en">
   &lt;/<span style="color: #0000ff;">ElementManifests</span>&gt;
 &lt;/<span style="color: #0000ff;">Feature</span>&gt;
 </pre>
-
-
 
 
 <p>
@@ -270,8 +274,6 @@ lang="en" xml:lang="en">
   &lt;/<span style="color: #0000ff;">UpgradeActions</span>&gt;
 &lt;/<span style="color: #0000ff;">Feature</span>&gt;
 </pre>
-
-
 
 
 <p>
@@ -355,7 +357,7 @@ lang="en" xml:lang="en">
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> SharePoint元素 </h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> SharePoint元素</h2>
 <div class="outline-text-2" id="text-3">
 
 <p>  目前为止，在本章中很多次提到了“元素”这个词。不幸的是，我们还会更多
@@ -442,8 +444,6 @@ lang="en" xml:lang="en">
 
 
 
-
-
 <pre class="src src-html">&#34920;11-4&#20013;&#22909;&#20687;&#23569;&#20102;&#28857;&#20160;&#20040;--&#20363;&#22914;&#65292;Web&#37096;&#20214;&#21644;&#24212;&#29992;&#39029;&#22312;&#21738;&#20799;
 Web&#37096;&#20214;&#65292;&#21487;&#35270;Web&#37096;&#20214;&#21644;&#24212;&#29992;&#39029;&#27809;&#26377;&#20986;&#29616;&#22312;&#34920;11-4&#20013;&#65292;&#22240;&#20026;&#20182;&#20204;&#27809;&#26377;&#23545;&#24212;&#30340;
 SharePoint&#20803;&#32032;&#12290;&#22914;&#26524;&#25171;&#24320;Web&#37096;&#20214;&#39033;&#30446;&#30340;Elements.xml&#65292;&#20250;&#21457;&#29616;&#23427;&#26159;&#20197;&#27169;&#22359;
@@ -454,8 +454,6 @@ SharePoint&#20803;&#32032;&#12290;&#22914;&#26524;&#25171;&#24320;Web&#37096;&#2
 </pre>
 
 
-
-
 <p>
    每个在表11-4中描述的元素可以部署的范围是不同的。表11-5给出了各个元
    素可以部署和激活的范围。
@@ -464,28 +462,347 @@ SharePoint&#20803;&#32032;&#12290;&#22914;&#26524;&#25171;&#24320;Web&#37096;&#2
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption></caption>
-<colgroup><col class="right" /></colgroup>
-<colgroup><col class="right" /><col class="right" /><col class="right" /></colgroup><colgroup><col class="right" /><col class="right" /></colgroup>
+<colgroup><col class="left" /></colgroup>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup>
 <thead>
-<tr><th scope="col" class="right">N</th><th scope="col" class="right">N<sup>2</sup></th><th scope="col" class="right">N<sup>3</sup></th><th scope="col" class="right">N<sup>4</sup></th><th scope="col" class="right">sqrt(n)</th><th scope="col" class="right">sqrt4(N)</th></tr>
 </thead>
 <tbody>
-<tr><td class="right">1</td><td class="right">1</td><td class="right">1</td><td class="right">1</td><td class="right">1</td><td class="right">1</td></tr>
-<tr><td class="right">2</td><td class="right">4</td><td class="right">8</td><td class="right">16</td><td class="right">1.4142</td><td class="right">1.1892</td></tr>
-<tr><td class="right">3</td><td class="right">9</td><td class="right">27</td><td class="right">81</td><td class="right">1.7321</td><td class="right">1.3161</td></tr>
+<tr><td class="left">元素</td><td class="left">Farm</td><td class="left">Web Application</td><td class="left">Site</td><td class="left">Web</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">内容类型</td><td class="left"></td><td class="left"></td><td class="left">Y</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">内容类型绑定</td><td class="left"></td><td class="left"></td><td class="left">y</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">自定义行为</td><td class="left">y</td><td class="left">y</td><td class="left">y</td><td class="left">y</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">自定义行为分组</td><td class="left">y</td><td class="left">y</td><td class="left">y</td><td class="left">y</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">委托控件</td><td class="left">y</td><td class="left">y</td><td class="left">y</td><td class="left">y</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">文档转换器</td><td class="left"></td><td class="left"></td><td class="left"></td><td class="left">y</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">事件接收器</td><td class="left"></td><td class="left"></td><td class="left">y</td><td class="left">y</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">特性/网站模板关联</td><td class="left">y</td><td class="left">y</td><td class="left">y</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">字段元素</td><td class="left"></td><td class="left"></td><td class="left">y</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">隐藏自定义行为</td><td class="left">y</td><td class="left">y</td><td class="left">y</td><td class="left">y</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">列表实例</td><td class="left"></td><td class="left"></td><td class="left">y</td><td class="left">y</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">列表模板</td><td class="left"></td><td class="left"></td><td class="left">y</td><td class="left">y</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">模块</td><td class="left"></td><td class="left"></td><td class="left">y</td><td class="left">y</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">工作流</td><td class="left"></td><td class="left"></td><td class="left">y</td><td class="left"></td></tr>
 </tbody>
 </table>
 
 
 
 </div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 部署SharePoint特性</h2>
+<div class="outline-text-2" id="text-4">
+
+<p>  已经介绍了什么是SharePoint元素，以及如何限定范围，现在介绍如何部署
+  SharePoint特性到服务器。
+  当部署特性时，会将Feature.xml文件和Elements.xml文件拷贝到服务器文件
+  系统中。所有的特性和元素文件被安装在SharePoint簇的特性文件夹，如以下
+  位置所示：
+  Program Files\Common Files\Microsoft Shared\web
+  server\extensions\14\TEMPLATE\FEATURES\
+</p>
+<p>
+  一般情况下，要安装特性，首先将他们打包到 .WSP 文件中，其次对 .WSP 文
+  件执行 stsadm.exe 指令&ndash; stsadm.exe会将文件拷贝到SharePoint簇中的相
+  应文件夹中并安装文件。但是在这节，我们自己直接拷贝文件到SharePoint簇，
+  而不是用 .WSP 包，再用stsadm.exe安装 .WSP 文件。按照以下步骤创建新文
+  件夹然后拷贝Feature.xml到创建的文件夹。
+</p><ol>
+<li>打开SharePoint簇中用于保存特性的FEATURE文件夹（见上）
+</li>
+<li>创建名为 <b>MyFeature</b> 的子文件夹；
+</li>
+<li>复制 Feature.xml 文件到 <b>MyFeature</b> 文件夹。
+</li>
+</ol>
+
+
+<p>
+  Feature.xml文件中包含三个SharePoint元素，分别为 MyElement1,
+  MyElement2, MyElement3。清单11-4是Feature.xml文件。
+</p>
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #0000ff;">Feature</span> <span style="color: #a0522d;">Title</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">MyFeature</span><span style="color: #8b2252;">"</span> <span style="color: #a0522d;">Id</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">A7B3B68A-FF24-434D-B129-B3CA435DB954</span><span style="color: #8b2252;">"</span> <span style="color: #a0522d;">scope</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">site</span><span style="color: #8b2252;">"</span>&gt;
+  &lt;<span style="color: #0000ff;">ElementManifests</span>&gt;
+    &lt;<span style="color: #0000ff;">ElementManifest</span> <span style="color: #a0522d;">Location</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">MyElement1\Elements.xml</span><span style="color: #8b2252;">"</span> /&gt;
+    &lt;<span style="color: #0000ff;">ElementManifest</span> <span style="color: #a0522d;">Location</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">MyElement2\Elements.xml</span><span style="color: #8b2252;">"</span> /&gt;
+    &lt;<span style="color: #0000ff;">ElementManifest</span> <span style="color: #a0522d;">Location</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">MyElement3\Elements.xml</span><span style="color: #8b2252;">"</span> /&gt;
+  &lt;/<span style="color: #0000ff;">ElementManifests</span>&gt;
+&lt;/<span style="color: #0000ff;">Feature</span>&gt;
+</pre>
+
+
+<p>
+  因为有三个SharePoint元素，所以需要在MyFeature文件夹下创建三个子文件
+  夹。每个元素文件夹应该包含在Feature.xml中引用的Elements.xml文件。因
+  此MyFeature目录看上去应该像以下显示：
+</p>
+
+
+
+<pre class="src src-html">MyFeature
+  MyElement1
+    Elements.xml
+  MyElement2
+    Elements.xml
+  MyElement3
+    Elements.xml
+</pre>
+
+
+<p>  
+  我们像用stsadm安装特性那样将需要的文件放到相应的位置。在命令行中，先
+  找到 stsadm.exe 的文件夹，一般在SharePoint服务器上的目录为：
+  C:\Program Files\Common Files\Microsoft Shared\Web Server
+  Extensions\14\BIN. 为了便于访问 stsadm.exe,可以将目录添加到 <b>PATH</b>
+  环境变量中。一旦添加目录到path变量中，无论命令行当前目录是什么，都可
+  以调用stsadm.exe。然后打开C:\Program Files\Common Files\Microsoft
+  Shared\Web Server Extensions\14\TEMPLATE\FEATURES目录，运行以下命令
+  来安装特性：
+</p>
+
+
+
+<pre class="src src-bat">stsadm -o installfeature -filename MyFeature\feature.xml
+</pre>
+
+
+<p>  
+  使用相同的工具，可以执行不同的指令来卸载特性：
+</p>
+
+
+
+<pre class="src src-bat">stsadm -o uninstallfeature -filename MyFeature\feature.xml -url http://localhost
+</pre>
+
+
+<p>
+  一旦安装特性成功，我们就可以打开SharePoint网站来手工激活特性。也可以
+  使用以下的命令来激活特性：
+</p>
+
+
+
+<pre class="src src-bat">stsadm -o activatefeature -filename MyFeature\feature.xml -url http://localhost
+</pre>
+
+
+<p>  
+  要禁用特性指令也类似：
+</p>
+
+
+
+<pre class="src src-bat">stsadm -o deactivatefeature -filename MyFeature\feature.xml -url http://localhost
+</pre>
+
+
+<p>
+  已经介绍了如何将特性和特性相关的Elements.xml文件保存到SharePoint簇中，
+  以及如何手工安装，卸载，激活和禁用SharePoint特性。如果仅有一个
+  SharePoint特性需要安装，操作过程并不算复杂。但是如果一次要安装多个
+  SharePoint特性该怎么办呢？当然，可以创建一个脚本来执行所有的手工步骤。
+  如果有种机制来分组或打包特性到一起，然后直接安装这个包就可以将所有的
+  特性安装上就好了。幸运的是，的确有一个方法来这么做，这个方法就叫
+  SharePoint解决方案打包。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> SharePoint解决方案打包</h2>
+<div class="outline-text-2" id="text-5">
+
+<p>  SharePoint解决方案是由一个或多个SharePoint特性组成的。图11-1显示了
+  SharePoint解决方案，特性和元素之间的关系。
+</p>
+<p>
+  SharePoint解决方案包含多个特性，每个特性包含多个元素。
+</p>
+<p>  
+  解决方案的概念与特性的概念类似，和特性可以将不同的SharePoint元素组合
+  到一起一样，解决方案可以将不同的SharePoint特性组合到一起。SharePoint
+  解决方案是一个扩展名为 .WSP 的压缩文件（.CAB).这个文件有时被称为解决
+  方案包或者包文件。SharePoint解决方案的核心就是一个解决方案清单文件，
+  它是一个名为Manifest.xml的XML文件。这个文件指明了解决方案中包含哪些内
+  容以及部署解决方案内容的信息。它还包含一个SolutionId用来唯一标识解决
+  方案。后面还会看到，还包括其他的配置，如安全控制配置，资源和代码访问
+  安全。下面的的表11-5显示了可以用于部署三个特性的解决方案清单。
+</p>
+
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #0000ff;">Solution</span> <span style="color: #a0522d;">SolutionId</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">3ECB7E89-68F3-4EDD-9759-7089413D0C43</span><span style="color: #8b2252;">"</span>
+          <span style="color: #a0522d;">SharePointProductVersion</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">"</span>&gt;
+  &lt;<span style="color: #0000ff;">FeatureManifests</span>&gt;
+    &lt;<span style="color: #0000ff;">FeatureManifest</span> <span style="color: #a0522d;">Location</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">Feature1\Feature.xml</span><span style="color: #8b2252;">"</span>/&gt;
+    &lt;<span style="color: #0000ff;">FeatureManifest</span> <span style="color: #a0522d;">Location</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">Feature2\Feature.xml</span><span style="color: #8b2252;">"</span>/&gt;
+    &lt;<span style="color: #0000ff;">FeatureManifest</span> <span style="color: #a0522d;">Location</span>=<span style="color: #8b2252;">"</span><span style="color: #8b2252;">Feature3\Feature.xml</span><span style="color: #8b2252;">"</span>/&gt;
+  &lt;/<span style="color: #0000ff;">FeatureManifests</span>&gt;
+&lt;/<span style="color: #0000ff;">Solution</span>&gt;
+</pre>
+
+
+<p>  
+  由上面的表可以明显看出，FeatureManifests元素和FeatureManifest元素用
+  于标识描述特性的Feature.xml特性列表文件。除了指向特性的清单，解决方
+  案清单还可以包含更多的信息。表列出了所有可以在解决方案清单中使用的
+  XML元素。
+</p>
+
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #0000ff;">Solution</span>&gt;
+  &lt;<span style="color: #0000ff;">ActivationDependencies</span>&gt;
+    &lt;<span style="color: #0000ff;">ActivationDependency</span>/&gt;
+  &lt;/<span style="color: #0000ff;">ActivationDependencies</span>&gt;
+  &lt;<span style="color: #0000ff;">ApplicationResourceFiles</span>&gt;
+    &lt;<span style="color: #0000ff;">ApplicationResourceFile</span>/&gt;
+  &lt;/<span style="color: #0000ff;">ApplicationResourceFiles</span>&gt;
+  &lt;<span style="color: #0000ff;">Assemblies</span>&gt;
+    &lt;<span style="color: #0000ff;">Assembly</span>&gt;
+      &lt;<span style="color: #0000ff;">SafeControls</span>&gt;
+        &lt;<span style="color: #0000ff;">SafeControl</span>/&gt;
+      &lt;/<span style="color: #0000ff;">SafeControls</span>&gt;
+      &lt;<span style="color: #0000ff;">ClassResources</span>&gt;
+        &lt;<span style="color: #0000ff;">ClassResource</span>/&gt;
+      &lt;/<span style="color: #0000ff;">ClassResources</span>&gt;
+    &lt;/<span style="color: #0000ff;">Assembly</span>&gt;
+  &lt;/<span style="color: #0000ff;">Assemblies</span>&gt;
+  &lt;<span style="color: #0000ff;">CodeAccessSecurity</span>&gt;
+    &lt;<span style="color: #0000ff;">PolicyItem</span>&gt;
+      &lt;<span style="color: #0000ff;">PermissionSet</span>&gt;
+        &lt;<span style="color: #0000ff;">IPermission</span>/&gt;
+      &lt;/<span style="color: #0000ff;">PermissionSet</span>&gt;
+      &lt;<span style="color: #0000ff;">Assemblies</span>&gt;
+        &lt;<span style="color: #0000ff;">Assembly</span>/&gt;
+      &lt;/<span style="color: #0000ff;">Assemblies</span>&gt;
+    &lt;/<span style="color: #0000ff;">PolicyItem</span>&gt;
+  &lt;/<span style="color: #0000ff;">CodeAccessSecurity</span>&gt;
+  &lt;<span style="color: #0000ff;">DwpFiles</span>&gt;
+    &lt;<span style="color: #0000ff;">DwpFile</span>/&gt;
+  &lt;/<span style="color: #0000ff;">DwpFiles</span>&gt;
+  &lt;<span style="color: #0000ff;">FeatureManifests</span>&gt;
+    &lt;<span style="color: #0000ff;">FeatureManifest</span>/&gt;
+    &lt;/<span style="color: #0000ff;">FeatureManifests</span>&gt;
+  &lt;<span style="color: #0000ff;">Resources</span>&gt;
+    &lt;<span style="color: #0000ff;">Resource</span>/&gt;
+  &lt;/<span style="color: #0000ff;">Resources</span>&gt;
+  &lt;<span style="color: #0000ff;">RootFiles</span>&gt;
+    &lt;<span style="color: #0000ff;">RootFile</span>/&gt;
+  &lt;/<span style="color: #0000ff;">RootFiles</span>&gt;
+  &lt;<span style="color: #0000ff;">SiteDefinitionManifests</span>&gt;
+    &lt;<span style="color: #0000ff;">SiteDefinitionManifest</span>&gt;
+      &lt;<span style="color: #0000ff;">WebTempFile</span>/&gt;
+    &lt;/<span style="color: #0000ff;">SiteDefinitionManifest</span>&gt;
+  &lt;/<span style="color: #0000ff;">SiteDefinitionManifests</span>&gt;
+  &lt;<span style="color: #0000ff;">TemplateFiles</span>&gt;
+    &lt;<span style="color: #0000ff;">TemplateFile</span>/&gt;
+  &lt;/<span style="color: #0000ff;">TemplateFiles</span>&gt;
+&lt;/<span style="color: #0000ff;">Solution</span>&gt;
+</pre>
+
+
+<p>
+  在表11-6中列出了用于解决方案清单文件的XML元素描述
+</p>
+<p>
+  从表11-6可以看出解决方案清单不仅用于部署指定的特性。它还有更多功能，
+  例如为Web部件定义安全控件，部署资源文件以及部署网站定义。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>图11-1：一个包含特性和元素的解决方案</caption>
+<colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><colgroup><col class="left" /></colgroup><col class="left" /><col class="left" />
+<thead>
+</thead>
+<tbody>
+<tr><td class="left">元素</td><td class="left">描述</td><td class="left">示例</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">ActivationDependencies</td><td class="left">这个元素用法与特性清单文件中的ActivationDependencies相同。可以通过它来指定当前包的依赖包。例如：SharePoint解决方案被分割成两个包，一个包包含基本的功能和SharePoint元素，另一个包包含额外的功能，这个包需要前一个包已经部署上。</td><td class="left">&lt;ActivationDependencies&gt;&lt;ActivationDenpendency SolutionId="GUID" SolutionName="BaseSolution"/&gt;&lt;/ActivationDependencies&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">ApplicationResourceFiles</td><td class="left">这个元素指定解决方案需要包含的所有资源文件。例如：需要部署解决方案需要的资源文件，如图片文件。</td><td class="left">&lt;ApplicationResourceFiles&gt;  &lt;ApplicationResourceFile     Location=string/&gt;  &lt;App<sub>GlobalResourceFile</sub>     Location=string/&gt;&lt;/ApplicationResourceFiles&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Assemblies</td><td class="left">这个元素指定解决方案应该包含的程序集</td><td class="left">&lt;Assemblies&gt;&lt;Assembly Location="MyWorkFlow.dll" DeploymentTarget = "GlobalAssemblyCache" &gt; &lt;/Assemblies&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">SafeControls</td><td class="left">这个元素指定那些需要添加到安全控件列表中的程序集中的安全控件，一般用在网站部件上。例如：当部署Web部件时，Visual Studio会自动为web部件项目添加SafeControl入口。</td><td class="left">&lt;SafeControls&gt; &lt;SafeControl Assembly = "Text" Namespace = "Text" Safe = "TRUE"</td><td class="left">"FALSE" SafeAgainstScript = "TRUE"</td><td class="left">"FALSE" TypeName = "Text"&gt; &lt;/SafeControl&gt; &lt;SafeControls&gt;</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">ClassResources</td><td class="left">这个元素为程序集指定资源。例如：ClassResources类型是用来部署那些程序集中的控件需要的资源。这些资源也可以在代码中访问。</td><td class="left">&lt;ClassResources&gt; &lt;ClassResource FileName = "Text" Location = "Text"&gt; &lt;/ClassResource&gt; &lt;/ClassResources&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">CodeAccessSecurity</td><td class="left">这个元素为特定的程序集定义信任级别和自定义策略文件。如果程序集需要一个高的信任级别，可以通过创建自定义策略来实现，而不用提高整个服务器的信任级别。</td><td class="left">见第9章，"SharePointWeb部件"中如何使用CodeAccessSecurity元素的例子</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">DwpFiles</td><td class="left">添加这个元素才允许部署web部件到SharePoint中。</td><td class="left">&lt;DwpFiles&gt; &lt;DwpFile FileName = "Text" Location = "Text"&gt; &lt;/DwpFile&gt; &lt;/DwpFiles&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">FeatureManifests</td><td class="left">这个元素指向那些需要该解决方案部署的特性</td><td class="left">&lt;FeatureManifests &lt;FeatureManifest Location="Text"/&gt; &lt;/FeatureManifests&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Resources</td><td class="left">这个元素定义了当前解决方案的资源文件</td><td class="left">&lt;Resources &lt;Resource Location="Text"/&gt; &lt;/Resources&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">RootFiles</td><td class="left">这个元素用来将那些特定文件拷贝到SharePoint簇文件夹中。所极根文件被部署到SharePoint服务器的SharePoint簇里：Program Files\Common Files\Microsoft Shared\Web Server Extensions\14</td><td class="left">&lt;RootFiles&gt; &lt;RootFile Location = "Text"&gt; &lt;/RootFile&gt; &lt;/RootFiles&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">SiteDefinitionManifests</td><td class="left">这个元素可以将网站定义包含到解决方案中。</td><td class="left">&lt;SiteDefinitionManifests&gt; &lt;SiteDefinitionManifest Location="Text"&gt; &lt;WebTempFile Location="Text"&gt; &lt;/SiteDefinitionManifest&gt; &lt;/SiteDefinitionManifests&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">WebTempFile</td><td class="left">网站模板定义文件与解决方案中的网站定义结合使用。</td><td class="left">&lt;WebTempFile Location="Text"&gt; &lt;/WebTempFile&gt;</td><td class="left"></td><td class="left"></td></tr>
+</tbody>
+</table>
+
+&lt;/Assemblies&gt;
+
+</div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-03-25 14:39:39 </p>
+<p class="date">Date: 2012-03-27 15:44:26 </p>
 <p class="author">Author: </p>
-<p class="creator">Org version 7.7 with Emacs version 23</p>
+<p class="creator">Org version 7.8.06 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
 
 </div>

@@ -7,7 +7,7 @@ using System.Collections;
 namespace IteratorPattern
 {
     //Use ArrayList to store menuitem
-    public class PancakeHouseMenu
+    public class PancakeHouseMenu : IMenu
     {
         private ArrayList menuItems = null;
 

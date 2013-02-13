@@ -7,7 +7,7 @@ using System.Collections;
 namespace IteratorPattern
 {
     //Use Array to store menuitem
-    public class DinerMenu
+    public class DinerMenu : IMenu
     {
         private const int count = 4;
         private int index = 0;

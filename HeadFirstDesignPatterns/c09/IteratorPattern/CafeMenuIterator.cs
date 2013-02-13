@@ -1,25 +1,21 @@
-//Charles Geng
-//2013-01-31
-
 using System;
 using System.Collections;
 
 namespace IteratorPattern
 {
-    public class PancakeMenuIterator : IMenuIterator
+    public class CafeMenuIterator : IMenuIterator
     {
-        private ArrayList _menuItems = null;
-        private int _i = 0;
+        Hashtable _menuItems = null;
+        int _index = 1;
 
-        public PancakeMenuIterator(ArrayList menuItems)
+        public CafeMenuIterator(Hashtable menuItems)
         {
-            _menuItems = new ArrayList();
-            _menuItems = menuItems.Clone() as ArrayList;
+            _menuItems = menuItems;
         }
 
         public bool HasNext()
         {
-            if (_i < _menuItems.Count)
+            if (_menuItems.Values.Count >= _index)
             {
                 return true;
             }
@@ -33,7 +29,7 @@ namespace IteratorPattern
         {
             if (HasNext())
             {
-                return _menuItems[_i++];
+                return _menuItems[_index++];
             }
             else
             {

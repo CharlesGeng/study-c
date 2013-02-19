@@ -514,3 +514,4 @@ colorscheme desert
 "NERDTree shortcut
 nmap <leader>do :NERDTreeToggle<cr>
 nmap <leader>dc :NERDTreeClose<cr>
+let $HOME='C:\'

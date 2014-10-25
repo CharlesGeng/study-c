@@ -46,6 +46,8 @@ if has("gui_running")
     set guioptions-=T
     let psc_style='cool'
     colorscheme spring
+else
+    colorscheme desert
 endif
 set guifont=courier\ 10\ pitch
 

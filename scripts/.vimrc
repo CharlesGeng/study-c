@@ -45,18 +45,16 @@ syntax enable
 if has("gui_running")
     set guioptions-=T
     let psc_style='cool'
-    colorscheme spring
-else
-    colorscheme desert
 endif
-set guifont=courier\ 10\ pitch
+colorscheme desert
+set guifont=courier\ 10\ pitch\ 12
 
 autocmd BufEnter * :syntax sync fromstart
 
 "Highlight current
 if has("gui_running")
     set cursorline
-    hi cursorline guibg=#dddddd
+    hi cursorline guibg=#444444
 endif
 
 "Omni menu colors
@@ -331,241 +329,243 @@ map <leader>q :e ~/buffer<cr>
 set viminfo='10,\"100,:20,%,n~/.viminfo
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-    " Buffer - reverse everything ... :)
-    map <F9> ggVGg?
+" Buffer - reverse everything ... :)
+map <F9> ggVGg?
 
-    " Don't close window, when deleting a buffer
-    command! Bclose call <SID>BufcloseCloseIt()
+" Don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
 
-    function! <SID>BufcloseCloseIt()
-        let l:currentBufNum = bufnr("%")
-        let l:alternateBufNum = bufnr("#")
+function! <SID>BufcloseCloseIt()
+    let l:currentBufNum = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
 
-        if buflisted(l:alternateBufNum)
-            buffer #
-        else
-            bnext
-        endif
+    if buflisted(l:alternateBufNum)
+        buffer #
+    else
+        bnext
+    endif
 
-        if bufnr("%") == l:currentBufNum
-            new
-        endif
+    if bufnr("%") == l:currentBufNum
+        new
+    endif
 
-        if buflisted(l:currentBufNum)
-            execute("bdelete! ".l:currentBufNum)
-        endif
-    endfunction
-
-
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Files and backups
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "Turn backup off
-    set nobackup
-    set nowb
-    set noswapfile
+    if buflisted(l:currentBufNum)
+        execute("bdelete! ".l:currentBufNum)
+    endif
+endfunction
 
 
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Folding
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "Enable folding, I find it very useful
-    set nofen
-    set fdl=0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files and backups
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Turn backup off
+set nobackup
+set nowb
+set noswapfile
 
 
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Text options
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    set expandtab
-
-    set smarttab
-    set lbr
-    set tw=500
-
-    """"""""""""""""""""""""""""""
-    " => Indent
-    """"""""""""""""""""""""""""""
-    "Auto indent
-    set ai
-
-    "Smart indet
-    set si
-
-    "C-style indeting
-    set cindent
-
-    "Wrap lines
-    set wrap
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Folding
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Enable folding, I find it very useful
+set nofen
+set fdl=0
 
 
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Spell checking
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    map <leader>sn ]s
-    map <leader>sp [s
-    map <leader>sa zg
-    map <leader>s? z=
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set expandtab
+
+set smarttab
+set lbr
+set tw=500
+
+""""""""""""""""""""""""""""""
+" => Indent
+""""""""""""""""""""""""""""""
+"Auto indent
+set ai
+
+"Smart indet
+set si
+
+"C-style indeting
+set cindent
+
+"Wrap lines
+set wrap
 
 
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Plugin configuration
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    """"""""""""""""""""""""""""""
-    " => Vim Grep
-    """"""""""""""""""""""""""""""
-    let Grep_Skip_Dirs = 'RCS CVS SCCS .svn'
-    let Grep_Cygwin_Find = 1
-
-    """"""""""""""""""""""""""""""
-    " => Yank Ring
-    """"""""""""""""""""""""""""""
-    map <leader>y :YRShow<cr>
-
-    """"""""""""""""""""""""""""""
-    " => File explorer
-    """"""""""""""""""""""""""""""
-    "Split vertically
-    let g:explVertical=1
-
-    "Window size
-    let g:explWinSize=35
-
-    let g:explSplitLeft=1
-    let g:explSplitBelow=1
-
-    "Hide some files
-    let g:explHideFiles='^\.,.*\.class$,.*\.swp$,.*\.pyc$,.*\.swo$,\.DS_Store$'
-
-    "Hide the help thing..
-    let g:explDetailedHelp=0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
 
 
-    """"""""""""""""""""""""""""""
-    " => Minibuffer
-    """"""""""""""""""""""""""""""
-    let g:miniBufExplModSelTarget = 1
-    let g:miniBufExplorerMoreThanOne = 2
-    let g:miniBufExplModSelTarget = 0
-    let g:miniBufExplUseSingleClick = 1
-    let g:miniBufExplMapWindowNavVim = 1
-    let g:miniBufExplVSplit = 25
-    let g:miniBufExplSplitBelow=1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
+" => Vim Grep
+""""""""""""""""""""""""""""""
+let Grep_Skip_Dirs = 'RCS CVS SCCS .svn'
+let Grep_Cygwin_Find = 1
 
-    let g:bufExplorerSortBy = "name"
+""""""""""""""""""""""""""""""
+" => Yank Ring
+""""""""""""""""""""""""""""""
+map <leader>y :YRShow<cr>
 
-    autocmd BufRead,BufNew :call UMiniBufExplorer
+""""""""""""""""""""""""""""""
+" => File explorer
+""""""""""""""""""""""""""""""
+"Split vertically
+let g:explVertical=1
 
+"Window size
+let g:explWinSize=35
 
-    """"""""""""""""""""""""""""""
-    " => Tag list (ctags) - not used
-    """"""""""""""""""""""""""""""
-    "let Tlist_Ctags_Cmd = "/sw/bin/ctags-exuberant"
-    "let Tlist_Sort_Type = "name"
-    "let Tlist_Show_Menu = 1
-    "map <leader>t :Tlist<cr>
+let g:explSplitLeft=1
+let g:explSplitBelow=1
 
+"Hide some files
+let g:explHideFiles='^\.,.*\.class$,.*\.swp$,.*\.pyc$,.*\.swo$,\.DS_Store$'
 
-    """"""""""""""""""""""""""""""
-    " => LaTeX Suite things
-    """"""""""""""""""""""""""""""
-    set grepprg=grep\ -nH\ $*
-    let g:Tex_DefaultTargetFormat="pdf"
-    let g:Tex_ViewRule_pdf='xpdf'
-
-    "Bindings
-    autocmd FileType tex map <silent><leader><space> :w!<cr> :silent! call Tex_RunLaTeX()<cr>
-
-    "Auto complete some things ;)
-    autocmd FileType tex inoremap $i \indent
-    autocmd FileType tex inoremap $* \cdot
-    autocmd FileType tex inoremap $i \item
-    autocmd FileType tex inoremap $m \[<cr>\]<esc>O
+"Hide the help thing..
+let g:explDetailedHelp=0
 
 
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Filetype generic
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Todo
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    au BufNewFile,BufRead *.todo so ~/vim_local/syntax/amido.vim
+""""""""""""""""""""""""""""""
+" => Minibuffer
+""""""""""""""""""""""""""""""
+let g:miniBufExplModSelTarget = 1
+let g:miniBufExplorerMoreThanOne = 2
+let g:miniBufExplModSelTarget = 0
+let g:miniBufExplUseSingleClick = 1
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplVSplit = 25
+let g:miniBufExplSplitBelow=1
 
-    """"""""""""""""""""""""""""""
-    " => VIM
-    """"""""""""""""""""""""""""""
-    autocmd FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
+let g:bufExplorerSortBy = "name"
 
-    """"""""""""""""""""""""""""""
-    " => Cheetah section
-    """""""""""""""""""""""""""""""
-    autocmd FileType cheetah set ft=xml
-    autocmd FileType cheetah set syntax=cheetah
-
-    """""""""""""""""""""""""""""""
-    " => Vim section
-    """""""""""""""""""""""""""""""
-    autocmd FileType vim set nofen
-
-    """"""""""""""""""""""""""""""
-    " => C mappings
-    """""""""""""""""""""""""""""""
-    autocmd FileType c map <buffer> <leader><space> :w<cr>:!gcc %<cr>
+autocmd BufRead,BufNew :call UMiniBufExplorer
 
 
-    """""""""""""""""""""""""""""""
-    " => SML
-    """""""""""""""""""""""""""""""
-    autocmd FileType sml map <silent> <buffer> <leader><space> <leader>cd:w<cr>:!sml %<cr>
+""""""""""""""""""""""""""""""
+" => Tag list (ctags) - not used
+""""""""""""""""""""""""""""""
+"let Tlist_Ctags_Cmd = "/sw/bin/ctags-exuberant"
+"let Tlist_Sort_Type = "name"
+"let Tlist_Show_Menu = 1
+"map <leader>t :Tlist<cr>
 
 
-    """"""""""""""""""""""""""""""
-    " => Scheme bidings
-    """"""""""""""""""""""""""""""
-    autocmd BufNewFile,BufRead *.scm map <buffer> <leader><space> <leader>cd:w<cr>:!petite %<cr>
-    autocmd BufNewFile,BufRead *.scm inoremap <buffer> <C-t> (pretty-print )<esc>i
-    autocmd BufNewFile,BufRead *.scm vnoremap <C-t> <esc>`>a)<esc>`<i(pretty-print <esc>
+""""""""""""""""""""""""""""""
+" => LaTeX Suite things
+""""""""""""""""""""""""""""""
+set grepprg=grep\ -nH\ $*
+let g:Tex_DefaultTargetFormat="pdf"
+let g:Tex_ViewRule_pdf='xpdf'
+
+"Bindings
+autocmd FileType tex map <silent><leader><space> :w!<cr> :silent! call Tex_RunLaTeX()<cr>
+
+"Auto complete some things ;)
+autocmd FileType tex inoremap $i \indent
+autocmd FileType tex inoremap $* \cdot
+autocmd FileType tex inoremap $i \item
+autocmd FileType tex inoremap $m \[<cr>\]<esc>O
 
 
-    """"""""""""""""""""""""""""""
-    " => SVN section
-    """""""""""""""""""""""""""""""
-    map <F8> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Filetype generic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Todo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.todo so ~/vim_local/syntax/amido.vim
 
-    "Presse c-q insted of space (or other key) to complete the snippet
-    imap <C-q> <C-]>
+""""""""""""""""""""""""""""""
+" => VIM
+""""""""""""""""""""""""""""""
+autocmd FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
+
+""""""""""""""""""""""""""""""
+" => Cheetah section
+"""""""""""""""""""""""""""""""
+autocmd FileType cheetah set ft=xml
+autocmd FileType cheetah set syntax=cheetah
+
+"""""""""""""""""""""""""""""""
+" => Vim section
+"""""""""""""""""""""""""""""""
+autocmd FileType vim set nofen
+
+""""""""""""""""""""""""""""""
+" => C mappings
+"""""""""""""""""""""""""""""""
+autocmd FileType c map <buffer> <leader><space> :w<cr>:!gcc %<cr>
 
 
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Cope
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "For Cope
-    map <silent> <leader><cr> :noh<cr>
-
-    "Orginal for all
-    map <leader>n :cn<cr>
-    map <leader>p :cp<cr>
-    map <leader>c :botright cw 10<cr>
-    map <c-u> <c-l><c-j>:q<cr>:botright cw 10<cr>
+"""""""""""""""""""""""""""""""
+" => SML
+"""""""""""""""""""""""""""""""
+autocmd FileType sml map <silent> <buffer> <leader><space> <leader>cd:w<cr>:!sml %<cr>
 
 
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => MISC
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "Remove the Windows ^M
-    noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+""""""""""""""""""""""""""""""
+" => Scheme bidings
+""""""""""""""""""""""""""""""
+autocmd BufNewFile,BufRead *.scm map <buffer> <leader><space> <leader>cd:w<cr>:!petite %<cr>
+autocmd BufNewFile,BufRead *.scm inoremap <buffer> <C-t> (pretty-print )<esc>i
+autocmd BufNewFile,BufRead *.scm vnoremap <C-t> <esc>`>a)<esc>`<i(pretty-print <esc>
 
-    "Paste toggle - when pasting something in, don't indent.
-    set pastetoggle=<F3>
 
-    "Remove indenting on empty lines
-    map <F2> :%s/\s*$//g<cr>:noh<cr>''
+""""""""""""""""""""""""""""""
+" => SVN section
+"""""""""""""""""""""""""""""""
+map <F8> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
 
-    "Super paste
-    inoremap <C-v> <esc>:set paste<cr>mui<C-R>+<esc>mv'uV'v=:set nopaste<cr>
+"Presse c-q insted of space (or other key) to complete the snippet
+imap <C-q> <C-]>
 
-    set tabstop=4
-    set shiftwidth=4
-    set autowrite
-    "NERDtree
-    nmap <leader>do :NERDTreeToggle<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Cope
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"For Cope
+map <silent> <leader><cr> :noh<cr>
+
+"Orginal for all
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
+map <leader>c :botright cw 10<cr>
+map <c-u> <c-l><c-j>:q<cr>:botright cw 10<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => MISC
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Remove the Windows ^M
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+"Paste toggle - when pasting something in, don't indent.
+set pastetoggle=<F3>
+
+"Remove indenting on empty lines
+map <F2> :%s/\s*$//g<cr>:noh<cr>''
+
+"Super paste
+inoremap <C-v> <esc>:set paste<cr>mui<C-R>+<esc>mv'uV'v=:set nopaste<cr>
+
+set tabstop=4
+set shiftwidth=4
+set autowrite
+"NERDtree
+nmap <leader>do :NERDTreeToggle<cr>
+set columns=1000
+set lines=50

@@ -25,7 +25,7 @@ autocmd! bufwritepost _vimrc source $VIM/_vimrc
 
 syntax enable
 
-set guifont=fixedsys
+set guifont=Courier\ New:h12
 
 if has("gui_running")
     set guioptions-=T
